@@ -19,25 +19,57 @@ const navClass = transparent
 ---
 
 <nav class={navClass} id="navbar" data-transparent={transparent.toString()}>
-  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-    <a href={homeUrl} class="nav-text text-2xl font-comfortaa font-bold drop-shadow-md transition-colors">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center relative">
+    <a href={homeUrl} class="nav-text text-2xl font-comfortaa font-bold drop-shadow-md transition-colors z-[60] relative">
       be-ikigai
     </a>
     
-    <div class="flex items-center gap-6 lg:gap-10">
-      <a href={`${homeUrl}#accueil`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md hidden lg:block tracking-wide">
+    <!-- Mobile Hamburger Button -->
+    <button id="mobile-menu-btn" aria-label="Toggle Menu" class="lg:hidden z-[60] relative flex items-center justify-center min-w-[48px] min-h-[48px] nav-text focus:outline-none transition-transform duration-300">
+      <svg id="hamburger-icon" class="w-8 h-8 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg id="close-icon" class="w-8 h-8 hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    
+    <!-- Desktop Menu -->
+    <div class="hidden lg:flex items-center gap-6 lg:gap-10">
+      <a href={`${homeUrl}#accueil`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         {lang === 'fr' ? 'Accueil' : 'Home'}
       </a>
-      <a href={`${homeUrl}#qui-suis-je`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md hidden lg:block tracking-wide">
+      <a href={`${homeUrl}#qui-suis-je`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         {lang === 'fr' ? 'À propos' : 'About'}
       </a>
-      <a href={`${homeUrl}#solution`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md hidden lg:block tracking-wide">
+      <a href={`${homeUrl}#solution`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         Services
       </a>
       <a href={blogUrl} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         Blog
       </a>
-      <a href={`${homeUrl}#contact`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md hidden md:block tracking-wide">
+      <a href={`${homeUrl}#contact`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
+        Contact
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile Overlay Menu -->
+  <div id="mobile-menu" class="fixed inset-0 bg-[#1A2A44]/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 ease-in-out z-50 lg:hidden flex flex-col justify-center items-center">
+    <div class="flex flex-col items-center gap-8 text-center pt-16 w-full px-6">
+      <a href={`${homeUrl}#accueil`} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
+        {lang === 'fr' ? 'Accueil' : 'Home'}
+      </a>
+      <a href={`${homeUrl}#qui-suis-je`} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
+        {lang === 'fr' ? 'À propos' : 'About'}
+      </a>
+      <a href={`${homeUrl}#solution`} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
+        Services
+      </a>
+      <a href={blogUrl} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
+        Blog
+      </a>
+      <a href={`${homeUrl}#contact`} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
         Contact
       </a>
     </div>
@@ -57,6 +89,36 @@ const navClass = transparent
       navbar?.classList.remove('bg-bleu-crepuscule', 'shadow-md');
       navbar?.classList.add('transparent-mode');
     }
+  });
+
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+  let isMenuOpen = false;
+
+  const toggleMenu = () => {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('translate-x-full');
+      hamburgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu?.classList.add('translate-x-full');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  };
+
+  mobileMenuBtn?.addEventListener('click', toggleMenu);
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if(isMenuOpen) toggleMenu();
+    });
   });
 </script>
 

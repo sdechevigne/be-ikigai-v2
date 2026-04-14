@@ -24,29 +24,29 @@ const labels = {
 
 const t = labels[lang];
 ---
-<div class="contact-form-container text-left w-full mx-auto max-w-2xl bg-white/20 p-8 rounded-3xl backdrop-blur-md shadow-xl border border-white/30">
+<div class="contact-form-container text-left w-full mx-auto max-w-2xl bg-[#f5e5d5] p-8 rounded-3xl shadow-xl text-bleu-crepuscule">
     <form id="supabase-contact-form" class="space-y-6">
         <input type="hidden" name="lang" value={lang} />
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <label for="nom" class="block text-sm font-medium text-gray-800 mb-1">{t.nom}</label>
-                <input type="text" id="nom" name="nom" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-bleu-crepuscule focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white/90 shadow-sm" placeholder="..." />
+                <label for="nom" class="block text-sm font-medium text-bleu-crepuscule font-bold mb-1">{t.nom}</label>
+                <input type="text" id="nom" name="nom" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-bleu-crepuscule focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white text-gray-900 shadow-sm" placeholder="..." />
             </div>
             <div>
-                <label for="tel" class="block text-sm font-medium text-gray-800 mb-1">{t.tel}</label>
-                <input type="tel" id="tel" name="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-bleu-crepuscule focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white/90 shadow-sm" placeholder="..." />
+                <label for="tel" class="block text-sm font-medium text-bleu-crepuscule font-bold mb-1">{t.tel}</label>
+                <input type="tel" id="tel" name="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-bleu-crepuscule focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white text-gray-900 shadow-sm" placeholder="..." />
             </div>
         </div>
 
         <div>
-            <label for="email" class="block text-sm font-medium text-gray-800 mb-1">{t.email}</label>
-            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-bleu-crepuscule focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white/90 shadow-sm" placeholder="..." />
+            <label for="email" class="block text-sm font-medium text-bleu-crepuscule font-bold mb-1">{t.email}</label>
+            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-bleu-crepuscule focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white text-gray-900 shadow-sm" placeholder="..." />
         </div>
 
         <div>
-            <label for="message" class="block text-sm font-medium text-gray-800 mb-1">{t.message}</label>
-            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-bleu-crepuscule focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white/90 shadow-sm resize-none" placeholder="..."></textarea>
+            <label for="message" class="block text-sm font-medium text-bleu-crepuscule font-bold mb-1">{t.message}</label>
+            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-bleu-crepuscule focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white text-gray-900 shadow-sm resize-none" placeholder="..."></textarea>
         </div>
 
         <div id="form-error" class="hidden rounded-lg bg-red-100 p-4 text-red-700 font-medium">

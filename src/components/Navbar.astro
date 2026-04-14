@@ -1,0 +1,54 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: string;
+  transparent?: boolean;
+}
+
+const { lang, transparent = true } = Astro.props;
+const t = useTranslations(lang);
+
+const homeUrl = lang === 'fr' ? '/' : `/${lang}/`;
+const blogUrl = lang === 'fr' ? '/blog/' : `/${lang}/blog/`;
+const switchLangUrl = lang === 'fr' ? '/en/' : '/';
+
+const navClass = transparent 
+  ? "fixed top-0 w-full z-[100] transition-all duration-300"
+  : "fixed top-0 w-full z-[100] transition-all duration-300 bg-bleu-crepuscule shadow-md";
+---
+
+<nav class={navClass} id="navbar" data-transparent={transparent.toString()}>
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <a href={homeUrl} class="text-2xl font-comfortaa font-bold text-white drop-shadow-md">
+      be-ikigai
+    </a>
+    
+    <div class="flex items-center gap-6">
+      <a href={blogUrl} class="text-white font-comfortaa hover:text-dore-serein transition-colors drop-shadow-md">
+        Blog
+      </a>
+      <a href={`${homeUrl}#contact`} class="text-white font-comfortaa hover:text-dore-serein transition-colors drop-shadow-md hidden md:block">
+        Contact
+      </a>
+      
+      <a href={switchLangUrl} class="bg-white/20 hover:bg-white/40 backdrop-blur-md text-white px-4 py-2 rounded-full font-comfortaa text-sm border border-white/30 transition-all duration-300 shadow-lg flex items-center gap-2">
+          {lang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR'}
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    const isTransparent = navbar?.dataset.transparent === 'true';
+    if (!isTransparent) return;
+
+    if (window.scrollY > 50) {
+      navbar?.classList.add('bg-bleu-crepuscule', 'shadow-md');
+    } else {
+      navbar?.classList.remove('bg-bleu-crepuscule', 'shadow-md');
+    }
+  });
+</script>

@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BlogList from '../../../components/BlogList.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+
+const posts = await getCollection('blog', ({ data }) => {
+  return data.lang === lang && data.status === 'published';
+});
+
+posts.sort((a, b) => {
+    const dateA = a.data.publishedAt?.valueOf() || 0;
+    const dateB = b.data.publishedAt?.valueOf() || 0;
+    return dateB - dateA;
+});
+---
+
+<BlogList posts={posts} />

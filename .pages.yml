@@ -1,0 +1,91 @@
+media:
+  input: public/assets/img/blog
+  output: /assets/img/blog
+
+content:
+  - name: blog
+    label: Articles de blog
+    type: collection
+    path: src/content/blog
+    actions:
+      - name: publish
+        label: Publier l'article
+        description: Passe le statut en published, met à jour llms.txt et publie sur les réseaux sociaux.
+        confirm: Publier cet article et le diffuser sur les réseaux sociaux ?
+        workflow: blog-publish.yml
+        inputs:
+          - name: slug
+            label: Slug de l'article
+            value: "{filename}"
+    view:
+      fields: [title, lang, status, publishedAt, featured]
+      default:
+        sort: publishedAt
+        order: desc
+    fields:
+      - name: title
+        label: Titre
+        type: string
+        required: true
+      - name: lang
+        label: Langue
+        type: select
+        options:
+          values:
+            - fr
+            - en
+        required: true
+        default: fr
+      - name: description
+        label: Description SEO (meta, 110–160 caractères)
+        type: text
+        required: true
+      - name: seoKeywords
+        label: Mots-clés SEO (séparés par des virgules)
+        type: string
+      - name: summary
+        label: "En bref — bullets affichés dans l'article (4 points)"
+        type: string
+        list: true
+      - name: publishedAt
+        label: Date de publication
+        type: date
+      - name: author
+        label: Auteur
+        type: string
+        default: "Pierre-Louis"
+      - name: category
+        label: Catégorie
+        type: select
+        options:
+          values:
+            - Ikigai
+            - Sens au travail
+            - Transition professionnelle
+            - Philosophie de vie
+            - Coaching
+      - name: image
+        label: Image de couverture
+        type: image
+      - name: status
+        label: Statut
+        type: select
+        options:
+          values:
+            - draft
+            - published
+        default: draft
+      - name: featured
+        label: À la une
+        type: boolean
+        default: false
+      - name: faq
+        label: FAQ
+        type: object
+        list: true
+        fields:
+          - { name: question, label: Question, type: string, required: true }
+          - { name: answer, label: Réponse, type: text }
+      - name: body
+        label: Contenu de l'article
+        type: rich-text

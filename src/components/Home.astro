@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
+import Navbar from '../components/Navbar.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -9,14 +10,11 @@ const t = useTranslations(lang);
 
 <Layout title="Ikigai : Trouvez Votre Raison d'Être avec un Coaching Personnalisé | be-ikigai" description="Découvrez votre Ikigai, la philosophie japonaise pour harmoniser passion, mission et vocation." lang={lang}>
 
+    <Navbar lang={lang} />
+
     <!-- Google Tag Manager (noscript) -->
     
-    <!-- Bouton de changement de langue -->
-    <div class="fixed top-6 right-6 z-50">
-        <a href={lang === 'fr' ? '/en/' : '/'} class="bg-white/20 hover:bg-white/40 backdrop-blur-md text-white px-4 py-2 rounded-full font-comfortaa text-sm border border-white/30 transition-all duration-300 shadow-lg flex items-center gap-2">
-            {lang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR'}
-        </a>
-    </div>
+
     <!-- Bouton sticky avec animation wave -->
     <a href="https://music.be-ikigai.com" class="fixed bottom-4 right-4 bg-gradient-to-r bg-button-degrade text-white rounded-full p-4 shadow-lg transition-all duration-300 hover:scale-110 group z-10">
         <div class="flex items-center gap-3">

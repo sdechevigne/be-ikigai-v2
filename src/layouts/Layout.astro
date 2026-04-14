@@ -1,13 +1,15 @@
 ---
 import '../styles/global.css';
+import { Agentation } from 'agentation';
 
 interface Props {
 	title: string;
 	description: string;
     lang?: string;
+    keywords?: string;
 }
 
-const { title, description, lang = "fr" } = Astro.props;
+const { title, description, lang = "fr", keywords } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@ const { title, description, lang = "fr" } = Astro.props;
 	<title>{title}</title>
 	<meta name="description" content={description} />
 	<link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
-	<meta name="keywords" content="ikigai, raison d'être, coaching personnel, philosophie japonaise, Okinawa, passion mission vocation">
+	<meta name="keywords" content={keywords || "ikigai, raison d'être, coaching personnel, philosophie japonaise, Okinawa, passion mission vocation"}>
 	<meta name="author" content="Pierre-Louis">
 	
 	<!-- Fonts -->
@@ -76,5 +78,6 @@ const { title, description, lang = "fr" } = Astro.props;
             document.querySelector('.fade-in')?.classList.add('visible');
         });
     </script>
+    {import.meta.env.DEV && <Agentation client:only="react" />}
 </body>
 </html>

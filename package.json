@@ -12,9 +12,18 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^5.0.3",
     "@astrojs/tailwind": "^6.0.2",
     "@supabase/supabase-js": "^2.103.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "astro": "^6.1.6",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "agentation": "^3.0.2"
   }
 }

@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import BlogList from '../../components/BlogList.astro';
+
+const posts = await getCollection('blog', ({ data }) => {
+  return data.lang === 'fr' && data.status === 'published';
+});
+
+// Sort by date descending
+posts.sort((a, b) => {
+    const dateA = a.data.publishedAt?.valueOf() || 0;
+    const dateB = b.data.publishedAt?.valueOf() || 0;
+    return dateB - dateA;
+});
+---
+
+<BlogList posts={posts} />

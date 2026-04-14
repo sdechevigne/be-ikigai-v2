@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .hero-bg {
+    background-image: url('/assets/img/hero.webp');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .pain-bg {
+    background-color: #2c3e50; /* bleu-crepuscule */
+  }
+  
+  .solution-bg {
+    background-color: #f5e5d5; /* beige-chaleureux */
+  }
+  
+  .contour-bg {
+    background-color: #ffd700; /* dore-serein */
+  }
+
+  .footer-bg {
+    background-color: #556b2f; /* vert-croissance */
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .btn-secondary {
+    background: linear-gradient(135deg, #ffd700, #e8c547);
+    color: #2c3e50;
+  }
+
+  .bg-button-degrade {
+    background: linear-gradient(90deg, #d4af37, #b8860b, #d4af37);
+    background-size: 200% auto;
+    animation: wave 2s linear infinite;
+  }
+
+  @keyframes wave {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  .bar1 { animation: sound 1.2s -1.2s ease-in-out infinite alternate; height: 12px; }
+  .bar2 { animation: sound 1.2s -1.0s ease-in-out infinite alternate; height: 18px; }
+  .bar3 { animation: sound 1.2s -0.8s ease-in-out infinite alternate; height: 24px; }
+  .bar4 { animation: sound 1.2s -0.6s ease-in-out infinite alternate; height: 18px; }
+  .bar5 { animation: sound 1.2s -0.4s ease-in-out infinite alternate; height: 12px; }
+
+  @keyframes sound {
+    0% { height: 4px; }
+    100% { height: 24px; }
+  }
+}

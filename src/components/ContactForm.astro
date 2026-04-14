@@ -1,0 +1,111 @@
+---
+const { lang = 'fr' } = Astro.props;
+
+const labels = {
+    fr: {
+        nom: "Nom complet",
+        email: "Adresse email",
+        tel: "Numéro de téléphone",
+        message: "Votre message",
+        submit: "Envoyer ma demande",
+        success: "Merci ! Votre message a bien été envoyé. Je vous répondrai au plus vite.",
+        error: "Une erreur s'est produite lors de l'envoi."
+    },
+    en: {
+        nom: "Full Name",
+        email: "Email Address",
+        tel: "Phone Number",
+        message: "Your message",
+        submit: "Send my request",
+        success: "Thank you! Your message has been sent. I will reply as soon as possible.",
+        error: "An error occurred while sending your message."
+    }
+};
+
+const t = labels[lang];
+---
+<div class="contact-form-container text-left w-full mx-auto max-w-2xl bg-white/20 p-8 rounded-3xl backdrop-blur-md shadow-xl border border-white/30">
+    <form id="supabase-contact-form" class="space-y-6">
+        <input type="hidden" name="lang" value={lang} />
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label for="nom" class="block text-sm font-medium text-gray-800 mb-1">{t.nom}</label>
+                <input type="text" id="nom" name="nom" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white/90 shadow-sm" placeholder="..." />
+            </div>
+            <div>
+                <label for="tel" class="block text-sm font-medium text-gray-800 mb-1">{t.tel}</label>
+                <input type="tel" id="tel" name="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white/90 shadow-sm" placeholder="..." />
+            </div>
+        </div>
+
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-800 mb-1">{t.email}</label>
+            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white/90 shadow-sm" placeholder="..." />
+        </div>
+
+        <div>
+            <label for="message" class="block text-sm font-medium text-gray-800 mb-1">{t.message}</label>
+            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all placeholder-gray-400 bg-white/90 shadow-sm resize-none" placeholder="..."></textarea>
+        </div>
+
+        <div id="form-error" class="hidden rounded-lg bg-red-100 p-4 text-red-700 font-medium">
+            {t.error}
+        </div>
+
+        <div id="form-success" class="hidden rounded-lg bg-green-100 p-4 text-green-700 font-medium">
+            {t.success}
+        </div>
+
+        <div>
+            <button type="submit" id="submit-btn" class="w-full btn-secondary font-bold font-comfortaa rounded-xl px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                {t.submit}
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    import { supabase } from '../lib/supabase';
+
+    const form = document.querySelector('#supabase-contact-form') as HTMLFormElement;
+    const btn = document.querySelector('#submit-btn') as HTMLButtonElement;
+    const successMsg = document.querySelector('#form-success') as HTMLDivElement;
+    const errorMsg = document.querySelector('#form-error') as HTMLDivElement;
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            errorMsg.classList.add('hidden');
+            successMsg.classList.add('hidden');
+
+            const formData = new FormData(form);
+            const nom = formData.get('nom') as string;
+            const email = formData.get('email') as string;
+            const tel = formData.get('tel') as string;
+            const message = formData.get('message') as string;
+
+            try {
+                const { error } = await supabase
+                    .from('contacts')
+                    .insert([
+                        { nom, email, tel, message }
+                    ]);
+
+                if (error) throw error;
+
+                successMsg.classList.remove('hidden');
+                form.reset();
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                errorMsg.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            }
+        });
+    }
+</script>

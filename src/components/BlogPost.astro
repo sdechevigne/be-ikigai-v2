@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Layout from '../layouts/Layout.astro';
 import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
 import { render } from 'astro:content';
 import '../styles/blog-retro.css';
 
@@ -175,4 +176,5 @@ const author = post.data.author || 'Pierre-Louis';
             headings.forEach(h => obs.observe(h));
         });
     </script>
+    <Footer lang={lang} />
 </Layout>

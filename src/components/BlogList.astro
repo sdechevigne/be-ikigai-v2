@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Layout from '../layouts/Layout.astro';
 import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
 import '../styles/blog-retro.css';
 
 interface Props {
@@ -20,9 +21,9 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
 <Layout title="Blog | be-ikigai" description="Découvrez nos articles sur l'Ikigai et le sens au travail." lang={lang}>
     <Navbar lang={lang} transparent={false} />
     
-    <main>
-        <section class="blog-hero-section">
-            <div class="wrap" style="max-width: 1200px; margin: 0 auto;">
+    <main class="pt-24 lg:pt-28">
+        <section class="blog-hero-section pt-0" style="background: transparent;">
+            <div class="wrap px-6" style="max-width: 1200px; margin: 0 auto;">
                 <div class="blog-hero" style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&h=700&fit=crop')">
                     <div class="blog-hero-overlay"></div>
                     <div class="blog-hero-content">
@@ -38,7 +39,7 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                 </svg>
                                 <input type="text" id="blog-search-input" placeholder={lang === 'en' ? 'Search an article...' : 'Rechercher un article...'} class="blog-search-input" autocomplete="off">
-                                <button class="blog-search-btn">{lang === 'en' ? 'Search' : 'Rechercher'}</button>
+                                <button class="blog-search-btn bg-purple-600 hover:bg-purple-700 text-white font-comfortaa font-bold px-6 h-full transition-colors leading-[52px]" style="line-height: inherit; display: inline-flex; align-items: center; justify-content: center;">{lang === 'en' ? 'Search' : 'Rechercher'}</button>
                             </div>
                         </div>
                     </div>
@@ -158,5 +159,6 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
             if (e.key === "Enter") onSearch();
         });
     </script>
+    <Footer lang={lang} />
 </Layout>
 

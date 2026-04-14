@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Layout from '../layouts/Layout.astro';
 import Navbar from './Navbar.astro';
+import '../styles/blog-retro.css';
 
 interface Props {
   posts: CollectionEntry<'blog'>[];
@@ -11,57 +12,151 @@ interface Props {
 const { posts } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+// Get unique categories for filters
+const categories = [...new Set(posts.map(post => post.data.category || (lang === 'fr' ? 'Général' : 'General')))];
 ---
 
 <Layout title="Blog | be-ikigai" description="Découvrez nos articles sur l'Ikigai et le sens au travail." lang={lang}>
     <Navbar lang={lang} transparent={false} />
-    <section class="max-w-6xl mx-auto px-6 py-32 min-h-screen pt-40">
-        <div class="mb-16">
-            <h1 class="text-4xl md:text-6xl font-comfortaa font-bold text-gray-800 mb-6 flex items-center justify-between">
-                <span>Blog</span>
-            </h1>
-            <p class="text-xl text-gray-600 font-comfortaa">
-                {lang === 'en' ? 'Insights, advice and reflections to help you find your Ikigai.' : 'Réflexions, conseils et partages pour vous aider à trouver votre Ikigai.'}
-            </p>
-        </div>
+    
+    <main>
+        <section class="blog-hero-section">
+            <div class="wrap" style="max-width: 1200px; margin: 0 auto;">
+                <div class="blog-hero" style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&h=700&fit=crop')">
+                    <div class="blog-hero-overlay"></div>
+                    <div class="blog-hero-content">
+                        <h1 class="blog-hero-h1">{lang === 'en' ? 'The Field Journal' : 'Le Carnet de Terrain'}</h1>
+                        <p class="blog-hero-sub">
+                            {lang === 'en' ? 'Insights, advice and reflections to help you find your Ikigai.' : 'Réflexions, conseils et partages pour vous aider à trouver votre Ikigai.'}
+                        </p>
+                        
+                        <div class="blog-search-wrap">
+                            <div class="blog-search-box">
+                                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <input type="text" id="blog-search-input" placeholder={lang === 'en' ? 'Search an article...' : 'Rechercher un article...'} class="blog-search-input" autocomplete="off">
+                                <button class="blog-search-btn">{lang === 'en' ? 'Search' : 'Rechercher'}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        {posts.length === 0 ? (
-            <div class="text-center py-20 text-gray-500 font-comfortaa">
-                {lang === 'en' ? 'Articles coming soon...' : 'Articles à venir...'}
+        <section class="blog-filters-section">
+            <div class="wrap" style="max-width: 1200px; margin: 0 auto;">
+                <div class="blog-filters" id="blog-filters">
+                    <button class="filter-pill active" data-cat="Tous">{lang === 'en' ? 'All articles' : 'Tous les articles'}</button>
+                    {categories.map((cat) => (
+                        <button class="filter-pill" data-cat={cat}>{cat}</button>
+                    ))}
+                </div>
             </div>
-        ) : (
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {posts.map((post) => (
-                    <a href={lang === 'fr' ? `/blog/${post.id}` : `/${lang}/blog/${post.id}`} class="group bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col h-full transform hover:-translate-y-1">
-                        <div class="h-56 overflow-hidden bg-gray-100 relative">
-                            {post.data.image ? (
-                                <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                            ) : (
-                                <div class="w-full h-full bg-gradient-to-br from-purple-100 to-blue-50 flex items-center justify-center text-purple-300">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H14" />
-                                    </svg>
-                                </div>
-                            )}
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <div class="mb-4 text-sm font-semibold text-purple-600 tracking-wider uppercase">
-                                {post.data.publishedAt && new Date(post.data.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+        </section>
+
+        <section class="blog-list-section">
+            <div class="wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+                <div class="blog-list-header text-center mb-12">
+                    <h2 class="blog-list-title text-3xl font-comfortaa font-bold text-gray-800">
+                        {lang === 'en' ? 'Latest publications' : 'Dernières publications'}
+                    </h2>
+                </div>
+                
+                {posts.length === 0 ? (
+                    <div class="blog-empty font-comfortaa">
+                        {lang === 'en' ? 'Articles coming soon...' : 'Articles à venir...'}
+                    </div>
+                ) : (
+                    <div class="blog-grid" id="blog-grid">
+                        {posts.map((post) => {
+                            const cat = post.data.category || (lang === 'fr' ? 'Général' : 'General');
+                            return (
+                            <div class="blog-grid-item" data-cat={cat}>
+                                <a href={lang === 'fr' ? `/blog/${post.id}` : `/${lang}/blog/${post.id}`} class="blog-card">
+                                    <div class="blog-card-img bg-gray-100 flex items-center justify-center relative">
+                                        {post.data.image ? (
+                                            <img src={post.data.image} alt={post.data.title} loading="lazy" />
+                                        ) : (
+                                            <div class="w-full h-full bg-gradient-to-br from-purple-100 to-blue-50 flex items-center justify-center text-purple-300">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H14" />
+                                                </svg>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div class="blog-card-body pb-6">
+                                        <span class="blog-card-cat text-purple-600">{cat}</span>
+                                        <h3 class="blog-card-title">{post.data.title}</h3>
+                                        <p class="blog-card-desc">{post.data.description}</p>
+                                        <div class="blog-card-meta">
+                                            <span>{post.data.author || 'Pierre-Louis'}</span>
+                                            <span>{post.data.publishedAt && new Date(post.data.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                                            <span>5 min</span>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                            <h2 class="text-2xl font-comfortaa font-bold text-gray-800 mb-4 group-hover:text-purple-600 transition-colors">
-                                {post.data.title}
-                            </h2>
-                            <p class="text-gray-600 line-clamp-3 mb-6 flex-grow">
-                                {post.data.description}
-                            </p>
-                            <div class="text-purple-600 font-bold flex items-center gap-2 group-hover:gap-3 transition-all mt-auto">
-                                Lire l'article <span class="text-xl">→</span>
-                            </div>
-                        </div>
-                    </a>
-                ))}
+                        )})}
+                    </div>
+                )}
             </div>
-        )}
-    </section>
+        </section>
+    </main>
+
+    <script type="module">
+        const pills = document.querySelectorAll(".filter-pill");
+        const items = document.querySelectorAll(".blog-grid-item");
+        
+        const indexData = Array.from(items).map(item => ({
+            el: item,
+            title: item.querySelector(".blog-card-title")?.textContent?.toLowerCase() || "",
+            desc: item.querySelector(".blog-card-desc")?.textContent?.toLowerCase() || "",
+            cat: item.querySelector(".blog-card-cat")?.textContent?.toLowerCase() || "",
+            dataCat: item.getAttribute("data-cat") || ""
+        }));
+
+        pills.forEach(pill => {
+            pill.addEventListener("click", () => {
+                const targetCat = pill.getAttribute("data-cat") || "Tous";
+                
+                pills.forEach(p => p.classList.remove("active"));
+                pill.classList.add("active");
+                
+                indexData.forEach(({ el, dataCat }) => {
+                    if(targetCat === "Tous" || dataCat === targetCat) {
+                        el.style.display = 'block';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        const searchInput = document.getElementById("blog-search-input");
+        const searchBtn = document.querySelector(".blog-search-btn");
+        
+        function onSearch() {
+            if(!searchInput) return;
+            const query = searchInput.value.toLowerCase().trim();
+            
+            // Reset pills if searching
+            pills.forEach(p => p.classList.remove("active"));
+            const allPill = document.querySelector('[data-cat="Tous"]');
+            if(allPill) allPill.classList.add("active");
+            
+            indexData.forEach(({ el, title, desc, cat }) => {
+                const match = !query || title.includes(query) || desc.includes(query) || cat.includes(query);
+                el.style.display = match ? 'block' : 'none';
+            });
+        }
+        
+        searchBtn?.addEventListener("click", onSearch);
+        searchInput?.addEventListener("keydown", e => {
+            if (e.key === "Enter") onSearch();
+        });
+    </script>
 </Layout>
+

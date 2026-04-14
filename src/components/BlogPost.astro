@@ -4,6 +4,7 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Layout from '../layouts/Layout.astro';
 import Navbar from './Navbar.astro';
 import { render } from 'astro:content';
+import '../styles/blog-retro.css';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -13,47 +14,165 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const formattedDate = post.data.publishedAt 
+    ? new Date(post.data.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })
+    : null;
+    
+const category = post.data.category || (lang === 'en' ? 'General' : 'Général');
+const author = post.data.author || 'Pierre-Louis';
 ---
 
 <Layout title={`${post.data.title} | be-ikigai`} description={post.data.description || ''} keywords={post.data.seoKeywords || ''} lang={lang}>
     <Navbar lang={lang} transparent={false} />
     
-    <article class="max-w-4xl mx-auto px-6 py-24 min-h-screen pt-40">
-        <a href={lang === 'fr' ? '/blog' : `/${lang}/blog`} class="inline-flex items-center text-purple-600 hover:text-purple-800 font-comfortaa mb-12 transition-colors">
-            <span class="mr-2">←</span> {lang === 'en' ? 'Back to blog' : 'Retour au blog'}
-        </a>
-
-        <header class="mb-14 text-center">
-            <div class="text-purple-600 font-semibold mb-6 tracking-widest uppercase">
-                {post.data.publishedAt && new Date(post.data.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+    <main>
+        <nav class="article-breadcrumb" aria-label="Fil d'Ariane">
+            <div class="wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+                <ol class="breadcrumb-list">
+                    <li><a href="/">{lang === 'en' ? 'Home' : 'Accueil'}</a></li>
+                    <li>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        <a href={lang === 'fr' ? '/blog' : `/${lang}/blog`}>Blog</a>
+                    </li>
+                    <li>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        <span>{category}</span>
+                    </li>
+                </ol>
             </div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-comfortaa font-bold text-gray-800 mb-8 leading-tight">
-                {post.data.title}
-            </h1>
-            {post.data.description && (
-                <p class="text-xl text-gray-600 italic max-w-2xl mx-auto">
-                    {post.data.description}
-                </p>
-            )}
+        </nav>
+
+        <header class="article-hero">
+            <picture>
+                {post.data.image ? (
+                    <img src={post.data.image} alt={post.data.title} class="article-hero-img" loading="eager" />
+                ) : (
+                    <div class="article-hero-img" style="background: linear-gradient(135deg, var(--surface-low), var(--outline)); width: 100%; height: 100%;"></div>
+                )}
+            </picture>
+            <div class="article-hero-overlay"></div>
+            <div class="article-hero-content">
+                <div class="wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+                    <span class="article-cat-badge">{category}</span>
+                    <h1 class="article-h1">{post.data.title}</h1>
+                    <div class="article-meta">
+                        <div class="article-author">
+                            <span class="author-name">{author}</span>
+                        </div>
+                        {formattedDate && (
+                            <>
+                                <div class="meta-sep"></div>
+                                <span class="meta-item">{formattedDate}</span>
+                            </>
+                        )}
+                        <div class="meta-sep"></div>
+                        <span class="meta-item">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            5 min {lang === 'en' ? 'read' : 'de lecture'}
+                        </span>
+                    </div>
+                </div>
+            </div>
         </header>
 
-        {post.data.image && (
-            <div class="mb-16 rounded-3xl overflow-hidden shadow-xl">
-                <img src={post.data.image} alt={post.data.title} class="w-full h-auto object-cover max-h-[600px]" />
-            </div>
-        )}
+        <div class="article-wrap">
+            <div class="wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+                <div class="article-layout">
+                    <!-- MAIN CONTENT -->
+                    <div class="article-main">
+                        {post.data.summary && post.data.summary.length > 0 && (
+                            <div class="article-summary">
+                                <div class="summary-label">{lang === 'en' ? 'In brief' : 'En bref'}</div>
+                                <ul class="summary-bullets">
+                                    {post.data.summary.map(item => <li>{item}</li>)}
+                                </ul>
+                            </div>
+                        )}
+                        
+                        <article class="article-content" id="article-content">
+                            <Content />
+                        </article>
 
-        <div class="prose prose-lg md:prose-xl prose-purple max-w-none font-lato
-            prose-headings:font-comfortaa prose-headings:text-gray-800
-            prose-a:text-purple-600 hover:prose-a:text-purple-800
-            prose-img:rounded-2xl">
-            <Content />
+                        {post.data.faq && post.data.faq.length > 0 && (
+                            <section class="article-faq">
+                                <h2>{lang === 'en' ? 'Frequently asked questions' : 'Questions fréquentes'}</h2>
+                                <div class="faq-list">
+                                    {post.data.faq.map(item => (
+                                        <details class="faq-item">
+                                            <summary class="faq-question">
+                                                <span>{item.q}</span>
+                                                <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                            </summary>
+                                            <p class="faq-answer">{item.a}</p>
+                                        </details>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+                    </div>
+
+                    <!-- SIDEBAR -->
+                    <aside class="article-sidebar">
+                        <div class="sidebar-sticky">
+                            <div class="toc-block" id="toc-container" style="display: none;">
+                                <div class="toc-title">{lang === 'en' ? 'In this article' : 'Dans cet article'}</div>
+                                <nav class="toc" id="toc" aria-label="Table des matières">
+                                    <!-- Generated client-side -->
+                                </nav>
+                            </div>
+                            
+                            <div class="sidebar-cta max-w-64">
+                                <h4 class="sidebar-cta-title">{lang === 'en' ? 'Find your Ikigai' : 'Trouvez votre Ikigai'}</h4>
+                                <p class="sidebar-cta-text">{lang === 'en' ? 'Ready to give meaning to your professional life?' : 'Prêt à redonner du sens à votre vie professionnelle ?'}</p>
+                                <a href="/#contact" class="inline-block bg-white text-purple-600 font-bold py-3 px-6 rounded-xl hover:bg-gray-50 transition w-full" style="color: var(--primary);">{lang === 'en' ? 'Contact us' : 'Prendre un premier RDV gratuit'}</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
         </div>
         
-        <div class="mt-20 pt-10 border-t border-gray-200">
-             <a href={lang === 'fr' ? '/blog' : `/${lang}/blog`} class="inline-block px-8 py-4 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full font-comfortaa font-bold transition-colors">
-                {lang === 'en' ? 'See all articles' : 'Voir tous les articles'}
-            </a>
-        </div>
-    </article>
+    </main>
+    
+    <script type="module">
+        document.addEventListener("DOMContentLoaded", () => {
+            const toc = document.getElementById("toc");
+            const tocContainer = document.getElementById("toc-container");
+            const content = document.getElementById("article-content");
+            if (!toc || !content) return;
+            
+            const headings = content.querySelectorAll("h2");
+            if (headings.length === 0) return;
+            
+            if (tocContainer) tocContainer.style.display = 'block';
+            
+            headings.forEach((h, i) => { if(!h.id) h.id = `heading-${i}`; });
+            
+            const frag = document.createDocumentFragment();
+            const links = [];
+            
+            headings.forEach(h => {
+                const a = document.createElement("a");
+                a.href = `#${h.id}`;
+                a.textContent = h.textContent || "";
+                links.push(a);
+                frag.appendChild(a);
+            });
+            
+            toc.appendChild(frag);
+            
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if(e.isIntersecting) {
+                        links.forEach(l => l.classList.remove("active"));
+                        const link = links.find(l => l.getAttribute("href") === `#${e.target.id}`);
+                        if(link) link.classList.add("active");
+                    }
+                });
+            }, { rootMargin: "-20% 0px -70% 0px" });
+            
+            headings.forEach(h => obs.observe(h));
+        });
+    </script>
 </Layout>

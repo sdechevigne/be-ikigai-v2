@@ -27,23 +27,7 @@ const author = post.data.author || 'Pierre-Louis';
 <Layout title={`${post.data.title} | be-ikigai`} description={post.data.description || ''} keywords={post.data.seoKeywords || ''} lang={lang}>
     <Navbar lang={lang} transparent={false} />
     
-    <main>
-        <nav class="article-breadcrumb" aria-label="Fil d'Ariane">
-            <div class="wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-                <ol class="breadcrumb-list">
-                    <li><a href="/">{lang === 'en' ? 'Home' : 'Accueil'}</a></li>
-                    <li>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        <a href={lang === 'fr' ? '/blog' : `/${lang}/blog`}>Blog</a>
-                    </li>
-                    <li>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        <span>{category}</span>
-                    </li>
-                </ol>
-            </div>
-        </nav>
-
+    <main class="pt-14">
         <header class="article-hero">
             <picture>
                 {post.data.image ? (
@@ -55,10 +39,25 @@ const author = post.data.author || 'Pierre-Louis';
             <div class="article-hero-overlay"></div>
             <div class="article-hero-content">
                 <div class="wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-                    <span class="article-cat-badge">{category}</span>
+                    <nav class="article-breadcrumb-hero" aria-label="Fil d'Ariane">
+                        <ol class="breadcrumb-list-hero">
+                            <li><a href="/">{lang === 'en' ? 'Home' : 'Accueil'}</a></li>
+                            <li>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                <a href={lang === 'fr' ? '/blog' : `/${lang}/blog`}>Blog</a>
+                            </li>
+                            <li>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                <span>{category}</span>
+                            </li>
+                        </ol>
+                    </nav>
                     <h1 class="article-h1">{post.data.title}</h1>
                     <div class="article-meta">
                         <div class="article-author">
+                            <div class="author-avatar">
+                                <img src={`https://ui-avatars.com/api/?name=${author}&background=ffd700&color=2c3e50`} alt={author} />
+                            </div>
                             <span class="author-name">{author}</span>
                         </div>
                         {formattedDate && (
@@ -72,6 +71,8 @@ const author = post.data.author || 'Pierre-Louis';
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                             5 min {lang === 'en' ? 'read' : 'de lecture'}
                         </span>
+                        <div class="meta-sep"></div>
+                        <span class="article-cat-badge" style="margin-bottom: 0;">{category}</span>
                     </div>
                 </div>
             </div>
@@ -123,10 +124,10 @@ const author = post.data.author || 'Pierre-Louis';
                                 </nav>
                             </div>
                             
-                            <div class="sidebar-cta max-w-64">
+                            <div class="sidebar-cta w-full">
                                 <h4 class="sidebar-cta-title">{lang === 'en' ? 'Find your Ikigai' : 'Trouvez votre Ikigai'}</h4>
                                 <p class="sidebar-cta-text">{lang === 'en' ? 'Ready to give meaning to your professional life?' : 'Prêt à redonner du sens à votre vie professionnelle ?'}</p>
-                                <a href="/#contact" class="inline-block bg-white text-purple-600 font-bold py-3 px-6 rounded-xl hover:bg-gray-50 transition w-full" style="color: var(--primary);">{lang === 'en' ? 'Contact us' : 'Prendre un premier RDV gratuit'}</a>
+                                <a href="/#contact" class="inline-block bg-dore-serein text-bleu-crepuscule font-bold py-3 px-6 rounded-xl hover:opacity-90 transition w-full">{lang === 'en' ? 'Contact us' : 'Prendre un premier RDV gratuit'}</a>
                             </div>
                         </div>
                     </aside>

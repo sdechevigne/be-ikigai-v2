@@ -9,7 +9,7 @@ export const showDefaultLang = false;
 
 export const ui = {
   fr: {
-    'hero.title': 'Le temps est un présen',
+    'hero.title': 'Le temps est un présent',
     'hero.subtitle': 'Vivez votre enthousiasme. Inspirez le leur.',
     'btn.reserver': 'Réserver ma séance',
     'hero.discovery': 'découverte gratuite',

@@ -8,7 +8,7 @@ export default {
         'dore-serein': '#ffd700',
         'beige-chaleureux': '#f5e5d5',
         'vert-croissance': '#556b2f',
-        'blanc-coton': '#fbfaf8',
+        'blanc-coton': '#F8FBFF',
         'gris-doux': '#a9a9a9',
       },
       fontFamily: {

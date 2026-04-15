@@ -20,7 +20,21 @@ const recentPosts = allPosts.sort((a, b) => {
 }).slice(0, 3);
 ---
 
-<Layout title="Ikigai : Trouvez Votre Raison d'Être avec un Coaching Personnalisé | be-ikigai" description="Découvrez votre Ikigai, la philosophie japonaise pour harmoniser passion, mission et vocation." lang={lang}>
+<Layout 
+    title={lang === 'en' 
+        ? "Ikigai Coaching: Find Your Reason for Being | be-ikigai Paris" 
+        : "Coaching Ikigai : Trouvez Votre Raison d'Être | be-ikigai Paris"
+    } 
+    description={lang === 'en'
+        ? "Discover your Ikigai, the Japanese philosophy for a fulfilled life. Free 30-min discovery session with Pierre-Louis, Certified Ikigai Coach in Paris."
+        : "Découvrez votre Ikigai, la philosophie japonaise pour une vie épanouie. Séance découverte gratuite de 30 min avec Pierre-Louis, Coach Ikigai Certifié à Paris."
+    }
+    lang={lang}
+    keywords={lang === 'en'
+        ? "ikigai coaching, find your purpose, reason for being, Japanese philosophy, life coaching Paris, personal development, Pierre-Louis coach, Okinawa, career coaching, meaning of life"
+        : "coaching ikigai, trouver sa raison d'être, philosophie japonaise, coaching Paris, développement personnel, Pierre-Louis coach, Okinawa, coaching de vie, sens de la vie, reconversion professionnelle"
+    }
+>
 
     <Navbar lang={lang} />
 

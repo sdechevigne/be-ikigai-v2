@@ -24,7 +24,56 @@ const category = post.data.category || (lang === 'en' ? 'General' : 'Général')
 const author = post.data.author || 'Pierre-Louis';
 ---
 
-<Layout title={`${post.data.title} | be-ikigai`} description={post.data.description || ''} keywords={post.data.seoKeywords || ''} lang={lang}>
+<Layout 
+    title={`${post.data.title} | be-ikigai`} 
+    description={post.data.description || ''} 
+    keywords={post.data.seoKeywords || ''} 
+    lang={lang}
+    type="article"
+    image={post.data.image ? `https://be-ikigai.com${post.data.image}` : undefined}
+>
+    <!-- Article Schema for blog posts -->
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.data.title,
+        "description": post.data.description,
+        "image": post.data.image ? `https://be-ikigai.com${post.data.image}` : "https://be-ikigai.com/assets/img/logo_fullhd.png",
+        "datePublished": post.data.publishedAt ? new Date(post.data.publishedAt).toISOString() : undefined,
+        "author": {
+            "@type": "Person",
+            "name": author,
+            "url": "https://be-ikigai.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "be-ikigai",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://be-ikigai.com/assets/img/logo_fullhd.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://be-ikigai.com${Astro.url.pathname}`
+        },
+        "inLanguage": lang === 'en' ? "en-US" : "fr-FR",
+        "articleSection": category
+    }, null, 2)} />
+    {post.data.faq && post.data.faq.length > 0 && (
+        <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": post.data.faq.map(item => ({
+                "@type": "Question",
+                "name": item.question,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": item.answer || ""
+                }
+            }))
+        }, null, 2)} />
+    )}
     <Navbar lang={lang} transparent={false} />
     
     <main class="pt-14">

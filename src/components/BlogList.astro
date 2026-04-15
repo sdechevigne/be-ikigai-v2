@@ -18,7 +18,21 @@ const t = useTranslations(lang);
 const categories = [...new Set(posts.map(post => post.data.category || (lang === 'fr' ? 'Général' : 'General')))];
 ---
 
-<Layout title="Blog | be-ikigai" description="Découvrez nos articles sur l'Ikigai et le sens au travail." lang={lang}>
+<Layout 
+    title={lang === 'en' 
+        ? "Blog — Ikigai Insights, Tips & Coaching Articles | be-ikigai" 
+        : "Blog — Articles, Conseils & Réflexions sur l'Ikigai | be-ikigai"
+    }
+    description={lang === 'en'
+        ? "Explore our articles on Ikigai, personal development, and finding your reason for being. Practical tips and inspiring reflections by Pierre-Louis."
+        : "Explorez nos articles sur l'Ikigai, le développement personnel et la quête de sens. Conseils pratiques et réflexions inspirantes par Pierre-Louis."
+    }
+    lang={lang}
+    keywords={lang === 'en'
+        ? "ikigai blog, personal development articles, find your purpose, coaching tips, Japanese philosophy blog"
+        : "blog ikigai, articles développement personnel, trouver son ikigai, conseils coaching, philosophie japonaise blog"
+    }
+>
     <Navbar lang={lang} transparent={false} />
     
     <main class="pt-14">

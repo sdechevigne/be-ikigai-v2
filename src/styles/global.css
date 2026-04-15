@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure text is visible immediately with system fonts while custom fonts load */
+@layer base {
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+  /* Override once Lato/Comfortaa are loaded (handled via preload with font-display: swap) */
+}
+
 @layer utilities {
   .hero-bg {
     background-image: url('/assets/img/hero.webp');

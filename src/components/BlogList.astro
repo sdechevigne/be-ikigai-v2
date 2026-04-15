@@ -93,7 +93,7 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                                 <a href={lang === 'fr' ? `/blog/${post.id}` : `/${lang}/blog/${post.id}`} class="blog-card">
                                     <div class="blog-card-img bg-gray-100 flex items-center justify-center relative">
                                         {post.data.image ? (
-                                            <img src={post.data.image} alt={post.data.title} loading="lazy" />
+                                            <img src={post.data.image} alt={post.data.title} loading="lazy" width="400" height="224" />
                                         ) : (
                                             <div class="w-full h-full bg-gradient-to-br from-beige-chaleureux to-white flex items-center justify-center text-dore-serein">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">

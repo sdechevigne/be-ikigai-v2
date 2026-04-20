@@ -11,6 +11,7 @@ const t = useTranslations(lang);
 
 const homeUrl = lang === 'fr' ? '/' : `/${lang}/`;
 const blogUrl = lang === 'fr' ? '/blog/' : `/${lang}/blog/`;
+const pricingUrl = lang === 'fr' ? '/tarifs/' : `/${lang}/pricing/`;
 const switchLangUrl = lang === 'fr' ? '/en/' : '/';
 
 const navClass = transparent 
@@ -45,6 +46,9 @@ const navClass = transparent
       <a href={`${homeUrl}#solution`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         Services
       </a>
+      <a href={pricingUrl} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
+        {lang === 'fr' ? 'Tarifs' : 'Pricing'}
+      </a>
       <a href={blogUrl} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         Blog
       </a>
@@ -65,6 +69,9 @@ const navClass = transparent
       </a>
       <a href={`${homeUrl}#solution`} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
         Services
+      </a>
+      <a href={pricingUrl} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
+        {lang === 'fr' ? 'Tarifs' : 'Pricing'}
       </a>
       <a href={blogUrl} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
         Blog

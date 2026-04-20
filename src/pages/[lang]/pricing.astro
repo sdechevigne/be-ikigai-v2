@@ -1,0 +1,10 @@
+---
+import Pricing from '../../components/Pricing.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+  ];
+}
+---
+<Pricing />

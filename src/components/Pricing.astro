@@ -1,0 +1,316 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import ContactForm from './ContactForm.astro';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const isFR = lang === 'fr';
+
+const pageTitle = isFR
+  ? "Tarifs : Parcours Ikigai & Bilan Famille | be-ikigai"
+  : "Pricing: Ikigai Journey & Family Bond | be-ikigai";
+const pageDesc = isFR
+  ? "Découvrez le Parcours Ikigai en 3 phases et le Bilan Famille. Diagnostic & Destinée à 580€. 100% Satisfait ou Remboursé."
+  : "Discover the 3-phase Ikigai Journey and the Family Bond offer. Diagnosis & Destiny from €580. 100% Satisfied or Refunded.";
+
+const contactHref = isFR ? '/#contact' : `/${lang}/#contact`;
+
+// ─── Texts ────────────────────────────────────────────────────────────────
+const t = {
+  fr: {
+    heroKicker: 'Tarifs',
+    heroTitle: 'Le Parcours Ikigai : De l\'Introspection à l\'Impact',
+    heroSubtitle: 'Deux chemins, une même promesse : vous reconnecter à votre raison d\'être.',
+
+    bu1Title: 'Le Parcours Individuel',
+    bu1Sub: 'Un accompagnement en 3 phases pour passer de la clarté à l\'impact.',
+    bu2Title: 'Le Pont des Générations',
+    bu2Sub: 'Une offre rare pour ceux qui veulent transmettre ou se retrouver.',
+
+    phase1Title: 'Diagnostic & Destinée',
+    phase1Sub: 'Bilan de compétences + Prise de décision',
+    phase1Price: '580€',
+    phase1PriceNote: 'Un investissement optimisé pour une clarté immédiate.',
+    phase1P1: 'Trouvons ensemble ce pourquoi vous êtes fait et destiné. Nous posons un diagnostic sans complaisance pour identifier vos forces réelles et définissons des axes actionnables immédiatement après notre séance. Ici, on ne réfléchit pas pour rien : on décide.',
+    phase1P2: 'L\'efficience au service du résultat : ce format court est conçu pour aller droit à l\'essentiel. Pas de remplissage, seulement un rapport temps passé / résultat imbattable.',
+    phase1Bullet1: 'Diagnostic sans complaisance de vos forces réelles',
+    phase1Bullet2: 'Plan d\'action concret délivré en 48 heures',
+    phase1Bullet3: 'Des axes actionnables dès la fin de la séance',
+
+    phase2Title: 'Le Sprint',
+    phase2Sub: 'Intensif — 3 mois maximum',
+    phase2Price: 'Sur devis',
+    phase2P1: 'Une fois la direction fixée, place à l\'exécution. On se voit 2 à 3 fois par semaine pour maintenir une tension créatrice.',
+    phase2P2: 'C\'est un contrat de performance : au-delà de 3 mois, c\'est que vous cherchez des excuses pour ne pas agir. Passé ce délai, vous avez les clés, mon intervention s\'arrête.',
+
+    phase3Title: 'La Sentinelle',
+    phase3Sub: 'Mode Veille',
+    phase3Price: 'Sur devis',
+    phase3P1: 'Je ne vous lâche pas dans la nature, mais je change de posture. Je deviens le garant de votre trajectoire.',
+    phase3P2: 'Mon rôle est d\'être le témoin authentique de votre progression, de surveiller que le cap ne dévie pas et de valider chaque étape intermédiaire. Je suis là pour m\'assurer que la vision du début reste la réalité de demain.',
+
+    famTitle: 'Bilan Famille / Perso',
+    famSub: 'Le Pont des Générations',
+    famPrice: 'Sur devis',
+    famP1: 'Une offre rare pour ceux qui veulent transmettre ou se retrouver. Que vous soyez un père et son fils ou un binôme familial, nous réalisons l\'Ikigai de chacun pour mettre à nu vos moteurs profonds.',
+    famP2: 'L\'objectif ? Identifier les points de contact réels et bâtir des projets et passions communes qui font sens pour les deux. On ne crée pas seulement du lien, on crée une complicité durable basée sur qui vous êtes vraiment.',
+
+    guaranteeKicker: 'Zéro Risque, Zéro Compromis',
+    guaranteeTitle: '100% Satisfait ou Remboursé',
+    guaranteeText: 'Je ne crois pas aux demi-mesures. Si vous n\'êtes pas convaincu par la puissance de la transformation, c\'est simple : c\'est 100% Satisfait ou Remboursé. C\'est ma signature, et c\'est la preuve de mon engagement total à vos côtés.',
+
+    ctaTitle: 'Prêt à faire le premier pas ?',
+    ctaText: 'Commençons par une séance découverte de 30 minutes, gratuite et sans engagement.',
+    ctaBtn: 'Réserver ma séance découverte',
+
+    phase: 'Phase',
+    included: 'Inclus',
+  },
+  en: {
+    heroKicker: 'Pricing',
+    heroTitle: 'The Ikigai Journey: From Introspection to Impact',
+    heroSubtitle: 'Two paths, one promise: reconnecting you with your reason for being.',
+
+    bu1Title: 'The Individual Journey',
+    bu1Sub: 'A 3-phase program to move from clarity to impact.',
+    bu2Title: 'The Generational Bridge',
+    bu2Sub: 'A rare offer for those who want to pass on or reconnect.',
+
+    phase1Title: 'Diagnosis & Destiny',
+    phase1Sub: 'Skills assessment + Decision-making',
+    phase1Price: '€580',
+    phase1PriceNote: 'An optimized investment for immediate clarity.',
+    phase1P1: 'Let\'s find together what you are made for. We run an uncompromising diagnosis to identify your real strengths and define actionable paths right after our session. Here, we don\'t overthink: we decide.',
+    phase1P2: 'Efficiency serving results: this short format goes straight to the point. No filler, just an unbeatable time-to-result ratio.',
+    phase1Bullet1: 'Uncompromising diagnosis of your real strengths',
+    phase1Bullet2: 'Concrete action plan delivered within 48 hours',
+    phase1Bullet3: 'Actionable paths as soon as the session ends',
+
+    phase2Title: 'The Sprint',
+    phase2Sub: 'Intensive — 3 months maximum',
+    phase2Price: 'On request',
+    phase2P1: 'Once the direction is set, it\'s all about execution. We meet 2 to 3 times a week to maintain creative tension.',
+    phase2P2: 'It\'s a performance contract: beyond 3 months, you\'re looking for excuses not to act. After that, you have the keys — my role ends.',
+
+    phase3Title: 'The Sentinel',
+    phase3Sub: 'Watch mode',
+    phase3Price: 'On request',
+    phase3P1: 'I\'m not dropping you in the wild — I\'m shifting posture. I become the guardian of your trajectory.',
+    phase3P2: 'My role is to be the honest witness of your progress, watch that your course doesn\'t drift, and validate each milestone. I\'m here to ensure the vision of day one remains tomorrow\'s reality.',
+
+    famTitle: 'Family / Personal Assessment',
+    famSub: 'The Generational Bridge',
+    famPrice: 'On request',
+    famP1: 'A rare offer for those who want to pass on or reconnect. Whether you\'re a father and son or a family duo, we uncover each person\'s Ikigai to lay bare your deep drivers.',
+    famP2: 'The goal? Identify real points of contact and build shared projects and passions that make sense for both. We don\'t just create a bond — we create a lasting complicity based on who you truly are.',
+
+    guaranteeKicker: 'Zero Risk, Zero Compromise',
+    guaranteeTitle: '100% Satisfied or Refunded',
+    guaranteeText: 'I don\'t believe in half measures. If you\'re not convinced by the power of the transformation, it\'s simple: 100% Satisfied or Refunded. It\'s my signature — and proof of my total commitment by your side.',
+
+    ctaTitle: 'Ready to take the first step?',
+    ctaText: 'Let\'s start with a free, no-commitment 30-minute discovery session.',
+    ctaBtn: 'Book my discovery session',
+
+    phase: 'Phase',
+    included: 'Included',
+  },
+}[isFR ? 'fr' : 'en'];
+---
+
+<Layout title={pageTitle} description={pageDesc} lang={lang}>
+  <Navbar lang={lang} />
+
+  <!-- Hero -->
+  <section class="pain-bg pt-32 pb-16 lg:pt-40 lg:pb-24">
+    <div class="container mx-auto px-6 text-center">
+      <div class="max-w-4xl mx-auto fade-in">
+        <p class="text-dore-serein font-comfortaa uppercase tracking-[0.3em] text-sm mb-4">{t.heroKicker}</p>
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-comfortaa text-white mb-6 leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+          {t.heroTitle}
+        </h1>
+        <p class="text-xl md:text-2xl text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+          {t.heroSubtitle}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BU 1: Parcours Individuel (3 phases) -->
+  <section class="py-14 lg:py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 fade-in">
+          <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#9333ea] bg-[#9333ea]/10 rounded-full px-4 py-1 mb-4">
+            01 — {isFR ? 'Pour vous' : 'For you'}
+          </span>
+          <h2 class="text-3xl md:text-5xl font-comfortaa text-[#2c3e50] font-bold mb-4">
+            {t.bu1Title}
+          </h2>
+          <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">{t.bu1Sub}</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 lg:gap-8 fade-in">
+          <!-- Phase 1 (featured) -->
+          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 shadow-xl flex flex-col md:-mt-4 md:mb-4">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#9333ea] text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full">
+              {isFR ? 'Démarrez ici' : 'Start here'}
+            </span>
+            <div class="text-[#9333ea] text-sm font-bold uppercase tracking-wider mb-2">{t.phase} 1</div>
+            <h3 class="text-2xl font-comfortaa font-bold text-[#2c3e50] mb-1">{t.phase1Title}</h3>
+            <p class="text-sm text-gray-500 italic mb-6">{t.phase1Sub}</p>
+            <div class="mb-6">
+              <div class="flex items-baseline gap-2">
+                <span class="text-5xl font-comfortaa font-bold text-[#9333ea]">{t.phase1Price}</span>
+              </div>
+              <p class="text-xs text-gray-500 mt-2">{t.phase1PriceNote}</p>
+            </div>
+            <p class="text-gray-700 mb-4 text-sm leading-relaxed">{t.phase1P1}</p>
+            <p class="text-gray-700 mb-6 text-sm leading-relaxed">{t.phase1P2}</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-[#9333ea] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span>{t.phase1Bullet1}</span>
+              </li>
+              <li class="flex items-start gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-[#9333ea] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span>{t.phase1Bullet2}</span>
+              </li>
+              <li class="flex items-start gap-3 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-[#9333ea] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span>{t.phase1Bullet3}</span>
+              </li>
+            </ul>
+            <a href={contactHref} class="mt-auto inline-block text-center px-6 py-3 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors">
+              {t.ctaBtn}
+            </a>
+          </article>
+
+          <!-- Phase 2 -->
+          <article class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col">
+            <div class="text-gray-500 text-sm font-bold uppercase tracking-wider mb-2">{t.phase} 2</div>
+            <h3 class="text-2xl font-comfortaa font-bold text-[#2c3e50] mb-1">{t.phase2Title}</h3>
+            <p class="text-sm text-gray-500 italic mb-6">{t.phase2Sub}</p>
+            <div class="mb-6">
+              <span class="text-3xl font-comfortaa font-bold text-[#2c3e50]">{t.phase2Price}</span>
+            </div>
+            <p class="text-gray-700 mb-4 text-sm leading-relaxed">{t.phase2P1}</p>
+            <p class="text-gray-700 mb-8 text-sm leading-relaxed">{t.phase2P2}</p>
+            <a href={contactHref} class="mt-auto inline-block text-center px-6 py-3 bg-white border-2 border-[#2c3e50] text-[#2c3e50] font-comfortaa font-semibold rounded-full hover:bg-[#2c3e50] hover:text-white transition-colors">
+              {isFR ? 'En discuter' : 'Discuss it'}
+            </a>
+          </article>
+
+          <!-- Phase 3 -->
+          <article class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col">
+            <div class="text-gray-500 text-sm font-bold uppercase tracking-wider mb-2">{t.phase} 3</div>
+            <h3 class="text-2xl font-comfortaa font-bold text-[#2c3e50] mb-1">{t.phase3Title}</h3>
+            <p class="text-sm text-gray-500 italic mb-6">{t.phase3Sub}</p>
+            <div class="mb-6">
+              <span class="text-3xl font-comfortaa font-bold text-[#2c3e50]">{t.phase3Price}</span>
+            </div>
+            <p class="text-gray-700 mb-4 text-sm leading-relaxed">{t.phase3P1}</p>
+            <p class="text-gray-700 mb-8 text-sm leading-relaxed">{t.phase3P2}</p>
+            <a href={contactHref} class="mt-auto inline-block text-center px-6 py-3 bg-white border-2 border-[#2c3e50] text-[#2c3e50] font-comfortaa font-semibold rounded-full hover:bg-[#2c3e50] hover:text-white transition-colors">
+              {isFR ? 'En discuter' : 'Discuss it'}
+            </a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BU 2: Bilan Famille -->
+  <section class="py-14 lg:py-24 solution-bg">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 fade-in">
+          <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-dore-serein bg-dore-serein/20 rounded-full px-4 py-1 mb-4">
+            02 — {isFR ? 'Pour vous & les vôtres' : 'For you & yours'}
+          </span>
+          <h2 class="text-3xl md:text-5xl font-comfortaa text-[#2c3e50] font-bold mb-4">
+            {t.bu2Title}
+          </h2>
+          <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">{t.bu2Sub}</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 lg:gap-8 fade-in max-w-4xl mx-auto">
+          <!-- Phase 1 (shared with BU1) -->
+          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 shadow-xl flex flex-col">
+            <div class="text-[#9333ea] text-sm font-bold uppercase tracking-wider mb-2">{isFR ? 'Étape 1' : 'Step 1'}</div>
+            <h3 class="text-2xl font-comfortaa font-bold text-[#2c3e50] mb-1">{t.phase1Title}</h3>
+            <p class="text-sm text-gray-500 italic mb-6">{t.phase1Sub}</p>
+            <div class="mb-6">
+              <span class="text-5xl font-comfortaa font-bold text-[#9333ea]">{t.phase1Price}</span>
+              <p class="text-xs text-gray-500 mt-2">
+                {isFR ? 'Par personne — Ikigai individuel de chaque membre.' : 'Per person — individual Ikigai for each member.'}
+              </p>
+            </div>
+            <p class="text-gray-700 mb-4 text-sm leading-relaxed">{t.phase1P1}</p>
+            <p class="text-gray-700 text-sm leading-relaxed">{t.phase1P2}</p>
+          </article>
+
+          <!-- Bilan Famille -->
+          <article class="relative bg-gradient-to-br from-[#2c3e50] to-[#1A2A44] text-white rounded-3xl p-8 shadow-xl flex flex-col">
+            <div class="text-dore-serein text-sm font-bold uppercase tracking-wider mb-2">{isFR ? 'Étape 2' : 'Step 2'}</div>
+            <h3 class="text-2xl font-comfortaa font-bold mb-1">{t.famTitle}</h3>
+            <p class="text-sm text-white/60 italic mb-6">{t.famSub}</p>
+            <div class="mb-6">
+              <span class="text-3xl font-comfortaa font-bold text-dore-serein">{t.famPrice}</span>
+            </div>
+            <p class="text-white/90 mb-4 text-sm leading-relaxed">{t.famP1}</p>
+            <p class="text-white/90 mb-8 text-sm leading-relaxed">{t.famP2}</p>
+            <a href={contactHref} class="mt-auto inline-block text-center px-6 py-3 bg-dore-serein text-[#2c3e50] font-comfortaa font-semibold rounded-full hover:bg-white transition-colors">
+              {isFR ? 'Parler de notre famille' : 'Talk about our family'}
+            </a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee -->
+  <section class="py-14 lg:py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="relative bg-gradient-to-r from-[#9333ea]/10 via-white to-dore-serein/10 border border-[#9333ea]/20 rounded-3xl p-8 md:p-12 text-center fade-in overflow-hidden">
+          <div class="relative z-10">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white border-4 border-[#9333ea] shadow-lg mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-[#9333ea]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"/>
+              </svg>
+            </div>
+            <p class="text-sm font-bold uppercase tracking-[0.25em] text-[#9333ea] mb-3">{t.guaranteeKicker}</p>
+            <h2 class="text-3xl md:text-4xl font-comfortaa font-bold text-[#2c3e50] mb-6">
+              {t.guaranteeTitle}
+            </h2>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+              {t.guaranteeText}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA → Contact form -->
+  <section class="pain-bg py-14 lg:py-24" id="contact">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="fade-in mb-12">
+          <h2 class="text-3xl md:text-5xl font-comfortaa text-white mb-6">{t.ctaTitle}</h2>
+          <p class="text-lg md:text-xl text-white/90 mb-8">{t.ctaText}</p>
+        </div>
+        <div class="rounded-3xl p-6 md:p-12 fade-in">
+          <div class="text-white/80">
+            <ContactForm lang={lang} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang={lang} />
+</Layout>

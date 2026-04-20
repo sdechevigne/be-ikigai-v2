@@ -71,6 +71,8 @@ const t = labels[lang];
     const successMsg = document.querySelector('#form-success') as HTMLDivElement;
     const errorMsg = document.querySelector('#form-error') as HTMLDivElement;
 
+    const EDGE_FUNCTION_URL = 'https://aeobrpxjmecbvdeqjbvc.supabase.co/functions/v1/contact-form';
+
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -87,16 +89,19 @@ const t = labels[lang];
             const message = formData.get('message') as string;
 
             try {
-                // Lazy-load Supabase only when the user submits the form
-                const { supabase } = await import('../lib/supabase');
+                const response = await fetch(EDGE_FUNCTION_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ nom, email, tel, message }),
+                });
 
-                const { error } = await supabase
-                    .from('contacts')
-                    .insert([
-                        { nom, email, tel, message }
-                    ]);
+                const data = await response.json();
 
-                if (error) throw error;
+                if (!response.ok) {
+                    throw new Error(data.error || 'Erreur lors de l\'envoi');
+                }
 
                 successMsg.classList.remove('hidden');
                 form.reset();
@@ -109,4 +114,5 @@ const t = labels[lang];
             }
         });
     }
+
 </script>

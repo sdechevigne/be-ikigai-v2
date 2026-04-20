@@ -194,6 +194,7 @@ const t = {
     const telInput = document.getElementById('booking-tel');
 
     let selectedSlot = null;
+    let leadId = null; // timestamp-based id to correlate the two submissions
 
     function open() {
       modal.classList.remove('hidden');
@@ -220,6 +221,18 @@ const t = {
       step1Error.classList.add('hidden');
       step2Error.classList.add('hidden');
       selectedSlot = null;
+      leadId = null;
+    }
+
+    async function sendPayload(payload) {
+      const res = await fetch(EDGE_FUNCTION_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Error');
+      return data;
     }
 
     function goToStep2() {
@@ -321,8 +334,24 @@ const t = {
       return true;
     }
 
-    nextBtn.addEventListener('click', () => {
-      if (validateStep1()) goToStep2();
+    nextBtn.addEventListener('click', async () => {
+      if (!validateStep1()) return;
+      // Go to step 2 immediately, fire lead capture in background (non-blocking)
+      goToStep2();
+      if (!leadId) {
+        leadId = `LEAD-${Date.now()}`;
+        const nom = nomInput.value.trim();
+        const tel = telInput.value.trim();
+        const prefix = lang === 'fr'
+          ? `[${leadId}] Lead capturé (étape 1 / en cours de réservation) — à rappeler au ${tel}`
+          : `[${leadId}] Lead captured (step 1 / booking in progress) — please call back at ${tel}`;
+        sendPayload({
+          nom,
+          email: `booking-${Date.now()}@be-ikigai.local`,
+          tel,
+          message: prefix,
+        }).catch(() => { /* silent: we will retry on final submit */ });
+      }
     });
     backBtn.addEventListener('click', goToStep1);
     closeBtn.addEventListener('click', close);
@@ -347,22 +376,21 @@ const t = {
 
       const nom = nomInput.value.trim();
       const tel = telInput.value.trim();
-      const pseudoEmail = `booking-${Date.now()}@be-ikigai.local`;
-      const payload = {
-        nom,
-        email: pseudoEmail,
-        tel,
-        message: `[${lang === 'fr' ? 'Réservation séance découverte — email non fourni, à rappeler au ' + tel : 'Discovery call booking — no email, please call back at ' + tel}] ${selectedSlot}`,
-      };
+      const ref = leadId || `LEAD-${Date.now()}`;
+      const header = lang === 'fr'
+        ? `[${ref}] MAJ réservation confirmée — créneau choisi`
+        : `[${ref}] Booking confirmed — selected slot`;
+      const callback = lang === 'fr'
+        ? `À rappeler au ${tel}.`
+        : `Please call back at ${tel}.`;
 
       try {
-        const res = await fetch(EDGE_FUNCTION_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+        await sendPayload({
+          nom,
+          email: `booking-${Date.now()}@be-ikigai.local`,
+          tel,
+          message: `${header}\n${selectedSlot}\n${callback}`,
         });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(data.error || 'Error');
         successBox.classList.remove('hidden');
         form.reset();
         setTimeout(close, 3000);

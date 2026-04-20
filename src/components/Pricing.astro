@@ -150,9 +150,12 @@ const t = {
           <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">{t.bu1Sub}</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6 lg:gap-8 fade-in">
+        <div
+          id="bu1-slider"
+          class="flex md:grid md:grid-cols-3 gap-6 lg:gap-8 fade-in overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-smooth -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 no-scrollbar"
+        >
           <!-- Phase 1 (featured) -->
-          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 shadow-xl flex flex-col md:-mt-4 md:mb-4">
+          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 shadow-xl flex flex-col md:-mt-4 md:mb-4 shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
             <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#9333ea] text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full">
               {isFR ? 'Démarrez ici' : 'Start here'}
             </span>
@@ -186,7 +189,7 @@ const t = {
           </article>
 
           <!-- Phase 2 -->
-          <article class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col">
+          <article class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
             <div class="text-gray-500 text-sm font-bold uppercase tracking-wider mb-2">{t.phase} 2</div>
             <h3 class="text-2xl font-comfortaa font-bold text-[#2c3e50] mb-1">{t.phase2Title}</h3>
             <p class="text-xs text-gray-500 font-normal leading-4 mb-6">{t.phase2Sub}</p>
@@ -204,7 +207,7 @@ const t = {
           </article>
 
           <!-- Phase 3 -->
-          <article class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col">
+          <article class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
             <div class="text-gray-500 text-sm font-bold uppercase tracking-wider mb-2">{t.phase} 3</div>
             <h3 class="text-2xl font-comfortaa font-bold text-[#2c3e50] mb-1">{t.phase3Title}</h3>
             <p class="text-xs text-gray-500 font-normal leading-4 mb-6">{t.phase3Sub}</p>
@@ -221,6 +224,11 @@ const t = {
             </div>
           </article>
         </div>
+        <div id="bu1-dots" class="flex md:hidden justify-center gap-2 mt-4" data-target="bu1-slider">
+          <button type="button" aria-label="Phase 1" class="dot w-2.5 h-2.5 rounded-full bg-[#9333ea] transition-all"></button>
+          <button type="button" aria-label="Phase 2" class="dot w-2.5 h-2.5 rounded-full bg-gray-300 transition-all"></button>
+          <button type="button" aria-label="Phase 3" class="dot w-2.5 h-2.5 rounded-full bg-gray-300 transition-all"></button>
+        </div>
       </div>
     </div>
   </section>
@@ -236,9 +244,12 @@ const t = {
           <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">{t.bu2Sub}</p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6 lg:gap-8 fade-in max-w-4xl mx-auto">
+        <div
+          id="bu2-slider"
+          class="flex md:grid md:grid-cols-2 gap-6 lg:gap-8 fade-in max-w-4xl mx-auto overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-smooth -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 no-scrollbar"
+        >
           <!-- Phase 1 (shared with BU1) -->
-          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 shadow-xl flex flex-col">
+          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 shadow-xl flex flex-col shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
             <div class="text-[#9333ea] text-sm font-bold uppercase tracking-wider mb-2">{isFR ? 'Étape 1' : 'Step 1'}</div>
             <h3 class="text-2xl font-comfortaa font-bold text-[#2c3e50] mb-1">{t.phase1Title}</h3>
             <p class="text-xs text-gray-500 font-normal leading-4 mb-6">{t.phase1Sub}</p>
@@ -247,11 +258,14 @@ const t = {
               <p class="text-xs text-gray-500 mt-2">{t.phase1PriceNote}</p>
             </div>
             <p class="text-gray-700 mb-4 text-sm leading-relaxed">{t.phase1P1}</p>
-            <p class="text-gray-700 text-sm leading-relaxed">{t.phase1P2}</p>
+            <p class="text-gray-700 text-sm leading-relaxed mb-6">{t.phase1P2}</p>
+            <button type="button" data-open-booking class="md:hidden mt-auto inline-block text-center px-6 py-3 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors cursor-pointer">
+              {t.ctaBtn}
+            </button>
           </article>
 
           <!-- Bilan Famille -->
-          <article class="relative bg-gradient-to-br from-[#2c3e50] to-[#1A2A44] text-white rounded-3xl p-8 shadow-xl flex flex-col">
+          <article class="relative bg-gradient-to-br from-[#2c3e50] to-[#1A2A44] text-white rounded-3xl p-8 shadow-xl flex flex-col shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
             <div class="text-dore-serein text-sm font-bold uppercase tracking-wider mb-2">{isFR ? 'Étape 2' : 'Step 2'}</div>
             <h3 class="text-2xl font-comfortaa font-bold mb-1">{t.famTitle}</h3>
             <p class="text-sm text-white/60 italic mb-6">{t.famSub}</p>
@@ -264,6 +278,10 @@ const t = {
               {isFR ? 'Parler de notre famille' : 'Talk about our family'}
             </button>
           </article>
+        </div>
+        <div id="bu2-dots" class="flex md:hidden justify-center gap-2 mt-4" data-target="bu2-slider">
+          <button type="button" aria-label={isFR ? 'Étape 1' : 'Step 1'} class="dot w-2.5 h-2.5 rounded-full bg-[#9333ea] transition-all"></button>
+          <button type="button" aria-label={isFR ? 'Étape 2' : 'Step 2'} class="dot w-2.5 h-2.5 rounded-full bg-gray-300 transition-all"></button>
         </div>
       </div>
     </div>
@@ -318,3 +336,62 @@ const t = {
 
   <Footer lang={lang} />
 </Layout>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<script is:inline>
+  (function () {
+    function wire(sliderId, dotsId) {
+      const slider = document.getElementById(sliderId);
+      const dotsWrap = document.getElementById(dotsId);
+      if (!slider || !dotsWrap) return;
+      const dots = Array.from(dotsWrap.querySelectorAll('.dot'));
+      const cards = Array.from(slider.children);
+
+      function setActive(idx) {
+        dots.forEach((d, i) => {
+          if (i === idx) {
+            d.classList.add('bg-[#9333ea]', 'w-6');
+            d.classList.remove('bg-gray-300', 'w-2.5');
+          } else {
+            d.classList.remove('bg-[#9333ea]', 'w-6');
+            d.classList.add('bg-gray-300', 'w-2.5');
+          }
+        });
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          const card = cards[i];
+          if (!card) return;
+          slider.scrollTo({ left: card.offsetLeft - slider.offsetLeft, behavior: 'smooth' });
+          setActive(i);
+        });
+      });
+
+      let rafId = null;
+      slider.addEventListener('scroll', () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          const center = slider.scrollLeft + slider.clientWidth / 2;
+          let bestIdx = 0;
+          let bestDist = Infinity;
+          cards.forEach((c, i) => {
+            const cardCenter = c.offsetLeft + c.offsetWidth / 2 - slider.offsetLeft;
+            const dist = Math.abs(center - cardCenter);
+            if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+          });
+          setActive(bestIdx);
+        });
+      }, { passive: true });
+
+      setActive(0);
+    }
+
+    wire('bu1-slider', 'bu1-dots');
+    wire('bu2-slider', 'bu2-dots');
+  })();
+</script>

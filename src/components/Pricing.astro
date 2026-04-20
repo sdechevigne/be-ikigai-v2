@@ -21,18 +21,18 @@ const contactHref = isFR ? '/#contact' : `/${lang}/#contact`;
 const t = {
   fr: {
     heroKicker: 'Tarifs',
-    heroTitle: 'Le Parcours Ikigai : De l\'Introspection à l\'Impact',
+    heroTitle: 'Le Parcours Ikigai :<br/>De l\'Introspection à l\'Impact',
     heroSubtitle: 'Deux chemins, une même promesse : vous reconnecter à votre raison d\'être.',
 
     bu1Title: 'Le Parcours Individuel',
-    bu1Sub: 'Un accompagnement en 3 phases pour passer de la clarté à l\'impact.',
+    bu1Sub: 'Un accompagnement en 3 phases pour passer d\'une idée à son impact.',
     bu2Title: 'Le Pont des Générations',
     bu2Sub: 'Une offre rare pour ceux qui veulent transmettre ou se retrouver.',
 
-    phase1Title: 'Diagnostic & Destinée',
-    phase1Sub: 'Bilan de compétences + Prise de décision',
+    phase1Title: 'Diagnostic Ikigai',
+    phase1Sub: 'Introspection des compétences + Prise de décision',
     phase1Price: '580€',
-    phase1PriceNote: 'Un investissement optimisé pour une clarté immédiate.',
+    phase1PriceNote: 'L\'efficience au service du résultat : ce format court est conçu pour aller droit à l\'essentiel. Pas de remplissage, seulement un rapport temps passé / résultat imbattable.',
     phase1P1: 'Trouvons ensemble ce pourquoi vous êtes fait et destiné. Nous posons un diagnostic sans complaisance pour identifier vos forces réelles et définissons des axes actionnables immédiatement après notre séance. Ici, on ne réfléchit pas pour rien : on décide.',
     phase1P2: 'L\'efficience au service du résultat : ce format court est conçu pour aller droit à l\'essentiel. Pas de remplissage, seulement un rapport temps passé / résultat imbattable.',
     phase1Bullet1: 'Diagnostic sans complaisance de vos forces réelles',
@@ -70,18 +70,18 @@ const t = {
   },
   en: {
     heroKicker: 'Pricing',
-    heroTitle: 'The Ikigai Journey: From Introspection to Impact',
+    heroTitle: 'The Ikigai Journey:<br/>From Introspection to Impact',
     heroSubtitle: 'Two paths, one promise: reconnecting you with your reason for being.',
 
     bu1Title: 'The Individual Journey',
-    bu1Sub: 'A 3-phase program to move from clarity to impact.',
+    bu1Sub: 'A 3-phase program to take an idea to its real impact.',
     bu2Title: 'The Generational Bridge',
     bu2Sub: 'A rare offer for those who want to pass on or reconnect.',
 
-    phase1Title: 'Diagnosis & Destiny',
-    phase1Sub: 'Skills assessment + Decision-making',
+    phase1Title: 'Ikigai Diagnosis',
+    phase1Sub: 'Skills introspection + Decision-making',
     phase1Price: '€580',
-    phase1PriceNote: 'An optimized investment for immediate clarity.',
+    phase1PriceNote: 'Efficiency serving results: this short format goes straight to the point. No filler, just an unbeatable time-to-result ratio.',
     phase1P1: 'Let\'s find together what you are made for. We run an uncompromising diagnosis to identify your real strengths and define actionable paths right after our session. Here, we don\'t overthink: we decide.',
     phase1P2: 'Efficiency serving results: this short format goes straight to the point. No filler, just an unbeatable time-to-result ratio.',
     phase1Bullet1: 'Uncompromising diagnosis of your real strengths',
@@ -121,7 +121,7 @@ const t = {
 ---
 
 <Layout title={pageTitle} description={pageDesc} lang={lang}>
-  <Navbar lang={lang} />
+  <Navbar lang={lang} transparent={false} />
 
   <!-- Hero -->
   <section class="pain-bg pt-32 pb-16 lg:pt-40 lg:pb-24">
@@ -129,7 +129,7 @@ const t = {
       <div class="max-w-4xl mx-auto fade-in">
         <p class="text-dore-serein font-comfortaa uppercase tracking-[0.3em] text-sm mb-4">{t.heroKicker}</p>
         <h1 class="text-3xl md:text-5xl lg:text-6xl font-comfortaa text-white mb-6 leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-          {t.heroTitle}
+          <Fragment set:html={t.heroTitle} />
         </h1>
         <p class="text-xl md:text-2xl text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
           {t.heroSubtitle}
@@ -143,9 +143,6 @@ const t = {
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16 fade-in">
-          <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#9333ea] bg-[#9333ea]/10 rounded-full px-4 py-1 mb-4">
-            01 — {isFR ? 'Pour vous' : 'For you'}
-          </span>
           <h2 class="text-3xl md:text-5xl font-comfortaa text-[#2c3e50] font-bold mb-4">
             {t.bu1Title}
           </h2>
@@ -227,9 +224,6 @@ const t = {
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16 fade-in">
-          <span class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-dore-serein bg-dore-serein/20 rounded-full px-4 py-1 mb-4">
-            02 — {isFR ? 'Pour vous & les vôtres' : 'For you & yours'}
-          </span>
           <h2 class="text-3xl md:text-5xl font-comfortaa text-[#2c3e50] font-bold mb-4">
             {t.bu2Title}
           </h2>

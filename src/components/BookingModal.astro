@@ -1,0 +1,386 @@
+---
+const { lang = 'fr' } = Astro.props;
+
+const t = {
+  fr: {
+    title: 'Réservez votre séance découverte',
+    subtitle: 'Gratuite, 30 minutes, sans engagement.',
+    step: 'Étape',
+    of: 'sur',
+    nom: 'Nom complet',
+    tel: 'Téléphone',
+    email: 'Adresse email',
+    next: 'Suivant',
+    back: 'Retour',
+    step2Title: 'Choisissez votre créneau',
+    step2Sub: 'Sélectionnez la plage qui vous convient :',
+    submit: 'Confirmer ma réservation',
+    sending: 'Envoi en cours…',
+    success: 'Merci ! Votre demande est envoyée. Je vous contacte très vite pour confirmer.',
+    error: 'Une erreur s\'est produite. Merci de réessayer.',
+    close: 'Fermer',
+    required: 'Ce champ est obligatoire',
+    invalidEmail: 'Email invalide',
+    morning: 'Matin',
+    midday: 'Midi',
+    evening: 'Soir',
+    today: "Aujourd'hui",
+    tomorrow: 'Demain',
+    dayAfter: 'Après-demain',
+    slotMorning: '9h — 12h',
+    slotMidday: '12h — 14h',
+    slotEvening: '18h — 21h',
+    selectSlotFirst: 'Merci de sélectionner un créneau',
+  },
+  en: {
+    title: 'Book your discovery call',
+    subtitle: 'Free, 30 minutes, no commitment.',
+    step: 'Step',
+    of: 'of',
+    nom: 'Full name',
+    tel: 'Phone',
+    email: 'Email address',
+    next: 'Next',
+    back: 'Back',
+    step2Title: 'Pick a time slot',
+    step2Sub: 'Select the slot that works for you:',
+    submit: 'Confirm my booking',
+    sending: 'Sending…',
+    success: 'Thank you! Your request has been sent. I\'ll reach out shortly to confirm.',
+    error: 'Something went wrong. Please try again.',
+    close: 'Close',
+    required: 'This field is required',
+    invalidEmail: 'Invalid email',
+    morning: 'Morning',
+    midday: 'Midday',
+    evening: 'Evening',
+    today: 'Today',
+    tomorrow: 'Tomorrow',
+    dayAfter: 'Day after tomorrow',
+    slotMorning: '9am — 12pm',
+    slotMidday: '12pm — 2pm',
+    slotEvening: '6pm — 9pm',
+    selectSlotFirst: 'Please select a time slot',
+  },
+}[lang];
+---
+
+<div
+  id="booking-modal"
+  class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+  data-lang={lang}
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="booking-modal-title"
+>
+  <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto">
+    <button
+      type="button"
+      id="booking-close"
+      aria-label={t.close}
+      class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors z-10"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <div class="p-6 md:p-8">
+      <div class="mb-6">
+        <h2 id="booking-modal-title" class="text-2xl md:text-3xl font-comfortaa font-bold text-[#2c3e50] mb-2">
+          {t.title}
+        </h2>
+        <p class="text-sm text-gray-600">{t.subtitle}</p>
+      </div>
+
+      <div class="flex items-center gap-2 mb-6" aria-hidden="true">
+        <div id="step-indicator-1" class="flex-1 h-1 rounded-full bg-[#9333ea]"></div>
+        <div id="step-indicator-2" class="flex-1 h-1 rounded-full bg-gray-200"></div>
+      </div>
+
+      <form id="booking-form" novalidate>
+        <!-- Step 1 -->
+        <fieldset id="booking-step-1" class="space-y-4">
+          <div>
+            <label for="booking-nom" class="block text-sm font-bold text-[#2c3e50] mb-1">{t.nom} *</label>
+            <input
+              type="text"
+              id="booking-nom"
+              name="nom"
+              required
+              autocomplete="name"
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#9333ea] focus:border-transparent outline-none transition-all bg-white text-gray-900"
+            />
+          </div>
+          <div>
+            <label for="booking-tel" class="block text-sm font-bold text-[#2c3e50] mb-1">{t.tel} *</label>
+            <input
+              type="tel"
+              id="booking-tel"
+              name="tel"
+              required
+              autocomplete="tel"
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#9333ea] focus:border-transparent outline-none transition-all bg-white text-gray-900"
+            />
+          </div>
+          <div id="booking-step1-error" class="hidden text-sm text-red-600"></div>
+          <button
+            type="button"
+            id="booking-next"
+            class="w-full mt-2 bg-[#9333ea] hover:bg-[#7e22ce] text-white font-comfortaa font-semibold rounded-xl px-6 py-3 transition-colors"
+          >
+            {t.next} →
+          </button>
+        </fieldset>
+
+        <!-- Step 2 -->
+        <fieldset id="booking-step-2" class="hidden space-y-4">
+          <div>
+            <h3 class="text-lg font-comfortaa font-bold text-[#2c3e50] mb-1">{t.step2Title}</h3>
+            <p class="text-sm text-gray-600 mb-4">{t.step2Sub}</p>
+          </div>
+
+          <div id="booking-slots" class="space-y-3">
+            <!-- populated by JS -->
+          </div>
+
+          <div id="booking-step2-error" class="hidden text-sm text-red-600"></div>
+          <div id="booking-success" class="hidden rounded-xl bg-green-50 border border-green-200 p-4 text-green-800 text-sm font-medium">
+            {t.success}
+          </div>
+
+          <div class="flex gap-3 pt-2">
+            <button
+              type="button"
+              id="booking-back"
+              class="flex-1 bg-white border-2 border-gray-300 hover:border-[#2c3e50] text-[#2c3e50] font-comfortaa font-semibold rounded-xl px-6 py-3 transition-colors"
+            >
+              ← {t.back}
+            </button>
+            <button
+              type="submit"
+              id="booking-submit"
+              class="flex-1 bg-[#9333ea] hover:bg-[#7e22ce] text-white font-comfortaa font-semibold rounded-xl px-6 py-3 transition-colors disabled:opacity-60"
+            >
+              {t.submit}
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ t }}>
+  (function () {
+    const EDGE_FUNCTION_URL = 'https://aeobrpxjmecbvdeqjbvc.supabase.co/functions/v1/contact-form';
+    const modal = document.getElementById('booking-modal');
+    if (!modal) return;
+    const lang = modal.dataset.lang || 'fr';
+    const form = document.getElementById('booking-form');
+    const step1 = document.getElementById('booking-step-1');
+    const step2 = document.getElementById('booking-step-2');
+    const ind1 = document.getElementById('step-indicator-1');
+    const ind2 = document.getElementById('step-indicator-2');
+    const nextBtn = document.getElementById('booking-next');
+    const backBtn = document.getElementById('booking-back');
+    const submitBtn = document.getElementById('booking-submit');
+    const closeBtn = document.getElementById('booking-close');
+    const step1Error = document.getElementById('booking-step1-error');
+    const step2Error = document.getElementById('booking-step2-error');
+    const successBox = document.getElementById('booking-success');
+    const slotsContainer = document.getElementById('booking-slots');
+    const nomInput = document.getElementById('booking-nom');
+    const telInput = document.getElementById('booking-tel');
+
+    let selectedSlot = null;
+
+    function open() {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      resetToStep1();
+      buildSlots();
+    }
+
+    function close() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function resetToStep1() {
+      step1.classList.remove('hidden');
+      step2.classList.add('hidden');
+      ind1.classList.remove('bg-gray-200');
+      ind1.classList.add('bg-[#9333ea]');
+      ind2.classList.add('bg-gray-200');
+      ind2.classList.remove('bg-[#9333ea]');
+      successBox.classList.add('hidden');
+      step1Error.classList.add('hidden');
+      step2Error.classList.add('hidden');
+      selectedSlot = null;
+    }
+
+    function goToStep2() {
+      step1.classList.add('hidden');
+      step2.classList.remove('hidden');
+      ind2.classList.remove('bg-gray-200');
+      ind2.classList.add('bg-[#9333ea]');
+    }
+
+    function goToStep1() {
+      step1.classList.remove('hidden');
+      step2.classList.add('hidden');
+      ind2.classList.add('bg-gray-200');
+      ind2.classList.remove('bg-[#9333ea]');
+    }
+
+    // Slot generation
+    const SLOTS = [
+      { key: 'morning', label: t.morning, range: t.slotMorning, startHour: 9, endHour: 12 },
+      { key: 'midday',  label: t.midday,  range: t.slotMidday,  startHour: 12, endHour: 14 },
+      { key: 'evening', label: t.evening, range: t.slotEvening, startHour: 18, endHour: 21 },
+    ];
+    const DAY_LABELS = [t.today, t.tomorrow, t.dayAfter];
+
+    function formatDate(date) {
+      return date.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+        weekday: 'long', day: 'numeric', month: 'long',
+      });
+    }
+
+    function buildSlots() {
+      slotsContainer.innerHTML = '';
+      const now = new Date();
+      const candidates = [];
+      for (let dayOffset = 0; dayOffset < 3 && candidates.length < 4; dayOffset++) {
+        const d = new Date(now);
+        d.setDate(d.getDate() + dayOffset);
+        for (const slot of SLOTS) {
+          // Must start at least 2h from now
+          const slotStart = new Date(d);
+          slotStart.setHours(slot.startHour, 0, 0, 0);
+          const minTime = new Date(now.getTime() + 2 * 3600 * 1000);
+          if (slotStart < minTime) continue;
+          candidates.push({
+            dayOffset,
+            dayLabel: DAY_LABELS[dayOffset],
+            dateStr: formatDate(d),
+            slot,
+            id: `${dayOffset}-${slot.key}`,
+          });
+          if (candidates.length >= 4) break;
+        }
+      }
+
+      candidates.forEach((c) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.dataset.slotId = c.id;
+        btn.dataset.slotText = `${c.dayLabel} (${c.dateStr}) — ${c.slot.label} ${c.slot.range}`;
+        btn.className = 'w-full text-left px-4 py-3 rounded-xl border-2 border-gray-200 hover:border-[#9333ea] hover:bg-[#9333ea]/5 transition-colors flex items-center justify-between gap-4';
+        btn.innerHTML = `
+          <div>
+            <div class="font-comfortaa font-bold text-[#2c3e50]">${c.dayLabel} <span class="text-gray-500 font-normal text-sm">· ${c.dateStr}</span></div>
+            <div class="text-sm text-gray-600">${c.slot.label} · ${c.slot.range}</div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#9333ea] opacity-0 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+        `;
+        btn.addEventListener('click', () => selectSlot(btn));
+        slotsContainer.appendChild(btn);
+      });
+    }
+
+    function selectSlot(btn) {
+      slotsContainer.querySelectorAll('button').forEach((b) => {
+        b.classList.remove('border-[#9333ea]', 'bg-[#9333ea]/5');
+        b.classList.add('border-gray-200');
+        const check = b.querySelector('svg');
+        if (check) check.classList.add('opacity-0');
+      });
+      btn.classList.add('border-[#9333ea]', 'bg-[#9333ea]/5');
+      btn.classList.remove('border-gray-200');
+      const check = btn.querySelector('svg');
+      if (check) check.classList.remove('opacity-0');
+      selectedSlot = btn.dataset.slotText;
+      step2Error.classList.add('hidden');
+    }
+
+    function validateStep1() {
+      const nom = nomInput.value.trim();
+      const tel = telInput.value.trim();
+      if (!nom || !tel) {
+        step1Error.textContent = t.required;
+        step1Error.classList.remove('hidden');
+        return false;
+      }
+      step1Error.classList.add('hidden');
+      return true;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if (validateStep1()) goToStep2();
+    });
+    backBtn.addEventListener('click', goToStep1);
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!selectedSlot) {
+        step2Error.textContent = t.selectSlotFirst;
+        step2Error.classList.remove('hidden');
+        return;
+      }
+      step2Error.classList.add('hidden');
+      submitBtn.disabled = true;
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = t.sending;
+
+      const nom = nomInput.value.trim();
+      const tel = telInput.value.trim();
+      const pseudoEmail = `booking-${Date.now()}@be-ikigai.local`;
+      const payload = {
+        nom,
+        email: pseudoEmail,
+        tel,
+        message: `[${lang === 'fr' ? 'Réservation séance découverte — email non fourni, à rappeler au ' + tel : 'Discovery call booking — no email, please call back at ' + tel}] ${selectedSlot}`,
+      };
+
+      try {
+        const res = await fetch(EDGE_FUNCTION_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || 'Error');
+        successBox.classList.remove('hidden');
+        form.reset();
+        setTimeout(close, 3000);
+      } catch (err) {
+        step2Error.textContent = t.error;
+        step2Error.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+
+    // Wire up all triggers
+    document.querySelectorAll('[data-open-booking]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        open();
+      });
+    });
+  })();
+</script>

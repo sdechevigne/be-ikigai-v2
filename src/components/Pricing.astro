@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from './Navbar.astro';
 import Footer from './Footer.astro';
 import ContactForm from './ContactForm.astro';
+import BookingModal from './BookingModal.astro';
 import { getLangFromUrl } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -179,9 +180,9 @@ const t = {
                 <span>{t.phase1Bullet3}</span>
               </li>
             </ul>
-            <a href={contactHref} class="mt-auto inline-block text-center px-6 py-3 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors">
+            <button type="button" data-open-booking class="mt-auto inline-block text-center px-6 py-3 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors cursor-pointer">
               {t.ctaBtn}
-            </a>
+            </button>
           </article>
 
           <!-- Phase 2 -->
@@ -259,9 +260,9 @@ const t = {
             </div>
             <p class="text-white/90 mb-4 text-sm leading-relaxed">{t.famP1}</p>
             <p class="text-white/90 mb-8 text-sm leading-relaxed">{t.famP2}</p>
-            <a href={contactHref} class="mt-auto inline-block text-center px-6 py-3 bg-dore-serein text-[#2c3e50] font-comfortaa font-semibold rounded-full hover:bg-white transition-colors">
+            <button type="button" data-open-booking class="mt-auto inline-block text-center px-6 py-3 bg-dore-serein text-[#2c3e50] font-comfortaa font-semibold rounded-full hover:bg-white transition-colors cursor-pointer">
               {isFR ? 'Parler de notre famille' : 'Talk about our family'}
-            </a>
+            </button>
           </article>
         </div>
       </div>
@@ -312,6 +313,8 @@ const t = {
       </div>
     </div>
   </section>
+
+  <BookingModal lang={lang} />
 
   <Footer lang={lang} />
 </Layout>

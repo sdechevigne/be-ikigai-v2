@@ -155,8 +155,8 @@ const t = {
           class="flex md:grid md:grid-cols-3 gap-6 lg:gap-8 fade-in overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-smooth -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 no-scrollbar"
         >
           <!-- Phase 1 (featured) -->
-          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 shadow-xl flex flex-col md:-mt-4 md:mb-4 shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
-            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#9333ea] text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full">
+          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 pt-10 shadow-xl flex flex-col md:mb-4 shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
+            <span class="absolute top-3 left-1/2 -translate-x-1/2 bg-[#9333ea] text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full whitespace-nowrap">
               {isFR ? 'Démarrez ici' : 'Start here'}
             </span>
             <div class="text-[#9333ea] text-sm font-bold uppercase tracking-wider mb-2">{t.phase} 1</div>
@@ -257,8 +257,7 @@ const t = {
               <span class="text-5xl font-comfortaa font-bold text-[#9333ea]">{t.phase1Price}</span>
               <p class="text-xs text-gray-500 mt-2">{t.phase1PriceNote}</p>
             </div>
-            <p class="text-gray-700 mb-4 text-sm leading-relaxed">{t.phase1P1}</p>
-            <p class="text-gray-700 text-sm leading-relaxed mb-6">{t.phase1P2}</p>
+            <p class="text-gray-700 mb-6 text-sm leading-relaxed">{t.phase1P1}</p>
             <button type="button" data-open-booking class="md:hidden mt-auto inline-block text-center px-6 py-3 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors cursor-pointer">
               {t.ctaBtn}
             </button>
@@ -317,13 +316,13 @@ const t = {
 
   <!-- Final CTA → Contact form -->
   <section class="pain-bg py-14 lg:py-24" id="contact">
-    <div class="container mx-auto px-6">
+    <div class="container mx-auto px-2 sm:px-6">
       <div class="max-w-4xl mx-auto text-center">
-        <div class="fade-in mb-12">
+        <div class="fade-in mb-12 px-4">
           <h2 class="text-3xl md:text-5xl font-comfortaa text-white mb-6">{t.ctaTitle}</h2>
           <p class="text-lg md:text-xl text-white/90 mb-8">{t.ctaText}</p>
         </div>
-        <div class="rounded-3xl p-6 md:p-12 fade-in">
+        <div class="rounded-3xl px-0 md:p-12 fade-in">
           <div class="text-white/80">
             <ContactForm lang={lang} />
           </div>

@@ -25,8 +25,16 @@ const navClass = transparent
       be-ikigai
     </a>
     
-    <!-- Mobile Hamburger Button -->
-    <button id="mobile-menu-btn" aria-label="Toggle Menu" class="lg:hidden z-[60] relative flex items-center justify-center min-w-[48px] min-h-[48px] nav-text focus:outline-none transition-transform duration-300">
+    <!-- Mobile CTA + Hamburger -->
+    <div class="lg:hidden flex items-center gap-2 z-[60] relative">
+      <a
+        href={pricingUrl}
+        data-open-booking
+        class="px-4 py-2 bg-[#9333ea] hover:bg-[#7e22ce] text-white text-sm font-comfortaa font-semibold rounded-full shadow-md transition-colors"
+      >
+        {lang === 'fr' ? 'Réserver' : 'Book'}
+      </a>
+    <button id="mobile-menu-btn" aria-label="Toggle Menu" class="flex items-center justify-center min-w-[44px] min-h-[44px] nav-text focus:outline-none transition-transform duration-300">
       <svg id="hamburger-icon" class="w-8 h-8 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
@@ -34,7 +42,8 @@ const navClass = transparent
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
-    
+    </div>
+
     <!-- Desktop Menu -->
     <div class="hidden lg:flex items-center gap-6 lg:gap-10">
       <a href={`${homeUrl}#accueil`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">

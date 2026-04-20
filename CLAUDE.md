@@ -11,6 +11,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Node `>=22.12.0` is required (see `package.json#engines`).
 
+`download_assets.ps1` at the root re-downloads assets from prod via `Invoke-WebRequest` — it silently saves HTML error pages when a file is missing upstream. Verify downloaded files with `file <path>` after running; don't commit without checking.
+
 ## Architecture
 
 Static Astro 6 site with **two locales (fr default, en)**, Tailwind, React integration, and a Supabase-backed contact form. Content model is a single `blog` collection; landing/offer pages are hand-crafted Astro components. No backend in this repo — form submissions hit a Supabase Edge Function over HTTPS.
@@ -54,3 +56,7 @@ Tailwind with a small branded palette (`tailwind.config.mjs`): `bleu-crepuscule`
 ### French copy convention
 
 Avoid decorative capitalization on titles and labels (not Title Case). Capitalize only sentence starts and proper nouns (Ikigai, Pierre-Louis). English titles keep Title Case. This came up repeatedly on `Pricing.astro`; mirror the same rule on new FR pages.
+
+### Images
+
+Use a single `<img>` tag pointing to `.webp` — don't reintroduce `<picture>` with AVIF/JPEG fallbacks (maintenance burden, files drift out of sync). Exception: schema.org JSON-LD, Open Graph, and blog post frontmatter images stay as `.png`/`.jpg` since some social crawlers don't read WebP. `logo_fullhd.png` and `pierre-louis-be-ikigai.png` are intentional PNGs for this reason.

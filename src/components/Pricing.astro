@@ -27,7 +27,7 @@ const t = {
     bu1Title: 'Le Parcours Individuel',
     bu1Sub: 'Un accompagnement en 3 phases pour passer d\'une idée à son impact.',
     bu2Title: 'Le Pont des Générations',
-    bu2Sub: 'Une offre rare pour ceux qui veulent transmettre ou se retrouver.',
+    bu2Sub: 'Une offre famille pour ceux qui veulent créer du lien.',
 
     phase1Title: 'Diagnostic Ikigai',
     phase1Sub: 'Introspection des compétences + Prise de décision',
@@ -51,10 +51,10 @@ const t = {
     phase3P1: 'Je ne vous lâche pas dans la nature, mais je change de posture. Je deviens le garant de votre trajectoire.',
     phase3P2: 'Mon rôle est d\'être le témoin authentique de votre progression, de surveiller que le cap ne dévie pas et de valider chaque étape intermédiaire. Je suis là pour m\'assurer que la vision du début reste la réalité de demain.',
 
-    famTitle: 'Bilan Famille / Perso',
+    famTitle: 'Bilan Famille & Personnel',
     famSub: 'Le Pont des Générations',
     famPrice: 'Sur devis',
-    famP1: 'Une offre rare pour ceux qui veulent transmettre ou se retrouver. Que vous soyez un père et son fils ou un binôme familial, nous réalisons l\'Ikigai de chacun pour mettre à nu vos moteurs profonds.',
+    famP1: 'Une offre famille pour ceux qui veulent créer du lien et se retrouver. Que vous soyez un père et son fils ou un binôme familial, nous réalisons l\'Ikigai de chacun pour mettre à nu vos moteurs profonds.',
     famP2: 'L\'objectif ? Identifier les points de contact réels et bâtir des projets et passions communes qui font sens pour les deux. On ne crée pas seulement du lien, on crée une complicité durable basée sur qui vous êtes vraiment.',
 
     guaranteeKicker: 'Zéro Risque, Zéro Compromis',
@@ -76,7 +76,7 @@ const t = {
     bu1Title: 'The Individual Journey',
     bu1Sub: 'A 3-phase program to take an idea to its real impact.',
     bu2Title: 'The Generational Bridge',
-    bu2Sub: 'A rare offer for those who want to pass on or reconnect.',
+    bu2Sub: 'A family offer for those who want to build connection.',
 
     phase1Title: 'Ikigai Diagnosis',
     phase1Sub: 'Skills introspection + Decision-making',
@@ -100,10 +100,10 @@ const t = {
     phase3P1: 'I\'m not dropping you in the wild — I\'m shifting posture. I become the guardian of your trajectory.',
     phase3P2: 'My role is to be the honest witness of your progress, watch that your course doesn\'t drift, and validate each milestone. I\'m here to ensure the vision of day one remains tomorrow\'s reality.',
 
-    famTitle: 'Family / Personal Assessment',
+    famTitle: 'Family & Personal Assessment',
     famSub: 'The Generational Bridge',
     famPrice: 'On request',
-    famP1: 'A rare offer for those who want to pass on or reconnect. Whether you\'re a father and son or a family duo, we uncover each person\'s Ikigai to lay bare your deep drivers.',
+    famP1: 'A family offer for those who want to build connection and reconnect. Whether you\'re a father and son or a family duo, we uncover each person\'s Ikigai to lay bare your deep drivers.',
     famP2: 'The goal? Identify real points of contact and build shared projects and passions that make sense for both. We don\'t just create a bond — we create a lasting complicity based on who you truly are.',
 
     guaranteeKicker: 'Zero Risk, Zero Compromise',
@@ -243,9 +243,7 @@ const t = {
             <p class="text-xs text-gray-500 font-normal leading-4 mb-6">{t.phase1Sub}</p>
             <div class="mb-6">
               <span class="text-5xl font-comfortaa font-bold text-[#9333ea]">{t.phase1Price}</span>
-              <p class="text-xs text-gray-500 mt-2">
-                {isFR ? 'Par personne — Ikigai individuel de chaque membre.' : 'Per person — individual Ikigai for each member.'}
-              </p>
+              <p class="text-xs text-gray-500 mt-2">{t.phase1PriceNote}</p>
             </div>
             <p class="text-gray-700 mb-4 text-sm leading-relaxed">{t.phase1P1}</p>
             <p class="text-gray-700 text-sm leading-relaxed">{t.phase1P2}</p>

@@ -34,7 +34,7 @@ const t = {
     phase1Sub: 'Introspection des compétences + Prise de décision',
     phase1Price: '580€',
     phase1PriceNote: 'L\'efficience au service du résultat : ce format court est conçu pour aller droit à l\'essentiel. Pas de remplissage, seulement un rapport temps passé / résultat imbattable.',
-    phase1P1: 'Trouvons ensemble ce pourquoi vous êtes fait et destiné. Nous posons un diagnostic sans complaisance pour identifier vos forces réelles et définissons des axes actionnables immédiatement après notre séance. Ici, on ne réfléchit pas pour rien : on décide.',
+    phase1P1: 'Trouvons ensemble ce pourquoi vous êtes fait et destiné. Nous posons un diagnostic sans complaisance pour identifier vos forces réelles et définissons des axes actionnables immédiatement après notre séance.\n→ Ici, on ne réfléchit pas pour rien : on décide.',
     phase1P2: 'L\'efficience au service du résultat : ce format court est conçu pour aller droit à l\'essentiel. Pas de remplissage, seulement un rapport temps passé / résultat imbattable.',
     phase1Bullet1: 'Diagnostic sans complaisance de vos forces réelles',
     phase1Bullet2: 'Plan d\'action concret délivré en 48 heures',
@@ -83,7 +83,7 @@ const t = {
     phase1Sub: 'Skills introspection + Decision-making',
     phase1Price: '€580',
     phase1PriceNote: 'Efficiency serving results: this short format goes straight to the point. No filler, just an unbeatable time-to-result ratio.',
-    phase1P1: 'Let\'s find together what you are made for. We run an uncompromising diagnosis to identify your real strengths and define actionable paths right after our session. Here, we don\'t overthink: we decide.',
+    phase1P1: 'Let\'s find together what you are made for. We run an uncompromising diagnosis to identify your real strengths and define actionable paths right after our session.\n→ Here, we don\'t overthink: we decide.',
     phase1P2: 'Efficiency serving results: this short format goes straight to the point. No filler, just an unbeatable time-to-result ratio.',
     phase1Bullet1: 'Uncompromising diagnosis of your real strengths',
     phase1Bullet2: 'Concrete action plan delivered within 48 hours',
@@ -152,10 +152,10 @@ const t = {
 
         <div
           id="bu1-slider"
-          class="flex md:grid md:grid-cols-3 gap-6 lg:gap-8 fade-in overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-smooth -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 no-scrollbar"
+          class="flex md:grid md:grid-cols-3 gap-4 lg:gap-8 fade-in overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-smooth -mx-6 px-3 md:mx-0 md:px-0 pb-4 md:pb-0 no-scrollbar"
         >
           <!-- Phase 1 (featured) -->
-          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 pt-10 shadow-xl flex flex-col md:mb-4 shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
+          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 pt-10 shadow-xl flex flex-col md:mb-4 shrink-0 w-[94%] md:w-auto snap-center md:snap-align-none">
             <span class="absolute top-3 left-1/2 -translate-x-1/2 bg-[#9333ea] text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full whitespace-nowrap">
               {isFR ? 'Démarrez ici' : 'Start here'}
             </span>
@@ -168,7 +168,7 @@ const t = {
               </div>
               <p class="text-xs text-gray-500 mt-2">{t.phase1PriceNote}</p>
             </div>
-            <p class="text-gray-700 mb-6 text-sm leading-relaxed">{t.phase1P1}</p>
+            <p class="text-gray-700 mb-6 text-sm leading-relaxed whitespace-pre-line">{t.phase1P1}</p>
             <ul class="space-y-3 mb-8">
               <li class="flex items-start gap-3 text-sm text-gray-700">
                 <svg class="w-5 h-5 text-[#9333ea] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -189,7 +189,7 @@ const t = {
           </article>
 
           <!-- Phase 2 -->
-          <article class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
+          <article class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col shrink-0 w-[94%] md:w-auto snap-center md:snap-align-none">
             <div class="text-gray-500 text-sm font-bold uppercase tracking-wider mb-2">{t.phase} 2</div>
             <h3 class="text-2xl font-comfortaa font-bold text-[#2c3e50] mb-1">{t.phase2Title}</h3>
             <p class="text-xs text-gray-500 font-normal leading-4 mb-6">{t.phase2Sub}</p>
@@ -207,7 +207,7 @@ const t = {
           </article>
 
           <!-- Phase 3 -->
-          <article class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
+          <article class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col shrink-0 w-[94%] md:w-auto snap-center md:snap-align-none">
             <div class="text-gray-500 text-sm font-bold uppercase tracking-wider mb-2">{t.phase} 3</div>
             <h3 class="text-2xl font-comfortaa font-bold text-[#2c3e50] mb-1">{t.phase3Title}</h3>
             <p class="text-xs text-gray-500 font-normal leading-4 mb-6">{t.phase3Sub}</p>
@@ -246,10 +246,10 @@ const t = {
 
         <div
           id="bu2-slider"
-          class="flex md:grid md:grid-cols-2 gap-6 lg:gap-8 fade-in max-w-4xl mx-auto overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-smooth -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 no-scrollbar"
+          class="flex md:grid md:grid-cols-2 gap-4 lg:gap-8 fade-in max-w-4xl mx-auto overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-smooth -mx-6 px-3 md:mx-0 md:px-0 pb-4 md:pb-0 no-scrollbar"
         >
           <!-- Phase 1 (shared with BU1) -->
-          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 shadow-xl flex flex-col shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
+          <article class="relative bg-white border-2 border-[#9333ea] rounded-3xl p-8 shadow-xl flex flex-col shrink-0 w-[94%] md:w-auto snap-center md:snap-align-none">
             <div class="text-[#9333ea] text-sm font-bold uppercase tracking-wider mb-2">{isFR ? 'Étape 1' : 'Step 1'}</div>
             <h3 class="text-2xl font-comfortaa font-bold text-[#2c3e50] mb-1">{t.phase1Title}</h3>
             <p class="text-xs text-gray-500 font-normal leading-4 mb-6">{t.phase1Sub}</p>
@@ -257,14 +257,14 @@ const t = {
               <span class="text-5xl font-comfortaa font-bold text-[#9333ea]">{t.phase1Price}</span>
               <p class="text-xs text-gray-500 mt-2">{t.phase1PriceNote}</p>
             </div>
-            <p class="text-gray-700 mb-6 text-sm leading-relaxed">{t.phase1P1}</p>
+            <p class="text-gray-700 mb-6 text-sm leading-relaxed whitespace-pre-line">{t.phase1P1}</p>
             <button type="button" data-open-booking class="md:hidden mt-auto inline-block text-center px-6 py-3 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors cursor-pointer">
               {t.ctaBtn}
             </button>
           </article>
 
           <!-- Bilan Famille -->
-          <article class="relative bg-gradient-to-br from-[#2c3e50] to-[#1A2A44] text-white rounded-3xl p-8 shadow-xl flex flex-col shrink-0 w-[88%] md:w-auto snap-center md:snap-align-none">
+          <article class="relative bg-gradient-to-br from-[#2c3e50] to-[#1A2A44] text-white rounded-3xl p-8 shadow-xl flex flex-col shrink-0 w-[94%] md:w-auto snap-center md:snap-align-none">
             <div class="text-dore-serein text-sm font-bold uppercase tracking-wider mb-2">{isFR ? 'Étape 2' : 'Step 2'}</div>
             <h3 class="text-2xl font-comfortaa font-bold mb-1">{t.famTitle}</h3>
             <p class="text-sm text-white/60 italic mb-6">{t.famSub}</p>

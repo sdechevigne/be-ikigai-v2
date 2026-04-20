@@ -30,7 +30,7 @@ const navClass = transparent
       <a
         href={pricingUrl}
         data-open-booking
-        class="px-4 py-2 bg-[#9333ea] hover:bg-[#7e22ce] text-white text-sm font-comfortaa font-semibold rounded-full shadow-md transition-colors"
+        class="px-4 py-2 bg-[#ffd700] hover:bg-yellow-400 text-[#2c3e50] text-sm font-comfortaa font-bold rounded-full shadow-md transition-colors"
       >
         {lang === 'fr' ? 'Réserver' : 'Book'}
       </a>
@@ -63,6 +63,13 @@ const navClass = transparent
       </a>
       <a href={`${homeUrl}#contact`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         Contact
+      </a>
+      <a
+        href={pricingUrl}
+        data-open-booking
+        class="px-5 py-2 bg-[#ffd700] hover:bg-yellow-400 text-[#2c3e50] font-comfortaa font-bold rounded-full shadow-md transition-colors tracking-wide"
+      >
+        {lang === 'fr' ? 'Réserver' : 'Book'}
       </a>
     </div>
   </div>

@@ -12,7 +12,7 @@
 
 @layer utilities {
   .hero-bg {
-    background-image: url('/assets/img/hero.webp');
+    background-image: url('/assets/img/pain.webp');
     background-size: cover;
     background-position: center;
   }

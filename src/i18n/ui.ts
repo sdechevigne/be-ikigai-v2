@@ -21,7 +21,7 @@ export const ui = {
     'pain.whether': 'Que vous soyez...',
     'pain.who1': 'Une personne qui se sent de plus en plus seule face à ce monde qui change.',
     'pain.who2': 'Un parent souhaitant mieux comprendre son enfant et créer une relation durable.',
-    'pain.who3': 'Un enfant qui souhtaite se connaitre rapidement et trouver sa voie.',
+    'pain.who3': 'Un enfant qui souhaite se connaitre rapidement et trouver sa voie.',
     'pain.end': '...ou simplement en quête de sens dans le brouillard du quotidien...',
     'solution.call': 'Si ces mots résonnent en vous, ce n\'est pas un hasard. C\'est un appel intérieur qui vous signale qu\'il est temps de changer.',
     'solution.subtitle': 'Cultivons ensemble l\'envie d\'avoir envie',

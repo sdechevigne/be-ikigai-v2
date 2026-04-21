@@ -42,7 +42,7 @@ npx supabase link --project-ref <project-ref>
 
 ### 5. Apply database migrations
 
-Edit `supabase/migrations/20260421000100_google_reviews_cron.sql` and replace `<PROJECT_REF>` with your project ref, then:
+> ⚠️ **Required before `db push`:** open `supabase/migrations/20260421000100_google_reviews_cron.sql` and replace `<PROJECT_REF>` with your actual Supabase project ref. This placeholder is intentional — the SQL will error out on apply if left unsubstituted.
 
 ```bash
 npx supabase db push

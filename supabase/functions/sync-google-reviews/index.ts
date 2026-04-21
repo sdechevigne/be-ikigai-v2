@@ -35,37 +35,65 @@ Deno.serve(async (req) => {
     const translateKey = env("GOOGLE_TRANSLATE_API_KEY");
     const placeId = env("GOOGLE_PLACE_ID");
 
-    const langCache = new Map<string, string>();
     const rows = [];
     for (const gr of reviews) {
-      const text = gr.comment ?? "";
-      let lang = langCache.get(text);
-      if (!lang) {
-        lang = await detectLanguage(text, translateKey);
-        langCache.set(text, lang);
-      }
+      const lang = await detectLanguage(gr.comment ?? "", translateKey);
       rows.push(mapGoogleReview(gr, lang, placeId));
     }
 
-    const { error, count } = await supabase
+    // Fetch existing IDs so we can split inserts from updates. This matters because:
+    //  (a) on INSERT we need content_fr/content_en pre-filled for the same-language column
+    //      so the trigger only translates the missing side;
+    //  (b) on UPDATE we must NOT touch content_fr/content_en/original_lang — otherwise every
+    //      daily sync would null out one translation and re-fire Cloud Translation for nothing.
+    const ids = rows.map((r) => r.id);
+    const { data: existing, error: selErr } = await supabase
       .from("reviews")
-      .upsert(rows.map((r) => ({ ...r, synced_at: new Date().toISOString() })), {
-        onConflict: "id",
-        ignoreDuplicates: false,
-      })
-      .select("*", { count: "exact", head: true });
+      .select("id")
+      .in("id", ids);
+    if (selErr) throw selErr;
+    const existingIds = new Set((existing ?? []).map((r) => r.id));
 
-    if (error) throw error;
+    const now = new Date().toISOString();
+    const toInsert = rows
+      .filter((r) => !existingIds.has(r.id))
+      .map((r) => ({ ...r, synced_at: now }));
+    const toUpdate = rows
+      .filter((r) => existingIds.has(r.id))
+      .map((r) => ({
+        id: r.id,
+        author_name: r.author_name,
+        author_photo_url: r.author_photo_url,
+        rating: r.rating,
+        content_original: r.content_original,
+        review_url: r.review_url,
+        published_at: r.published_at,
+        updated_at_google: r.updated_at_google,
+        synced_at: now,
+      }));
+
+    if (toInsert.length > 0) {
+      const { error: insErr } = await supabase.from("reviews").insert(toInsert);
+      if (insErr) throw insErr;
+    }
+    for (const u of toUpdate) {
+      const { error: updErr } = await supabase
+        .from("reviews")
+        .update(u)
+        .eq("id", u.id);
+      if (updErr) throw updErr;
+    }
 
     await supabase.from("sync_logs").insert({
       job: "sync-google-reviews",
       status: "success",
-      rows_affected: count ?? rows.length,
+      rows_affected: toInsert.length + toUpdate.length,
     });
 
-    return new Response(JSON.stringify({ ok: true, rows: rows.length }), {
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ ok: true, inserted: toInsert.length, updated: toUpdate.length }),
+      { headers: { "Content-Type": "application/json" } },
+    );
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     await supabase.from("sync_logs").insert({
@@ -74,7 +102,7 @@ Deno.serve(async (req) => {
       error_message: message.slice(0, 2000),
     });
     return new Response(JSON.stringify({ ok: false, error: message }), {
-      status: 200,
+      status: 500,
       headers: { "Content-Type": "application/json" },
     });
   }

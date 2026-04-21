@@ -66,7 +66,7 @@ Deno.serve(async (req) => {
       error_message: message.slice(0, 2000),
     });
     return new Response(JSON.stringify({ ok: false, error: message }), {
-      status: 200,
+      status: 500,
       headers: { "Content-Type": "application/json" },
     });
   }

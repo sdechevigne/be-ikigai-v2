@@ -40,10 +40,15 @@ create policy "public reads visible reviews"
 -- No public policies on sync_logs → only service_role can read/write.
 
 -- Trigger: call translate-review edge function when translations are missing.
+-- security definer + locked search_path so the function can't be hijacked via
+-- namespace injection. Only fires when content_original changes (not when
+-- content_fr/content_en are filled by the translate function itself — that
+-- would cause a re-fire loop).
 create or replace function public.trigger_translate_review()
 returns trigger
 language plpgsql
 security definer
+set search_path = public, extensions, pg_temp
 as $$
 declare
   fn_url text := current_setting('app.translate_function_url', true);
@@ -69,6 +74,6 @@ end;
 $$;
 
 create trigger reviews_translate_trigger
-  after insert or update of content_original, content_fr, content_en, original_lang
+  after insert or update of content_original
   on public.reviews
   for each row execute function public.trigger_translate_review();

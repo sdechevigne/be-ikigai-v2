@@ -34,12 +34,14 @@ interface FetchArgs {
   locationId: string;
 }
 
+const MAX_PAGES = 50; // 50 × 50 = 2500 reviews, far beyond realistic volume
+
 export async function fetchAllReviews(args: FetchArgs): Promise<GoogleReview[]> {
   const all: GoogleReview[] = [];
   let pageToken: string | undefined;
   const base = `https://mybusiness.googleapis.com/v4/accounts/${args.accountId}/locations/${args.locationId}/reviews`;
 
-  do {
+  for (let page = 0; page < MAX_PAGES; page++) {
     const url = new URL(base);
     url.searchParams.set("pageSize", "50");
     if (pageToken) url.searchParams.set("pageToken", pageToken);
@@ -53,8 +55,9 @@ export async function fetchAllReviews(args: FetchArgs): Promise<GoogleReview[]> 
 
     const json = (await res.json()) as GoogleReviewsResponse;
     if (json.reviews) all.push(...json.reviews);
+    if (!json.nextPageToken) return all;
     pageToken = json.nextPageToken;
-  } while (pageToken);
+  }
 
-  return all;
+  throw new Error(`Pagination aborted: exceeded ${MAX_PAGES} pages`);
 }

@@ -45,9 +45,21 @@ When adding a new page, create both the FR entry (`src/pages/<slug>.astro`) and 
 - **ContactForm** — POSTs `{ nom, email, tel, message }` JSON to a hardcoded Supabase Edge Function URL (`https://aeobrpxjmecbvdeqjbvc.supabase.co/functions/v1/contact-form`). Email is required server-side
 - **BookingModal** — two-step discovery-call booking triggered by any `[data-open-booking]` element on the page. Step 1 captures name + phone and fires a first "lead captured" POST to the same edge function (using a synthetic `booking-<ts>@be-ikigai.local` email since the real one isn't collected, and embedding a `LEAD-<ts>` correlation id in `message`). Step 2 generates ≤4 upcoming slots (matin 9–12, midi 12–14, soir 18–21, min +2h from now, spanning today/demain/après-demain), then sends a second POST with the same `LEAD-<id>` so the merchant can correlate abandoned-step-1 leads with completed bookings. Injected via `data-open-booking` wiring at the bottom of `BookingModal.astro` — drop the component into any page and add `data-open-booking` to any CTA
 
+### Google Reviews pipeline
+
+`src/components/GoogleReviews.astro` — client-side masonry grid of Google reviews, reads from Supabase `reviews` table via the anon client. Drops anywhere; accepts optional `lang` and `title` props. Shows 9 at a time with a "show more" button; hides the section entirely if no rows are visible.
+
+Backend pipeline (Supabase project `aeobrpxjmecbvdeqjbvc`):
+- `sync-google-reviews` edge function — fetches all reviews via Google Business Profile API (OAuth), upserts into `reviews`. Runs daily at 04:00 UTC via `pg_cron`. On upsert, only new rows get `content_original` written; existing rows keep their translations.
+- `translate-review` edge function — fires via Postgres trigger (`AFTER INSERT OR UPDATE OF content_original`) when `content_fr` or `content_en` is NULL. Calls Google Cloud Translation API. For reviews whose `original_lang` matches the target, copies `content_original` directly (avoids fr→fr API error).
+- Vault secrets (`translate_function_url`, `service_role_key`) replace DB GUC settings — MCP role lacks `ALTER DATABASE` privilege.
+- Operator guide: `docs/google-reviews-runbook.md`
+
+**Note:** Google Business Profile API access is pending approval. Reviews are currently seeded manually. When approved, invoke `sync-google-reviews` once to replace seed data.
+
 ### Supabase client
 
-`src/lib/supabase.ts` initializes a client from `PUBLIC_SUPABASE_URL` / `PUBLIC_SUPABASE_ANON_KEY`. Currently unused by components — forms use direct `fetch()` against the edge function URL. If you add DB-reading features, prefer this client over new fetch calls.
+`src/lib/supabase.ts` initializes a client from `PUBLIC_SUPABASE_URL` / `PUBLIC_SUPABASE_ANON_KEY`. Used by `GoogleReviews.astro` to read the `reviews` table. Forms still use direct `fetch()` against the edge function URL.
 
 ### Styling
 

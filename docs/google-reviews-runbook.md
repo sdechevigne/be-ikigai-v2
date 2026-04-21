@@ -25,6 +25,20 @@ GOOGLE_OAUTH_CLIENT_ID="<cid>" GOOGLE_OAUTH_CLIENT_SECRET="<csec>" \
 ```
 Log in with the Google account that owns Be-Ikigai's Business Profile. Copy the printed `refresh_token`.
 
+PS D:\Projets\be-ikigai\astro> node scripts/google-oauth-bootstrap.mjs           
+Opening browser to: https://accounts.google.com/o/oauth2/v2/auth?client_id=760910906882-1lp1ogaqiaf15pfep2a33fab4cqa9p01.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fbusiness.manage&access_type=offline&prompt=consent
+
+=== TOKENS ===
+{
+  "access_token": "ya29.a0Aa7MYiriX25Gs_TuEOMyudpld9YL5EVkjkQCvE6AwxAn6llS27mK-tMklUHx0AcP_Ny2gKUfCfkUJ1CBFYwqhoxrpDh_uwvW1Xkgk0TQ6eSTs-HjklTlfTvRJPDwGwjP5zeKpH-g7KGzot9hRe-0W8UnLvnwiEg9N8bsaV7yv33KZKjOpiEpT_kzx8Y1qMTmcZSTmVEaCgYKAZsSARASFQHGX2MiKflVQSj2l0rjJM4cPo5lzQ0206",
+  "expires_in": 3599,      
+  "refresh_token": "1//03LiA8o6y2j4iCgYIARAAGAMSNwF-L9Ir0xYkjY2Fr5PfWP8evzm9vbEYA6DA9Qm8FdW4f80gYyiCVueUwkCq6xENft7VaqTnrPA",
+  "scope": "https://www.googleapis.com/auth/business.manage",
+  "token_type": "Bearer"   
+}
+
+Store GOOGLE_OAUTH_REFRESH_TOKEN = 1//03LiA8o6y2j4iCgYIARAAGAMSNwF-L9Ir0xYkjY2Fr5PfWP8evzm9vbEYA6DA9Qm8FdW4f80gYyiCVueUwkCq6xENft7VaqTnrPA
+
 ### 3. Obtain Account ID + Location ID
 
 ```bash
@@ -33,6 +47,43 @@ GOOGLE_OAUTH_REFRESH_TOKEN="<rt>" \
   node scripts/fetch-google-ids.mjs
 ```
 Note the numeric ID inside `accounts/<id>` and `locations/<id>`.
+
+ro> node scripts/fetch-google-ids.mjs
+
+=== ACCOUNTS ===
+ {
+  "error": {
+    "code": 429,
+    "message": "Quota exceeded for quota metric 'Requests' and limit 'Requests per minute' of service 'mybusinessaccountmanagement.googleapis.com' for consumer 'project_number:760910906882'.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "RATE_LIMIT_EXCEEDED",
+        "domain": "googleapis.com",
+        "metadata": {      
+          "service": "mybusinessaccountmanagement.googleapis.com",
+          "quota_metric": "mybusinessaccountmanagement.googleapis.com/default_requests",
+          "quota_location": "global",
+          "consumer": "projects/760910906882",        
+          "quota_unit": "1/min/{project}",
+          "quota_limit_value": "0",
+          "quota_limit": "DefaultRequestsPerMinutePerProject"
+        }
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Request a higher quota limit.",
+            "url": "https://cloud.google.com/docs/quotas/help/request_increase"  
+          }
+        ]
+      }
+    ]
+  }
+}
+No account found.
 
 ### 4. Supabase project link
 
@@ -48,12 +99,22 @@ npx supabase link --project-ref <project-ref>
 npx supabase db push
 ```
 
-### 6. Set DB GUC settings
+### 6. Seed Vault secrets
 
-In Supabase Studio → SQL editor:
+The translate trigger and the pg_cron job both read their credentials from Vault (which is more
+secure than DB GUC settings and doesn't require `ALTER DATABASE` privileges). In Supabase Studio → SQL editor:
+
 ```sql
-alter database postgres set app.translate_function_url = 'https://<project-ref>.supabase.co/functions/v1/translate-review';
-alter database postgres set app.service_role_key = '<service-role-key>';
+select vault.create_secret(
+  'https://<project-ref>.supabase.co/functions/v1/translate-review',
+  'translate_function_url',
+  'URL of the translate-review edge function'
+);
+select vault.create_secret(
+  '<service-role-key>',
+  'service_role_key',
+  'Supabase service role key for the reviews trigger'
+);
 ```
 
 ### 7. Deploy edge functions

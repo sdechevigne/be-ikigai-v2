@@ -35,12 +35,18 @@ Deno.serve(async (req) => {
     const apiKey = env("GOOGLE_TRANSLATE_API_KEY");
     const patch: Record<string, string> = {};
     for (const target of targets) {
-      patch[`content_${target}`] = await translateText(
-        row.content_original,
-        row.original_lang,
-        target,
-        apiKey,
-      );
+      // If the target language is the same as the original, just copy the text —
+      // Google Translate rejects same-language pairs with 400 "Bad language pair".
+      if (row.original_lang.toLowerCase() === target) {
+        patch[`content_${target}`] = row.content_original;
+      } else {
+        patch[`content_${target}`] = await translateText(
+          row.content_original,
+          row.original_lang,
+          target,
+          apiKey,
+        );
+      }
     }
 
     const { error: updErr } = await supabase

@@ -8,6 +8,18 @@ export interface Props {
 const { lang = getLangFromUrl(Astro.url) } = Astro.props;
 const t = useTranslations(lang);
 const switchLangUrl = lang === 'fr' ? '/en/' : '/';
+
+const legalLinks = lang === 'fr'
+    ? [
+        { href: '/mentions-legales', label: 'Mentions légales' },
+        { href: '/cgu', label: 'CGU' },
+        { href: '/confidentialite', label: 'Confidentialité' },
+    ]
+    : [
+        { href: '/en/legal-notice', label: 'Legal notice' },
+        { href: '/en/terms', label: 'Terms' },
+        { href: '/en/privacy', label: 'Privacy' },
+    ];
 ---
 
 <footer class="pain-bg pb-8 pt-14 lg:pt-32 w-full mt-auto">
@@ -86,8 +98,13 @@ const switchLangUrl = lang === 'fr' ? '/en/' : '/';
                 </div>
             </div>
             <div class="border-t border-gray-700 pt-6">
+                <nav class="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 text-gray-400 text-sm mb-4">
+                    {legalLinks.map((link) => (
+                        <a href={link.href} class="hover:text-dore-serein transition-colors duration-300">{link.label}</a>
+                    ))}
+                </nav>
                 <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-gray-400 text-sm">
-                    <p>© 2025 be-ikigai.com - Tous droits réservés - <a href="/cdn-cgi/l/email-protection#d3a3bab6a1a1b6bfbca6baa093b1b6febab8bab4b2bafdb0bcbe" class=""><span class="__cf_email__" data-cfemail="8fffe6eafdfdeae3e0fae6fccfedeaa2e6e4e6e8eee6a1ece0e2">[email&#160;protected]</span></a></p>
+                    <p>© 2025 be-ikigai.com - {lang === 'fr' ? 'Tous droits réservés' : 'All rights reserved'} - <a href="/cdn-cgi/l/email-protection#d3a3bab6a1a1b6bfbca6baa093b1b6febab8bab4b2bafdb0bcbe" class=""><span class="__cf_email__" data-cfemail="8fffe6eafdfdeae3e0fae6fccfedeaa2e6e4e6e8eee6a1ece0e2">[email&#160;protected]</span></a></p>
                     <a href={switchLangUrl} class="px-4 py-1.5 rounded-full font-comfortaa font-bold text-xs border border-gray-600 hover:bg-gray-800 transition-all duration-300 flex items-center gap-2 text-white">
                         {lang === 'fr' ? '🇬🇧 Switch to English' : '🇫🇷 Passer en Français'}
                     </a>

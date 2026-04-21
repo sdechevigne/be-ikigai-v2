@@ -1,0 +1,8 @@
+---
+import LegalPage from '../../components/LegalPage.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }];
+}
+---
+<LegalPage kind="mentions" />

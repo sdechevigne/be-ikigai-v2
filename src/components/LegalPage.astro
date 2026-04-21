@@ -1,0 +1,391 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import { getLangFromUrl } from '../i18n/utils';
+
+export interface Props {
+  kind: 'mentions' | 'cgu' | 'privacy';
+}
+
+const { kind } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const isFR = lang === 'fr';
+
+const lastUpdated = isFR ? '21 avril 2026' : 'April 21, 2026';
+
+const titles = {
+  mentions: {
+    fr: 'Mentions légales | be-ikigai',
+    en: 'Legal Notice | be-ikigai',
+  },
+  cgu: {
+    fr: 'Conditions générales d\'utilisation | be-ikigai',
+    en: 'Terms of Service | be-ikigai',
+  },
+  privacy: {
+    fr: 'Politique de confidentialité | be-ikigai',
+    en: 'Privacy Policy | be-ikigai',
+  },
+};
+
+const descriptions = {
+  mentions: {
+    fr: 'Mentions légales du site be-ikigai.com : éditeur, hébergeur et informations légales.',
+    en: 'Legal notice of be-ikigai.com: publisher, host and legal information.',
+  },
+  cgu: {
+    fr: 'Conditions générales d\'utilisation du site et des services de coaching be-ikigai.',
+    en: 'Terms of service governing the use of the be-ikigai website and coaching services.',
+  },
+  privacy: {
+    fr: 'Politique de confidentialité et traitement des données personnelles sur be-ikigai.com (RGPD).',
+    en: 'Privacy policy and personal data processing on be-ikigai.com (GDPR).',
+  },
+};
+
+const pageTitle = titles[kind][isFR ? 'fr' : 'en'];
+const pageDesc = descriptions[kind][isFR ? 'fr' : 'en'];
+---
+
+<Layout title={pageTitle} description={pageDesc} lang={lang}>
+  <Navbar lang={lang} />
+
+  <main class="min-h-screen pt-32 pb-20 bg-blanc-coton">
+    <article class="container mx-auto px-6 max-w-3xl">
+
+      {kind === 'mentions' && isFR && (
+        <>
+          <h1 class="text-4xl md:text-5xl font-comfortaa font-bold text-bleu-crepuscule mb-4">Mentions légales</h1>
+          <p class="text-sm text-gray-500 mb-10">Dernière mise à jour : {lastUpdated}</p>
+
+          <section class="prose-legal space-y-4">
+            <h2>1. Éditeur du site</h2>
+            <p>Le site <strong>be-ikigai.com</strong> est édité par <strong>Pierre-Louis</strong>, exerçant en qualité d'entrepreneur individuel.</p>
+            <ul>
+              <li>Adresse : Rue du Bac, 75007 Paris, France</li>
+              <li>E-mail : <a href="mailto:pierrelouis@be-ikigai.com">pierrelouis@be-ikigai.com</a></li>
+              <li>SIRET : <em>[à compléter]</em></li>
+              <li>Numéro de TVA intracommunautaire : <em>[à compléter ou mention "TVA non applicable, art. 293 B du CGI"]</em></li>
+            </ul>
+
+            <h2>2. Directeur de la publication</h2>
+            <p>Pierre-Louis, en qualité d'éditeur du site.</p>
+
+            <h2>3. Hébergeur</h2>
+            <p>Le site est hébergé par <strong>Cloudflare Pages</strong> — Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, États-Unis. <a href="https://www.cloudflare.com" target="_blank" rel="noopener">www.cloudflare.com</a>.</p>
+            <p>Les formulaires et données sont traités via <strong>Supabase</strong> (Supabase Inc., 970 Toa Payoh North, #07-04, Singapore 318992).</p>
+
+            <h2>4. Propriété intellectuelle</h2>
+            <p>L'ensemble des contenus présents sur le site (textes, images, logos, charte graphique, vidéos, code source) sont la propriété exclusive de Pierre-Louis / be-ikigai, sauf mention contraire. Toute reproduction, représentation, modification ou adaptation, totale ou partielle, est interdite sans autorisation écrite préalable.</p>
+
+            <h2>5. Responsabilité</h2>
+            <p>L'éditeur s'efforce d'assurer l'exactitude et la mise à jour des informations publiées sur ce site. Il ne saurait toutefois être tenu responsable des erreurs, omissions ou des conséquences de l'utilisation des informations mises à disposition.</p>
+
+            <h2>6. Contact</h2>
+            <p>Pour toute question relative aux mentions légales, vous pouvez nous écrire à <a href="mailto:pierrelouis@be-ikigai.com">pierrelouis@be-ikigai.com</a>.</p>
+          </section>
+        </>
+      )}
+
+      {kind === 'mentions' && !isFR && (
+        <>
+          <h1 class="text-4xl md:text-5xl font-comfortaa font-bold text-bleu-crepuscule mb-4">Legal Notice</h1>
+          <p class="text-sm text-gray-500 mb-10">Last updated: {lastUpdated}</p>
+
+          <section class="prose-legal space-y-4">
+            <h2>1. Publisher</h2>
+            <p>The website <strong>be-ikigai.com</strong> is published by <strong>Pierre-Louis</strong>, operating as an individual entrepreneur under French law.</p>
+            <ul>
+              <li>Address: Rue du Bac, 75007 Paris, France</li>
+              <li>Email: <a href="mailto:pierrelouis@be-ikigai.com">pierrelouis@be-ikigai.com</a></li>
+              <li>SIRET: <em>[to be completed]</em></li>
+              <li>EU VAT number: <em>[to be completed or "VAT not applicable, art. 293 B of the French tax code"]</em></li>
+            </ul>
+
+            <h2>2. Publication Director</h2>
+            <p>Pierre-Louis, as website publisher.</p>
+
+            <h2>3. Hosting</h2>
+            <p>The website is hosted by <strong>Cloudflare Pages</strong> — Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA. <a href="https://www.cloudflare.com" target="_blank" rel="noopener">www.cloudflare.com</a>.</p>
+            <p>Form submissions and data are processed via <strong>Supabase</strong> (Supabase Inc., 970 Toa Payoh North, #07-04, Singapore 318992).</p>
+
+            <h2>4. Intellectual Property</h2>
+            <p>All content on this site (texts, images, logos, visual identity, videos, source code) is the exclusive property of Pierre-Louis / be-ikigai, unless otherwise stated. Any reproduction, representation, modification or adaptation, in whole or in part, is prohibited without prior written authorisation.</p>
+
+            <h2>5. Liability</h2>
+            <p>The publisher makes every effort to ensure the accuracy and timeliness of the information published. However, the publisher cannot be held liable for errors, omissions, or consequences arising from the use of this information.</p>
+
+            <h2>6. Contact</h2>
+            <p>For any question regarding this legal notice, please write to <a href="mailto:pierrelouis@be-ikigai.com">pierrelouis@be-ikigai.com</a>.</p>
+          </section>
+        </>
+      )}
+
+      {kind === 'cgu' && isFR && (
+        <>
+          <h1 class="text-4xl md:text-5xl font-comfortaa font-bold text-bleu-crepuscule mb-4">Conditions générales d'utilisation</h1>
+          <p class="text-sm text-gray-500 mb-10">Dernière mise à jour : {lastUpdated}</p>
+
+          <section class="prose-legal space-y-4">
+            <h2>1. Objet</h2>
+            <p>Les présentes conditions générales d'utilisation (ci-après « CGU ») ont pour objet de définir les modalités et conditions d'utilisation du site <strong>be-ikigai.com</strong> (ci-après le « Site ») ainsi que les services de coaching proposés par Pierre-Louis (ci-après le « Prestataire »).</p>
+
+            <h2>2. Acceptation</h2>
+            <p>L'utilisation du Site implique l'acceptation sans réserve des présentes CGU. Si vous n'acceptez pas ces conditions, vous devez cesser d'utiliser le Site.</p>
+
+            <h2>3. Services proposés</h2>
+            <p>Le Prestataire propose des services de coaching individuel et familial articulés autour de la méthode Ikigai :</p>
+            <ul>
+              <li><strong>Séance découverte</strong> : 30 minutes gratuites par téléphone ou visioconférence.</li>
+              <li><strong>Diagnostic Ikigai</strong> : 580€ TTC, séance d'introspection avec plan d'action livré sous 48h.</li>
+              <li><strong>Le Sprint</strong> : accompagnement intensif, sur devis.</li>
+              <li><strong>La Sentinelle</strong> : suivi long terme, sur devis.</li>
+              <li><strong>Bilan famille & personnel</strong> : sur devis.</li>
+            </ul>
+
+            <h2>4. Réservation et paiement</h2>
+            <p>La réservation s'effectue via le formulaire de contact ou le module de réservation du Site. Le paiement est exigible au plus tard le jour de la prestation, par virement bancaire ou tout autre moyen convenu entre les parties. Toute facture est émise après règlement.</p>
+
+            <h2>5. Annulation et remboursement</h2>
+            <p>Toute annulation doit être notifiée au moins 24 heures avant le rendez-vous. En cas d'annulation tardive, la séance pourra être facturée en totalité.</p>
+            <p><strong>Garantie « 100% Satisfait ou Remboursé »</strong> : si à l'issue du Diagnostic Ikigai vous estimez ne pas avoir obtenu la valeur attendue, vous disposez de 7 jours pour demander un remboursement intégral par écrit à <a href="mailto:pierrelouis@be-ikigai.com">pierrelouis@be-ikigai.com</a>.</p>
+
+            <h2>6. Droit de rétractation</h2>
+            <p>Conformément aux articles L221-18 et suivants du Code de la consommation, le Client consommateur dispose d'un délai de rétractation de 14 jours à compter de la conclusion du contrat. Si la prestation débute avant l'expiration de ce délai à la demande expresse du Client, ce dernier renonce à son droit de rétractation pour la partie exécutée.</p>
+
+            <h2>7. Obligations du Prestataire</h2>
+            <p>Le Prestataire s'engage à une obligation de moyens et non de résultat. Il met en œuvre son expertise, son écoute et ses outils au service du Client, dans le respect de la déontologie du coaching.</p>
+
+            <h2>8. Obligations du Client</h2>
+            <p>Le Client s'engage à participer activement aux séances, à fournir des informations sincères et à respecter les horaires convenus. Le coaching ne se substitue en aucun cas à un suivi médical ou psychothérapeutique.</p>
+
+            <h2>9. Confidentialité</h2>
+            <p>Le Prestataire est tenu au secret professionnel. Aucune information échangée en séance ne sera divulguée à un tiers sans l'accord exprès du Client, sauf obligation légale.</p>
+
+            <h2>10. Propriété intellectuelle</h2>
+            <p>Les supports, méthodes et contenus pédagogiques transmis restent la propriété intellectuelle de Pierre-Louis / be-ikigai. Ils sont mis à disposition du Client pour son usage personnel uniquement.</p>
+
+            <h2>11. Responsabilité</h2>
+            <p>Le Prestataire ne pourra être tenu responsable des décisions prises par le Client à l'issue des séances, ni de leurs conséquences professionnelles, personnelles ou financières.</p>
+
+            <h2>12. Droit applicable et litiges</h2>
+            <p>Les présentes CGU sont soumises au droit français. En cas de litige, les parties rechercheront une solution amiable avant toute action judiciaire. À défaut d'accord, le litige sera porté devant les tribunaux compétents du ressort du domicile du Prestataire, sauf disposition d'ordre public contraire.</p>
+            <p>Conformément à l'article L612-1 du Code de la consommation, le Client peut recourir gratuitement à un médiateur de la consommation.</p>
+          </section>
+        </>
+      )}
+
+      {kind === 'cgu' && !isFR && (
+        <>
+          <h1 class="text-4xl md:text-5xl font-comfortaa font-bold text-bleu-crepuscule mb-4">Terms of Service</h1>
+          <p class="text-sm text-gray-500 mb-10">Last updated: {lastUpdated}</p>
+
+          <section class="prose-legal space-y-4">
+            <h2>1. Purpose</h2>
+            <p>These Terms of Service ("Terms") govern your use of the website <strong>be-ikigai.com</strong> (the "Site") and the coaching services offered by Pierre-Louis (the "Provider").</p>
+
+            <h2>2. Acceptance</h2>
+            <p>Use of the Site constitutes unreserved acceptance of these Terms. If you do not agree, please discontinue use of the Site.</p>
+
+            <h2>3. Services</h2>
+            <p>The Provider offers individual and family coaching services based on the Ikigai method:</p>
+            <ul>
+              <li><strong>Discovery session</strong>: 30 minutes free, by phone or videoconference.</li>
+              <li><strong>Ikigai Diagnosis</strong>: €580 incl. taxes, introspection session with action plan delivered within 48 hours.</li>
+              <li><strong>The Sprint</strong>: intensive coaching, on quote.</li>
+              <li><strong>The Sentinel</strong>: long-term follow-up, on quote.</li>
+              <li><strong>Family Bond</strong>: on quote.</li>
+            </ul>
+
+            <h2>4. Booking and payment</h2>
+            <p>Bookings are made through the contact form or the booking module on the Site. Payment is due no later than the day of the service, by bank transfer or any other agreed method. Invoices are issued after payment.</p>
+
+            <h2>5. Cancellation and refunds</h2>
+            <p>Cancellations must be notified at least 24 hours before the appointment. Late cancellations may be invoiced in full.</p>
+            <p><strong>"100% Satisfied or Refunded" guarantee</strong>: if after the Ikigai Diagnosis you consider you did not receive the expected value, you have 7 days to request a full refund in writing at <a href="mailto:pierrelouis@be-ikigai.com">pierrelouis@be-ikigai.com</a>.</p>
+
+            <h2>6. Right of withdrawal</h2>
+            <p>Pursuant to articles L221-18 et seq. of the French Consumer Code, consumer Clients have a 14-day withdrawal period from the conclusion of the contract. If the service begins before this period expires at the Client's express request, the Client waives the right of withdrawal for the part performed.</p>
+
+            <h2>7. Provider's obligations</h2>
+            <p>The Provider undertakes a best-efforts obligation, not an obligation of result. The Provider applies expertise, active listening and coaching tools in accordance with coaching ethics.</p>
+
+            <h2>8. Client's obligations</h2>
+            <p>The Client agrees to actively participate in sessions, provide truthful information and respect the agreed schedule. Coaching is in no way a substitute for medical or psychotherapeutic care.</p>
+
+            <h2>9. Confidentiality</h2>
+            <p>The Provider is bound by professional secrecy. No information exchanged in session will be disclosed to a third party without the Client's express consent, except where required by law.</p>
+
+            <h2>10. Intellectual property</h2>
+            <p>Materials, methods and educational content shared during sessions remain the intellectual property of Pierre-Louis / be-ikigai and are made available to the Client for personal use only.</p>
+
+            <h2>11. Liability</h2>
+            <p>The Provider cannot be held liable for decisions made by the Client following the sessions, nor for their professional, personal or financial consequences.</p>
+
+            <h2>12. Governing law and disputes</h2>
+            <p>These Terms are governed by French law. In the event of a dispute, the parties shall first seek an amicable resolution. Failing agreement, the dispute shall be brought before the competent courts of the Provider's domicile, subject to any mandatory public policy provisions.</p>
+            <p>Pursuant to article L612-1 of the French Consumer Code, Clients may use a consumer mediator free of charge.</p>
+          </section>
+        </>
+      )}
+
+      {kind === 'privacy' && isFR && (
+        <>
+          <h1 class="text-4xl md:text-5xl font-comfortaa font-bold text-bleu-crepuscule mb-4">Politique de confidentialité</h1>
+          <p class="text-sm text-gray-500 mb-10">Dernière mise à jour : {lastUpdated}</p>
+
+          <section class="prose-legal space-y-4">
+            <p>La présente politique décrit la manière dont be-ikigai collecte, utilise et protège vos données personnelles, conformément au Règlement général sur la protection des données (RGPD, UE 2016/679) et à la loi Informatique et Libertés.</p>
+
+            <h2>1. Responsable de traitement</h2>
+            <p>Pierre-Louis — be-ikigai.com — <a href="mailto:pierrelouis@be-ikigai.com">pierrelouis@be-ikigai.com</a>.</p>
+
+            <h2>2. Données collectées</h2>
+            <p>Nous collectons uniquement les données strictement nécessaires :</p>
+            <ul>
+              <li><strong>Formulaire de contact</strong> : nom, e-mail, téléphone (facultatif), message.</li>
+              <li><strong>Réservation de séance découverte</strong> : prénom, téléphone, créneau choisi.</li>
+              <li><strong>Données de navigation</strong> : aucune donnée analytique n'est collectée à ce jour. Aucun cookie tiers n'est déposé.</li>
+            </ul>
+
+            <h2>3. Finalités</h2>
+            <ul>
+              <li>Répondre à vos demandes de contact.</li>
+              <li>Organiser et confirmer vos séances de coaching.</li>
+              <li>Assurer le suivi contractuel et la facturation.</li>
+            </ul>
+
+            <h2>4. Base légale</h2>
+            <p>Les traitements reposent sur votre <strong>consentement</strong> (envoi volontaire d'un formulaire) et sur l'<strong>exécution d'un contrat</strong> ou de mesures précontractuelles prises à votre demande.</p>
+
+            <h2>5. Durée de conservation</h2>
+            <ul>
+              <li>Messages de contact : 3 ans à compter du dernier échange.</li>
+              <li>Données clients (facturation) : 10 ans, conformément aux obligations comptables.</li>
+            </ul>
+
+            <h2>6. Destinataires et sous-traitants</h2>
+            <p>Vos données ne sont jamais vendues. Elles sont traitées par :</p>
+            <ul>
+              <li><strong>Supabase Inc.</strong> — stockage des formulaires et base de données (hébergement UE).</li>
+              <li><strong>Cloudflare, Inc.</strong> — hébergement du site et CDN.</li>
+            </ul>
+            <p>Ces sous-traitants s'engagent contractuellement à respecter le RGPD.</p>
+
+            <h2>7. Transferts hors UE</h2>
+            <p>Certains prestataires (Cloudflare) peuvent être amenés à traiter des données hors de l'Union européenne, sur la base de clauses contractuelles types approuvées par la Commission européenne.</p>
+
+            <h2>8. Vos droits</h2>
+            <p>Vous disposez des droits suivants : accès, rectification, effacement, limitation, opposition, portabilité, et retrait du consentement à tout moment. Vous pouvez également définir des directives relatives au sort de vos données après votre décès.</p>
+            <p>Pour exercer ces droits : <a href="mailto:pierrelouis@be-ikigai.com">pierrelouis@be-ikigai.com</a>.</p>
+            <p>Vous avez également le droit d'introduire une réclamation auprès de la <strong>CNIL</strong> (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>).</p>
+
+            <h2>9. Cookies</h2>
+            <p>Le site be-ikigai.com ne dépose aucun cookie de traçage ni de mesure d'audience. Seuls des cookies strictement techniques, nécessaires au fonctionnement du site, peuvent être utilisés.</p>
+
+            <h2>10. Sécurité</h2>
+            <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données : chiffrement HTTPS, accès restreint aux bases de données, sauvegardes régulières.</p>
+          </section>
+        </>
+      )}
+
+      {kind === 'privacy' && !isFR && (
+        <>
+          <h1 class="text-4xl md:text-5xl font-comfortaa font-bold text-bleu-crepuscule mb-4">Privacy Policy</h1>
+          <p class="text-sm text-gray-500 mb-10">Last updated: {lastUpdated}</p>
+
+          <section class="prose-legal space-y-4">
+            <p>This policy describes how be-ikigai collects, uses and protects your personal data, in accordance with the EU General Data Protection Regulation (GDPR, EU 2016/679) and the French Data Protection Act.</p>
+
+            <h2>1. Data controller</h2>
+            <p>Pierre-Louis — be-ikigai.com — <a href="mailto:pierrelouis@be-ikigai.com">pierrelouis@be-ikigai.com</a>.</p>
+
+            <h2>2. Data collected</h2>
+            <p>We only collect data that is strictly necessary:</p>
+            <ul>
+              <li><strong>Contact form</strong>: name, email, phone (optional), message.</li>
+              <li><strong>Discovery session booking</strong>: first name, phone number, chosen time slot.</li>
+              <li><strong>Browsing data</strong>: no analytics data is currently collected. No third-party cookies are set.</li>
+            </ul>
+
+            <h2>3. Purposes</h2>
+            <ul>
+              <li>Respond to your contact requests.</li>
+              <li>Organise and confirm your coaching sessions.</li>
+              <li>Manage contracts and invoicing.</li>
+            </ul>
+
+            <h2>4. Legal basis</h2>
+            <p>Processing is based on your <strong>consent</strong> (voluntary form submission) and on the <strong>performance of a contract</strong> or pre-contractual measures taken at your request.</p>
+
+            <h2>5. Retention period</h2>
+            <ul>
+              <li>Contact messages: 3 years from the last exchange.</li>
+              <li>Client records (invoicing): 10 years, in accordance with accounting obligations.</li>
+            </ul>
+
+            <h2>6. Recipients and processors</h2>
+            <p>Your data is never sold. It is processed by:</p>
+            <ul>
+              <li><strong>Supabase Inc.</strong> — form storage and database (EU hosting).</li>
+              <li><strong>Cloudflare, Inc.</strong> — site hosting and CDN.</li>
+            </ul>
+            <p>These processors are contractually bound to comply with the GDPR.</p>
+
+            <h2>7. Transfers outside the EU</h2>
+            <p>Some providers (Cloudflare) may process data outside the European Union, under standard contractual clauses approved by the European Commission.</p>
+
+            <h2>8. Your rights</h2>
+            <p>You have the following rights: access, rectification, erasure, restriction, objection, portability, and withdrawal of consent at any time. You may also set directives regarding your data after your death.</p>
+            <p>To exercise these rights: <a href="mailto:pierrelouis@be-ikigai.com">pierrelouis@be-ikigai.com</a>.</p>
+            <p>You also have the right to lodge a complaint with the French data protection authority, the <strong>CNIL</strong> (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>).</p>
+
+            <h2>9. Cookies</h2>
+            <p>The be-ikigai.com website does not use tracking or analytics cookies. Only strictly technical cookies necessary for the site's operation may be used.</p>
+
+            <h2>10. Security</h2>
+            <p>We implement appropriate technical and organisational measures to protect your data: HTTPS encryption, restricted database access, regular backups.</p>
+          </section>
+        </>
+      )}
+
+    </article>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  .prose-legal :global(h2) {
+    font-family: 'Comfortaa', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-legal :global(p) {
+    color: #374151;
+    line-height: 1.75;
+  }
+  .prose-legal :global(ul) {
+    list-style: disc;
+    padding-left: 1.5rem;
+    color: #374151;
+    line-height: 1.75;
+  }
+  .prose-legal :global(ul li) {
+    margin-bottom: 0.5rem;
+  }
+  .prose-legal :global(a) {
+    color: #9333ea;
+    text-decoration: underline;
+  }
+  .prose-legal :global(a:hover) {
+    color: #7e22ce;
+  }
+  .prose-legal :global(strong) {
+    color: #2c3e50;
+  }
+</style>

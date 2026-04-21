@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
-    "agentation": "^3.0.2"
+    "agentation": "^3.0.2",
+    "supabase": "^1.226.4"
   }
 }

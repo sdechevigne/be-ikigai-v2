@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -263,6 +264,8 @@ const recentPosts = allPosts.sort((a, b) => {
             </div>
         </div>
     </section>
+
+    <GoogleReviews lang={lang} />
 
     <!-- Nouvelle Section Blog -->
     <section class="py-14 lg:py-24 bg-white">

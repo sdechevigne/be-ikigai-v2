@@ -1,0 +1,157 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+export interface Props {
+  lang?: 'fr' | 'en';
+  title?: string;
+}
+
+const { lang: langProp, title } = Astro.props;
+const lang = langProp ?? (getLangFromUrl(Astro.url) as 'fr' | 'en');
+
+const t = {
+  fr: {
+    title: "Ils ont vécu l'expérience",
+    showMore: "Voir plus d'avis",
+    aggregate: (r: string, n: number) => `★ ${r} · ${n} avis clients`,
+  },
+  en: {
+    title: 'They experienced it',
+    showMore: 'Show more reviews',
+    aggregate: (r: string, n: number) => `★ ${r} · ${n} client reviews`,
+  },
+}[lang];
+
+const headingText = title ?? t.title;
+const initialBatch = 9;
+---
+
+<section
+  class="py-14 lg:py-24 bg-beige-chaleureux/40"
+  data-google-reviews
+  data-lang={lang}
+  data-initial={initialBatch}
+>
+  <div class="container mx-auto px-6 max-w-[1200px]">
+    <h2 class="text-3xl md:text-5xl font-comfortaa text-bleu-crepuscule text-center mb-4 font-bold">
+      {headingText}
+    </h2>
+    <p class="text-center text-bleu-crepuscule/70 mb-10 text-sm" data-aggregate></p>
+
+    <div class="columns-1 md:columns-2 lg:columns-3 gap-4" data-grid>
+      {Array.from({ length: 6 }).map(() => (
+        <div class="break-inside-avoid mb-4 rounded-2xl border border-dore-serein/20 bg-white/60 p-6 h-48 animate-pulse"></div>
+      ))}
+    </div>
+
+    <div class="text-center mt-8 hidden" data-show-more-wrapper>
+      <button
+        type="button"
+        class="px-6 py-3 rounded-full bg-bleu-crepuscule text-white hover:bg-bleu-crepuscule/90 transition text-sm font-medium font-comfortaa"
+        data-show-more
+      >
+        {t.showMore}
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { supabase } from '../lib/supabase';
+
+  const root = document.querySelector<HTMLElement>('[data-google-reviews]');
+  if (root) {
+    const lang = (root.dataset.lang ?? 'fr') as 'fr' | 'en';
+    const initial = Number(root.dataset.initial ?? 9);
+    const grid = root.querySelector<HTMLElement>('[data-grid]')!;
+    const aggregateEl = root.querySelector<HTMLElement>('[data-aggregate]')!;
+    const showMoreWrapper = root.querySelector<HTMLElement>('[data-show-more-wrapper]')!;
+    const showMoreBtn = root.querySelector<HTMLButtonElement>('[data-show-more]')!;
+
+    const tExt = {
+      fr: {
+        viewOnGoogle: 'Voir le témoignage sur Google',
+        aggregate: (r: string, n: number) => `★ ${r} · ${n} avis clients`,
+      },
+      en: {
+        viewOnGoogle: 'View review on Google',
+        aggregate: (r: string, n: number) => `★ ${r} · ${n} client reviews`,
+      },
+    }[lang];
+
+    interface Row {
+      id: string;
+      author_name: string;
+      author_photo_url: string | null;
+      rating: number;
+      content_fr: string | null;
+      content_en: string | null;
+      review_url: string;
+    }
+
+    function escapeHtml(s: string): string {
+      return s.replace(/[&<>"']/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+    }
+
+    function renderCard(r: Row): string {
+      const content = lang === 'fr' ? r.content_fr : r.content_en;
+      if (!content) return '';
+      const stars = '★'.repeat(r.rating);
+      const avatar = r.author_photo_url
+        ? `<img src="${escapeHtml(r.author_photo_url)}" alt="" class="w-10 h-10 rounded-full object-cover" loading="lazy" referrerpolicy="no-referrer" />`
+        : `<div class="w-10 h-10 rounded-full bg-beige-chaleureux flex items-center justify-center text-bleu-crepuscule font-semibold">${escapeHtml(r.author_name.charAt(0))}</div>`;
+      return `
+        <article class="break-inside-avoid mb-4 rounded-2xl border border-dore-serein/30 bg-white p-6 shadow-sm">
+          <div class="text-bleu-crepuscule text-xl tracking-wide mb-3" aria-label="${r.rating} / 5">${stars}</div>
+          <p class="text-bleu-crepuscule/90 leading-relaxed text-sm whitespace-pre-line">${escapeHtml(content)}</p>
+          <div class="mt-4 flex items-center gap-3">
+            ${avatar}
+            <div class="flex flex-col">
+              <span class="font-semibold text-bleu-crepuscule text-sm">${escapeHtml(r.author_name)}</span>
+              <a href="${escapeHtml(r.review_url)}" target="_blank" rel="noopener noreferrer"
+                 class="text-xs text-dore-serein underline hover:no-underline">
+                ${tExt.viewOnGoogle} ↗
+              </a>
+            </div>
+          </div>
+        </article>`;
+    }
+
+    (async () => {
+      const { data, error } = await supabase
+        .from('reviews')
+        .select('id, author_name, author_photo_url, rating, content_fr, content_en, review_url')
+        .eq('is_visible', true)
+        .order('published_at', { ascending: false });
+
+      if (error || !data || data.length === 0) {
+        root.style.display = 'none';
+        if (error) console.error('[GoogleReviews]', error);
+        return;
+      }
+
+      const rows = data as Row[];
+      const visible = rows.filter((r) => (lang === 'fr' ? r.content_fr : r.content_en));
+      if (visible.length === 0) {
+        root.style.display = 'none';
+        return;
+      }
+
+      const avg = (visible.reduce((s, r) => s + r.rating, 0) / visible.length).toFixed(1);
+      aggregateEl.textContent = tExt.aggregate(avg, visible.length);
+
+      let shown = 0;
+      function renderMore() {
+        if (shown === 0) grid.innerHTML = '';
+        const next = visible.slice(shown, shown + initial);
+        grid.insertAdjacentHTML('beforeend', next.map(renderCard).join(''));
+        shown += next.length;
+        if (shown >= visible.length) showMoreWrapper.classList.add('hidden');
+        else showMoreWrapper.classList.remove('hidden');
+      }
+      renderMore();
+      showMoreBtn.addEventListener('click', renderMore);
+    })();
+  }
+</script>

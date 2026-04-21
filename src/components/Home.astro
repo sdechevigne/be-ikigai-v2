@@ -140,7 +140,7 @@ const recentPosts = allPosts.sort((a, b) => {
                         dans le brouillard du quotidien...</h3>
                 </div>
                 <div class="fade-in ">
-                    <p class="text-xl md:text-2xl text-blanc-coton font-medium">
+                    <p class="text-xl md:text-2xl text-blanc-coton">
                         Si ces mots résonnent en vous, ce n'est pas un hasard. C'est un appel intérieur qui vous signale
                         qu'il est temps de changer. <span class="text-dore-serein ">Cultivons ensemble l'envie d'avoir
                             envie</span>.
@@ -150,7 +150,87 @@ const recentPosts = allPosts.sort((a, b) => {
         </div>
     </section>
 
-    <!-- Section 3: L'Ikigai expliqué -->
+    <!-- Section 3: La Solution & la Transformation -->
+    <section class="solution-bg py-14 lg:py-32" id="solution">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-3xl md:text-5xl font-comfortaa text-bleu-crepuscule mb-8 md:mb-16">
+                        La solution n'est pas à l'extérieur. Elle est en vous depuis toujours : <span class="font-comfortaa text-[#9333ea]">c'est votre Ikigai.</span>
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start text-left md:text-left">
+                        <div class="text-lg md:text-xl text-gray-600 space-y-6">
+                            <p class="mb-4">Toutes les réponses que vous cherchez, cette énergie, cette évidence... elles ne sont pas à l'extérieur. Elles sont en vous, c'est un trésor précieux, trouvons le ensemble en discutant. Cette philosophie japonaise est bien plus qu'un concept, <span class="text-[#9333ea]">c'est votre nouvelle "raison d'être"</span>.</p>
+
+                            <p class="mb-4">Trouver son Ikigai, c'est partir à la découverte de qui vous êtes vraiment
+                                pour <span class="text-bleu-crepuscule">{t('solution.p3_part2')}</span> entre votre passion,
+                                vos talents, et ce que vous apportez au monde.
+                            </p>
+                        </div>
+
+                        <div class="h-64 md:h-80 overflow-hidden rounded-lg shadow-lg">
+                            <img loading="lazy" class="h-full w-full object-cover object-center" src="/assets/img/lumiere.webp" alt="Un magnifique sentier baigné de soleil qui serpente dans une forêt calme et luxuriante." width="600" height="400">
+                        </div>
+                    </div>
+
+                    <div class="text-lg md:text-xl text-gray-600 space-y-6 mt-8 text-left md:text-left">
+                        <p class="mb-4">Mon accompagnement n'est pas une simple discussion, elle ne suivra pas un
+                            processus
+                            formel et rigide. Ce que je vous propose est bien plus authentique : <span class="text-[#9333ea]">une relation de confiance, un espace d'échange profond et
+                                honnête.</span></p>
+
+                        <p class="mb-4">Dans cet espace, je serai celui qui tient la lanterne pour éclairer votre chemin
+                            intérieur avec bienveillance. Celui qui vous écoute vraiment, pour vous aider à entendre ce
+                            que
+                            votre cœur essaie de vous dire. C'est dans la qualité de cet échange que <span class="text-bleu-crepuscule">{t('solution.p5_part2')}</span>.</p>
+                    </div>
+                </div>
+
+
+                <div class="bg-white rounded-3xl shadow-lg p-8 md:p-12 fade-in">
+                    <h3 class="text-2xl md:text-3xl font-comfortaa text-[#9333ea] text-center mb-8">
+                        {t('after.title')}
+                    </h3>
+                    <div class="grid md:grid-cols-1 gap-6">
+                        <div class="flex items-start space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+
+                            <p class="text-gray-700 text-md">Vous vous levez le matin avec une énergie nouvelle et
+                                l'évidence d'aimer votre vie.</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            <p class="text-gray-700 text-md"> Vos choix deviennent clairs, fluides et alignés avec qui
+                                vous êtes.</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            <p class="text-gray-700 text-md">Votre vie pro et perso ne sont plus en conflit et se
+                                nourrissent l'une avec l'autre.
+                            </p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
+                            </svg>
+                            <p class="text-gray-700 text-md">Vous ressentez un sentiment de paix,
+                                d'accomplissement et de légitimité, {t('contact.p2_part2')} chaque jour a un sens.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: L'Ikigai expliqué -->
     <section class="py-14 lg:py-32" id="ikigai" style="background-color: #2c3e50;">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
@@ -228,93 +308,6 @@ const recentPosts = allPosts.sort((a, b) => {
         </div>
     </section>
 
-    <!-- Section 4: La Solution & la Transformation -->
-    <section class="solution-bg py-14 lg:py-32" id="solution">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16 fade-in">
-                    <h2 class="text-3xl md:text-5xl font-comfortaa text-bleu-crepuscule mb-8 md:mb-16">
-                        La solution n'est pas à l'extérieur. Elle est en vous depuis toujours : <span class="font-comfortaa text-[#9333ea] font-bold">c'est votre Ikigai.</span>
-                    </h2>
-
-                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start text-left md:text-left">
-                        <div class="text-lg md:text-xl text-gray-600 space-y-6">
-                            <p class="mb-4">Toutes les réponses que vous cherchez, cette énergie, cette évidence...
-                                elles ne
-                                sont pas à l'extérieur. Elles sont en vous, c'est un trésor précieux, trouvons le
-                                ensemble en
-                                discutant. Cette philosophie japonaise est bien plus qu'un concept, <span class="text-[#9333ea] font-bold">c'est
-                                    votre nouvelle "raison d'être"</span>.</p>
-
-                            <p class="mb-4">Trouver son Ikigai, c'est partir à la découverte de qui vous êtes vraiment
-                                pour
-                                <span class="text-bleu-crepuscule font-bold">{t('solution.p3_part2')}</span> entre votre passion,
-                                vos
-                                talents, et ce que vous apportez au monde.
-                            </p>
-                        </div>
-
-                        <div class="h-64 md:h-80 overflow-hidden rounded-lg shadow-lg">
-                            <img loading="lazy" class="h-full w-full object-cover object-center" src="/assets/img/lumiere.webp" alt="Un magnifique sentier baigné de soleil qui serpente dans une forêt calme et luxuriante." width="600" height="400">
-                        </div>
-                    </div>
-
-                    <div class="text-lg md:text-xl text-gray-600 space-y-6 mt-8 text-left md:text-left">
-                        <p class="mb-4">Mon accompagnement n'est pas une simple discussion, elle ne suivra pas un
-                            processus
-                            formel et rigide. Ce que je vous propose est bien plus authentique : <span class="text-[#9333ea] font-bold">une relation de confiance, un espace d'échange profond et
-                                honnête.</span></p>
-
-                        <p class="mb-4">Dans cet espace, je serai celui qui tient la lanterne pour éclairer votre chemin
-                            intérieur avec bienveillance. Celui qui vous écoute vraiment, pour vous aider à entendre ce
-                            que
-                            votre cœur essaie de vous dire. C'est dans la qualité de cet échange que <span class="text-bleu-crepuscule font-bold">{t('solution.p5_part2')}</span>.</p>
-                    </div>
-                </div>
-
-
-                <div class="bg-white rounded-3xl shadow-lg p-8 md:p-12 fade-in">
-                    <h3 class="text-2xl md:text-3xl font-comfortaa text-[#9333ea] font-bold text-center mb-8">
-                        {t('after.title')}
-                    </h3>
-                    <div class="grid md:grid-cols-1 gap-6">
-                        <div class="flex items-start space-x-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
-                            </svg>
-
-                            <p class="text-gray-700 text-md">Vous vous levez le matin avec une énergie nouvelle et
-                                l'évidence d'aimer votre vie.</p>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
-                            </svg>
-                            <p class="text-gray-700 text-md"> Vos choix deviennent clairs, fluides et alignés avec qui
-                                vous êtes.</p>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
-                            </svg>
-                            <p class="text-gray-700 text-md">Votre vie pro et perso ne sont plus en conflit et se
-                                nourrissent l'une avec l'autre.
-                            </p>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
-                            </svg>
-                            <p class="text-gray-700 text-md">Vous ressentez un sentiment de paix,
-                                d'accomplissement et de légitimité, {t('contact.p2_part2')} chaque jour a un sens.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Section 5: Qui suis-je ? -->
     <section class="bg-white py-14 lg:py-32" id="qui-suis-je">
         <div class="container mx-auto px-6">
@@ -328,7 +321,7 @@ const recentPosts = allPosts.sort((a, b) => {
 
                     <div class="fade-in">
                         <h2 class="text-3xl md:text-4xl font-comfortaa text-gray-800 mb-6">
-                            {t('who.title')}<span class="font-comfortaa text-[#9333ea] font-bold">Pierre-Louis</span>
+                            {t('who.title')}<span class="font-comfortaa text-[#9333ea]">Pierre-Louis</span>
                         </h2>
                         <div class="text-lg text-gray-700 space-y-6">
                             <p>
@@ -341,7 +334,7 @@ const recentPosts = allPosts.sort((a, b) => {
                             <p>
                                 Au sein de mes propres équipes, j'ai vu des potentiels incroyables, souvent endormis et
                                 mal orientés. J'ai alors commencé, d'abord intuitivement, à guider certains de mes
-                                collaborateurs. Non pas en leur disant quoi faire, mais <span class="text-[#9333ea] font-bold">en
+                                collaborateurs. Non pas en leur disant quoi faire, mais <span class="text-[#9333ea]">en
                                     les aidant à comprendre qui ils étaient et ce qui les animait vraiment</span>.
 
                             </p>
@@ -349,7 +342,7 @@ const recentPosts = allPosts.sort((a, b) => {
                                 Voir une personne s'épanouir, trouver sa juste place et libérer son potentiel est
                                 rapidement devenu la plus grande satisfaction de ma carrière. J'ai alors compris que ce
                                 qui n'était qu'une partie de mon travail était en réalité ma véritable vocation. Le
-                                plaisir et le sens trouvés dans <span class="text-[#9333ea] font-bold">ces accompagnements sont
+                                plaisir et le sens trouvés dans <span class="text-[#9333ea]">ces accompagnements sont
                                     devenus ma raison de me lever le matin</span>.
                             </p>
                             <p>

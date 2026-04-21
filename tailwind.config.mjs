@@ -12,7 +12,7 @@ export default {
         'gris-doux': '#a9a9a9',
       },
       fontFamily: {
-        comfortaa: ['Comfortaa', 'sans-serif'],
+        comfortaa: ['Comfortaa', 'serif'],
         sans: ['Lato', 'sans-serif'],
       },
     },

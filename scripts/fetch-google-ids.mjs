@@ -2,9 +2,9 @@
 import "dotenv/config";
 
 const body = new URLSearchParams({
-  client_id: "760910906882-1lp1ogaqiaf15pfep2a33fab4cqa9p01.apps.googleusercontent.com",
-  client_secret: "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",
-  refresh_token: "1//03LiA8o6y2j4iCgYIARAAGAMSNwF-L9Ir0xYkjY2Fr5PfWP8evzm9vbEYA6DA9Qm8FdW4f80gYyiCVueUwkCq6xENft7VaqTnrPA",
+  client_id: process.env.GOOGLE_OAUTH_CLIENT_ID,
+  client_secret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+  refresh_token: process.env.GOOGLE_OAUTH_REFRESH_TOKEN,
   grant_type: "refresh_token",
 });
 const { access_token } = await (await fetch("https://oauth2.googleapis.com/token", {

@@ -6,8 +6,8 @@ import { URL } from "node:url";
 import { exec } from "node:child_process";
 import "dotenv/config";
 
-const CLIENT_ID = "760910906882-1lp1ogaqiaf15pfep2a33fab4cqa9p01.apps.googleusercontent.com";
-const CLIENT_SECRET = "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";
+const CLIENT_ID = process.env.GOOGLE_OAUTH_CLIENT_ID;
+const CLIENT_SECRET = process.env.GOOGLE_OAUTH_CLIENT_SECRET;
 const REDIRECT_URI = "http://localhost:3000/oauth/callback";
 const SCOPE = "https://www.googleapis.com/auth/business.manage";
 

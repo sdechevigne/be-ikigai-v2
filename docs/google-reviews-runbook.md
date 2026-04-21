@@ -25,20 +25,6 @@ GOOGLE_OAUTH_CLIENT_ID="<cid>" GOOGLE_OAUTH_CLIENT_SECRET="<csec>" \
 ```
 Log in with the Google account that owns Be-Ikigai's Business Profile. Copy the printed `refresh_token`.
 
-PS D:\Projets\be-ikigai\astro> node scripts/google-oauth-bootstrap.mjs           
-Opening browser to: https://accounts.google.com/o/oauth2/v2/auth?client_id=760910906882-1lp1ogaqiaf15pfep2a33fab4cqa9p01.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fbusiness.manage&access_type=offline&prompt=consent
-
-=== TOKENS ===
-{
-  "access_token": "ya29.a0Aa7MYiriX25Gs_TuEOMyudpld9YL5EVkjkQCvE6AwxAn6llS27mK-tMklUHx0AcP_Ny2gKUfCfkUJ1CBFYwqhoxrpDh_uwvW1Xkgk0TQ6eSTs-HjklTlfTvRJPDwGwjP5zeKpH-g7KGzot9hRe-0W8UnLvnwiEg9N8bsaV7yv33KZKjOpiEpT_kzx8Y1qMTmcZSTmVEaCgYKAZsSARASFQHGX2MiKflVQSj2l0rjJM4cPo5lzQ0206",
-  "expires_in": 3599,      
-  "refresh_token": "1//03LiA8o6y2j4iCgYIARAAGAMSNwF-L9Ir0xYkjY2Fr5PfWP8evzm9vbEYA6DA9Qm8FdW4f80gYyiCVueUwkCq6xENft7VaqTnrPA",
-  "scope": "https://www.googleapis.com/auth/business.manage",
-  "token_type": "Bearer"   
-}
-
-Store GOOGLE_OAUTH_REFRESH_TOKEN = 1//03LiA8o6y2j4iCgYIARAAGAMSNwF-L9Ir0xYkjY2Fr5PfWP8evzm9vbEYA6DA9Qm8FdW4f80gYyiCVueUwkCq6xENft7VaqTnrPA
-
 ### 3. Obtain Account ID + Location ID
 
 ```bash
@@ -47,43 +33,6 @@ GOOGLE_OAUTH_REFRESH_TOKEN="<rt>" \
   node scripts/fetch-google-ids.mjs
 ```
 Note the numeric ID inside `accounts/<id>` and `locations/<id>`.
-
-ro> node scripts/fetch-google-ids.mjs
-
-=== ACCOUNTS ===
- {
-  "error": {
-    "code": 429,
-    "message": "Quota exceeded for quota metric 'Requests' and limit 'Requests per minute' of service 'mybusinessaccountmanagement.googleapis.com' for consumer 'project_number:760910906882'.",
-    "status": "RESOURCE_EXHAUSTED",
-    "details": [
-      {
-        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
-        "reason": "RATE_LIMIT_EXCEEDED",
-        "domain": "googleapis.com",
-        "metadata": {      
-          "service": "mybusinessaccountmanagement.googleapis.com",
-          "quota_metric": "mybusinessaccountmanagement.googleapis.com/default_requests",
-          "quota_location": "global",
-          "consumer": "projects/760910906882",        
-          "quota_unit": "1/min/{project}",
-          "quota_limit_value": "0",
-          "quota_limit": "DefaultRequestsPerMinutePerProject"
-        }
-      },
-      {
-        "@type": "type.googleapis.com/google.rpc.Help",
-        "links": [
-          {
-            "description": "Request a higher quota limit.",
-            "url": "https://cloud.google.com/docs/quotas/help/request_increase"  
-          }
-        ]
-      }
-    ]
-  }
-}
-No account found.
 
 ### 4. Supabase project link
 

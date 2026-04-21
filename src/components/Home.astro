@@ -150,7 +150,85 @@ const recentPosts = allPosts.sort((a, b) => {
         </div>
     </section>
 
-    <!-- Section 3: La Solution & la Transformation -->
+    <!-- Section 3: L'Ikigai expliqué -->
+    <section class="py-14 lg:py-32" id="ikigai" style="background-color: #2c3e50;">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center fade-in mb-12">
+                    <h2 class="text-3xl md:text-5xl font-comfortaa text-white mb-8 md:mb-16">
+                        {t('ikigai.title')}
+                    </h2>
+                </div>
+                <div class="mb-16">
+                    <!-- Philosophie pour une vie épanouie -->
+                    <div class="fade-in bg-white/10 backdrop-blur-sm rounded-3xl p-8">
+                        <div class="text-lg md:text-xl text-white/90 space-y-6 grid md:grid-cols-[1fr_auto] sm:grid-cols-[minmax(auto,1fr)_auto] items-center justify-items-center">
+
+                            <p>
+                                {t('ikigai.desc_part1')}<a class="text-dore-serein" target="_blank" href="https://www.nationalgeographic.fr/voyage/bien-veillir-zones-bleues-okinawa-lile-ou-lon-vit-centenaire">l'île
+                                    japonaise d'Okinawa</a>, révèle le secret d'une vie
+                                longue et pleine de sens. Sur cette île, où de nombreux centenaires s'épanouissent,
+                                trouver sa raison d'être, cultiver ses passions et créer de la valeur au quotidien est
+                                ce qui nourrit le corps et l'esprit.
+                            </p>
+
+                            <div>
+                                <svg width="150" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.0">
+
+                                    <g class="layer">
+                                        <title>Layer 1</title>
+                                        <g id="layer1" transform="translate(-0.298507 0) translate(-0.298507 0) translate(-0.298507 0) translate(0.298507 0) translate(0.298507 0) translate(0.298507 0) translate(0.298507 0) translate(0.298507 0) translate(8.35821 0.298507) translate(-11.6418 1.49254) matrix(1.20024 0 0 1.20024 -225.103 -61.899)">
+                                            <path d="m224.13,194.61l-5.88,5.88l-1.92,-0.48l-1.44,1.08l-1.44,-0.12l-3.84,3.96l-1.08,1.92l-1.08,0.24l0.12,1.44l-1.68,0.6l-1.56,0l-0.48,-0.48l-2.52,1.08l-1.92,1.8l-4.56,-1.8l0.36,-2.64l0.24,-1.32l1.92,-3.36l-0.48,-1.8l0.12,-1.44l0.6,-1.2l-0.36,-2.64l-2.4,-1.2l-0.12,-1.68l-2.16,-0.12l0.24,-1.56l0,-1.56l-1.2,-1.8l0.96,-0.84l0.72,-0.48l0.84,-1.8l2.28,-0.36l3.12,-1.08l0.12,-2.52l1.32,-3.12l1.44,-2.4l1.8,-1.68l1.8,0.96l3.12,-1.68l3.48,-3.24l0.36,-3.96l-1.68,-2.76l-0.96,-4.8l0.48,-1.8l-1.08,-0.48l-4.32,-7.44l-0.12,-5.28l-0.96,-1.56l1.44,-0.36l2.28,0.72l0.84,2.16l0.84,0.72l1.68,-1.08l2.28,-1.56l1.2,-1.8l2.64,1.44l2.04,0.12l0.84,-1.08l0.36,-0.96l-0.84,-0.84l4.08,-3.12l0.96,0l0.6,-1.08l0,-0.84l1.92,-0.12l0.36,-1.32l-0.84,-1.68l0.24,-1.32l1.08,-0.96l0.84,0l-0.12,0.6l1.08,0l0.84,-0.6l1.32,-1.32l1.68,0.84l0.84,0.6l0.48,-0.24l0.6,-0.24l0.12,-1.08l2.88,-0.96l0.84,0.48l0.96,-0.48l0.36,-0.84l0.24,-0.72l0.96,-0.72l0,-0.6l0.96,-0.36l0,-0.96l0.12,-0.72l0.6,0.84l0.12,0.24l1.08,0c0.6,0 1.08,-0.96 1.08,-0.96l0.84,-0.84l1.56,0.24l0.6,-1.2l1.44,-1.32l0.24,-1.92l1.08,-1.08l0.48,-1.56l0.24,-1.32l-1.32,-0.96l-2.4,0l-1.68,0.12l-1.92,-1.08l-1.08,-0.48l-1.92,-1.68l-2.52,1.56l-3,-0.48l-0.84,-2.64l-2.4,-4.92l0,-1.2l2.28,-1.68l-0.48,-3l-3,-2.16l0,-1.07l1.2,-0.24l0.12,-1.8l0,-1.44l1.44,0.36l0.36,0.6l1.68,0.12l0.6,1.2l1.32,-0.48l1.32,-0.84s2.04,0.36 2.52,0.36s2.88,-0.36 2.88,-0.36l0.72,-0.6l1.56,0.96l1.56,0.72l0.48,0.84l1.2,0l1.56,0.24l0.84,0.24l1.32,0.84l0.84,0.6l-0.6,0.72l-1.08,0l-0.24,1.44l-0.36,0.84l-0.12,1.56l-0.6,1.2l-0.24,1.44l2.4,0.96l0.24,1.32l1.2,0.12l1.68,0.96l1.56,-0.36l1.68,-0.72l1.92,0l1.32,-0.84l2.04,-1.08l2.16,-0.72l1.44,-1.2l2.04,-1.92l1.68,0l1.08,0.48l0.48,-0.96l-0.84,-1.08l-1.44,-0.36l-1.08,-1.08l0.72,-2.04l1.32,-1.44l0.36,-1.8l1.8,0.48l1.8,-0.36l2.04,-1.68l2.52,-1.68l-0.72,-1.68l-1.08,-1.8l1.32,-0.36l2.4,-0.48l1.56,-1.2l1.8,-2.16l1.8,-1.08l0,-1.44l1.56,-0.96l1.08,-1.32l1.08,-0.24l0.24,-1.68l0.72,-0.84l3.84,-8.16l-1.56,-2.4l0.6,-1.92l2.16,-1.2l0.72,0.6l0.12,1.44l2.88,1.8l1.68,1.8l1.68,0l0.84,0.24l0.12,2.4l0.12,0.96l1.56,1.8l0.6,1.2l0.36,2.76l-0.84,0.72l0.84,0.6l0.36,0.72l0.6,1.56l-0.84,0.84l0.36,2.04l0.24,1.56l0.6,0.48l-1.32,1.44l-0.12,1.68l-2.28,0.96l0,1.8l-2.52,1.08l1.2,0.6l-0.72,0.96l-0.84,1.92l-1.68,0.48l0,4.08l-3.12,2.04l-1.56,2.16l0.24,1.56l-3.12,2.64l-2.64,0.6l-7.56,0.72l-3.72,-0.84l-1.32,0.96l0.84,2.4l-0.12,2.76l-4.44,-0.6l3.6,6l-1.56,0.72l0,2.16l-2.88,-0.12l-2.16,1.2l-2.4,1.8l-2.28,1.08l-3.48,-3.48l-2.04,1.08l-2.4,-0.72l1.08,1.68l1.2,2.76l0.36,1.44l-2.88,0.24l-0.48,1.32l-3.84,-0.36l-0.96,0.24l-0.12,1.2l-1.2,0l0.12,2.4l0.6,0.96l-0.24,1.8l-2.28,-0.36l0.24,1.44l-3.84,0.96l-1.44,-1.32l-1.44,1.2l-0.36,1.56l0.12,1.08l-0.72,0.6l0.12,1.92l0.36,0.84l-1.2,0l-2.04,0.12l-3.48,-1.68l-2.04,0.12l-3,-1.8l-0.6,0.48l-1.32,-0.6l-1.08,1.08l-1.08,0l-0.96,1.68l-1.2,1.44l-2.76,1.92l0.96,1.8l7.68,6.6l-1.08,2.28l0,1.8l1.32,1.32l0.96,1.68l2.04,1.8l1.2,1.08l1.32,0l1.08,2.4l0.6,2.52l0.36,1.32l-1.2,0l-2.4,-0.96l-2.28,-2.28l-1.44,-1.2l-3.48,-4.68l-1.56,1.2l-3.72,1.68l2.88,1.68l0.36,1.44l-2.52,0.24l-1.56,1.8l-1.32,-0.84l-1.2,1.44l0.96,3.72l-1.56,1.56l-1.44,1.56l-0.96,2.52l-0.12,1.56l-0.36,2.28l-2.16,0.48l0.12,2.28s-1.56,0.84 -2.04,0.84c-0.48,0 -0.84,1.56 -0.84,1.56l1.56,1.08l1.2,1.56l0,2.88l-0.24,1.08l1.44,0l0.72,-0.72l0.48,-1.56l3.48,-1.56l1.56,0l0.6,1.08l0.36,2.52l-0.48,1.91z" fill="none" fill-opacity="1" fill-rule="evenodd" id="path5798" stroke="#ffd700" stroke-opacity="1" stroke-width="1px"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in flex justify-center py-16">
+                        <div class="w-full max-w-2xl ">
+                            <img loading="lazy" class="w-full h-auto" src="/assets/img/ikigai.webp" alt="Diagramme Ikigai : Intersection de passion, mission, vocation et profession pour une vie épanouie" width="672" height="672">
+                        </div>
+                    </div>
+                    <div class="fade-in text-white/90 space-y-6">
+                        <p class="text-lg">
+                            Ce schéma représente le concept japonais de l'Ikigai, ou "raison d'être". Il symbolise
+                            l'harmonie parfaite entre quatre éléments fondamentaux de votre vie :
+                        </p>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start">
+                                <span class="text-dore-serein mr-2">•</span>
+                                <span><strong>{t('ikigai.passion')}</strong> L'union de ce que vous aimez et de ce pour quoi
+                                    vous êtes doué.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-dore-serein mr-2">•</span>
+                                <span><strong>{t('ikigai.mission')}</strong> L'alliance entre ce que vous aimez et ce dont le
+                                    monde a besoin.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-dore-serein mr-2">•</span>
+                                <span><strong>{t('ikigai.vocation')}</strong> Le point de rencontre entre ce dont le monde a
+                                    besoin et ce pour quoi vous pouvez être payé.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-dore-serein mr-2">•</span>
+                                <span><strong>{t('ikigai.profession')}</strong> La convergence entre ce pour quoi vous êtes
+                                    doué et ce qui peut vous rémunérer.</span>
+                            </li>
+                        </ul>
+                        <p class="text-lg text-dore-serein font-semibold">
+                            Au centre de tout, votre Ikigai est cette douce évidence qui donne le sens profond de votre
+                            existence.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: La Solution & la Transformation -->
     <section class="solution-bg py-14 lg:py-32" id="solution">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
@@ -237,6 +315,55 @@ const recentPosts = allPosts.sort((a, b) => {
         </div>
     </section>
 
+    <!-- Section 5: Qui suis-je ? -->
+    <section class="bg-white py-14 lg:py-32" id="qui-suis-je">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in">
+                        <div class="w-36 h-36 md:w-40 md:h-40 lg:w-80 lg:h-80 mx-auto contour-bg rounded-full flex items-center justify-center shadow-lg">
+                            <img loading="lazy" class="w-32 h-32 md:w-36 md:h-36 lg:w-72 lg:h-72 bg-white rounded-full object-cover" src="/assets/img/pl.webp" alt="Photo de Pierre Louis" width="288" height="288">
+                        </div>
+                    </div>
+
+                    <div class="fade-in">
+                        <h2 class="text-3xl md:text-4xl font-comfortaa text-gray-800 mb-6">
+                            {t('who.title')}<span class="font-comfortaa text-[#9333ea] font-bold">Pierre-Louis</span>
+                        </h2>
+                        <div class="text-lg text-gray-700 space-y-6">
+                            <p>
+                                Mon parcours professionnel m'a offert une chance inouïe : celle de collaborer et
+                                d'échanger avec des personnes du monde entier, d'Amérique Latine aux États-Unis,
+                                d'Afrique au Moyen-Orient, d'Asie à l'Europe. Cette immersion constante m'a appris une
+                                chose essentielle : au-delà de nos différences culturelles, notre quête de sens est
+                                universelle.
+                            </p>
+                            <p>
+                                Au sein de mes propres équipes, j'ai vu des potentiels incroyables, souvent endormis et
+                                mal orientés. J'ai alors commencé, d'abord intuitivement, à guider certains de mes
+                                collaborateurs. Non pas en leur disant quoi faire, mais <span class="text-[#9333ea] font-bold">en
+                                    les aidant à comprendre qui ils étaient et ce qui les animait vraiment</span>.
+
+                            </p>
+                            <p>
+                                Voir une personne s'épanouir, trouver sa juste place et libérer son potentiel est
+                                rapidement devenu la plus grande satisfaction de ma carrière. J'ai alors compris que ce
+                                qui n'était qu'une partie de mon travail était en réalité ma véritable vocation. Le
+                                plaisir et le sens trouvés dans <span class="text-[#9333ea] font-bold">ces accompagnements sont
+                                    devenus ma raison de me lever le matin</span>.
+                            </p>
+                            <p>
+                                Aujourd'hui, j'ai fait de cette passion ma mission : mon Ikigai à moi, c'est de vous
+                                aider à trouver le vôtre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citation vedette -->
     <section class="bg-white py-14 lg:py-32">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
@@ -323,234 +450,7 @@ const recentPosts = allPosts.sort((a, b) => {
         </div>
     </section>
 
-    <!-- Section 5: L'Ikigai expliqué -->
-    <section class="py-14 lg:py-32" style="background-color: #2c3e50;">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center fade-in mb-12">
-                    <h2 class="text-3xl md:text-5xl font-comfortaa text-white mb-8 md:mb-16">
-                        {t('ikigai.title')}
-                    </h2>
-                </div>
-                <div class="mb-16">
-                    <!-- Philosophie pour une vie épanouie -->
-                    <div class="fade-in bg-white/10 backdrop-blur-sm rounded-3xl p-8">
-                        <div class="text-lg md:text-xl text-white/90 space-y-6 grid md:grid-cols-[1fr_auto] sm:grid-cols-[minmax(auto,1fr)_auto] items-center justify-items-center">
-
-                            <p>
-                                {t('ikigai.desc_part1')}<a class="text-dore-serein" target="_blank" href="https://www.nationalgeographic.fr/voyage/bien-veillir-zones-bleues-okinawa-lile-ou-lon-vit-centenaire">l'île
-                                    japonaise d'Okinawa</a>, révèle le secret d'une vie
-                                longue et pleine de sens. Sur cette île, où de nombreux centenaires s'épanouissent,
-                                trouver sa raison d'être, cultiver ses passions et créer de la valeur au quotidien est
-                                ce qui nourrit le corps et l'esprit.
-                            </p>
-
-                            <div>
-                                <svg width="150" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.0">
-
-                                    <g class="layer">
-                                        <title>Layer 1</title>
-                                        <g id="layer1" transform="translate(-0.298507 0) translate(-0.298507 0) translate(-0.298507 0) translate(0.298507 0) translate(0.298507 0) translate(0.298507 0) translate(0.298507 0) translate(0.298507 0) translate(8.35821 0.298507) translate(-11.6418 1.49254) matrix(1.20024 0 0 1.20024 -225.103 -61.899)">
-                                            <path d="m224.13,194.61l-5.88,5.88l-1.92,-0.48l-1.44,1.08l-1.44,-0.12l-3.84,3.96l-1.08,1.92l-1.08,0.24l0.12,1.44l-1.68,0.6l-1.56,0l-0.48,-0.48l-2.52,1.08l-1.92,1.8l-4.56,-1.8l0.36,-2.64l0.24,-1.32l1.92,-3.36l-0.48,-1.8l0.12,-1.44l0.6,-1.2l-0.36,-2.64l-2.4,-1.2l-0.12,-1.68l-2.16,-0.12l0.24,-1.56l0,-1.56l-1.2,-1.8l0.96,-0.84l0.72,-0.48l0.84,-1.8l2.28,-0.36l3.12,-1.08l0.12,-2.52l1.32,-3.12l1.44,-2.4l1.8,-1.68l1.8,0.96l3.12,-1.68l3.48,-3.24l0.36,-3.96l-1.68,-2.76l-0.96,-4.8l0.48,-1.8l-1.08,-0.48l-4.32,-7.44l-0.12,-5.28l-0.96,-1.56l1.44,-0.36l2.28,0.72l0.84,2.16l0.84,0.72l1.68,-1.08l2.28,-1.56l1.2,-1.8l2.64,1.44l2.04,0.12l0.84,-1.08l0.36,-0.96l-0.84,-0.84l4.08,-3.12l0.96,0l0.6,-1.08l0,-0.84l1.92,-0.12l0.36,-1.32l-0.84,-1.68l0.24,-1.32l1.08,-0.96l0.84,0l-0.12,0.6l1.08,0l0.84,-0.6l1.32,-1.32l1.68,0.84l0.84,0.6l0.48,-0.24l0.6,-0.24l0.12,-1.08l2.88,-0.96l0.84,0.48l0.96,-0.48l0.36,-0.84l0.24,-0.72l0.96,-0.72l0,-0.6l0.96,-0.36l0,-0.96l0.12,-0.72l0.6,0.84l0.12,0.24l1.08,0c0.6,0 1.08,-0.96 1.08,-0.96l0.84,-0.84l1.56,0.24l0.6,-1.2l1.44,-1.32l0.24,-1.92l1.08,-1.08l0.48,-1.56l0.24,-1.32l-1.32,-0.96l-2.4,0l-1.68,0.12l-1.92,-1.08l-1.08,-0.48l-1.92,-1.68l-2.52,1.56l-3,-0.48l-0.84,-2.64l-2.4,-4.92l0,-1.2l2.28,-1.68l-0.48,-3l-3,-2.16l0,-1.07l1.2,-0.24l0.12,-1.8l0,-1.44l1.44,0.36l0.36,0.6l1.68,0.12l0.6,1.2l1.32,-0.48l1.32,-0.84s2.04,0.36 2.52,0.36s2.88,-0.36 2.88,-0.36l0.72,-0.6l1.56,0.96l1.56,0.72l0.48,0.84l1.2,0l1.56,0.24l0.84,0.24l1.32,0.84l0.84,0.6l-0.6,0.72l-1.08,0l-0.24,1.44l-0.36,0.84l-0.12,1.56l-0.6,1.2l-0.24,1.44l2.4,0.96l0.24,1.32l1.2,0.12l1.68,0.96l1.56,-0.36l1.68,-0.72l1.92,0l1.32,-0.84l2.04,-1.08l2.16,-0.72l1.44,-1.2l2.04,-1.92l1.68,0l1.08,0.48l0.48,-0.96l-0.84,-1.08l-1.44,-0.36l-1.08,-1.08l0.72,-2.04l1.32,-1.44l0.36,-1.8l1.8,0.48l1.8,-0.36l2.04,-1.68l2.52,-1.68l-0.72,-1.68l-1.08,-1.8l1.32,-0.36l2.4,-0.48l1.56,-1.2l1.8,-2.16l1.8,-1.08l0,-1.44l1.56,-0.96l1.08,-1.32l1.08,-0.24l0.24,-1.68l0.72,-0.84l3.84,-8.16l-1.56,-2.4l0.6,-1.92l2.16,-1.2l0.72,0.6l0.12,1.44l2.88,1.8l1.68,1.8l1.68,0l0.84,0.24l0.12,2.4l0.12,0.96l1.56,1.8l0.6,1.2l0.36,2.76l-0.84,0.72l0.84,0.6l0.36,0.72l0.6,1.56l-0.84,0.84l0.36,2.04l0.24,1.56l0.6,0.48l-1.32,1.44l-0.12,1.68l-2.28,0.96l0,1.8l-2.52,1.08l1.2,0.6l-0.72,0.96l-0.84,1.92l-1.68,0.48l0,4.08l-3.12,2.04l-1.56,2.16l0.24,1.56l-3.12,2.64l-2.64,0.6l-7.56,0.72l-3.72,-0.84l-1.32,0.96l0.84,2.4l-0.12,2.76l-4.44,-0.6l3.6,6l-1.56,0.72l0,2.16l-2.88,-0.12l-2.16,1.2l-2.4,1.8l-2.28,1.08l-3.48,-3.48l-2.04,1.08l-2.4,-0.72l1.08,1.68l1.2,2.76l0.36,1.44l-2.88,0.24l-0.48,1.32l-3.84,-0.36l-0.96,0.24l-0.12,1.2l-1.2,0l0.12,2.4l0.6,0.96l-0.24,1.8l-2.28,-0.36l0.24,1.44l-3.84,0.96l-1.44,-1.32l-1.44,1.2l-0.36,1.56l0.12,1.08l-0.72,0.6l0.12,1.92l0.36,0.84l-1.2,0l-2.04,0.12l-3.48,-1.68l-2.04,0.12l-3,-1.8l-0.6,0.48l-1.32,-0.6l-1.08,1.08l-1.08,0l-0.96,1.68l-1.2,1.44l-2.76,1.92l0.96,1.8l7.68,6.6l-1.08,2.28l0,1.8l1.32,1.32l0.96,1.68l2.04,1.8l1.2,1.08l1.32,0l1.08,2.4l0.6,2.52l0.36,1.32l-1.2,0l-2.4,-0.96l-2.28,-2.28l-1.44,-1.2l-3.48,-4.68l-1.56,1.2l-3.72,1.68l2.88,1.68l0.36,1.44l-2.52,0.24l-1.56,1.8l-1.32,-0.84l-1.2,1.44l0.96,3.72l-1.56,1.56l-1.44,1.56l-0.96,2.52l-0.12,1.56l-0.36,2.28l-2.16,0.48l0.12,2.28s-1.56,0.84 -2.04,0.84c-0.48,0 -0.84,1.56 -0.84,1.56l1.56,1.08l1.2,1.56l0,2.88l-0.24,1.08l1.44,0l0.72,-0.72l0.48,-1.56l3.48,-1.56l1.56,0l0.6,1.08l0.36,2.52l-0.48,1.91z" fill="none" fill-opacity="1" fill-rule="evenodd" id="path5798" stroke="#ffd700" stroke-opacity="1" stroke-width="1px"></path>
-                                        </g>
-                                    </g>
-                                </svg>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="fade-in flex justify-center py-16">
-                        <div class="w-full max-w-2xl ">
-                            <img loading="lazy" class="w-full h-auto" src="/assets/img/ikigai.webp" alt="Diagramme Ikigai : Intersection de passion, mission, vocation et profession pour une vie épanouie" width="672" height="672">
-                        </div>
-                    </div>
-                    <div class="fade-in text-white/90 space-y-6">
-                        <p class="text-lg">
-                            Ce schéma représente le concept japonais de l'Ikigai, ou "raison d'être". Il symbolise
-                            l'harmonie parfaite entre quatre éléments fondamentaux de votre vie :
-                        </p>
-                        <ul class="space-y-4 text-lg">
-                            <li class="flex items-start">
-                                <span class="text-dore-serein mr-2">•</span>
-                                <span><strong>{t('ikigai.passion')}</strong> L'union de ce que vous aimez et de ce pour quoi
-                                    vous êtes doué.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-dore-serein mr-2">•</span>
-                                <span><strong>{t('ikigai.mission')}</strong> L'alliance entre ce que vous aimez et ce dont le
-                                    monde a besoin.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-dore-serein mr-2">•</span>
-                                <span><strong>{t('ikigai.vocation')}</strong> Le point de rencontre entre ce dont le monde a
-                                    besoin et ce pour quoi vous pouvez être payé.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-dore-serein mr-2">•</span>
-                                <span><strong>{t('ikigai.profession')}</strong> La convergence entre ce pour quoi vous êtes
-                                    doué et ce qui peut vous rémunérer.</span>
-                            </li>
-                        </ul>
-                        <p class="text-lg text-dore-serein font-semibold">
-                            Au centre de tout, votre Ikigai est cette douce évidence qui donne le sens profond de votre
-                            existence.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Section 4: Qui suis-je ? -->
-    <section class="bg-white py-14 lg:py-32" id="qui-suis-je">
-        <div class="container mx-auto px-6">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="fade-in">
-                        <div class="w-36 h-36 md:w-40 md:h-40 lg:w-80 lg:h-80 mx-auto contour-bg rounded-full flex items-center justify-center shadow-lg">
-                            <img loading="lazy" class="w-32 h-32 md:w-36 md:h-36 lg:w-72 lg:h-72 bg-white rounded-full object-cover" src="/assets/img/pl.webp" alt="Photo de Pierre Louis" width="288" height="288">
-                        </div>
-                    </div>
-
-                    <div class="fade-in">
-                        <h2 class="text-3xl md:text-4xl font-comfortaa text-gray-800 mb-6">
-                            {t('who.title')}<span class="font-comfortaa text-[#9333ea] font-bold">Pierre-Louis</span>
-                        </h2>
-                        <div class="text-lg text-gray-700 space-y-6">
-                            <p>
-                                Mon parcours professionnel m'a offert une chance inouïe : celle de collaborer et
-                                d'échanger avec des personnes du monde entier, d'Amérique Latine aux États-Unis,
-                                d'Afrique au Moyen-Orient, d'Asie à l'Europe. Cette immersion constante m'a appris une
-                                chose essentielle : au-delà de nos différences culturelles, notre quête de sens est
-                                universelle.
-                            </p>
-                            <p>
-                                Au sein de mes propres équipes, j'ai vu des potentiels incroyables, souvent endormis et
-                                mal orientés. J'ai alors commencé, d'abord intuitivement, à guider certains de mes
-                                collaborateurs. Non pas en leur disant quoi faire, mais <span class="text-[#9333ea] font-bold">en
-                                    les aidant à comprendre qui ils étaient et ce qui les animait vraiment</span>.
-
-                            </p>
-                            <p>
-                                Voir une personne s'épanouir, trouver sa juste place et libérer son potentiel est
-                                rapidement devenu la plus grande satisfaction de ma carrière. J'ai alors compris que ce
-                                qui n'était qu'une partie de mon travail était en réalité ma véritable vocation. Le
-                                plaisir et le sens trouvés dans <span class="text-[#9333ea] font-bold">ces accompagnements sont
-                                    devenus ma raison de me lever le matin</span>.
-                            </p>
-                            <p>
-                                Aujourd'hui, j'ai fait de cette passion ma mission : mon Ikigai à moi, c'est de vous
-                                aider à trouver le vôtre
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-32 ">
-                    <h2 class="text-3xl md:text-4xl font-comfortaa text-gray-800 mb-6">{t('testimonials.title')}</h2>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6 mb-14">
-                    <div class="fade-in grid">
-                        <div class="relative mt-10 md:order-2 md:mt-10">
-                            <div class="relative mx-auto grid max-w-lg grid-cols-1 gap-6 md:max-w-screen-md md:grid-cols-1 lg:gap-10">
-                                <div class="relative flex flex-col overflow-hidden rounded-3xl solution-bg px-8 shadow-lg">
-                                    <svg class="text-[#9333ea] absolute right-5 bottom-6 text-7xl" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M6.5 10c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.318.142-.686.238-1.028.466c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.945c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.317.143-.686.238-1.028.467c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.944c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 17.5 10z"></path>
-                                    </svg>
-                                    <div class="lg:py- flex flex-1 flex-col justify-between p-6 lg:px-7">
-                                        <div class="flex-1">
-                                            <blockquote class="mt-4 flex-1">
-                                                <p class="text-lg text-gray-700">Pierre-Louis d'une manière
-                                                    très professionnelle arrive à très vite cerner vos habitudes, vos
-                                                    désirs, votre manière de fonctionner pour introduire tous ces
-                                                    éléments dans le cadre professionnel et vous proposez d'excellentes
-                                                    pistes de réflexions pour de futurs postes ou secteurs d'activités.
-                                                </p>
-                                            </blockquote>
-                                        </div>
-
-                                        <div class="mt-8 flex items-center tracking-wide">
-                                            <p class="font-bold text-[#9333ea] font-bold">Tristan</p>
-                                            <p class="ml-3 text-gray-700">septembre 2025</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="relative mt-10 md:order-2 md:mt-10">
-                            <div class="relative mx-auto grid max-w-lg grid-cols-1 gap-6 md:max-w-screen-md md:grid-cols-1 lg:gap-10">
-                                <div class="relative flex flex-col overflow-hidden rounded-3xl solution-bg px-8 shadow-lg">
-                                    <svg class="text-[#9333ea] absolute right-5 bottom-6 text-7xl" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M6.5 10c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.318.142-.686.238-1.028.466c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.945c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.317.143-.686.238-1.028.467c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.944c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 17.5 10z"></path>
-                                    </svg>
-                                    <div class="lg:py- flex flex-1 flex-col justify-between p-6 lg:px-7">
-                                        <div class="flex-1">
-                                            <blockquote class="mt-4 flex-1">
-                                                <p class="text-lg text-gray-700">L'écoute attentive de Pierre Louis a
-                                                    créé un climat de confiance permettant d'aller chercher loin dans
-                                                    ses souvenirs et d'activer des rêves d'adolescent liés à mon moi
-                                                    profond et à mes aspirations premières. Avec la méthode Ikigai,
-                                                    Pierre Louis a donné ensuite des pistes concrètes d'action à court,
-                                                    moyen et long terme, ce qu'aucun autre spécialiste ne m'avait permit
-                                                    d'envisager. Son approche a été un éclairage sur ce que je suis pour
-                                                    agir facilement et avec plus d'efficacité autour de moi. Cela m'a
-                                                    aidé à mieux discerner ma place dans le monde, ses besoins, et poser
-                                                    un choix à une période de ma vie où j'étais à un carrefour.
-                                                </p>
-                                            </blockquote>
-                                        </div>
-
-                                        <div class="mt-8 flex items-center tracking-wide">
-                                            <p class="font-bold text-[#9333ea] font-bold">Hugues</p>
-                                            <p class="ml-3 text-gray-700">septembre 2025</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fade-in grid">
-                        <div class="relative mt-10 md:order-2 md:mt-10">
-                            <div class="relative mx-auto grid max-w-lg grid-cols-1 gap-6 md:max-w-screen-md md:grid-cols-1 lg:gap-10">
-                                <div class="relative flex flex-col overflow-hidden rounded-3xl solution-bg px-8 shadow-lg">
-                                    <svg class="text-[#9333ea] absolute right-5 bottom-6 text-7xl" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M6.5 10c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.318.142-.686.238-1.028.466c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.945c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.317.143-.686.238-1.028.467c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.944c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 17.5 10z"></path>
-                                    </svg>
-                                    <div class="lg:py- flex flex-1 flex-col justify-between p-6 lg:px-7">
-                                        <div class="flex-1">
-                                            <blockquote class="mt-4 flex-1">
-                                                <p class="text-lg text-gray-700">Bien plus qu'un échange, Pierre-Louis
-                                                    m'a offert un voyage introspectif. En effet cette discution honnête
-                                                    et sincère m'a mis en confiance et m'a permis de donner des réponses
-                                                    enfouie en moi mais qui ne m'était jamais apparu. Par exemple
-                                                    lorsque j'ai été amené a réfléchir à un mentor ou a quelqu'un dont
-                                                    le parcours m'inspirait, la personne qui m'est venue a l'esprit
-                                                    était totalement pertinente mais ne m'était jamais apparu comme un
-                                                    guide. Je crois que l'absence de jugement et la fluidité de ce
-                                                    parcours en font une expérience qui va me mettre sur un nouveau
-                                                    chemin et m'aider a construire mon futur.
-                                                    Merci Pierre-Louis!
-                                                </p>
-                                            </blockquote>
-                                        </div>
-
-                                        <div class="mt-8 flex items-center tracking-wide">
-                                            <p class="font-bold text-[#9333ea] font-bold">Jérémie</p>
-                                            <p class="ml-3 text-gray-700">octobre 2025</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 5: L'Appel à l'Action Final -->
+    <!-- Section 9: L'Appel à l'Action Final -->
     <footer class="pain-bg py-14 lg:py-32" id="contact">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">

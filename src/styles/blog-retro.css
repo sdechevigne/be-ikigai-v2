@@ -112,7 +112,7 @@
 
 .blog-hero-section {
   padding: 32px 0 0;
-  background: var(--surface-lowest)
+  background-color: white;
 }
 
 .blog-hero {
@@ -189,7 +189,7 @@
   flex: 1;
   border: none;
   outline: none;
-  font-family: Lato, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 15px;
   color: var(--on-surface);
   background: transparent;
@@ -203,7 +203,7 @@
 
 .blog-filters-section {
   padding: 28px 0;
-  background: var(--surface-lowest)
+  background-color: white;
 }
 
 .blog-filters {
@@ -214,7 +214,7 @@
 }
 
 .filter-pill {
-  font-family: Lato, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 13px;
   font-weight: 600;
   padding: 8px 20px;
@@ -240,7 +240,7 @@
 
 .blog-list-section {
   padding: 0 0 96px;
-  background: var(--surface-lowest)
+  background-color: white;
 }
 
 .blog-list-header {
@@ -268,7 +268,7 @@
 
 /* BLOG POST CLASSES (From Mes Chasses) */
 .article-breadcrumb {
-  background: var(--surface-lowest);
+  background-color: white;;
   padding: 14px 0
 }
 
@@ -498,7 +498,7 @@
 }
 
 .article-content {
-  font-family: Lato, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 17px;
   line-height: 1.85;
   color: var(--on-surface-var);
@@ -592,7 +592,7 @@
 }
 
 .article-content blockquote {
-  background: var(--surface-lowest);
+  background-color: white;;
   border: 1px solid var(--outline);
   border-left: 3px solid var(--primary);
   border-radius: 0 10px 10px 0;
@@ -716,7 +716,7 @@ details[open] .faq-answer {
 }
 
 .toc-title {
-  font-family: Lato, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
@@ -743,7 +743,7 @@ details[open] .faq-answer {
 }
 
 .toc a:hover {
-  background: var(--surface-lowest);
+  background-color: white;;
   color: var(--on-surface)
 }
 

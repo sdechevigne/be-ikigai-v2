@@ -1,0 +1,9 @@
+---
+import ServicesFeature from '../../../components/ServicesFeature.astro';
+import { services } from '../../../data/services';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { lang: 'en', slug: s.slug } }));
+}
+---
+<ServicesFeature />

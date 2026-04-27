@@ -1,0 +1,8 @@
+---
+import ServicesIndex from '../../../components/ServicesIndex.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }];
+}
+---
+<ServicesIndex />

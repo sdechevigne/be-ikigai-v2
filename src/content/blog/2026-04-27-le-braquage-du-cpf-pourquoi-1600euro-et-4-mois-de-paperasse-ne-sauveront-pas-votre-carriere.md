@@ -28,7 +28,7 @@ faq:
     answer: >-
       Depuis 2026, le financement CPF d’un bilan de compétences est plafonné à
       1600€, avec une durée minimale de 13 heures et un délai de 5 ans entre
-      deux bilans financés sur fonds publics.rh-talents+3
+      deux bilans financés sur fonds.
 
       Au-delà de 1600€, le surplus doit être financé par vous, votre employeur
       ou un autre organisme.
@@ -36,12 +36,12 @@ faq:
     answer: Le reste à charge forfaitaire de 150€ par formation s’applique à la
       plupart des utilisateurs du CPF à partir du 2 avril 2026, sauf certains
       publics exonérés comme les demandeurs d’emploi ou les salariés bénéficiant
-      d’un abondement spécifique.drf-formation+3
+      d’un abondement spécifique.
   - question: Un bilan de compétences CPF dure vraiment 4 mois ?
     answer: >-
       La réglementation impose une durée comprise entre 13 et 24 heures, le plus
       souvent étalées sur 2 à 4 mois selon les organismes et le rythme des
-      séances.boost-partners+3
+      séances.
 
       Le problème n’est pas la durée en soi, mais le fait que vous pouvez passer
       plusieurs mois à confirmer une intuition que vous avez déjà.
@@ -66,10 +66,12 @@ faq:
 ---
 ## Avril 2026 : 1600€ de plafond et 150€ de reste à charge, le faux cadeau du cpf
 
-Nous sommes en avril 2026, et le verdict est tombé : votre bilan de compétences CPF est désormais plafonné à 1600€, avec un reste à charge obligatoire de 150€ à sortir de votre poche, sauf rares exceptions.editions-tissot+3  
-Tout ce qui dépasse ce plafond doit être financé par vous, par votre employeur ou par un autre organisme, alors même que le prix moyen d’un bilan de compétences de qualité tourne souvent entre 1500€ et 2500€ en France.jeconseiletassocies+1
+Nous sommes en avril 2026, et le verdict est tombé : votre bilan de compétences CPF est désormais plafonné à 1600€, avec un reste à charge obligatoire de 150€ à sortir de votre poche, sauf rares exceptions.
 
-Sur le papier, le dispositif CPF reste « accessible ». Dans la réalité, il devient plus cher, plus encadré et plus lent, avec une durée minimale de 13 heures et souvent des accompagnements étalés sur 2 à 4 mois.cpformation+2  
+Tout ce qui dépasse ce plafond doit être financé par vous, par votre employeur ou par un autre organisme, alors même que le prix moyen d’un bilan de compétences de qualité tourne souvent entre 1500€ et 2500€ en France.
+
+Sur le papier, le dispositif CPF reste « accessible ». Dans la réalité, il devient plus cher, plus encadré et plus lent, avec une durée minimale de 13 heures et souvent des accompagnements étalés sur 2 à 4 mois.
+
 Mais le vrai scandale, ce n’est pas l’argent, c’est le temps. On vous demande de patienter des semaines pour obtenir une conclusion que vous avez déjà au fond des tripes : vous n’êtes plus à votre place.
 
 Pendant que vous remplissez des formulaires administratifs pour justifier un financement, votre boule au ventre du dimanche soir, elle, n’attend pas.
@@ -84,7 +86,7 @@ On vous propose un test d’orientation adulte gratuit ou un financement de form
 Que vous ayez 30, 40 ou 50 ans, la peur est la même : quitter votre job sans rien avoir ou espérer une rupture conventionnelle comme on attend une bouée de sauvetage au milieu de l’Atlantique.  
 Entre deux rendez-vous espacés de trois semaines, vous alternez entre espoir, doute et retour au point de départ.
 
-On vous bombarde d’infos sur l’impact de l’IA sur votre métier, sur les métiers qui recrutent en 2026, sur les secteurs en tension ou en reconversion.guide-formations-certifiantes+1  
+On vous bombarde d’infos sur l’impact de l’IA sur votre métier, sur les métiers qui recrutent en 2026, sur les secteurs en tension ou en reconversion.  
 On vous parle de reconversion vers l’écologie ou les métiers « à sens » pour donner une couleur plus noble à votre fatigue émotionnelle.
 
 ### Changer de décor sans changer de logiciel interne
@@ -128,7 +130,8 @@ Je ne vous propose pas un « bilan » au sens administratif du terme.
 Je vous propose un diagnostic de destinée.
 
 Là où le système vous demande 120 jours, je vous demande une heure de face-à-face.  
-On ne passe pas 13 à 24 heures à étirer le temps pour correspondre à un cahier des charges réglementaire.certiflash+1  
+On ne passe pas 13 à 24 heures à étirer le temps pour correspondre à un cahier des charges réglementaire.
+
 On va droit au cœur de la question : qui êtes-vous vraiment dans la structure, dans la façon de penser, dans ce que vous ne supporterez plus jamais au travail ?
 
 ### Efficience, précision, résultat : ce qui change concrètement
@@ -147,11 +150,11 @@ Vous savez ce que vous devez arrêter, ce que vous devez activer et comment tran
 
 ### 1600€, 150€ de reste à charge… pour quel retour réel ?
 
-Sérieusement, vous allez vraiment donner 150€ de votre poche et 4 mois de votre vie pour un rapport que personne ne lira, ou que vous rangerez dans un tiroir une semaine après la restitution ?nouvelleviepro+2  
+Sérieusement, vous allez vraiment donner 150€ de votre poche et 4 mois de votre vie pour un rapport que personne ne lira, ou que vous rangerez dans un tiroir une semaine après la restitution ?  
 Vous savez déjà que vous n’êtes plus à votre place.  
 Ce qui vous manque, ce n’est pas un document de plus, c’est une décision claire, soutenue par un diagnostic qui parle de vous, pas des statistiques du marché.
 
-La réforme CPF, avec son plafond à 1600€, son reste à charge obligatoire et son délai de carence de 5 ans entre deux bilans financés, pousse à se poser une vraie question de fond : est-ce que vous avez envie de jouer selon ces règles, ou est-ce que vous préférez reprendre le contrôle, en dehors du cadre public, pour aller plus vite et plus juste ?moncompteformation.gouv+3
+La réforme CPF, avec son plafond à 1600€, son reste à charge obligatoire et son délai de carence de 5 ans entre deux bilans financés, pousse à se poser une vraie question de fond : est-ce que vous avez envie de jouer selon ces règles, ou est-ce que vous préférez reprendre le contrôle, en dehors du cadre public, pour aller plus vite et plus juste ?
 
 ### Investir dans ce que l’IA ne remplacera jamais : votre identité réelle
 

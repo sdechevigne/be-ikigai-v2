@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import BookingModal from './BookingModal.astro';
+import { getLangFromUrl } from '../i18n/utils';
+import { services } from '../data/services';
+
+const lang = getLangFromUrl(Astro.url);
+const { slug } = Astro.params as { slug: string };
+
+const service = services.find((s) => s.slug === slug);
+if (!service) return Astro.redirect('/404');
+
+const copy = lang === 'fr' ? service.fr : service.en;
+const pageTitle = `${copy.title} | be-ikigai`;
+const pageDesc = copy.subtitle;
+---
+
+<Layout title={pageTitle} description={pageDesc} lang={lang}>
+  <Navbar lang={lang} transparent={false} />
+  <main class="pt-24 min-h-screen bg-beige-chaleureux">
+    <div class="container mx-auto px-6 py-16 max-w-3xl">
+      <div class="flex items-center gap-4 mb-8">
+        <span
+          class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+          style={`background-color: ${service.iconBg}`}
+        >
+          <svg class="w-7 h-7 text-bleu-crepuscule" viewBox="0 0 24 24" fill="currentColor">
+            <path d={service.iconSvgPath} />
+          </svg>
+        </span>
+        <div>
+          <h1 class="text-3xl font-comfortaa font-bold text-bleu-crepuscule">{copy.title}</h1>
+          <p class="text-gray-500 mt-1">{copy.subtitle}</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-sm text-gray-400 italic text-center">
+        {lang === 'fr' ? 'Contenu à venir…' : 'Content coming soon…'}
+      </div>
+    </div>
+  </main>
+  <Footer lang={lang} />
+  <BookingModal lang={lang} />
+</Layout>

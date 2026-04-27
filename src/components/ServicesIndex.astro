@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import BookingModal from './BookingModal.astro';
+import { getLangFromUrl } from '../i18n/utils';
+import { services } from '../data/services';
+
+const lang = getLangFromUrl(Astro.url);
+const isFR = lang === 'fr';
+
+const pageTitle = isFR ? 'Nos services | be-ikigai' : 'Our services | be-ikigai';
+const pageDesc = isFR
+  ? 'Découvrez tous les services be-ikigai : bilan Ikigai, coaching, ateliers et plus.'
+  : 'Discover all be-ikigai services: Ikigai assessment, coaching, workshops and more.';
+
+const servicesBaseUrl = isFR ? '/services/' : `/${lang}/services/`;
+---
+
+<Layout title={pageTitle} description={pageDesc} lang={lang}>
+  <Navbar lang={lang} transparent={false} />
+  <main class="pt-24 min-h-screen bg-beige-chaleureux">
+    <div class="container mx-auto px-6 py-16 max-w-4xl">
+      <h1 class="text-4xl font-comfortaa font-bold text-bleu-crepuscule mb-4">
+        {isFR ? 'Nos services' : 'Our services'}
+      </h1>
+      <p class="text-gray-600 mb-12 text-lg">
+        {isFR
+          ? "Tous les accompagnements be-ikigai pour trouver ta voie et t'épanouir."
+          : 'All be-ikigai accompaniments to find your path and flourish.'}
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {services.map((service) => {
+          const copy = lang === 'fr' ? service.fr : service.en;
+          return (
+            <a
+              href={`${servicesBaseUrl}${service.slug}/`}
+              class="flex items-start gap-4 p-5 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+            >
+              <span
+                class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
+                style={`background-color: ${service.iconBg}`}
+              >
+                <svg class="w-6 h-6 text-bleu-crepuscule" viewBox="0 0 24 24" fill="currentColor">
+                  <path d={service.iconSvgPath} />
+                </svg>
+              </span>
+              <div>
+                <p class="font-semibold text-bleu-crepuscule">{copy.title}</p>
+                <p class="text-sm text-gray-500 mt-0.5">{copy.subtitle}</p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </main>
+  <Footer lang={lang} />
+  <BookingModal lang={lang} />
+</Layout>

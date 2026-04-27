@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { services } from '../data/services';
 
 interface Props {
   lang: string;
@@ -12,6 +13,7 @@ const t = useTranslations(lang);
 const homeUrl = lang === 'fr' ? '/' : `/${lang}/`;
 const blogUrl = lang === 'fr' ? '/blog/' : `/${lang}/blog/`;
 const pricingUrl = lang === 'fr' ? '/tarifs/' : `/${lang}/pricing/`;
+const servicesUrl = lang === 'fr' ? '/services/' : `/${lang}/services/`;
 const switchLangUrl = lang === 'fr' ? '/en/' : '/';
 
 const navClass = transparent 
@@ -52,9 +54,67 @@ const navClass = transparent
       <a href={`${homeUrl}#qui-suis-je`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         {lang === 'fr' ? 'À propos' : 'About'}
       </a>
-      <a href={`${homeUrl}#solution`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
-        Services
-      </a>
+      <!-- Mega-menu Services -->
+      <div class="group relative">
+        <button
+          type="button"
+          class="flex items-center gap-1 nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide"
+        >
+          Services
+          <svg
+            class="w-4 h-4 transition-transform duration-150 group-hover:rotate-180"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Dropdown panel -->
+        <div
+          class="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-150 ease-out z-50"
+        >
+          <div class="bg-white rounded-2xl shadow-xl p-4 w-[520px]">
+            <div class="grid grid-cols-2 gap-1">
+              {services.map((service) => {
+                const copy = lang === 'fr' ? service.fr : service.en;
+                const href = `${servicesUrl}${service.slug}/`;
+                return (
+                  <a
+                    href={href}
+                    class="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors"
+                  >
+                    <span
+                      class="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center"
+                      style={`background-color: ${service.iconBg}`}
+                    >
+                      <svg class="w-5 h-5 text-bleu-crepuscule" viewBox="0 0 24 24" fill="currentColor">
+                        <path d={service.iconSvgPath} />
+                      </svg>
+                    </span>
+                    <span class="flex flex-col">
+                      <span class="text-sm font-semibold text-bleu-crepuscule leading-tight">{copy.title}</span>
+                      <span class="text-xs text-gray-500 mt-0.5 leading-snug">{copy.subtitle}</span>
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between px-2">
+              <span class="text-xs text-gray-400">Web · iOS · Android</span>
+              <a
+                href={servicesUrl}
+                class="text-sm font-semibold text-[#9333ea] hover:underline flex items-center gap-1"
+              >
+                {lang === 'fr' ? 'Tous les services' : 'All services'}
+                <span aria-hidden="true">›</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
       <a href={pricingUrl} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         {lang === 'fr' ? 'Tarifs' : 'Pricing'}
       </a>

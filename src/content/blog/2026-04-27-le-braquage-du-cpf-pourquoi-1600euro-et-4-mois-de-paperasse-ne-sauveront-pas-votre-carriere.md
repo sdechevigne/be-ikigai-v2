@@ -64,107 +64,84 @@ faq:
       En 48 heures, vous repartez avec une trajectoire et un plan de bataille au
       lieu d’un rapport qui ressemble à un dossier administratif.
 ---
-## Avril 2026 : 1600€ de plafond et 150€ de reste à charge, le faux cadeau du cpf
+## Avril 2026 : 1600€ de plafond et 150€ de reste à charge, le faux cadeau du CPF
 
 Nous sommes en avril 2026, et le verdict est tombé : votre bilan de compétences CPF est désormais plafonné à 1600€, avec un reste à charge obligatoire de 150€ à sortir de votre poche, sauf rares exceptions.
 
-Tout ce qui dépasse ce plafond doit être financé par vous, par votre employeur ou par un autre organisme, alors même que le prix moyen d’un bilan de compétences de qualité tourne souvent entre 1500€ et 2500€ en France.
+Tout ce qui dépasse ce plafond doit être financé par vous, par votre employeur ou par un autre organisme, alors même que le prix moyen d'un bilan de compétences de qualité tourne souvent entre 1500€ et 2500€ en France.
 
-Sur le papier, le dispositif CPF reste « accessible ». Dans la réalité, il devient plus cher, plus encadré et plus lent, avec une durée minimale de 13 heures et souvent des accompagnements étalés sur 2 à 4 mois.
+Sur le papier, le dispositif CPF reste "accessible". Dans la réalité, il devient cher et lourdement encadré. C'est surtout une procédure d'une lenteur exaspérante, avec une durée minimale de 13 heures et des accompagnements étalés sur 2 à 4 mois.
 
-Mais le vrai scandale, ce n’est pas l’argent, c’est le temps. On vous demande de patienter des semaines pour obtenir une conclusion que vous avez déjà au fond des tripes : vous n’êtes plus à votre place.
+Mais le vrai scandale est une question de temps. On vous demande de patienter des semaines pour obtenir une conclusion que vous avez déjà au fond des tripes. Vous savez que vous n'êtes plus à votre place.
 
-Pendant que vous remplissez des formulaires administratifs pour justifier un financement, votre boule au ventre du dimanche soir, elle, n’attend pas.
+Pendant que vous remplissez des formulaires administratifs pour justifier un financement, votre boule au ventre du dimanche soir n'attend pas. Je trouve cette violence bureaucratique assez sidérante.
 
-## L’anesthésie par la procédure : l’impasse des bilans classiques
+## L'anesthésie par la procédure : l'impasse des bilans classiques
 
 ### Le système adore vous faire cocher des cases
 
-Le système adore vous faire cocher des cases.  
-On vous propose un test d’orientation adulte gratuit ou un financement de formation salarié pour vous rassurer, mais au fond, c’est du surplace.
+Le système adore vous faire cocher des cases. On vous propose un test d'orientation adulte gratuit ou un financement de formation salarié pour vous rassurer. Au fond, c'est du surplace.
 
-Que vous ayez 30, 40 ou 50 ans, la peur est la même : quitter votre job sans rien avoir ou espérer une rupture conventionnelle comme on attend une bouée de sauvetage au milieu de l’Atlantique.  
-Entre deux rendez-vous espacés de trois semaines, vous alternez entre espoir, doute et retour au point de départ.
+Que vous ayez 30, 40 ou 50 ans, la peur reste identique. Quitter votre job sans rien avoir terrifie. Espérer une rupture conventionnelle ressemble à attendre une bouée de sauvetage au milieu de l'Atlantique. Entre deux rendez-vous espacés de trois semaines, vous alternez entre un vague espoir et un doute écrasant. Puis vous revenez à la case départ.
 
-On vous bombarde d’infos sur l’impact de l’IA sur votre métier, sur les métiers qui recrutent en 2026, sur les secteurs en tension ou en reconversion.  
-On vous parle de reconversion vers l’écologie ou les métiers « à sens » pour donner une couleur plus noble à votre fatigue émotionnelle.
+On vous bombarde d'informations sur l'impact de l'IA et les secteurs en tension. On vous vend des reconversions vers l'écologie ou les métiers "à sens" pour maquiller votre fatigue émotionnelle.
 
 ### Changer de décor sans changer de logiciel interne
 
-Changer de décor sans changer de logiciel interne, c’est juste déplacer le problème.  
-Le burn-out ou le brown-out ne se soignent pas avec une nouvelle fiche de poste, ils se soignent avec de la clarté sur qui vous êtes vraiment, sur ce que votre architecture interne réclame.
+Changer de décor sans toucher au logiciel interne déplace simplement le problème. Le burn-out ou le brown-out ne se soignent pas avec une nouvelle fiche de poste. Ils exigent une clarté absolue sur qui vous êtes vraiment et sur les besoins de votre architecture interne.
 
-Le bilan de compétences classique a son utilité, mais il souffre souvent d’un angle mort : il part de ce que vous savez déjà faire et de votre historique de poste, alors que le bug principal se situe plus profond, dans votre câblage de naissance.  
-Tant qu’on n’a pas touché à cela, on risque juste de vous recaser dans un costume un peu mieux taillé, mais toujours mal accordé à votre vraie nature.
+Le bilan de compétences a son utilité. Il souffre pourtant d'un angle mort fatal : il s'appuie sur ce que vous savez déjà faire. Le bug principal se situe plus profond, dans votre câblage de naissance. Tant qu'on ignore cette donnée, vous finissez recasé dans un costume un peu mieux taillé. Un costume toujours inadapté à votre nature.
 
 ## Pourquoi votre architecture interne se moque des diplômes
 
-### Le monde du travail, machine à désalignement
+### Le monde du travail est une machine à désalignement
 
-Le monde du travail actuel est une machine à créer du désalignement.  
-Vous vous sentez illégitime, bloqué sous un plafond de verre, à essayer de valoriser des compétences sans diplôme dans un système qui ne jure que par le papier.  
-C’est épuisant.
+Le monde du travail actuel agit comme une machine à créer de la dissonance. Vous vous sentez illégitime, bloqué sous un plafond de verre, à essayer de valoriser des compétences sans diplôme dans un système obsédé par le papier. C'est épuisant.
 
-Le problème, ce n’est pas votre CV.  
-C’est votre câblage interne.
+Oubliez votre CV. Votre câblage interne est le vrai sujet.
 
-Certains sont nés pour structurer, d’autres pour transmettre, d’autres pour briser les codes.  
-Si vous essayez de forcer votre nature pour rentrer dans un moule « qui recrute », vous finirez par ne plus supporter votre travail, même si sur LinkedIn tout a l’air parfait.
+Certains sont nés pour structurer. D'autres sont faits pour briser les codes. Si vous forcez votre nature pour rentrer dans un moule "qui recrute", vous finirez par haïr votre travail, même avec un profil LinkedIn parfait.
 
 ### Quand on nage à contre-courant de son architecture de naissance
 
-La sensation de perte de sens vient de là : vous nagez à contre-courant de votre propre architecture de naissance.  
-Vous pouvez accumuler les certificats, les formations tendances, les réorientations « intelligentes », si vous n’avez pas aligné votre trajectoire sur votre fonctionnement réel, la même lassitude reviendra.
+La sensation de perte de sens vient de là. Vous nagez à contre-courant de votre propre architecture de naissance. Vous pouvez accumuler les certificats ou les réorientations "intelligentes". Si vous ne calez pas votre trajectoire sur votre fonctionnement réel, la lassitude reviendra systématiquement.
 
-Et ce n’est pas un coach de carrière classique qui va détecter ce bug en 4 mois de rendez-vous espacés.  
-Vous pouvez sortir avec un rapport propre, quelques pistes et une jolie synthèse, mais votre corps, lui, sait très bien si vous retournez dans un environnement qui l’étouffe ou pas.
+Un coach de carrière classique ne détectera pas ce bug avec des rendez-vous espacés sur quatre mois. Vous sortirez peut-être avec un rapport propre et une jolie synthèse. Votre corps, lui, sait très bien si vous retournez dans un environnement qui l'étouffe.
 
-## Be-ikigai : le court-circuit chirurgical
+## Be-Ikigai : le court-circuit chirurgical
 
-### Pourquoi attendre l’été pour savoir ce que vous savez déjà ?
+### Pourquoi attendre l'été pour savoir ce que vous savez déjà ?
 
-Chez Be-Ikigai, on a arrêté de jouer au jeu des 4 mois de réflexion.  
-Pourquoi attendre l’été pour savoir quoi faire de votre vie alors que votre architecture intérieure est déjà écrite ?
+Chez Be-Ikigai, j'ai arrêté de jouer au jeu des longs mois de réflexion. Pourquoi attendre l'été pour savoir quoi faire de votre vie alors que votre architecture intérieure est déjà écrite ?
 
-Je ne vous propose pas un « bilan » au sens administratif du terme.  
-Je vous propose un diagnostic de destinée.
+Je ne vous propose pas un "bilan" au sens administratif. Je vous propose un diagnostic de destinée.
 
-Là où le système vous demande 120 jours, je vous demande une heure de face-à-face.  
-On ne passe pas 13 à 24 heures à étirer le temps pour correspondre à un cahier des charges réglementaire.
+Le système exige 120 jours. Je demande une heure de face-à-face. Je refuse d'étirer le temps pendant 24 heures pour correspondre à un cahier des charges réglementaire.
 
-On va droit au cœur de la question : qui êtes-vous vraiment dans la structure, dans la façon de penser, dans ce que vous ne supporterez plus jamais au travail ?
+On va à l'essentiel. Qui êtes-vous vraiment dans votre structure mentale ? Qu'est-ce que vous refusez de subir au travail désormais ?
 
-### Efficience, précision, résultat : ce qui change concrètement
+### Ce qui change concrètement
 
-L’efficience : là où le système vous demande 120 jours, je vous demande une heure de face-à-face.  
-On coupe le bruit pour écouter vraiment ce que vos codes racontent.
+L'approche gagne en efficacité immédiate. Le système réclame des mois d'attente. Je demande une heure d'échange frontal. Je coupe le bruit ambiant pour écouter ce que vos codes racontent.
 
-La précision : on ne regarde pas ce que vous « savez faire », on regarde vos codes de naissance.  
-On déterre votre structure profonde pour comprendre pourquoi vous faites du surplace, pourquoi certains environnements vous vident et d’autres vous nourrissent.
+Je ne regarde pas ce que vous "savez faire". J'analyse vos codes de naissance. Je déterre votre structure profonde pour comprendre vos blocages. Certains environnements vous vident. D'autres vous nourrissent. Il faut comprendre pourquoi.
 
-Le résultat : en 48 heures, vous avez votre plan de bataille.  
-Pas une liste de métiers théoriques, mais une trajectoire alignée avec votre propre mécanique.  
-Vous savez ce que vous devez arrêter, ce que vous devez activer et comment transformer votre situation actuelle en tremplin plutôt qu’en prison.
+En 48 heures, vous avez un plan de bataille. J'oublie les listes de métiers théoriques pour définir une trajectoire calée sur votre propre mécanique. Vous saurez exactement ce qu'il faut arrêter et ce qu'il faut activer. Votre situation actuelle deviendra un tremplin.
 
-## Faut-il encore miser sur un bilan de compétences cpf en 2026 ?
+## Faut-il encore miser sur un bilan de compétences CPF en 2026 ?
 
-### 1600€, 150€ de reste à charge… pour quel retour réel ?
+### 1600€ et 150€ de reste à charge pour quel retour réel ?
 
-Sérieusement, vous allez vraiment donner 150€ de votre poche et 4 mois de votre vie pour un rapport que personne ne lira, ou que vous rangerez dans un tiroir une semaine après la restitution ?  
-Vous savez déjà que vous n’êtes plus à votre place.  
-Ce qui vous manque, ce n’est pas un document de plus, c’est une décision claire, soutenue par un diagnostic qui parle de vous, pas des statistiques du marché.
+Sérieusement, allez-vous donner 150€ de votre poche et 4 mois de votre vie pour un rapport qui finira dans un tiroir ? Vous savez déjà que vous n'êtes plus à votre place. Vous n'avez aucun besoin d'un document supplémentaire. Une décision claire s'impose. Elle doit s'appuyer sur un diagnostic qui parle de vous, pas des statistiques du marché.
 
-La réforme CPF, avec son plafond à 1600€, son reste à charge obligatoire et son délai de carence de 5 ans entre deux bilans financés, pousse à se poser une vraie question de fond : est-ce que vous avez envie de jouer selon ces règles, ou est-ce que vous préférez reprendre le contrôle, en dehors du cadre public, pour aller plus vite et plus juste ?
+La réforme CPF plafonne le budget à 1600€. Elle impose un reste à charge et un délai de carence de 5 ans entre deux bilans. Cela force un vrai choix. Soit vous jouez selon ces règles administratives. Soit vous reprenez le contrôle hors du cadre public pour avancer vite.
 
-### Investir dans ce que l’IA ne remplacera jamais : votre identité réelle
+### Investir dans votre identité réelle
 
-Ou vous préférez investir dans la seule chose qui ne sera jamais remplacée par une IA : votre identité réelle.  
-On se pose, on scanne vos codes, et on prend la décision de vous remettre sur vos rails.
+Je vous suggère d'investir dans la seule chose qu'une IA ne remplacera jamais : votre identité réelle. Je me pose avec vous. Je scanne vos codes. Je prends la décision de vous remettre sur vos rails.
 
-Pour 580€, tout est bouclé en 48 heures.  
-Et si le déclic n’est pas là, je vous rembourse.  
-Je ne suis pas là pour vous caresser dans le sens du poil, mais pour vous rendre votre légitimité.
+Pour 580€, l'analyse est bouclée en 48 heures. Si le déclic n'a pas lieu, je vous rembourse. Je refuse de vous caresser dans le sens du poil. Mon but est de vous rendre votre légitimité.
 
-Que vous soyez salarié en CDI en région parisienne, cadre à Nantes, en reconversion à Lyon ou en télétravail depuis un coin reculé de France, la logique est la même : soit vous laissez la machine décider du rythme de votre vie professionnelle, soit vous reprenez la main.
+Que vous soyez cadre à Nantes ou en télétravail dans un village isolé, la logique reste identique. Vous avez le choix entre laisser la machine dicter votre rythme ou reprendre la main.
 
 Alors, on commence quand ?

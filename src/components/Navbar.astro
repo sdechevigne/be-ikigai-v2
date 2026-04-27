@@ -146,9 +146,44 @@ const navClass = transparent
       <a href={`${homeUrl}#qui-suis-je`} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
         {lang === 'fr' ? 'À propos' : 'About'}
       </a>
-      <a href={`${homeUrl}#solution`} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
-        Services
-      </a>
+      <!-- Accordéon mobile Services -->
+      <div class="w-full border-b border-white/10">
+        <button
+          id="mobile-services-toggle"
+          class="flex items-center justify-between w-full text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-h-[48px] transition-colors"
+        >
+          Services
+          <svg
+            id="mobile-services-chevron"
+            class="w-5 h-5 transition-transform duration-200"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="mobile-services-list" class="hidden flex-col gap-0 pb-2">
+          {services.map((service) => {
+            const copy = lang === 'fr' ? service.fr : service.en;
+            const href = `${servicesUrl}${service.slug}/`;
+            return (
+              <a
+                href={href}
+                class="mobile-link text-white/80 text-lg font-comfortaa py-2 pl-4 hover:text-dore-serein transition-colors block"
+              >
+                {copy.title}
+              </a>
+            );
+          })}
+          <a
+            href={servicesUrl}
+            class="mobile-link text-[#c084fc] text-base font-comfortaa font-semibold py-2 pl-4 hover:text-dore-serein transition-colors block"
+          >
+            {lang === 'fr' ? 'Tous les services →' : 'All services →'}
+          </a>
+        </div>
+      </div>
       <a href={pricingUrl} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
         {lang === 'fr' ? 'Tarifs' : 'Pricing'}
       </a>
@@ -208,6 +243,23 @@ const navClass = transparent
     link.addEventListener('click', () => {
       if(isMenuOpen) toggleMenu();
     });
+  });
+
+  const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+  const mobileServicesList = document.getElementById('mobile-services-list');
+  const mobileServicesChevron = document.getElementById('mobile-services-chevron');
+
+  mobileServicesToggle?.addEventListener('click', () => {
+    const isOpen = !mobileServicesList?.classList.contains('hidden');
+    if (isOpen) {
+      mobileServicesList?.classList.add('hidden');
+      mobileServicesList?.classList.remove('flex');
+      mobileServicesChevron?.classList.remove('rotate-180');
+    } else {
+      mobileServicesList?.classList.remove('hidden');
+      mobileServicesList?.classList.add('flex');
+      mobileServicesChevron?.classList.add('rotate-180');
+    }
   });
 </script>
 

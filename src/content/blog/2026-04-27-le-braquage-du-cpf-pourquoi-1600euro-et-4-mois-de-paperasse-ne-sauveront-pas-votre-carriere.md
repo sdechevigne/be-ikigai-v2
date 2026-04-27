@@ -4,7 +4,7 @@ title: "Le braquage du cpf : pourquoi 1600€ et 4 mois de paperasse ne sauveron
 lang: fr
 description: "Réforme CPF 2026, plafond à 1600€, reste à charge 150€ et bilans
   de compétences sur 4 mois : pourquoi ça ne résoudra pas votre malaise au
-  travail.certiflash+1"
+  travail."
 summary:
   - Le bilan de compétences CPF est plafonné à 1600€ et impose un reste à charge
     de 150€ depuis 2026.

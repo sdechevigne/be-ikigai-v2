@@ -147,10 +147,10 @@ const author = post.data.author || 'Pierre-Louis';
                                     {post.data.faq.map(item => (
                                         <details class="faq-item">
                                             <summary class="faq-question">
-                                                <span>{item.q}</span>
+                                                <span>{item.question}</span>
                                                 <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                             </summary>
-                                            <p class="faq-answer">{item.a}</p>
+                                            <p class="faq-answer">{item.answer}</p>
                                         </details>
                                     ))}
                                 </div>

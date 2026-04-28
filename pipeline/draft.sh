@@ -324,7 +324,7 @@ $(cat "${CARD_BODY}" 2>/dev/null || echo '')"
       --allowedTools "Read,Edit" \
       --max-turns 5 \
       --dangerously-skip-permissions \
-      -p "Corrige les erreurs de frontmatter dans ${ARTICLE_PATH}. Erreur Astro : ${ASTRO_ERROR}. description doit faire 110-160 chars. category doit être : Reconversion / Sens & Ikigai / Burn-out / Coaching / Management. publishedAt au format AAAA-MM-JJTHH:MM:SS." \
+      -p "Corrige les erreurs de frontmatter dans ${ARTICLE_PATH}. Erreur Astro : ${ASTRO_ERROR}. description doit faire 110-160 chars. category doit être EXACTEMENT l'une de : Ikigai / Sens au travail / Transition professionnelle / Philosophie de vie / Coaching. publishedAt au format AAAA-MM-JJTHH:MM:SS." \
       2>>"${LOG_FILE}" || true
   done
 

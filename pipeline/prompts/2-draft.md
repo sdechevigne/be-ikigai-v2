@@ -63,10 +63,11 @@ Respecte toutes les règles de `pipeline/skills-prompt.md`.
 
 ## Mapping cluster → catégorie
 
-Utilise **exactement** une de ces valeurs pour `category` (liste fermée PagesCMS) :
+Valeurs autorisées pour `category` (liste **strictement fermée**, toute autre valeur est invalide) :
+`Ikigai` · `Sens au travail` · `Transition professionnelle` · `Philosophie de vie` · `Coaching`
 
-| Cluster | category |
-|---------|----------|
+| Cluster | category à utiliser |
+|---------|---------------------|
 | Reconversion | `Transition professionnelle` |
 | Sens & Ikigai | `Sens au travail` |
 | Burn-out & Épuisement | `Coaching` |

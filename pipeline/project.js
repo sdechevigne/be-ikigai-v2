@@ -1,13 +1,16 @@
 // pipeline/project.js
-import { execSync } from 'child_process';
+import { spawnSync } from 'child_process';
 import { PROJECT_CONFIG } from './config.js';
 
 function gh(query) {
-  const result = execSync(`gh api graphql -f query='${query}'`, {
+  const payload = JSON.stringify({ query });
+  const result = spawnSync('gh', ['api', 'graphql', '--input', '-'], {
+    input: payload,
     timeout: 30000,
     encoding: 'utf8',
   });
-  return JSON.parse(result);
+  if (result.status !== 0) throw new Error(result.stderr || result.stdout);
+  return JSON.parse(result.stdout);
 }
 
 export async function setProjectFields(itemId, { score, cluster, contentType }) {

@@ -28,17 +28,29 @@ Respecte toutes les règles de `pipeline/skills-prompt.md`.
 ```
 [frontmatter complet]
 
+> **À retenir**
+> - [Bullet 1 — fait concret ou chiffre clé, ≤200 chars]
+> - [Bullet 2 — règle ou insight actionnable, ≤200 chars]
+> - [Bullet 3 — quoi faire concrètement, ≤200 chars]
+> - [Bullet 4 — conseil ou mise en garde, ≤200 chars]
+> - [Bullet 5 optionnel, ≤200 chars]
+> - [Bullet 6 optionnel, ≤200 chars]
+
 [Introduction 200–300 mots avec accroche terrain + mot-clé dans les 100 premiers mots]
 
 ## [H2 — question ou titre direct]
 
 [Première phrase = réponse directe (featured snippet)]
 
-[Corps de la section]
+[Corps de la section avec exemples concrets, statistiques sourcées, témoignages]
+
+[Micro-CTA contextuel intégré naturellement dans le corps si pertinent]
 
 ### [H3 si approfondissement]
 
 [4–5 sections H2 minimum]
+
+[2–3 suggestions d'images : ![Alt text SEO avec mot-clé](description-image.webp)]
 
 ## Conclusion
 
@@ -54,7 +66,7 @@ Respecte toutes les règles de `pipeline/skills-prompt.md`.
 
 ## Résumé social
 
-[4–5 bullets ≤ 200 chars + hashtags pertinents]
+[4–6 bullets ≤ 200 chars chacun + hashtags pertinents]
 
 ## Références
 

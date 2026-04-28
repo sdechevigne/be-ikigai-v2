@@ -186,6 +186,13 @@ if [[ -n "${RESUME_SLUG}" ]]; then
   fi
 fi
 
+FREE_TEXT="${FREE_TEXT:-}"
+if [[ -z "${RESUME_SLUG}" ]] && [[ -n "${FREE_TEXT}" ]]; then
+  log "Mode texte libre : écriture du card-body.md depuis FREE_TEXT"
+  printf '%s' "${FREE_TEXT}" > "${CARD_BODY}"
+  DRAFT_FROM_URL=true
+fi
+
 ITEM_ID=""
 
 if [[ -n "${RESUME_SLUG}" ]]; then

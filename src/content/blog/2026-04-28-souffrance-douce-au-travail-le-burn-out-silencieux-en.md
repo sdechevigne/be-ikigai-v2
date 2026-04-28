@@ -1,59 +1,41 @@
 ---
 title: "Quiet Suffering at Work: The Silent Burnout of High Achievers"
 lang: en
-description: "Have a good job and a good salary, but feel an inner void? You're not alone. Discover what quiet suffering is and how to break free."
+description: Have a good job and a good salary, but feel an inner void? You're
+  not alone. Discover what quiet suffering is and how to break free.
 seoKeywords: quiet suffering at work, brown-out, loss of meaning, ikigai, career change
 summary:
-  - "Quiet suffering, or 'brown-out,' is that inner void you feel at work, even when everything looks perfect on the outside."
-  - "It's not a violent burnout. It's a professional numbness that settles in when your daily tasks clash with your core values."
-  - "Your case isn't isolated: only 7% of French employees feel actively engaged in their work (Gallup, 2023)."
-  - "To escape the golden cage (good salary, status), you must first get a clear diagnosis of what's truly wrong."
-social_summary:
-  - "Great job, good salary, but feeling empty? It's 'quiet suffering,' and you're not alone. #CareerChange"
-  - "It's not burnout, it's brown-out: a slow drain of meaning when your job clashes with your values. #WorkLife"
-  - "The shocking stat: Only 7% of French employees feel engaged at work (Gallup, 2023). This is a systemic problem. #MeaningfulWork"
-  - "The biggest trap? The 'golden cage.' A comfortable salary and a nice title that keep you stuck. #Ikigai"
-  - "Before you quit, the first step is to understand *why* you feel this way. #BeIkigai"
-schemaOrg:
-  - >
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Quiet Suffering at Work: The Silent Burnout of High Achievers",
-      "description": "Have a good job and a good salary, but feel an inner void? You're not alone. Discover what quiet suffering is and how to break free.",
-      "author": {
-        "@type": "Person",
-        "name": "Pierre-Louis"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Be-Ikigai",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "/assets/img/logo_fullhd.png"
-        }
-      },
-      "image": "/assets/img/blog/souffrance-douce-au-travail-le-burn-out-silencieux-en.png"
-    }
-publishedAt: 2026-04-28T10:00:00
+  - Quiet suffering, or 'brown-out,' is that inner void you feel at work, even
+    when everything looks perfect on the outside.
+  - It's not a violent burnout. It's a professional numbness that settles in
+    when your daily tasks clash with your core values.
+  - "Your case isn't isolated: only 7% of French employees feel actively engaged
+    in their work (Gallup, 2023)."
+  - To escape the golden cage (good salary, status), you must first get a clear
+    diagnosis of what's truly wrong.
+publishedAt: 2026-04-25
 author: Pierre-Louis
-category: "Meaning & Ikigai"
+category: Transition professionnelle
 image: /assets/img/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-fr.webp
-featured: false
 status: published
+featured: false
 faq:
-  - question: "What is quiet suffering at work?"
-    answer: "It's a constant misalignment between your values and your tasks. Not a sudden explosion like burnout, but a persistent loss of meaning."
-  - question: "What are the disengagement figures in France?"
-    answer: "According to Gallup (2023), only 7% of French employees are actively engaged in their work, compared to the 13% European average."
-  - question: "What's the difference between burnout and brown-out?"
-    answer: "Burnout is exhaustion from overload ('too much'). Brown-out is an extinction from a lack of meaning ('too empty')."
-  - question: "Why are people aged 25-40 so affected?"
-    answer: "This generation seeks an impact that rigid corporate structures often fail to provide. Frustration is the natural result."
-  - question: "Am I just spoiled for complaining?"
-    answer: "No. Searching for meaning is a valid need. Guilt is a symptom of the problem, not a sign that your feelings are wrong."
+  - question: What is quiet suffering at work?
+    answer: It's a constant misalignment between your values and your tasks. Not a
+      sudden explosion like burnout, but a persistent loss of meaning.
+  - question: What are the disengagement figures in France?
+    answer: According to Gallup (2023), only 7% of French employees are actively
+      engaged in their work, compared to the 13% European average.
+  - question: What's the difference between burnout and brown-out?
+    answer: Burnout is exhaustion from overload ('too much'). Brown-out is an
+      extinction from a lack of meaning ('too empty').
+  - question: Why are people aged 25-40 so affected?
+    answer: This generation seeks an impact that rigid corporate structures often
+      fail to provide. Frustration is the natural result.
+  - question: Am I just spoiled for complaining?
+    answer: No. Searching for meaning is a valid need. Guilt is a symptom of the
+      problem, not a sign that your feelings are wrong.
 ---
-
 Monday morning, 9:03 AM. Your LinkedIn title is pristine, your salary lands at the end of the month, and yet, as you turn on your computer, you feel that familiar void. You check the boxes, attend the meetings, smile on Zoom. On the surface, everything is fine. You're a high achiever in the professional world. But inside, something feels hollow.
 
 It's not the workload weighing you down, nor a toxic manager. It's more subtle, almost shameful. A feeling of disconnect, of polite uselessness. You perform your tasks mechanically, in a sort of professional numbness, while feeling guilty for not being more grateful. "I have everything I need to be happy, right?"
@@ -72,11 +54,13 @@ This figure doesn't talk about lazy people. It talks about people like you, who 
 
 The feeling of emptiness you're experiencing is a symptom of a much larger problem. Data confirms that the quest for meaning is not a whim, but a groundswell moving through the world of work.
 
+
 | Key Statistic | Source | Year | What it means for you |
-| :--- | :--- | :--- | :--- |
+| ---------------------------------------------------------------- | --------------------------------- | ---- | ---------------------------------------------------------------------------------- |
 | **1 in 2 employees** no longer sees the point of their missions. | Alan x Harris Interactive | 2023 | Your feeling of uselessness is shared by half of your colleagues. |
 | **47% of the workforce** wants to change careers. | HelloWork | 2022 | Your desire for a career change isn't a failure; it's the new norm. |
 | **Loss of meaning** is the #1 psychosocial risk for managers. | Jean-Claude Delgenes, Technologia | 2022 | What you're going through isn't a weakness; it's a recognized professional hazard. |
+
 
 These figures prove it: the problem isn't just you, it's systemic. The world of work has changed, but its structures haven't kept up.
 
@@ -92,11 +76,11 @@ Your generation doesn't just want a salary. It wants a mission. And when the mis
 
 How do you know if you're in the middle of a brown-out? It's an insidious fatigue, not always visible from the outside. Here are a few signs that don't lie:
 
-*   **Discreet cynicism:** You make jaded jokes about your work, your company, your tasks. It's a defense mechanism to distance yourself from your disengagement.
-*   **Cognitive fatigue:** You're not physically exhausted, but you struggle to concentrate. Simple tasks require a disproportionate amount of mental effort.
-*   **Passive presenteeism:** You're there, but your mind is elsewhere. You do the bare minimum so no one can blame you, but you've mentally checked out.
-*   **Social irritability:** Trivial conversations at the coffee machine or "team-building" events feel unbearable. You isolate yourself.
-*   **Guilt of the happy impostor:** You feel guilty for not appreciating a job that others would deem "perfect." You hide your unhappiness, even from your loved ones.
+- **Discreet cynicism:** You make jaded jokes about your work, your company, your tasks. It's a defense mechanism to distance yourself from your disengagement.
+- **Cognitive fatigue:** You're not physically exhausted, but you struggle to concentrate. Simple tasks require a disproportionate amount of mental effort.
+- **Passive presenteeism:** You're there, but your mind is elsewhere. You do the bare minimum so no one can blame you, but you've mentally checked out.
+- **Social irritability:** Trivial conversations at the coffee machine or "team-building" events feel unbearable. You isolate yourself.
+- **Guilt of the happy impostor:** You feel guilty for not appreciating a job that others would deem "perfect." You hide your unhappiness, even from your loved ones.
 
 If you recognize yourself in several of these points, you're not just "going through a phase." You're facing an alarm bell you can no longer ignore.
 
@@ -123,3 +107,4 @@ Want to know where you really stand? Discover the **Be-Ikigai destiny diagnosis*
 3. [The Ordeal of Work: From Suffering to Health (L'épreuve du travail)](https://www.puf.com/content/L%C3%A9preuve_du_travail) — Book, Danièle Linhart, PUF, 2021
 4. [Survey on Professional Reconversion](https://www.hellowork.com/fr-fr/medias/reconversion-professionnelle-chiffres-2022.html) — Survey, HelloWork, 2022
 5. [Meaning at work or the meaning of work? (Sens au travail ou sens du travail ?)](https://www2.deloitte.com/fr/fr/pages/talents-et-ressources-humaines/articles/etude-sens-au-travail.html) — Study, Deloitte / Viadeo, 2017
+

@@ -72,3 +72,16 @@ Avoid decorative capitalization on titles and labels (not Title Case). Capitaliz
 ### Images
 
 Use a single `<img>` tag pointing to `.webp` — don't reintroduce `<picture>` with AVIF/JPEG fallbacks (maintenance burden, files drift out of sync). Exception: schema.org JSON-LD, Open Graph, and blog post frontmatter images stay as `.png`/`.jpg` since some social crawlers don't read WebP. `logo_fullhd.png` and `pierre-louis-be-ikigai.png` are intentional PNGs for this reason.
+
+## Blog pipeline (`pipeline/`)
+
+Node ESM pipeline autonome générant des articles FR+EN via Gemini CLI. Voir `.claude/references/PIPELINE.md` pour l'architecture complète.
+
+**Gotchas opérationnels :**
+- `gh api graphql` avec body multi-lignes : utiliser `spawnSync` + stdin JSON (pas `execSync` avec interpolation shell — les apostrophes cassent le quoting)
+- Gemini CLI en CI headless : requiert `GEMINI_CLI_TRUST_WORKSPACE=true` ET `settings.json` avec `trustedDirectories` dans `GEMINI_CLI_HOME`
+- Gemini CLI ignore les fichiers préfixés par `.` — les fichiers de travail temporaires (`card-body.md`, `research-notes.md`) ne doivent PAS avoir de point en préfixe
+- GitHub Projects V2 : limite `items(first: 100)` max (pas 200) ; création de champs custom via UI uniquement (mutation GraphQL non exposée)
+- Images blog : dossier `public/assets/img/blog/` (pas `public/images/`) pour correspondre à PagesCMS
+- Catégories blog (liste fermée PagesCMS) : `Transition professionnelle`, `Sens au travail`, `Coaching`, `Ikigai`, `Philosophie de vie`
+- RSS sources actives (2026-04) : Le Monde Emploi, Figaro Emploi, Journal du Net, Parlons RH, Psychologies, Welcome to the Jungle, Maddyness

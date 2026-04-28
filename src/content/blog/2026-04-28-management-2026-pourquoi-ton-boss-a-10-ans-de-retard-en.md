@@ -16,33 +16,39 @@ featured: false
 status: draft
 faq:
   - question: "What is the impact of AI on management in 2026?"
-    answer: "AI automates reporting and resource allocation, shifting the manager's role toward coaching, strategic vision, and complex conflict resolution—tasks that are purely human."
+    answer: "AI automates reporting and resource allocation. This shifts the manager's role toward coaching, strategic vision, and complex conflict resolution, tasks that are purely human."
   - question: "Is the 4-day work week a reality in 2026?"
-    answer: "Yes, it's becoming a major talent retention tool in the service sector, forcing companies to switch from time-based management to an evaluation based on real impact."
+    answer: "Yes, it's becoming a major talent retention tool in the service sector. It forces companies to switch from time-based management to an evaluation based on real impact."
   - question: "What are the key skills for a manager in 2026?"
-    answer: "Emotional intelligence, managing teams in an asynchronous mode, and the ability to provide meaning (Ikigai) are taking precedence over pure technical expertise and simple task oversight."
-  - question: "How can I tell if my manager is 'obsolete'?"
+    answer: "Emotional intelligence, managing teams asynchronously, and the ability to provide meaning (Ikigai) are taking precedence over pure technical expertise and simple task oversight."
+  - question: "How can I tell if my manager is obsolete?"
     answer: "If they focus more on your login hours than your results, if they are incapable of trusting you, and if they see AI as a threat rather than a tool to empower people."
   - question: "Is remote work still the norm in 2026?"
-    answer: "The mature model is no longer 'fully remote' but an asynchronous-first hybrid mode, where the office becomes a social hub for targeted collaboration and team-building moments."
+    answer: "The mature model is no longer 'fully remote' but an asynchronous-first hybrid mode. The office becomes a social hub for targeted collaboration and team-building moments."
 ---
 
-Monday, 9:30 AM. You log into the weekly meeting. Your manager shares their screen. But instead of a tedious PowerPoint listing the week's figures, they pull up a simple dashboard. The AI has already compiled everything: progress, roadblocks, performance. The reporting is done. The meeting lasts only 20 minutes, and instead of talking numbers, your boss asks, "What do you need my help with this week to make your work more impactful and meaningful?"
+Monday, 9:30 AM. You log into the weekly meeting. Your manager shares their screen. Instead of a tedious PowerPoint with the week's figures, they pull up a simple dashboard. AI has already compiled everything: progress, roadblocks, performance. Reporting is done.
 
-This scenario isn't science fiction. It's the reality of 2026 in companies that get it. And yet, for many, it sounds like a scene from another planet. You feel stuck in a 1990s office, but with 2026 tools.
+The meeting lasts 20 minutes. Instead of talking numbers, your boss asks, "What do you need my help with this week to make your work more impactful and meaningful?"
 
-The problem is simple: **60% of managers under 35** believe their role needs to change radically, according to a late 2024 APEC study. This figure isn't random. It reflects the huge disconnect you feel every day. This gap between the talk of innovation and the reality of a management style that smells of mothballs.
+This scenario isn't science fiction. It's the reality of 2026 in companies that get it. Yet, for many, it sounds like a scene from another planet. You feel stuck in a 1990s office with 2026 tools.
 
-## AI Isn't Replacing Your Boss, It's Replacing Their Bad Habits
+The problem is simple. **60% of managers under 35** believe their role needs to change radically, according to a late 2024 APEC study. This figure isn't random. It reflects the huge disconnect you feel every day. This gap between the talk of innovation and the reality of a management style that smells of mothballs.
 
-The most stubborn misconception is that "AI will replace managers." This is false. AI replaces the tasks of control and reporting, forcing managers to focus on what a machine will never do: the human element. It doesn't replace your boss; it exposes their incompetence if they are nothing more than a task supervisor.
+## AI Isn't Replacing Your Boss, It's Replacing Their Worst Habits
 
-According to an estimate based on HBR France analyses, **40% of coordination** and managerial reporting tasks could be automated by AI by 2026. What does this mean in practice? It means that a manager whose only added value is checking who does what and compiling numbers in a spreadsheet is already obsolete. Their role is shifting to coaching, vision, human judgment, and the ability to give meaning to the team's mission.
+The most stubborn misconception is that "AI will replace managers." False. AI replaces control and reporting tasks. This forces managers to focus on what a machine will never do: the human element.
 
-The manager of 2026 is no longer a controller; they are a facilitator. They no longer ask, "Have you done your work?" but "Do you have what you need to do work you're proud of?" If your boss is still tracking your Slack hours, they're already out of the game. Are you on the right team?
+It doesn't replace your boss; it exposes their incompetence if they are nothing more than a task supervisor.
+
+According to an estimate based on HBR France analyses, **40% of coordination** and managerial reporting tasks could be automated by AI by 2026. What does this mean? That a manager whose only added value is checking who does what and compiling numbers in a spreadsheet is already obsolete. Their role is shifting to coaching, vision, human judgment, and giving meaning to the team's mission.
+
+The manager of 2026 is no longer a controller, they are a facilitator. They no longer ask, "Have you done your work?" but "Do you have what you need to do work you're proud of?"
+
+If your boss is still tracking your Slack hours, they're already out of the game. Are you on the right team?
 
 | Characteristic | Management Yesterday (2023) | Management Tomorrow (2026) |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | **Source of Value** | Control, supervision | Coaching, vision, meaning |
 | **Main Tool** | Excel spreadsheet, emails | AI dashboard, async platforms |
 | **Success Metric** | Time spent, tasks checked off | Impact, objective attainment (OKRs) |
@@ -55,29 +61,31 @@ The 4-day week isn't a hippie fantasy. It's a massive retention weapon for compa
 
 This model forces a shift from presenteeism to management by objectives and impact. You're no longer paid to sit in a chair from 9 to 5, but to achieve results. This changes everything in the managerial relationship. Trust becomes the norm, not the exception.
 
-In this new paradigm, the office's function changes. It's no longer the default place for individual production. It becomes a "social hub" where people gather intentionally for key moments: co-creation, solving complex problems, team cohesion. The rest of the time, work is asynchronous. The hybrid management of 2026 isn't "2 days at home, 3 in the office." It's a model where collaboration is organized and individual deep work is protected.
+In this new world, the office's function changes. It's no longer the default place for individual production. It becomes a "social hub" where people gather intentionally for key moments: co-creation, solving complex problems, team cohesion. The rest of the time, work is asynchronous. The hybrid management of 2026 isn't "2 days at home, 3 in the office." It's a model where collaboration is organized and individual deep work is protected.
 
 ## The Manager-Coach: The Skill Your Boss Probably Doesn't Have
 
-If AI handles the rational (data, reporting), the manager must handle the emotional. The number one skill becomes emotional intelligence. It's the ability to detect weak signals, to understand what's not being said, to sense the "brown-out" or "quiet suffering" that gnaws at young professionals who have every reason to be happy on paper but feel an immense void.
+If AI handles the rational (data, reporting), the manager must handle the emotional. The number one skill becomes emotional intelligence. The ability to detect weak signals, to understand what's not being said, to sense the "brown-out" or "quiet suffering" that gnaws at young professionals who have every reason to be happy on paper but feel an immense void.
 
-The manager becomes a career coach. Their role is no longer just to ensure the team's performance, but to ensure that each team member is on a path that is meaningful to them. As **Jean-Emmanuel Ray, a professor at Sciences Po**, points out, the legal relationship of subordination is transforming into a "collaboration pact."
+The manager becomes a career coach. Their role is no longer just to ensure the team's performance, but to ensure each team member is on a path that is meaningful to them. As **Jean-Emmanuel Ray, a professor at Sciences Po**, points out, the legal relationship of subordination is transforming into a "collaboration pact."
 
-This change is a shock to the old guard. It's no longer about commanding, but influencing. It's no longer about controlling, but empowering. It's no longer about giving orders, but providing direction and letting autonomy do the rest.
+This change is a shock to the old guard. It's no longer about commanding, but influencing. No longer about controlling, but empowering. No longer about giving orders, but providing direction and letting autonomy do the rest.
 
 ## How to Survive "Fake Modern" Management
 
-The biggest trap of 2026 is being "fake modern." It's those companies that adopt the tools (Slack, Notion, AI) but keep a 1990s management culture. It's the manager who asks for a detailed report of your work on Slack at 7 PM. It's the culture of presenteeism disguised as forced "collaboration" in the office.
+The biggest trap of 2026 is being "fake modern." Those companies that adopt the tools (Slack, Notion, AI) but keep a 1990s management culture. It's the manager who asks for a detailed report of your work on Slack at 7 PM. It's the culture of presenteeism disguised as forced "collaboration" in the office.
 
-This disconnect is a huge source of frustration and loss of meaning. This is the heart of the problem for many young professionals: they are sold a future of agile and autonomous work, but they are subjected to a reality of micromanagement and absurd control. This is where the emptiness sets in.
+This disconnect is a huge source of frustration and loss of meaning. This is the heart of the problem for many young professionals. They are sold a future of agile and autonomous work, but are subjected to a reality of micromanagement and absurd control.
 
-If you recognize yourself in this, the question is no longer whether your manager will change. They won't. The only question is: what are you doing to become the manager of your own career? Waiting for your work environment to adapt is wasting precious years. The only leverage you have is to understand your own operating system, your own needs, and to find or create an environment that matches them.
+This is where the emptiness sets in.
 
-## Conclusion
+If you recognize yourself in this, the question is no longer whether your manager will change. They won't. The only question is: what are you doing to become the manager of your own career?
 
-The management of 2026 isn't an evolution; it's a mutation. Either your manager becomes a coach who uses AI to unlock human potential, or they become a dead weight, a relic of a bygone era. If you feel like you have a clearer vision of the future of work than your own boss, it's not a coincidence. It's a sign that it's time to move.
+Waiting for your work environment to adapt is wasting precious years. The only leverage you have is to understand your own operating system, your own needs, and to find or create an environment that matches them.
 
-Don't wait for your company to catch up. The disconnect you feel is valuable information: you're ready for what's next, but your current job isn't. It's time to take back control of your trajectory.
+The management of 2026 isn't an evolution; it's a mutation. Either your manager becomes a coach who uses AI to unlock human potential, or they become a dead weight. A relic of a bygone era. If you feel like you have a clearer vision of the future of work than your own boss, it's not a coincidence. It's a sign that it's time to move.
+
+Don't wait for your company to catch up. The disconnect you feel is valuable information: you're ready for what's next, but your current job isn't. It's time to take back control.
 
 **Ready to see if your current job has a future in 2026?** The Destiny Diagnostic isn't a skills assessment. It's a 48-hour scan to find out if your work environment is obsolete and how to build a battle plan to take back control.
 

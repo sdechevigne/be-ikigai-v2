@@ -436,13 +436,26 @@ else
     log "WARNING: génération image échouée — article créé sans image"
 fi
 
+# Passage en published (FR + EN)
+log "Passage en published..."
+FULL_PATH_FR="${REPO_ROOT}/${ARTICLE_PATH}"
+BASE_SLUG_FINAL="${ARTICLE_SLUG%-fr}"
+FULL_PATH_EN="${REPO_ROOT}/src/content/blog/${BASE_SLUG_FINAL}-en.md"
+
+for md_file in "${FULL_PATH_FR}" "${FULL_PATH_EN}"; do
+  if [[ -f "${md_file}" ]]; then
+    sed -i 's/^status: *"*draft"*/status: published/' "${md_file}"
+    log "  published : $(basename ${md_file})"
+  fi
+done
+
 # Commit final
 log "Commit final..."
 cd "${REPO_ROOT}"
-git add "${CONTENT_DIR}/" "public/assets/img/blog/${BASE_SLUG}"* 2>/dev/null || true
+git add "${CONTENT_DIR}/" "public/assets/img/blog/${BASE_SLUG_FINAL}"* 2>/dev/null || true
 
 if ! git diff --cached --quiet; then
-  git commit -m "blog: draft '${TOPIC_TITLE:-article}' [${TOPIC_CATEGORY:-coaching}]
+  git commit -m "blog: '${TOPIC_TITLE:-article}' [${TOPIC_CATEGORY:-coaching}]
 
 Type: ${TOPIC_CONTENT_TYPE:-guide}
 LLM: ${LLM}
@@ -451,18 +464,25 @@ Log: pipeline/logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
   git_push_safe "commit final"
 fi
 
-# Mise à jour statut GitHub Projects
+# Mise à jour card GitHub Projects → Published
 cd "${PIPELINE_DIR}"
+PUB_DATE_ONLY="${PUBLISH_DATETIME:0:10}"
+export ITEM_ID="${ITEM_ID:-}"
+export PUB_DATE_ONLY="${PUB_DATE_ONLY}"
+export ARTICLE_PATH_EXPORT="${ARTICLE_PATH}"
 node -e "
 import('./project.js').then(async m => {
-  await m.updateCardStatus('${ITEM_ID}', 'drafting');
-  await m.setArticlePath('${ITEM_ID}', '${ARTICLE_PATH}');
+  if (!process.env.ITEM_ID) return;
+  await m.updateCardStatus(process.env.ITEM_ID, 'published');
+  await m.setArticlePath(process.env.ITEM_ID, process.env.ARTICLE_PATH_EXPORT);
+  await m.setPublicationDate(process.env.ITEM_ID, process.env.PUB_DATE_ONLY);
 }).catch(e => console.warn(e.message));
 " 2>>"${LOG_FILE}" || true
 
 cleanup
 
 log ""
-log "=== Pipeline terminé avec succès ==="
+log "=== Pipeline terminé — article publié ==="
 log "Article FR : ${ARTICLE_PATH}"
+log "Publié le  : ${PUB_DATE_ONLY}"
 log "Log : ${LOG_FILE}"

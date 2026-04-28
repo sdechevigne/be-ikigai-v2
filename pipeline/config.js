@@ -51,50 +51,37 @@ export const CONTENT_TYPES = [
 
 export const RSS_SOURCES = [
   // ── Presse nationale FR ──
-  { url: 'https://www.lemonde.fr/emploi/rss_full.xml',           type: 'presse_nationale',   label: 'Le Monde Emploi',          lang: 'fr', weight: 6.72 },
+  { url: 'https://www.lemonde.fr/rss/omn/emploi.xml',            type: 'presse_nationale',   label: 'Le Monde Emploi',          lang: 'fr', weight: 6.72 },
   { url: 'https://www.lefigaro.fr/rss/figaro_emploi.xml',        type: 'presse_nationale',   label: 'Figaro Emploi',            lang: 'fr', weight: 6.48 },
-  { url: 'https://www.lefigaro.fr/rss/figaro_sante.xml',         type: 'presse_nationale',   label: 'Figaro Santé',             lang: 'fr', weight: 6.24 },
-  { url: 'https://www.lesechos.fr/rss/rss_emploi.xml',           type: 'presse_nationale',   label: 'Les Échos Emploi',         lang: 'fr', weight: 6.72 },
-  { url: 'https://www.francetvinfo.fr/economie/emploi.rss',      type: 'presse_nationale',   label: 'France TV Info Emploi',    lang: 'fr', weight: 6.24 },
-  { url: 'https://www.liberation.fr/arc/outboundfeeds/rss/?outputType=xml', type: 'presse_nationale', label: 'Libération',     lang: 'fr', weight: 6.00 },
+  { url: 'https://www.franceinfo.fr/rss.xml',                    type: 'presse_nationale',   label: 'France Info',              lang: 'fr', weight: 6.24 },
 
   // ── Presse spécialisée FR ──
-  { url: 'https://www.journaldunet.com/rss/',                    type: 'presse_specialisee', label: 'Journal du Net',           lang: 'fr', weight: 4.32 },
+  { url: 'https://www.journaldunet.com/rss/emploi.xml',          type: 'presse_specialisee', label: 'JDN Emploi',               lang: 'fr', weight: 4.32 },
   { url: 'https://www.parlonsrh.com/feed/',                      type: 'presse_specialisee', label: 'Parlons RH',               lang: 'fr', weight: 4.32 },
-  { url: 'https://www.rh-info.fr/feed/',                         type: 'presse_specialisee', label: 'RH Info',                  lang: 'fr', weight: 4.32 },
-  { url: 'https://www.focusrh.com/feed/',                        type: 'presse_specialisee', label: 'Focus RH',                 lang: 'fr', weight: 4.08 },
-  { url: 'https://www.cadremploi.fr/editorial/feed',             type: 'presse_specialisee', label: 'Cadremploi',               lang: 'fr', weight: 4.08 },
-  { url: 'https://www.chefdentreprise.com/feed/',                type: 'presse_specialisee', label: "Chef d'Entreprise",        lang: 'fr', weight: 3.84 },
-  { url: 'https://www.usinenouvelle.com/rss/',                   type: 'presse_specialisee', label: 'Usine Nouvelle',           lang: 'fr', weight: 4.32 },
+  { url: 'https://www.cadremploi.fr/rss.xml',                    type: 'presse_specialisee', label: 'Cadremploi',               lang: 'fr', weight: 4.08 },
+  { url: 'https://www.lesechos.fr/rss/echo-emploi.xml',          type: 'presse_specialisee', label: 'Les Échos Emploi',         lang: 'fr', weight: 4.80 },
+  { url: 'https://www.maddyness.com/feed/',                      type: 'presse_specialisee', label: 'Maddyness',                lang: 'fr', weight: 4.32 },
 
   // ── Blogs autorité FR ──
   { url: 'https://www.psychologies.com/feed',                    type: 'blogs_autorite',     label: 'Psychologies',             lang: 'fr', weight: 2.88 },
-  { url: 'https://www.welcometothejungle.com/fr/articles/rss',   type: 'blogs_autorite',     label: 'Welcome to the Jungle',    lang: 'fr', weight: 2.88 },
-  { url: 'https://www.maddyness.com/feed/',                      type: 'blogs_autorite',     label: 'Maddyness',                lang: 'fr', weight: 2.40 },
-  { url: 'https://www.hbrfrance.fr/feed/',                       type: 'blogs_autorite',     label: 'HBR France',               lang: 'fr', weight: 3.36 },
-  { url: 'https://lesnouveauxtravailleurs.fr/feed/',             type: 'blogs_autorite',     label: 'Les Nouveaux Travailleurs', lang: 'fr', weight: 2.64 },
-  { url: 'https://www.rebondir.fr/feed/',                        type: 'blogs_autorite',     label: 'Rebondir',                 lang: 'fr', weight: 2.64 },
-  { url: 'https://marevolutionpro.com/feed/',                    type: 'blogs_autorite',     label: 'Ma Révolution Pro',        lang: 'fr', weight: 2.40 },
+  { url: 'https://www.lemonde.fr/idees/rss_full.xml',            type: 'blogs_autorite',     label: 'Le Monde Idées',           lang: 'fr', weight: 3.36 },
 
   // ── Institutionnel FR ──
-  { url: 'https://dares.travail-emploi.gouv.fr/rss.xml',        type: 'institutionnel',     label: 'DARES',                    lang: 'fr', weight: 4.80 },
-  { url: 'https://www.inrs.fr/rss/actualites.xml',              type: 'institutionnel',     label: 'INRS',                     lang: 'fr', weight: 4.32 },
+  { url: 'https://dares.travail-emploi.gouv.fr/rss.xml',         type: 'institutionnel',     label: 'DARES',                    lang: 'fr', weight: 4.80 },
+  { url: 'https://travail-emploi.gouv.fr/rss.xml',               type: 'institutionnel',     label: 'Ministère Travail',        lang: 'fr', weight: 4.32 },
 
-  // ── Presse spécialisée US ──
+  // ── Presse spécialisée US & International ──
   { url: 'https://hbr.org/feed',                                 type: 'presse_specialisee', label: 'Harvard Business Review',  lang: 'en', weight: 6.84 },
-  { url: 'https://www.shrm.org/rss/pages/rss.aspx',             type: 'presse_specialisee', label: 'SHRM',                     lang: 'en', weight: 6.48 },
-  { url: 'https://hrexecutive.com/feed/',                        type: 'presse_specialisee', label: 'HR Executive',             lang: 'en', weight: 5.76 },
-  { url: 'https://www.fastcompany.com/work-life/rss',            type: 'presse_specialisee', label: 'Fast Company Work Life',   lang: 'en', weight: 5.04 },
-  { url: 'https://www.inc.com/rss/',                             type: 'presse_specialisee', label: 'Inc. Magazine',            lang: 'en', weight: 5.04 },
-  { url: 'https://www.forbes.com/careers/feed/',                 type: 'presse_specialisee', label: 'Forbes Careers',           lang: 'en', weight: 5.76 },
-  { url: 'https://www.psychologytoday.com/rss/articles',        type: 'blogs_autorite',     label: 'Psychology Today',         lang: 'en', weight: 3.36 },
-  { url: 'https://www.mindbodygreen.com/rss',                   type: 'blogs_autorite',     label: 'MindBodyGreen',            lang: 'en', weight: 2.88 },
+  { url: 'https://www.shrm.org/rss/shrm_public.xml',             type: 'presse_specialisee', label: 'SHRM',                     lang: 'en', weight: 6.48 },
+  { url: 'https://feeds.feedburner.com/hr-executive',            type: 'presse_specialisee', label: 'HR Executive',             lang: 'en', weight: 5.76 },
+  { url: 'https://www.fastcompany.com/worklife/rss/updates',     type: 'presse_specialisee', label: 'Fast Company Worklife',    lang: 'en', weight: 5.04 },
+  { url: 'https://www.inc.com/rss.xml',                          type: 'presse_specialisee', label: 'Inc Magazine',             lang: 'en', weight: 5.04 },
+  { url: 'https://www.forbes.com/leadership/feed/',              type: 'presse_specialisee', label: 'Forbes Leadership',        lang: 'en', weight: 5.76 },
+  { url: 'https://www.psychologytoday.com/intl/rss',             type: 'blogs_autorite',     label: 'Psychology Today Intl',   lang: 'en', weight: 3.36 },
 
-  // ── Blogs Ikigai EN ──
-  { url: 'https://ikigai.report/blog/rss.xml',                   type: 'blogs_autorite',     label: 'Ikigai Report',            lang: 'en', weight: 3.12 },
+  // ── Blogs Ikigai & bien-être EN ──
   { url: 'https://ikigaitribe.com/feed/',                        type: 'blogs_autorite',     label: 'Ikigai Tribe',             lang: 'en', weight: 3.12 },
-  { url: 'https://ikigain.org/feed/',                            type: 'blogs_autorite',     label: 'Ikigain Blog',             lang: 'en', weight: 3.12 },
-  { url: 'https://ikigai.blog/feed/',                            type: 'blogs_autorite',     label: 'The Ikigai Project',       lang: 'en', weight: 2.88 },
+  { url: 'https://www.mindbodygreen.com/feed',                   type: 'blogs_autorite',     label: 'MindBodyGreen',            lang: 'en', weight: 2.88 },
 ];
 
 export const REDDIT_SOURCES = [

@@ -160,22 +160,23 @@ ARTICLE_PATH=""
 if [[ -n "${RESUME_SLUG}" ]]; then
   log "Mode reprise : slug=${RESUME_SLUG}"
   ARTICLE_PATH="src/content/blog/${RESUME_SLUG}.md"
-  if [[ ! -f "${REPO_ROOT}/${ARTICLE_PATH}" ]]; then
-    log_error "Article introuvable : ${ARTICLE_PATH}"
-    exit 1
-  fi
   if git log --format=%s | grep -qF "wip(phase3): ${RESUME_SLUG}"; then
     SKIP_PHASE1=true; SKIP_PHASE2=true; SKIP_PHASE3=true
     log "  Phases 1, 2, 3 déjà commitées"
+    [[ ! -f "${REPO_ROOT}/${ARTICLE_PATH}" ]] && { log_error "Article introuvable : ${ARTICLE_PATH}"; exit 1; }
   elif git log --format=%s | grep -qF "wip(phase2): ${RESUME_SLUG}"; then
     SKIP_PHASE1=true; SKIP_PHASE2=true
     git show "HEAD:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
     log "  Phases 1, 2 déjà commitées — reprise depuis Phase 3"
-  elif git log --format=%s | grep -qF "wip(phase1): ${RESUME_SLUG}"; then
+    [[ ! -f "${REPO_ROOT}/${ARTICLE_PATH}" ]] && { log_error "Article introuvable : ${ARTICLE_PATH}"; exit 1; }
+  elif git log --format=%s | grep -qF "wip(phase1):"; then
     SKIP_PHASE1=true
-    PHASE1_HASH=$(git log --format="%H %s" | grep -F "wip(phase1): ${RESUME_SLUG}" | awk '{print $1}' | head -1)
+    PHASE1_HASH=$(git log --format="%H %s" | grep -F "wip(phase1):" | awk '{print $1}' | head -1)
     git show "${PHASE1_HASH}:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
     log "  Phase 1 déjà commitée — reprise depuis Phase 2"
+  else
+    log_error "Aucune phase commitée trouvée pour slug=${RESUME_SLUG}"
+    exit 1
   fi
   if [[ -f "${REPO_ROOT}/public/assets/img/blog/${RESUME_SLUG}.png" ]]; then
     SKIP_IMAGE=true
@@ -186,11 +187,17 @@ fi
 ITEM_ID=""
 
 if [[ -n "${RESUME_SLUG}" ]]; then
-  TOPIC_TITLE=$(frontmatter_field title "${REPO_ROOT}/${ARTICLE_PATH}")
-  TOPIC_CATEGORY=$(frontmatter_field category "${REPO_ROOT}/${ARTICLE_PATH}")
+  if [[ -f "${REPO_ROOT}/${ARTICLE_PATH}" ]]; then
+    TOPIC_TITLE=$(frontmatter_field title "${REPO_ROOT}/${ARTICLE_PATH}")
+    TOPIC_CATEGORY=$(frontmatter_field category "${REPO_ROOT}/${ARTICLE_PATH}")
+    PUBLISH_DATETIME=$(frontmatter_field publishedAt "${REPO_ROOT}/${ARTICLE_PATH}")
+    export PUBLISH_DATETIME
+  else
+    TOPIC_TITLE="${RESUME_SLUG}"
+    TOPIC_CATEGORY=""
+    set_publish_datetime
+  fi
   TOPIC_CONTENT_TYPE="resume"
-  PUBLISH_DATETIME=$(frontmatter_field publishedAt "${REPO_ROOT}/${ARTICLE_PATH}")
-  export PUBLISH_DATETIME
 elif [[ "${DRAFT_FROM_URL:-}" == "true" ]]; then
   log "Mode URL : utilisation du card-body.md fourni"
   [[ ! -f "${CARD_BODY}" ]] && { log_error "card-body.md introuvable"; exit 1; }

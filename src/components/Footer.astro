@@ -7,7 +7,39 @@ export interface Props {
 
 const { lang = getLangFromUrl(Astro.url) } = Astro.props;
 const t = useTranslations(lang);
-const switchLangUrl = lang === 'fr' ? '/en/' : '/';
+
+// Map current page to its equivalent in the other locale
+const frToEn: Record<string, string> = {
+  '/': '/en/',
+  '/tarifs': '/en/pricing',
+  '/mentions-legales': '/en/legal-notice',
+  '/cgu': '/en/terms',
+  '/confidentialite': '/en/privacy',
+};
+const enToFr: Record<string, string> = Object.fromEntries(
+  Object.entries(frToEn).map(([fr, en]) => [en, fr])
+);
+
+function getSwitchLangUrl(currentUrl: URL, currentLang: string): string {
+  const path = currentUrl.pathname.replace(/\/$/, '') || '/';
+  if (currentLang === 'fr') {
+    // Blog/services slugs: /blog/slug → /en/blog/slug
+    const blogMatch = path.match(/^\/blog\/(.+)$/);
+    if (blogMatch) return `/en/blog/${blogMatch[1]}`;
+    const servicesMatch = path.match(/^\/services\/(.+)$/);
+    if (servicesMatch) return `/en/services/${servicesMatch[1]}`;
+    return frToEn[path] ?? '/en/';
+  } else {
+    const cleanPath = path === '' ? '/' : path;
+    const blogMatch = cleanPath.match(/^\/en\/blog\/(.+)$/);
+    if (blogMatch) return `/blog/${blogMatch[1]}`;
+    const servicesMatch = cleanPath.match(/^\/en\/services\/(.+)$/);
+    if (servicesMatch) return `/services/${servicesMatch[1]}`;
+    return enToFr[cleanPath] ?? '/';
+  }
+}
+
+const switchLangUrl = getSwitchLangUrl(Astro.url, lang);
 
 const legalLinks = lang === 'fr'
     ? [

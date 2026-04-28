@@ -96,6 +96,12 @@ Node ESM pipeline autonome générant des articles FR+EN via Gemini CLI. Voir `.
 
 Google Trends accepte **5 mots-clés max par batch** — au-delà, erreur silencieuse. `LOOKBACK_DAYS=60`, fallback `LOOKBACK_DAYS_EXTENDED=180` pour sources niche sans résultat.
 
-Les statuts GitHub Projects (`Detected` → `Researched` → `Drafting` → `Published`) sont **manuels** — le pipeline ne les avance jamais automatiquement sauf à la création (toujours `Detected`). Une card passée au-delà de `Detected` n'est plus mise à jour par les scans suivants.
+Les statuts GitHub Projects (`Detected` → `Researched` → `Drafting` → `Published`) sont **automatiques depuis 2026-04** — `draft.sh` passe directement en `Published` à la fin du pipeline (plus de `status: draft`). Une card passée au-delà de `Detected` n'est plus mise à jour par les scans suivants.
+
+**Réordonnancement des publications** : renseigner le champ `Publication Date` sur une card `Detected` dans GitHub Projects — `pickNextTopic()` la sélectionne en priorité (date croissante), avant les cards sans date triées par Trend Score.
+
+**Scripts de maintenance** : `pipeline/backfill-projects.js` (rétro-alimenter les articles existants), `pipeline/merge-bilingual-cards.js` (fusionner cards FR+EN en une card bilingue avec chemin `FR | EN`). Tous deux acceptent `--dry-run`.
+
+**Variables node dans draft.sh** : passer via `process.env` (export + `process.env.VAR`) plutôt qu'interpolation shell dans `node -e "..."` — évite l'injection et les problèmes de caractères spéciaux dans les chemins.
 
 **Règle absolue éditoriale** : ne jamais critiquer, moquer ou décrier l'ikigai dans aucun prompt, article ou source — même subtilement. Gravé dans `pipeline/skills-prompt.md` et `pipeline/prompts/1-research.md`.

@@ -1,0 +1,14 @@
+{
+  "name": "beikigai-blog-pipeline",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "scan": "node index.js",
+    "scan:dry": "node index.js --dry-run",
+    "scan:pick": "node index.js --pick"
+  },
+  "dependencies": {
+    "google-trends-api": "^4.9.2",
+    "rss-parser": "^3.13.0"
+  }
+}

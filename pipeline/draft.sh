@@ -171,7 +171,7 @@ if [[ -n "${RESUME_SLUG}" ]]; then
     [[ ! -f "${REPO_ROOT}/${ARTICLE_PATH}" ]] && { log_error "Article introuvable : ${ARTICLE_PATH}"; exit 1; }
   else
     # Phase 1 potentiellement commitée (message = hash court, pas le slug article)
-    PHASE1_HASH=$(git log --format="%H %s" | grep -F "wip(phase1):" | awk '{print $1}' | head -1)
+    PHASE1_HASH=$(git log --format="%H %s" | grep -F "wip(phase1):" | awk '{print $1}' | head -1 || true)
     if [[ -n "${PHASE1_HASH}" ]]; then
       SKIP_PHASE1=true
       git show "${PHASE1_HASH}:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true

@@ -34,6 +34,10 @@ Translation helpers in `src/i18n/`:
 
 When adding a new page, create both the FR entry (`src/pages/<slug>.astro`) and the EN entry (`src/pages/[lang]/<slug>.astro`) — both should just import and render the same component.
 
+### Language switch URL mapping
+
+`Footer.astro` builds the cross-locale URL via `getSwitchLangUrl()`. Explicit map: `/` ↔ `/en/`, `/tarifs` ↔ `/en/pricing`, `/mentions-legales` ↔ `/en/legal-notice`, `/cgu` ↔ `/en/terms`, `/confidentialite` ↔ `/en/privacy`. Blog/services slugs are preserved: `/blog/[slug]` ↔ `/en/blog/[slug]`. Fallback to locale home if no match. Update this map when adding new paired pages.
+
 ### Content collections
 
 `src/content.config.ts` defines the `blog` collection, loaded via `glob` from `src/content/blog/*.md(x)`. The `lang` field (`fr`/`en`) is how posts are partitioned per locale; `status: 'published'` is required for visibility. Blog pages filter with both at query time (see `Home.astro` and blog list/post pages).

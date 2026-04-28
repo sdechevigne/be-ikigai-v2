@@ -51,33 +51,26 @@ export const CONTENT_TYPES = [
 
 export const RSS_SOURCES = [
   // ── Presse nationale FR ──
-  { url: 'https://www.lemonde.fr/rss/omn/emploi.xml',            type: 'presse_nationale',   label: 'Le Monde Emploi',          lang: 'fr', weight: 6.72 },
-  { url: 'https://www.lefigaro.fr/rss/figaro_emploi.xml',        type: 'presse_nationale',   label: 'Figaro Emploi',            lang: 'fr', weight: 6.48 },
-  { url: 'https://www.franceinfo.fr/rss.xml',                    type: 'presse_nationale',   label: 'France Info',              lang: 'fr', weight: 6.24 },
+  { url: 'https://www.lemonde.fr/work-in-progress/rss_full.xml',  type: 'presse_nationale',   label: 'Chronique de la vie de bureau, par Nicolas Santolaria',          lang: 'fr', weight: 6.72 },
+  { url: 'https://www.lemonde.fr/emploi/rss_full.xml',            type: 'presse_nationale',   label: 'Le Monde Emploi',          lang: 'fr', weight: 6.72 },
+  { url: 'https://emploi.lefigaro.fr/rss/',        type: 'presse_nationale',   label: 'Figaro Emploi',            lang: 'fr', weight: 6.48 },
 
   // ── Presse spécialisée FR ──
-  { url: 'https://www.journaldunet.com/rss/emploi.xml',          type: 'presse_specialisee', label: 'JDN Emploi',               lang: 'fr', weight: 4.32 },
   { url: 'https://www.parlonsrh.com/feed/',                      type: 'presse_specialisee', label: 'Parlons RH',               lang: 'fr', weight: 4.32 },
-  { url: 'https://www.cadremploi.fr/rss.xml',                    type: 'presse_specialisee', label: 'Cadremploi',               lang: 'fr', weight: 4.08 },
-  { url: 'https://www.lesechos.fr/rss/echo-emploi.xml',          type: 'presse_specialisee', label: 'Les Échos Emploi',         lang: 'fr', weight: 4.80 },
-  { url: 'https://www.maddyness.com/feed/',                      type: 'presse_specialisee', label: 'Maddyness',                lang: 'fr', weight: 4.32 },
+  { url: 'https://www.cadremploi.fr/rss/',                    type: 'presse_specialisee', label: 'Cadremploi',               lang: 'fr', weight: 4.08 },
 
   // ── Blogs autorité FR ──
   { url: 'https://www.psychologies.com/feed',                    type: 'blogs_autorite',     label: 'Psychologies',             lang: 'fr', weight: 2.88 },
-  { url: 'https://www.lemonde.fr/idees/rss_full.xml',            type: 'blogs_autorite',     label: 'Le Monde Idées',           lang: 'fr', weight: 3.36 },
 
   // ── Institutionnel FR ──
   { url: 'https://dares.travail-emploi.gouv.fr/rss.xml',         type: 'institutionnel',     label: 'DARES',                    lang: 'fr', weight: 4.80 },
   { url: 'https://travail-emploi.gouv.fr/rss.xml',               type: 'institutionnel',     label: 'Ministère Travail',        lang: 'fr', weight: 4.32 },
 
   // ── Presse spécialisée US & International ──
-  { url: 'https://hbr.org/feed',                                 type: 'presse_specialisee', label: 'Harvard Business Review',  lang: 'en', weight: 6.84 },
-  { url: 'https://www.shrm.org/rss/shrm_public.xml',             type: 'presse_specialisee', label: 'SHRM',                     lang: 'en', weight: 6.48 },
-  { url: 'https://feeds.feedburner.com/hr-executive',            type: 'presse_specialisee', label: 'HR Executive',             lang: 'en', weight: 5.76 },
-  { url: 'https://www.fastcompany.com/worklife/rss/updates',     type: 'presse_specialisee', label: 'Fast Company Worklife',    lang: 'en', weight: 5.04 },
-  { url: 'https://www.inc.com/rss.xml',                          type: 'presse_specialisee', label: 'Inc Magazine',             lang: 'en', weight: 5.04 },
-  { url: 'https://www.forbes.com/leadership/feed/',              type: 'presse_specialisee', label: 'Forbes Leadership',        lang: 'en', weight: 5.76 },
-  { url: 'https://www.psychologytoday.com/intl/rss',             type: 'blogs_autorite',     label: 'Psychology Today Intl',   lang: 'en', weight: 3.36 },
+  { url: 'https://hbr.org/',                                     type: 'presse_specialisee', label: 'Harvard Business Review',  lang: 'en', weight: 6.84 },
+  { url: 'https://www.shrm.org',             type: 'presse_specialisee', label: 'SHRM',                     lang: 'en', weight: 6.48 },
+  { url: 'https://www.fastcompany.com/leadership/rss',     type: 'presse_specialisee', label: 'Fast Company Worklife',    lang: 'en', weight: 5.04 },
+  { url: 'https://www.inc.com/rss',                          type: 'presse_specialisee', label: 'Inc Magazine',             lang: 'en', weight: 5.04 },
 
   // ── Blogs Ikigai & bien-être EN ──
   { url: 'https://ikigaitribe.com/feed/',                        type: 'blogs_autorite',     label: 'Ikigai Tribe',             lang: 'en', weight: 3.12 },

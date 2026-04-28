@@ -10,7 +10,8 @@ export const WEIGHTS = {
 };
 
 export const SCORE_THRESHOLD = 3;
-export const LOOKBACK_DAYS = 14;
+export const LOOKBACK_DAYS = 60;
+export const LOOKBACK_DAYS_EXTENDED = 180; // pour sources niche si résultat vide
 
 export const CLUSTERS = {
   reconversion: {
@@ -105,6 +106,14 @@ export const RSS_SOURCES = [
   { url: 'https://www.mindbodygreen.com/rss.xml',               type: 'blogs_autorite',     label: 'MindBodyGreen',            lang: 'en', weight: 2.88 },
   { url: 'https://www.ikigain.org/blog-feed.xml',               type: 'blogs_autorite',     label: 'Ikigain',                  lang: 'en', weight: 3.12 },
   { url: 'https://ikigai.blog/feed/',                           type: 'blogs_autorite',     label: 'The Ikigai Project',       lang: 'en', weight: 2.88 },
+  { url: 'https://www.ikigaisimplicity.com/feed/',              type: 'blogs_autorite',     label: 'Ikigai Simplicity',        lang: 'en', weight: 3.36 },
+  { url: 'https://www.ikigaiway.com/feed/',                     type: 'blogs_autorite',     label: 'Ikigai Way',               lang: 'en', weight: 3.12 },
+
+  // ── Purpose, sens & développement personnel EN ──
+  { url: 'https://zenhabits.net/feed/',                         type: 'blogs_autorite',     label: 'Zen Habits',               lang: 'en', weight: 3.60 },
+  { url: 'https://tinybuddha.com/emailrss',                     type: 'blogs_autorite',     label: 'Tiny Buddha',              lang: 'en', weight: 3.36 },
+  { url: 'http://feeds.feedburner.com/pickthebrain/LYVv/',      type: 'blogs_autorite',     label: 'Pick the Brain',           lang: 'en', weight: 2.88 },
+  { url: 'http://feeds2.feedburner.com/PauloCoelhosBlog',       type: 'blogs_autorite',     label: 'Paulo Coelho Blog',        lang: 'en', weight: 3.12 },
 
   // ── Ikigai spécialisés & carrière EN (presse_specialisee pour +50% de poids) ──
   { url: 'https://unionsquarepractice.com/feed/',               type: 'presse_specialisee', label: 'Union Square Practice',    lang: 'en', weight: 4.80 },

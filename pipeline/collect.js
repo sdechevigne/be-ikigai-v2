@@ -1,15 +1,19 @@
 // pipeline/collect.js
 import Parser from 'rss-parser';
 import googleTrends from 'google-trends-api';
-import { RSS_SOURCES, COACHING_KEYWORDS, TRENDS_KEYWORDS, LOOKBACK_DAYS } from './config.js';
+import { RSS_SOURCES, COACHING_KEYWORDS, TRENDS_KEYWORDS, LOOKBACK_DAYS, LOOKBACK_DAYS_EXTENDED } from './config.js';
 
 const parser = new Parser({ timeout: 10000 });
 
-function isRecent(dateStr) {
+function cutoffDate(days) {
+  const d = new Date();
+  d.setDate(d.getDate() - days);
+  return d;
+}
+
+function isWithin(dateStr, days) {
   if (!dateStr) return false;
-  const cutoff = new Date();
-  cutoff.setDate(cutoff.getDate() - LOOKBACK_DAYS);
-  return new Date(dateStr) >= cutoff;
+  return new Date(dateStr) >= cutoffDate(days);
 }
 
 function matchesCoachingKeywords(text) {
@@ -17,30 +21,45 @@ function matchesCoachingKeywords(text) {
   return COACHING_KEYWORDS.some(kw => lower.includes(kw));
 }
 
+function parseItems(feed, source, days, seen) {
+  const results = [];
+  for (const item of feed.items || []) {
+    if (!item.link || seen.has(item.link)) continue;
+    if (!isWithin(item.pubDate || item.isoDate, days)) continue;
+    const text = `${item.title || ''} ${item.contentSnippet || ''}`;
+    if (source.type === 'presse_nationale' && !matchesCoachingKeywords(text)) continue;
+    seen.add(item.link);
+    results.push({
+      title: item.title || '',
+      url: item.link,
+      source: source.label,
+      sourceType: source.type,
+      date: item.pubDate || item.isoDate || '',
+      abstract: text.slice(0, 500),
+    });
+  }
+  return results;
+}
+
 export async function collectRSS() {
   const items = [];
   const seen = new Set();
+  const nicheTypes = new Set(['blogs_autorite', 'presse_specialisee']);
 
   for (const source of RSS_SOURCES) {
     try {
       const feed = await parser.parseURL(source.url);
-      for (const item of feed.items || []) {
-        if (!item.link || seen.has(item.link)) continue;
-        if (!isRecent(item.pubDate || item.isoDate)) continue;
+      let parsed = parseItems(feed, source, LOOKBACK_DAYS, seen);
 
-        const text = `${item.title || ''} ${item.contentSnippet || ''}`;
-        if (source.type === 'presse_nationale' && !matchesCoachingKeywords(text)) continue;
-
-        seen.add(item.link);
-        items.push({
-          title: item.title || '',
-          url: item.link,
-          source: source.label,
-          sourceType: source.type,
-          date: item.pubDate || item.isoDate || '',
-          abstract: text.slice(0, 500),
-        });
+      // Fallback 180 jours pour sources niche sans résultat sur 60 jours
+      if (parsed.length === 0 && nicheTypes.has(source.type)) {
+        parsed = parseItems(feed, source, LOOKBACK_DAYS_EXTENDED, seen);
+        if (parsed.length > 0) {
+          process.stderr.write(`Extended lookback [${source.label}]: ${parsed.length} items\n`);
+        }
       }
+
+      items.push(...parsed);
     } catch (err) {
       process.stderr.write(`RSS error [${source.label}]: ${err.message}\n`);
     }

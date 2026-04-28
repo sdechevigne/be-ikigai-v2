@@ -100,6 +100,7 @@ export function getProjectItems() {
                 ... on ProjectV2ItemFieldSingleSelectValue { name field { ... on ProjectV2SingleSelectField { name } } }
                 ... on ProjectV2ItemFieldTextValue { text field { ... on ProjectV2Field { name } } }
                 ... on ProjectV2ItemFieldNumberValue { number field { ... on ProjectV2Field { name } } }
+                ... on ProjectV2ItemFieldDateValue { date field { ... on ProjectV2Field { name } } }
               }
             }
           }
@@ -131,8 +132,16 @@ export async function pickNextTopic() {
   if (candidates.length === 0) return null;
 
   candidates.sort((a, b) => {
+    const dateA = a.fieldValues?.nodes?.find(fv => fv.field?.name === 'Publication Date')?.date || '';
+    const dateB = b.fieldValues?.nodes?.find(fv => fv.field?.name === 'Publication Date')?.date || '';
     const scoreA = a.fieldValues?.nodes?.find(fv => fv.field?.name === 'Trend Score')?.number || 0;
     const scoreB = b.fieldValues?.nodes?.find(fv => fv.field?.name === 'Trend Score')?.number || 0;
+
+    // Cards avec date en premier, triées par date croissante
+    if (dateA && dateB) return dateA < dateB ? -1 : dateA > dateB ? 1 : 0;
+    if (dateA) return -1;
+    if (dateB) return 1;
+    // Sans date : tri par score décroissant
     return scoreB - scoreA;
   });
 

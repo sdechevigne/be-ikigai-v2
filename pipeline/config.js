@@ -181,6 +181,8 @@ export const PROJECT_CONFIG = {
         researched: process.env.PROJECT_STATUS_RESEARCHED || '',
         drafting: process.env.PROJECT_STATUS_DRAFTING || '',
         published: process.env.PROJECT_STATUS_PUBLISHED || '',
+        idea: process.env.PROJECT_STATUS_IDEA || '',
+        archived: process.env.PROJECT_STATUS_ARCHIVED || '',
       },
     },
     trendScore: { id: process.env.PROJECT_FIELD_SCORE_ID || '' },

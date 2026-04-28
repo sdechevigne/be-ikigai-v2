@@ -2,6 +2,7 @@
 import Parser from 'rss-parser';
 import googleTrends from 'google-trends-api';
 import { RSS_SOURCES, COACHING_KEYWORDS, TRENDS_KEYWORDS, LOOKBACK_DAYS, LOOKBACK_DAYS_EXTENDED } from './config.js';
+import { collectSearch } from './collect-search.js';
 
 const parser = new Parser({ timeout: 10000 });
 
@@ -101,9 +102,10 @@ export async function collectGoogleTrends() {
 }
 
 export async function collectAll() {
-  const [items, { trendScores, risingQueries }] = await Promise.all([
+  const [rssItems, searchItems, { trendScores, risingQueries }] = await Promise.all([
     collectRSS(),
+    collectSearch(),
     collectGoogleTrends(),
   ]);
-  return { items, trendScores, risingQueries };
+  return { items: [...rssItems, ...searchItems], trendScores, risingQueries };
 }

@@ -6,6 +6,7 @@
 #   cat idee.txt | bash pipeline/trigger-draft.sh
 #   bash pipeline/trigger-draft.sh                          # mode auto
 #   RESUME_SLUG=2026-04-28-ikigai-fr bash pipeline/trigger-draft.sh
+#   FORCE=1 bash pipeline/trigger-draft.sh "Mon idée"       # ignorer doublons
 
 set -euo pipefail
 
@@ -44,11 +45,29 @@ for i in items[:5]:
     print(f\"  [{i['score']}%] {i['title']} ({i['status']})\")
 " || true
     echo ""
-    read -r -p "Continuer quand même ? [y/N] " confirm
-    if [[ "${confirm}" != "y" ]] && [[ "${confirm}" != "Y" ]]; then
-      echo "Annulé."
-      exit 0
+
+    if [[ -n "${FORCE:-}" ]]; then
+      echo "FORCE=1 — déclenchement quand même."
+      return 0
     fi
+
+    # Sauvegarder l'idée en attente plutôt que de la perdre
+    local pending_file="${SCRIPT_DIR}/ideas-pending.md"
+    local ts
+    ts=$(date +%Y-%m-%d\ %H:%M)
+    {
+      echo ""
+      echo "## ${ts}"
+      echo ""
+      echo "${free_text}"
+      echo ""
+      echo "<!-- similarités détectées — à revoir avant déclenchement -->"
+      echo "<!-- relancer avec : FORCE=1 bash pipeline/trigger-draft.sh \"${free_text}\" -->"
+    } >> "${pending_file}"
+
+    echo "💾 Idée sauvegardée dans pipeline/ideas-pending.md"
+    echo "   Pour forcer quand même : FORCE=1 bash pipeline/trigger-draft.sh \"${free_text}\""
+    exit 0
   else
     echo "✓ Aucun article similaire trouvé."
   fi

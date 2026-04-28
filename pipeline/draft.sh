@@ -108,7 +108,7 @@ run_llm() {
     GEMINI_SYSTEM_MD="${system_prompt_file}" \
     GEMINI_CLI_HOME="${GEMINI_CLI_HOME:-/tmp/gemini-home}" \
     GEMINI_CLI_TRUST_WORKSPACE="true" \
-      gemini --model gemini-3.1-pro-preview --approval-mode yolo "${gemini_args[@]}"
+      gemini --model gemini-2.5-pro --approval-mode yolo "${gemini_args[@]}"
   else
     CLAUDE_CODE_OAUTH_TOKEN="${CLAUDE_CODE_OAUTH_TOKEN:-}" claude "$@"
   fi

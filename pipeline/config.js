@@ -9,33 +9,61 @@ export const WEIGHTS = {
   commentaires: 0.5,
 };
 
-export const SCORE_THRESHOLD = 5;
+export const SCORE_THRESHOLD = 3;
 export const LOOKBACK_DAYS = 14;
 
 export const CLUSTERS = {
   reconversion: {
     label: 'Reconversion',
-    keywords: ['reconversion', 'changer de métier', 'démissionner', 'pivot', 'changer de voie', 'changer de carrière', 'nouvelle carrière'],
+    keywords: [
+      'reconversion', 'changer de métier', 'démissionner', 'pivot', 'changer de voie',
+      'changer de carrière', 'nouvelle carrière', 'career change', 'career transition',
+      'career switch', 'new career', 'career pivot', 'professional change',
+      'trouver sa voie', 'orientation professionnelle', 'réorientation',
+    ],
     contentTypes: ['guide-pratique', 'temoignage'],
   },
   sens_ikigai: {
     label: 'Sens & Ikigai',
-    keywords: ['ikigai', 'sens au travail', 'mission', 'vocation', 'purpose', "raison d'être", 'sens professionnel', 'épanouissement'],
+    keywords: [
+      'ikigai', 'sens au travail', 'mission', 'vocation', 'purpose', "raison d'être",
+      'sens professionnel', 'épanouissement', 'finding purpose', 'purpose at work',
+      'meaningful work', 'ikigai method', 'ikigai framework', 'ikigai concept',
+      'reason for being', 'fulfillment', 'career purpose', 'work purpose',
+      'quête de sens', 'vie épanouissante', 'wabi-sabi', 'kaizen',
+    ],
     contentTypes: ['conseil-ikigai', 'analyse-tendance'],
   },
   burnout: {
     label: 'Burn-out & Épuisement',
-    keywords: ['burn-out', 'burnout', 'épuisement', 'fatigue', 'démission silencieuse', 'quiet quitting', 'bore-out', 'brown-out', 'souffrance au travail'],
+    keywords: [
+      'burn-out', 'burnout', 'épuisement', 'fatigue', 'démission silencieuse',
+      'quiet quitting', 'bore-out', 'brown-out', 'souffrance au travail',
+      'mental health work', 'workplace burnout', 'stress au travail', 'anxiety work',
+      'exhaustion', 'overwork', 'work-life balance', 'wellbeing', 'bien-être au travail',
+      'cortisol', 'longevity', 'burnout prevention', 'resilience',
+    ],
     contentTypes: ['actualite', 'guide-pratique'],
   },
   coaching_bilan: {
     label: 'Coaching & Bilan',
-    keywords: ['bilan de compétences', 'cpf', 'coaching', 'accompagnement', 'diagnostic de carrière', 'coach professionnel'],
+    keywords: [
+      'bilan de compétences', 'cpf', 'coaching', 'accompagnement', 'diagnostic de carrière',
+      'coach professionnel', 'career coaching', 'life coach', 'career counseling',
+      'career assessment', 'skills assessment', 'career planning', 'career strategy',
+      'career design', 'planification de carrière', 'coach de vie',
+    ],
     contentTypes: ['comparatif', 'guide-pratique'],
   },
   management: {
     label: 'Management & Leadership',
-    keywords: ['management', 'leadership', "culture d'entreprise", 'manager toxique', 'équipe', 'télétravail', 'travail hybride'],
+    keywords: [
+      'management', 'leadership', "culture d'entreprise", 'manager toxique', 'équipe',
+      'télétravail', 'travail hybride', 'toxic boss', 'company culture', 'team management',
+      'remote work', 'hybrid work', 'employee engagement', 'motivation au travail',
+      'manager', 'RH', 'ressources humaines', 'human resources', 'workplace culture',
+      'organisational culture', 'people management', 'corporate wellbeing',
+    ],
     contentTypes: ['analyse-tendance', 'guide-pratique'],
   },
 };
@@ -78,16 +106,16 @@ export const RSS_SOURCES = [
   { url: 'https://www.ikigain.org/blog-feed.xml',               type: 'blogs_autorite',     label: 'Ikigain',                  lang: 'en', weight: 3.12 },
   { url: 'https://ikigai.blog/feed/',                           type: 'blogs_autorite',     label: 'The Ikigai Project',       lang: 'en', weight: 2.88 },
 
-  // ── Ikigai spécialisés & carrière EN ──
-  { url: 'https://unionsquarepractice.com/feed/',               type: 'blogs_autorite',     label: 'Union Square Practice',    lang: 'en', weight: 4.80 },
-  { url: 'https://www.careershapeslab.com/blog-feed.xml',       type: 'blogs_autorite',     label: 'Career Shapes Lab',        lang: 'en', weight: 4.80 },
-  { url: 'https://hyperisland.com/en/blog/rss.xml',             type: 'blogs_autorite',     label: 'Hyper Island',             lang: 'en', weight: 4.56 },
-  { url: 'https://www.michelleporterfit.com/blog?format=rss',   type: 'blogs_autorite',     label: 'Michelle Porter Fit',      lang: 'en', weight: 4.32 },
-  { url: 'https://officedynamics.com/feed/',                    type: 'blogs_autorite',     label: 'Office Dynamics',          lang: 'en', weight: 4.32 },
-  { url: 'https://www.wholegraindigital.com/feed/',             type: 'blogs_autorite',     label: 'Wholegrain Digital',       lang: 'en', weight: 4.08 },
-  { url: 'https://janinerixlearningsolutions.com/feed/',        type: 'blogs_autorite',     label: 'Janine Rix Learning',      lang: 'en', weight: 3.84 },
-  { url: 'https://blog.learnlife.com/rss.xml',                  type: 'blogs_autorite',     label: 'Learnlife',                lang: 'en', weight: 4.08 },
-  { url: 'https://feeds.feedburner.com/drisiomaokolo/D7mKnCUdKya', type: 'blogs_autorite', label: 'Dr Isioma Okolo',          lang: 'en', weight: 4.32 },
+  // ── Ikigai spécialisés & carrière EN (presse_specialisee pour +50% de poids) ──
+  { url: 'https://unionsquarepractice.com/feed/',               type: 'presse_specialisee', label: 'Union Square Practice',    lang: 'en', weight: 4.80 },
+  { url: 'https://www.careershapeslab.com/blog-feed.xml',       type: 'presse_specialisee', label: 'Career Shapes Lab',        lang: 'en', weight: 4.80 },
+  { url: 'https://hyperisland.com/en/blog/rss.xml',             type: 'presse_specialisee', label: 'Hyper Island',             lang: 'en', weight: 4.56 },
+  { url: 'https://www.michelleporterfit.com/blog?format=rss',   type: 'presse_specialisee', label: 'Michelle Porter Fit',      lang: 'en', weight: 4.32 },
+  { url: 'https://officedynamics.com/feed/',                    type: 'presse_specialisee', label: 'Office Dynamics',          lang: 'en', weight: 4.32 },
+  { url: 'https://www.wholegraindigital.com/feed/',             type: 'presse_specialisee', label: 'Wholegrain Digital',       lang: 'en', weight: 4.08 },
+  { url: 'https://janinerixlearningsolutions.com/feed/',        type: 'presse_specialisee', label: 'Janine Rix Learning',      lang: 'en', weight: 3.84 },
+  { url: 'https://blog.learnlife.com/rss.xml',                  type: 'presse_specialisee', label: 'Learnlife',                lang: 'en', weight: 4.08 },
+  { url: 'https://feeds.feedburner.com/drisiomaokolo/D7mKnCUdKya', type: 'presse_specialisee', label: 'Dr Isioma Okolo',      lang: 'en', weight: 4.32 },
 ];
 
 export const REDDIT_SOURCES = [

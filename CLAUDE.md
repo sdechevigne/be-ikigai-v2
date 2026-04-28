@@ -89,3 +89,13 @@ Node ESM pipeline autonome générant des articles FR+EN via Gemini CLI. Voir `.
 - Images blog : dossier `public/assets/img/blog/` (pas `public/images/`) pour correspondre à PagesCMS
 - Catégories blog (liste fermée PagesCMS) : `Transition professionnelle`, `Sens au travail`, `Coaching`, `Ikigai`, `Philosophie de vie`
 - RSS sources actives (2026-04) : Le Monde Emploi, Figaro Emploi, Journal du Net, Parlons RH, Psychologies, Welcome to the Jungle, Maddyness
+
+### Pipeline blog — architecture des sources
+
+`pipeline/collect.js` agrège 4 sources en parallèle : RSS (`RSS_SOURCES`), Reddit (`REDDIT_SOURCES`, 7 subreddits), Serper search sémantique (`collect-search.js`, requiert `SERPER_API_KEY`), et evergreen hardcodé (`evergreen.js`). Le scoring réel utilise `WEIGHTS[sourceType]` — le champ `weight` par source dans `RSS_SOURCES` est du décor non lu par le code.
+
+Google Trends accepte **5 mots-clés max par batch** — au-delà, erreur silencieuse. `LOOKBACK_DAYS=60`, fallback `LOOKBACK_DAYS_EXTENDED=180` pour sources niche sans résultat.
+
+Les statuts GitHub Projects (`Detected` → `Researched` → `Drafting` → `Published`) sont **manuels** — le pipeline ne les avance jamais automatiquement sauf à la création (toujours `Detected`). Une card passée au-delà de `Detected` n'est plus mise à jour par les scans suivants.
+
+**Règle absolue éditoriale** : ne jamais critiquer, moquer ou décrier l'ikigai dans aucun prompt, article ou source — même subtilement. Gravé dans `pipeline/skills-prompt.md` et `pipeline/prompts/1-research.md`.

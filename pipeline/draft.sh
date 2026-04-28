@@ -169,14 +169,16 @@ if [[ -n "${RESUME_SLUG}" ]]; then
     git show "HEAD:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
     log "  Phases 1, 2 déjà commitées — reprise depuis Phase 3"
     [[ ! -f "${REPO_ROOT}/${ARTICLE_PATH}" ]] && { log_error "Article introuvable : ${ARTICLE_PATH}"; exit 1; }
-  elif git log --format=%s | grep -qF "wip(phase1):"; then
-    SKIP_PHASE1=true
-    PHASE1_HASH=$(git log --format="%H %s" | grep -F "wip(phase1):" | awk '{print $1}' | head -1)
-    git show "${PHASE1_HASH}:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
-    log "  Phase 1 déjà commitée — reprise depuis Phase 2"
   else
-    log_error "Aucune phase commitée trouvée pour slug=${RESUME_SLUG}"
-    exit 1
+    # Phase 1 potentiellement commitée (message = hash court, pas le slug article)
+    PHASE1_HASH=$(git log --format="%H %s" | grep -F "wip(phase1):" | awk '{print $1}' | head -1)
+    if [[ -n "${PHASE1_HASH}" ]]; then
+      SKIP_PHASE1=true
+      git show "${PHASE1_HASH}:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
+      log "  Phase 1 déjà commitée (${PHASE1_HASH:0:8}) — reprise depuis Phase 2"
+    else
+      log "  Aucune phase commitée — reprise depuis Phase 1"
+    fi
   fi
   if [[ -f "${REPO_ROOT}/public/assets/img/blog/${RESUME_SLUG}.png" ]]; then
     SKIP_IMAGE=true

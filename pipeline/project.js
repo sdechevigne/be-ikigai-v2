@@ -88,7 +88,7 @@ export function getProjectItems() {
   const result = gh(`{
     node(id: "${projectId}") {
       ... on ProjectV2 {
-        items(first: 200) {
+        items(first: 100) {
           nodes {
             id
             content { ... on DraftIssue { title body } }

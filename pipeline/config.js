@@ -51,18 +51,12 @@ export const CONTENT_TYPES = [
 
 export const RSS_SOURCES = [
   { url: 'https://www.lemonde.fr/emploi/rss_full.xml', type: 'presse_nationale', label: 'Le Monde Emploi' },
-  { url: 'https://www.lefigaro.fr/emploi/rss.xml', type: 'presse_nationale', label: 'Figaro Emploi' },
-  { url: 'https://www.capital.fr/rss.xml', type: 'presse_specialisee', label: 'Capital' },
-  { url: 'https://www.management.fr/rss.xml', type: 'presse_specialisee', label: 'Management' },
-  { url: 'https://www.hbrfrance.fr/rss.xml', type: 'presse_specialisee', label: 'HBR France' },
-  { url: 'https://www.courriercadres.com/feed/', type: 'presse_specialisee', label: 'Courrier Cadres' },
+  { url: 'https://www.lefigaro.fr/rss/figaro_emploi.xml', type: 'presse_nationale', label: 'Figaro Emploi' },
+  { url: 'https://www.journaldunet.com/rss/', type: 'presse_specialisee', label: 'Journal du Net' },
   { url: 'https://www.parlonsrh.com/feed/', type: 'presse_specialisee', label: 'Parlons RH' },
-  { url: 'https://www.psychologies.com/rss.xml', type: 'blogs_autorite', label: 'Psychologies' },
+  { url: 'https://www.psychologies.com/feed', type: 'blogs_autorite', label: 'Psychologies' },
   { url: 'https://www.welcometothejungle.com/fr/articles/rss', type: 'blogs_autorite', label: 'Welcome to the Jungle' },
-  { url: 'https://www.maddyness.com/rss.xml', type: 'blogs_autorite', label: 'Maddyness' },
-  { url: 'https://www.cadremploi.fr/editorial/rss', type: 'blogs_autorite', label: 'Cadremploi Mag' },
-  { url: 'https://www.e-rh.org/rss', type: 'blogs_autorite', label: 'e-rh.org' },
-  { url: 'https://www.hellowork.com/fr-fr/medias/rss', type: 'blogs_autorite', label: 'Hellowork Mag' },
+  { url: 'https://www.maddyness.com/feed/', type: 'blogs_autorite', label: 'Maddyness' },
 ];
 
 export const COACHING_KEYWORDS = [

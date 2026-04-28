@@ -92,6 +92,10 @@ faq:
 ---
 ```
 
+## Règle absolue — Positionnement ikigai
+
+Ne jamais critiquer, moquer, décrier ou minimiser l'ikigai, même de façon subtile ou rhétorique. Pas de « mythe », « arnaque », « trop simplifié », « mode passagère », « venn diagram Instagram » utilisé en négatif, ni de relativisation du concept. L'ikigai est présenté comme un cadre sérieux, ancré dans la philosophie japonaise, avec une valeur réelle pour la reconversion et le sens au travail. On peut nuancer une mauvaise application (ex : les représentations réductrices en Occident) à condition de défendre et de réhabiliter l'ikigai authentique — jamais pour le discréditer.
+
 ## Règles absolues anti-IA
 
 **ZÉRO tirets longs (—)** — remplacer par virgule, point, deux-points ou parenthèses.

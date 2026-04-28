@@ -2,6 +2,8 @@
 
 Le sujet, cluster et type de contenu sont fournis ci-dessous dans la section "Sujet (contexte injecté)".
 
+**Règle absolue :** Ne jamais sélectionner, citer ou s'appuyer sur des sources qui critiquent, moquent ou décrivent l'ikigai comme un mythe, une arnaque ou une mode passagère. Si une source nuance l'ikigai, elle n'est retenue que si elle défend et réhabilite le concept authentique.
+
 Vérifie les articles existants dans `src/content/blog/` pour éviter les doublons.
 
 Recherche des sources sur ce sujet :

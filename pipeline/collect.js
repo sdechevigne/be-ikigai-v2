@@ -1,6 +1,7 @@
 // pipeline/collect.js
 import Parser from 'rss-parser';
-import { RSS_SOURCES, COACHING_KEYWORDS, LOOKBACK_DAYS, LOOKBACK_DAYS_EXTENDED } from './config.js';
+import googleTrends from 'google-trends-api';
+import { RSS_SOURCES, COACHING_KEYWORDS, TRENDS_KEYWORDS, LOOKBACK_DAYS, LOOKBACK_DAYS_EXTENDED } from './config.js';
 import { collectSearch } from './collect-search.js';
 import { collectEvergreen } from './evergreen.js';
 
@@ -69,15 +70,70 @@ export async function collectRSS() {
   return items;
 }
 
+export async function collectGoogleTrends() {
+  const trendScores = {};
+  const risingQueries = [];
+  const batches = [];
+
+  for (let i = 0; i < TRENDS_KEYWORDS.length; i += 5) {
+    batches.push(TRENDS_KEYWORDS.slice(i, i + 5));
+  }
+
+  for (const batch of batches) {
+    try {
+      const result = await googleTrends.interestOverTime({
+        keyword: batch,
+        startTime: new Date(Date.now() - LOOKBACK_DAYS * 24 * 60 * 60 * 1000),
+        geo: 'FR',
+      });
+      const data = JSON.parse(result);
+      const timelineData = data?.default?.timelineData || [];
+
+      if (timelineData.length > 0) {
+        batch.forEach((kw, idx) => {
+          const values = timelineData.map(p => p.value?.[idx] || 0).filter(v => v > 0);
+          trendScores[kw] = values.length
+            ? Math.round(values.reduce((a, b) => a + b, 0) / values.length)
+            : 0;
+        });
+      }
+
+      for (const kw of batch) {
+        try {
+          const relResult = await googleTrends.relatedQueries({
+            keyword: kw,
+            startTime: new Date(Date.now() - LOOKBACK_DAYS * 24 * 60 * 60 * 1000),
+            geo: 'FR',
+          });
+          const relData = JSON.parse(relResult);
+          const rising = relData?.default?.rankedList?.[1]?.rankedKeyword || [];
+          rising.slice(0, 5).forEach(item => {
+            if (item.query && !risingQueries.includes(item.query)) risingQueries.push(item.query);
+          });
+        } catch {
+          // relatedQueries non disponible pour ce mot-clé — ignoré
+        }
+        await new Promise(r => setTimeout(r, 500));
+      }
+
+      if (batches.indexOf(batch) < batches.length - 1) {
+        await new Promise(r => setTimeout(r, 2000));
+      }
+    } catch (err) {
+      process.stderr.write(`Trends error [${batch[0]}]: ${err.message}\n`);
+    }
+  }
+
+  process.stderr.write(`Trends: ${Object.keys(trendScores).length} mots-clés scorés, ${risingQueries.length} requêtes en hausse\n`);
+  return { trendScores, risingQueries };
+}
+
 export async function collectAll() {
-  const [rssItems, searchItems] = await Promise.all([
+  const [rssItems, searchItems, { trendScores, risingQueries }] = await Promise.all([
     collectRSS(),
     collectSearch(),
+    collectGoogleTrends(),
   ]);
   const evergreenItems = collectEvergreen();
-  return {
-    items: [...rssItems, ...searchItems, ...evergreenItems],
-    trendScores: {},
-    risingQueries: [],
-  };
+  return { items: [...rssItems, ...searchItems, ...evergreenItems], trendScores, risingQueries };
 }

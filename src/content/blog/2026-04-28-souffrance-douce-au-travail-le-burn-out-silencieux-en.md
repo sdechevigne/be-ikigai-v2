@@ -40,7 +40,7 @@ author: Pierre-Louis
 category: "Meaning & Ikigai"
 image: /assets/img/blog/souffrance-douce-au-travail-le-burn-out-silencieux-en.png
 featured: false
-status: draft
+status: published
 faq:
   - question: "What is quiet suffering at work?"
     answer: "It's a constant misalignment between your values and your tasks. Not a sudden explosion like burnout, but a persistent loss of meaning."

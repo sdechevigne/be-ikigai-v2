@@ -1,7 +1,7 @@
 // pipeline/index.js
 import { collectAll } from './collect.js';
-import { classifyAndScore } from './classify.js';
-import { createProjectCard, pickNextTopic } from './project.js';
+import { classifyAndScore, suggestArticleTitles } from './classify.js';
+import { createArticleCard, createProjectCard, pickNextTopic } from './project.js';
 
 const isDryRun = process.argv.includes('--dry-run');
 const isPick = process.argv.includes('--pick');
@@ -41,13 +41,16 @@ async function main() {
     return;
   }
 
-  process.stderr.write('Création/mise à jour des cartes GitHub Projects...\n');
+  process.stderr.write('Création des cartes article GitHub Projects...\n');
   for (const group of scored) {
-    try {
-      const itemId = await createProjectCard(group);
-      process.stderr.write(`  Carte : ${group.cluster.label} (${itemId || 'maj'})\n`);
-    } catch (err) {
-      process.stderr.write(`  Erreur carte [${group.cluster.label}]: ${err.message}\n`);
+    const titles = suggestArticleTitles(group);
+    for (const title of titles) {
+      try {
+        const itemId = await createArticleCard(title, group);
+        process.stderr.write(`  Article [${group.cluster.label}] : ${title.slice(0, 60)} (${itemId || 'existe'})\n`);
+      } catch (err) {
+        process.stderr.write(`  Erreur carte [${group.cluster.label}] "${title.slice(0, 40)}": ${err.message}\n`);
+      }
     }
   }
 

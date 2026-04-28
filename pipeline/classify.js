@@ -50,6 +50,35 @@ export function getRisingScore(clusterKey, risingQueries) {
   ).length;
 }
 
+// Génère 2-3 titres d'articles concrets à partir des signaux d'un cluster
+export function suggestArticleTitles(group) {
+  const titles = [];
+  const cluster = group.cluster;
+
+  // 1. Titres evergreen existants du cluster (angles déjà rédigés)
+  for (const angle of (group.evergreenAngles || []).slice(0, 2)) {
+    if (angle && angle.length > 10) titles.push(angle);
+  }
+
+  // 2. Titres issus des topItems RSS/Reddit (signal chaud)
+  for (const item of (group.topItems || []).slice(0, 3)) {
+    if (!item.title || item.title.length < 10) continue;
+    // Reformuler légèrement pour le contexte ikigai/coaching
+    const t = item.title.trim();
+    if (!titles.some(existing => existing.toLowerCase().includes(t.slice(0, 20).toLowerCase()))) {
+      titles.push(t);
+    }
+  }
+
+  // 3. Fallback : titre générique basé sur le cluster
+  if (titles.length === 0) {
+    titles.push(`${cluster.label} : comprendre et agir — guide pratique be-ikigai`);
+  }
+
+  // Retourner 2-3 titres max, dédupliqués
+  return [...new Set(titles)].slice(0, 3);
+}
+
 export function classifyAndScore(items, trendScores, risingQueries) {
   const groups = {};
 

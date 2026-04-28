@@ -193,6 +193,41 @@ export async function setPublicationDate(itemId, date) {
   }`);
 }
 
+export async function createArticleCard(title, group) {
+  const { projectId, fields } = PROJECT_CONFIG;
+  if (!projectId) return null;
+
+  // Vérifier si une card avec ce titre exact existe déjà
+  const existing = getProjectItems().find(item =>
+    item.content?.title?.trim().toLowerCase() === title.trim().toLowerCase()
+  );
+  if (existing) return existing.id;
+
+  const body = buildCardBody(group);
+  const safeTitle = title.replace(/"/g, '\\"');
+  const safeBody = body.replace(/"/g, '\\"').replace(/\n/g, '\\n');
+
+  const result = gh(`mutation {
+    addProjectV2DraftIssue(input: {
+      projectId: "${projectId}"
+      title: "${safeTitle}"
+      body: "${safeBody}"
+    }) { projectItem { id } }
+  }`);
+
+  const itemId = result?.data?.addProjectV2DraftIssue?.projectItem?.id;
+  if (itemId) {
+    await setProjectFields(itemId, {
+      score: group.score,
+      cluster: group.cluster.label,
+      contentType: group.contentType,
+    });
+    await updateCardStatus(itemId, 'detected');
+  }
+
+  return itemId;
+}
+
 export async function createProjectCard(group) {
   const { projectId } = PROJECT_CONFIG;
   if (!projectId) return null;

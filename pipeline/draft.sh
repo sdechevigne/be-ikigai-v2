@@ -237,7 +237,7 @@ else
 
 ## Sujet (contexte injecté)
 
-$(cat "${CARD_BODY}")"
+$(cat "${CARD_BODY}" 2>/dev/null || echo "Sujet : ${TOPIC_TITLE:-${RESUME_SLUG:-sujet inconnu}}")"
   RESEARCH_OUTPUT=$(run_llm \
     --mcp-config "${MCP_CONFIG}" \
     --system-prompt-file "${SKILLS_PROMPT}" \

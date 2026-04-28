@@ -3,6 +3,7 @@ import Parser from 'rss-parser';
 import googleTrends from 'google-trends-api';
 import { RSS_SOURCES, COACHING_KEYWORDS, TRENDS_KEYWORDS, LOOKBACK_DAYS, LOOKBACK_DAYS_EXTENDED } from './config.js';
 import { collectSearch } from './collect-search.js';
+import { collectEvergreen } from './evergreen.js';
 
 const parser = new Parser({ timeout: 10000 });
 
@@ -107,5 +108,6 @@ export async function collectAll() {
     collectSearch(),
     collectGoogleTrends(),
   ]);
-  return { items: [...rssItems, ...searchItems], trendScores, risingQueries };
+  const evergreenItems = collectEvergreen();
+  return { items: [...rssItems, ...searchItems, ...evergreenItems], trendScores, risingQueries };
 }

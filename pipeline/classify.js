@@ -54,14 +54,23 @@ export function classifyAndScore(items, trendScores, risingQueries) {
   const groups = {};
 
   for (const item of items) {
-    const clusterKey = classifyItem(item);
+    // Les evergreen ont un cluster hint direct, sinon on classifie par keywords
+    const clusterKey = item._cluster || classifyItem(item);
     if (!clusterKey) continue;
 
     if (!groups[clusterKey]) {
-      groups[clusterKey] = { items: [], sourceTypes: new Set() };
+      groups[clusterKey] = { items: [], sourceTypes: new Set(), evergreenBoost: 0 };
     }
     groups[clusterKey].items.push(item);
     groups[clusterKey].sourceTypes.add(item.sourceType);
+
+    // Les evergreen contribuent un score fixe au cluster (pas compté comme article classique)
+    if (item._evergreen) {
+      groups[clusterKey].evergreenBoost = Math.max(
+        groups[clusterKey].evergreenBoost,
+        item._evergreenScore || 0
+      );
+    }
   }
 
   const results = [];
@@ -70,27 +79,32 @@ export function classifyAndScore(items, trendScores, risingQueries) {
     let score = 0;
 
     for (const type of group.sourceTypes) {
-      score += (WEIGHTS[type] || 1) * group.items.filter(i => i.sourceType === type).length;
+      const nonEvergreen = group.items.filter(i => i.sourceType === type && !i._evergreen);
+      score += (WEIGHTS[type] || 1) * nonEvergreen.length;
     }
 
     const trendVal = getTrendScore(clusterKey, trendScores);
     const risingVal = getRisingScore(clusterKey, risingQueries);
     score += trendVal * WEIGHTS.google_trends;
     score += risingVal * WEIGHTS.rising_queries;
+    score += group.evergreenBoost;
 
     if (score < SCORE_THRESHOLD) continue;
 
-    const representativeItem = group.items.sort((a, b) =>
-      new Date(b.date) - new Date(a.date)
-    )[0];
+    const realItems = group.items.filter(i => !i._evergreen);
+    const evergreenItems = group.items.filter(i => i._evergreen);
+    const representativeItem = (realItems.length ? realItems : evergreenItems)
+      .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 
     results.push({
       clusterKey,
       cluster: CLUSTERS[clusterKey],
       score: Math.round(score * 10) / 10,
-      itemCount: group.items.length,
+      itemCount: realItems.length,
+      evergreenCount: evergreenItems.length,
       contentType: suggestContentType(clusterKey, representativeItem),
-      topItems: group.items.slice(0, 5),
+      topItems: realItems.slice(0, 5),
+      evergreenAngles: evergreenItems.map(i => i.title),
       trendScore: Math.round(trendVal),
       risingMatches: risingVal,
     });

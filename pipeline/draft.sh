@@ -107,6 +107,7 @@ run_llm() {
     GEMINI_API_KEY="${GEMINI_API_KEY}" \
     GEMINI_SYSTEM_MD="${system_prompt_file}" \
     GEMINI_CLI_HOME="${GEMINI_CLI_HOME:-/tmp/gemini-home}" \
+    GEMINI_CLI_TRUST_WORKSPACE="true" \
       gemini --model gemini-3.1-pro-preview --approval-mode yolo "${gemini_args[@]}"
   else
     CLAUDE_CODE_OAUTH_TOKEN="${CLAUDE_CODE_OAUTH_TOKEN:-}" claude "$@"
@@ -134,6 +135,9 @@ if [[ "${LLM}" == "gemini" ]]; then
   export GEMINI_CLI_HOME="/tmp/gemini-home"
   mkdir -p "${GEMINI_CLI_HOME}/.gemini"
   echo '{"projects":{}}' > "${GEMINI_CLI_HOME}/.gemini/projects.json"
+  # Trust the current workspace to allow --approval-mode yolo in headless environments
+  WORKSPACE_PATH="$(pwd)"
+  echo "{\"trustedDirectories\":[\"${WORKSPACE_PATH}\"]}" > "${GEMINI_CLI_HOME}/.gemini/settings.json"
 fi
 
 if [[ -z "${GEMINI_API_KEY:-}" ]]; then

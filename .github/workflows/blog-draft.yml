@@ -43,6 +43,7 @@ jobs:
         run: RESUME_SLUG="${{ inputs.resume_slug }}" bash pipeline/draft.sh
         env:
           LLM: ${{ inputs.llm || 'gemini' }}
+          GEMINI_CLI_TRUST_WORKSPACE: 'true'
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GH_TOKEN: ${{ secrets.GH_PAT }}
           PROJECT_ID: ${{ secrets.PROJECT_ID }}

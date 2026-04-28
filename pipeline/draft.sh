@@ -302,8 +302,6 @@ $(cat "${CARD_BODY}" 2>/dev/null || echo '')"
       ARTICLE_PATH="src/content/blog/$(date +%Y-%m-%d)-${DERIVED_SLUG}-fr.md"
       mkdir -p "${CONTENT_DIR}"
       echo "${MARKDOWN_CONTENT}" > "${REPO_ROOT}/${ARTICLE_PATH}"
-      FINAL_SLUG=$(basename "${ARTICLE_PATH}" .md)
-      sed -i "s|^image:.*|image: /assets/img/blog/${BASE_SLUG}-fr.webp|" "${REPO_ROOT}/${ARTICLE_PATH}"
       log "Article sauvegardé depuis stdout : ${ARTICLE_PATH}"
     else
       log_error "Phase 2 : ni fichier créé ni contenu markdown dans stdout"
@@ -362,6 +360,16 @@ PYEOF
     sed -i 's/ — /, /g; s/— /: /g; s/ —/,/g' "${FULL_PATH}"
     log "  Tirets longs remplacés"
   fi
+
+  # Patch image : forcer le bon chemin webp sur FR + EN
+  BASE_SLUG_PHASE2="${ARTICLE_SLUG%-fr}"
+  CORRECT_IMAGE="/assets/img/blog/${BASE_SLUG_PHASE2}-fr.webp"
+  for md_file in "${REPO_ROOT}/${ARTICLE_PATH}" "${REPO_ROOT}/src/content/blog/${BASE_SLUG_PHASE2}-en.md"; do
+    if [[ -f "${md_file}" ]]; then
+      sed -i "s|^image:.*|image: ${CORRECT_IMAGE}|" "${md_file}"
+      log "  Image patchée dans $(basename ${md_file}) → ${CORRECT_IMAGE}"
+    fi
+  done
 
   cd "${REPO_ROOT}"
   git add "${CONTENT_DIR}/"

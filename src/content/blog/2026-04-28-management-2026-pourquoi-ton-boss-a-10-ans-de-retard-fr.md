@@ -11,7 +11,7 @@ summary:
 publishedAt: 2026-04-28T10:00:00
 author: Pierre-Louis
 category: Sens au travail
-image: /assets/img/blog/management-2026-pourquoi-ton-boss-a-10-ans-de-retard-fr.png
+image: /assets/img/blog/2026-04-28-management-2026-pourquoi-ton-boss-a-10-ans-de-retard-fr.webp
 featured: false
 status: published
 faq:

@@ -303,7 +303,7 @@ $(cat "${CARD_BODY}" 2>/dev/null || echo '')"
       mkdir -p "${CONTENT_DIR}"
       echo "${MARKDOWN_CONTENT}" > "${REPO_ROOT}/${ARTICLE_PATH}"
       FINAL_SLUG=$(basename "${ARTICLE_PATH}" .md)
-      sed -i "s|^image:.*|image: /assets/img/blog/${FINAL_SLUG}.png|" "${REPO_ROOT}/${ARTICLE_PATH}"
+      sed -i "s|^image:.*|image: /assets/img/blog/${BASE_SLUG}-fr.webp|" "${REPO_ROOT}/${ARTICLE_PATH}"
       log "Article sauvegardé depuis stdout : ${ARTICLE_PATH}"
     else
       log_error "Phase 2 : ni fichier créé ni contenu markdown dans stdout"

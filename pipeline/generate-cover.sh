@@ -59,12 +59,17 @@ for part in data.get('candidates', [{}])[0].get('content', {}).get('parts', []):
   fi
 
   ${CONVERT_CMD} "${TMP_FILE}" -resize "${BLOG_SIZE}^" -gravity Center -extent "${BLOG_SIZE}" \
+    -quality 82 "${OUT_DIR}/${SLUG}.webp" 2>/dev/null || \
+  ${CONVERT_CMD} "${TMP_FILE}" -resize "${BLOG_SIZE}^" -gravity Center -extent "${BLOG_SIZE}" \
     "${OUT_DIR}/${SLUG}.png"
+
+  ${CONVERT_CMD} "${TMP_FILE}" -resize "${OG_SIZE}^" -gravity Center -extent "${OG_SIZE}" \
+    -quality 82 "${OUT_DIR}/${SLUG}-og.webp" 2>/dev/null || \
   ${CONVERT_CMD} "${TMP_FILE}" -resize "${OG_SIZE}^" -gravity Center -extent "${OG_SIZE}" \
     "${OUT_DIR}/${SLUG}-og.png"
 
   rm -f "${TMP_FILE}"
-  echo "Images générées : ${OUT_DIR}/${SLUG}.png + ${OUT_DIR}/${SLUG}-og.png"
+  echo "Images générées : ${OUT_DIR}/${SLUG}.webp + ${OUT_DIR}/${SLUG}-og.webp"
   exit 0
 done
 

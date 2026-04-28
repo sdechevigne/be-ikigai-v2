@@ -38,7 +38,7 @@ schemaOrg:
 publishedAt: 2026-04-28T10:00:00
 author: Pierre-Louis
 category: "Sens & Ikigai"
-image: /assets/img/blog/souffrance-douce-au-travail-le-burn-out-silencieux-fr.png
+image: /assets/img/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-fr.webp
 featured: false
 status: published
 faq:

@@ -90,7 +90,7 @@ summary:
 publishedAt: ${PUBLISH_DATETIME}
 author: Pierre-Louis
 category: Transition professionnelle
-image: /assets/img/blog/SLUG-fr.png
+image: /assets/img/blog/YYYY-MM-DD-slug-fr.webp
 featured: false
 status: draft
 faq:
@@ -101,7 +101,7 @@ faq:
 
 ## Frontmatter EN
 
-Même structure, `lang: en`, title/description/seoKeywords en anglais, `image: /assets/img/blog/SLUG-en.png`.
+Même structure, `lang: en`, title/description/seoKeywords en anglais, `image: /assets/img/blog/YYYY-MM-DD-slug-fr.webp` (même image que le FR).
 
 ## Nommage des fichiers
 

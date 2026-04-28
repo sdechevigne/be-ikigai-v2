@@ -1,0 +1,57 @@
+name: Blog — Draft automatique
+
+on:
+  schedule:
+    - cron: '0 8 */2 * *'   # jours pairs, 08h00 UTC
+  workflow_dispatch:
+    inputs:
+      resume_slug:
+        description: 'Slug à reprendre (ex: 2026-04-28-ikigai-reconversion-fr)'
+        required: false
+        default: ''
+      llm:
+        description: 'LLM à utiliser (gemini ou claude)'
+        required: false
+        default: 'gemini'
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y jq imagemagick
+          npm install -g @google/gemini-cli
+          cd pipeline && npm install
+
+      - name: Configure git
+        run: |
+          git config user.email "pipeline@be-ikigai.fr"
+          git config user.name "Be-Ikigai Pipeline"
+
+      - name: Run draft pipeline
+        run: RESUME_SLUG="${{ inputs.resume_slug }}" bash pipeline/draft.sh
+        env:
+          LLM: ${{ inputs.llm || 'gemini' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          PROJECT_FIELD_STATUS_ID: ${{ secrets.PROJECT_FIELD_STATUS_ID }}
+          PROJECT_FIELD_SCORE_ID: ${{ secrets.PROJECT_FIELD_SCORE_ID }}
+          PROJECT_FIELD_CLUSTER_ID: ${{ secrets.PROJECT_FIELD_CLUSTER_ID }}
+          PROJECT_FIELD_CONTENT_TYPE_ID: ${{ secrets.PROJECT_FIELD_CONTENT_TYPE_ID }}
+          PROJECT_FIELD_ARTICLE_PATH_ID: ${{ secrets.PROJECT_FIELD_ARTICLE_PATH_ID }}
+          PROJECT_STATUS_DETECTED: ${{ secrets.PROJECT_STATUS_DETECTED }}
+          PROJECT_STATUS_RESEARCHED: ${{ secrets.PROJECT_STATUS_RESEARCHED }}
+          PROJECT_STATUS_DRAFTING: ${{ secrets.PROJECT_STATUS_DRAFTING }}
+          PROJECT_STATUS_PUBLISHED: ${{ secrets.PROJECT_STATUS_PUBLISHED }}

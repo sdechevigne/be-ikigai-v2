@@ -1,0 +1,37 @@
+name: Blog — Scan tendances
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'   # lundi 07h00 UTC
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pipeline deps
+        run: npm install
+        working-directory: pipeline
+
+      - name: Run trend scan
+        run: node index.js
+        working-directory: pipeline
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          PROJECT_FIELD_STATUS_ID: ${{ secrets.PROJECT_FIELD_STATUS_ID }}
+          PROJECT_FIELD_SCORE_ID: ${{ secrets.PROJECT_FIELD_SCORE_ID }}
+          PROJECT_FIELD_CLUSTER_ID: ${{ secrets.PROJECT_FIELD_CLUSTER_ID }}
+          PROJECT_FIELD_CONTENT_TYPE_ID: ${{ secrets.PROJECT_FIELD_CONTENT_TYPE_ID }}
+          PROJECT_FIELD_ARTICLE_PATH_ID: ${{ secrets.PROJECT_FIELD_ARTICLE_PATH_ID }}
+          PROJECT_STATUS_DETECTED: ${{ secrets.PROJECT_STATUS_DETECTED }}
+          PROJECT_STATUS_RESEARCHED: ${{ secrets.PROJECT_STATUS_RESEARCHED }}
+          PROJECT_STATUS_DRAFTING: ${{ secrets.PROJECT_STATUS_DRAFTING }}
+          PROJECT_STATUS_PUBLISHED: ${{ secrets.PROJECT_STATUS_PUBLISHED }}

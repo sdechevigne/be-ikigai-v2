@@ -1,0 +1,60 @@
+name: Blog — Publier un article
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Slug de l'article (ex: 2026-04-28-ikigai-reconversion-fr)"
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Configure git
+        run: |
+          git config user.email "pipeline@be-ikigai.fr"
+          git config user.name "Be-Ikigai Pipeline"
+
+      - name: Publish FR article
+        run: |
+          FILE="src/content/blog/${{ inputs.slug }}.md"
+          if [[ ! -f "$FILE" ]]; then
+            echo "Fichier introuvable : $FILE"
+            exit 1
+          fi
+          python3 - "$FILE" <<'PYEOF'
+          import sys, re
+          path = sys.argv[1]
+          content = open(path).read()
+          m = re.search(r'^description:\s*"(.+?)"', content, re.MULTILINE)
+          if m:
+              l = len(m.group(1))
+              if l < 110 or l > 160:
+                  print(f"ERREUR: description {l} chars (attendu 110-160)")
+                  sys.exit(1)
+          print("Frontmatter OK")
+          PYEOF
+          sed -i 's/^status: draft/status: published/' "$FILE"
+          git add "$FILE"
+          git commit -m "blog: publish '${{ inputs.slug }}'"
+
+      - name: Publish EN article (si existant)
+        run: |
+          EN_SLUG="${{ inputs.slug }}"
+          EN_SLUG="${EN_SLUG%-fr}-en"
+          FILE="src/content/blog/${EN_SLUG}.md"
+          if [[ -f "$FILE" ]]; then
+            sed -i 's/^status: draft/status: published/' "$FILE"
+            git add "$FILE"
+            git commit -m "blog: publish '${EN_SLUG}'"
+          else
+            echo "Pas de version EN trouvée (${FILE}) — ignoré"
+          fi
+
+      - name: Push
+        run: git push origin master

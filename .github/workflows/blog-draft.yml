@@ -32,6 +32,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y jq imagemagick
           npm install -g @google/gemini-cli
+          npm install
           cd pipeline && npm install
 
       - name: Configure git

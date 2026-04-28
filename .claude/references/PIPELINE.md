@@ -8,24 +8,13 @@ Le pipeline transforme des signaux de tendance en articles publiés sur le site,
 ┌─────────────────────────────────────────────────────────────────┐
 │                      BOUCLE AUTOMATIQUE                         │
 │                                                                 │
-│  Lundi 07h00 UTC                                                │
-│  blog-trend-scan.yml                                            │
-│    └─ pipeline/index.js                                         │
-│         ├─ collectAll() : RSS + Reddit + Serper + evergreen     │
-│         ├─ classifyAndScore() : clusters + scoring              │
-│         └─ createArticleCard() → GitHub Projects "Detected"    │
-│                    │                                            │
-│                    ▼ (manuel : passer à Researched+)            │
-│  Lundi+Jeudi 08h00 UTC                                          │
-│  blog-schedule.yml                                              │
-│    ├─ Trouve le prochain draft (status: draft, date ≤ today)    │
-│    │    └─ blog-publish.yml → status: published + commit        │
-│    └─ Si aucun draft → blog-draft.yml (mode auto)              │
-│         └─ pipeline/draft.sh                                    │
-│              ├─ Phase 1 : recherche Serper                      │
-│              ├─ Phase 2 : rédaction Gemini FR+EN                │
-│              └─ Phase 3 : humanisation + image                  │
-│                   └─ src/content/blog/SLUG-{fr,en}.md (draft)  │
+│  Lundi + Jeudi 08h00 UTC                                        │
+│  blog-schedule.yml → blog-draft.yml                             │
+│    └─ pipeline/draft.sh                                         │
+│         ├─ Phase 1 : recherche Serper                           │
+│         ├─ Phase 2 : rédaction Gemini FR+EN (status: published) │
+│         ├─ Phase 3 : humanisation + image                       │
+│         └─ commit + push → card Projects = Published            │
 └─────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────┐
@@ -55,7 +44,7 @@ Published     → article live sur le site
 Archived      → sujet abandonné ou doublon
 ```
 
-Seuls `Researched` et `Drafting` bloquent le scheduling automatique : `blog-schedule.yml` ne redéclenche un draft que si aucun article n'est déjà en `Researched` ou `Drafting` sur le même cluster.
+Le pipeline ne crée jamais de doublons sur un même cluster : `pickNextTopic()` exclut les clusters ayant déjà une card en `Researched` ou `Drafting`.
 
 ---
 
@@ -86,7 +75,7 @@ Déclenché soit par `blog-schedule.yml` (automatique), soit par `trigger-draft.
 | Phase | Marqueur | Ce qui se passe |
 |-------|----------|-----------------|
 | Recherche | `::research-done::` | Serper fetch + notes dans `research-notes.md` |
-| Rédaction | `::draft-path::` | Gemini rédige FR + EN dans `src/content/blog/` (status: draft) |
+| Rédaction | `::draft-path::` | Gemini rédige FR + EN dans `src/content/blog/` (status: published) |
 | Humanisation | `::done::` | Reformulation + génération image couverture |
 
 Chaque phase est commitée — si le workflow échoue, il peut reprendre :
@@ -95,27 +84,18 @@ Chaque phase est commitée — si le workflow échoue, il peut reprendre :
 RESUME_SLUG=2026-04-28-mon-article-fr bash pipeline/trigger-draft.sh
 ```
 
-### 4. Relecture et planification
+### 4. Publication (blog-schedule.yml)
 
-L'article est créé avec `status: draft` dans le frontmatter. Tu peux :
+Lundi et jeudi à 08h00 UTC, `blog-schedule.yml` déclenche `blog-draft.yml` (mode auto).
 
-- Modifier le fichier directement ou via PagesCMS
-- Changer `publishedAt` pour planifier la date de publication
-- Le champ `Publication Date` de la card GitHub Projects se met à jour automatiquement à la publication
-
-### 5. Publication (blog-schedule.yml)
-
-Lundi et jeudi à 08h00 UTC, `blog-schedule.yml` :
-
-1. Cherche le premier fichier `*-fr.md` avec `status: draft` et `publishedAt ≤ aujourd'hui`
-2. Déclenche `blog-publish.yml` avec le slug trouvé
-3. Si aucun article en attente → déclenche un nouveau draft automatique
-
-`blog-publish.yml` :
-- Valide le frontmatter (description 110-160 chars)
-- Passe `status: draft` → `status: published` (FR + EN)
+`draft.sh` :
+- Sélectionne la card `Detected` avec la `Publication Date` la plus ancienne (ou le meilleur Trend Score si aucune date)
+- Rédige et humanise l'article
+- Passe les fichiers FR + EN en `status: published` directement
 - Commit + push sur `master`
 - Met à jour la card GitHub Projects : statut `Published` + date de publication
+
+`blog-publish.yml` reste disponible pour **publier manuellement** un slug précis depuis GitHub Actions.
 
 ---
 
@@ -138,6 +118,15 @@ RESUME_SLUG=2026-04-28-mon-slug-fr bash pipeline/trigger-draft.sh
 
 # Forcer malgré doublon détecté
 FORCE=1 bash pipeline/trigger-draft.sh "Mon idée"
+```
+
+### Réordonner les publications
+
+```bash
+# Prioriser une card pour le prochain draft automatique
+# → Dans GitHub Projects, renseigner le champ "Publication Date" sur une card "Detected"
+# → pickNextTopic() la sélectionne en premier (avant les autres triées par Trend Score)
+# → Les cards sans date sont traitées dans l'ordre du Trend Score
 ```
 
 ### Backfill / maintenance

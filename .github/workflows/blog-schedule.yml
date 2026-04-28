@@ -1,60 +1,18 @@
-name: Blog — Calendrier automatique
+name: Blog — Scheduling automatique
 
 on:
   schedule:
     - cron: '0 8 * * 1'   # Lundi 08h00 UTC
     - cron: '0 8 * * 4'   # Jeudi 08h00 UTC
-  workflow_dispatch: {}    # Déclenchement manuel pour test
+  workflow_dispatch: {}
 
 jobs:
   schedule:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Trouver le prochain article à publier
-        id: find
-        run: |
-          TODAY=$(date -u +%Y-%m-%d)
-          echo "Aujourd'hui : ${TODAY}"
-
-          SLUG=""
-          for f in $(ls src/content/blog/*-fr.md 2>/dev/null | sort); do
-            STATUS=$(grep '^status:' "${f}" | head -1 | sed 's/status: *//' | tr -d '"' | tr -d "'" | xargs)
-            if [[ "${STATUS}" != "draft" ]]; then
-              continue
-            fi
-            PUBLISHED_AT=$(grep '^publishedAt:' "${f}" | head -1 | sed 's/publishedAt: *//' | tr -d '"' | tr -d "'" | cut -c1-10 | xargs)
-            if [[ -z "${PUBLISHED_AT}" ]]; then
-              continue
-            fi
-            if [[ ! "${PUBLISHED_AT}" > "${TODAY}" ]]; then
-              SLUG=$(basename "${f}" .md)
-              echo "Article trouvé : ${SLUG} (publishedAt: ${PUBLISHED_AT})"
-              break
-            fi
-          done
-
-          echo "slug=${SLUG}" >> "${GITHUB_OUTPUT}"
-
-      - name: Publier l'article
-        if: steps.find.outputs.slug != ''
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          PROJECT_FIELD_PUBLICATION_DATE_ID: ${{ secrets.PROJECT_FIELD_PUBLICATION_DATE_ID }}
-          SLUG: ${{ steps.find.outputs.slug }}
-        run: |
-          echo "Publication de : ${SLUG}"
-          gh workflow run blog-publish.yml \
-            --repo "${{ github.repository }}" \
-            -f slug="${SLUG}"
-
-      - name: Déclencher un nouveau draft (backlog vide)
-        if: steps.find.outputs.slug == ''
+      - name: Déclencher un nouveau draft
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          echo "Aucun article en attente — déclenchement d'un nouveau draft (mode auto)"
           gh workflow run blog-draft.yml \
             --repo "${{ github.repository }}"

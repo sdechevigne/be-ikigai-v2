@@ -61,6 +61,18 @@ Respecte toutes les règles de `pipeline/skills-prompt.md`.
 1. [Titre](URL) — Type/Source, Date
 ```
 
+## Mapping cluster → catégorie
+
+Utilise **exactement** une de ces valeurs pour `category` (liste fermée PagesCMS) :
+
+| Cluster | category |
+|---------|----------|
+| Reconversion | `Transition professionnelle` |
+| Sens & Ikigai | `Sens au travail` |
+| Burn-out & Épuisement | `Coaching` |
+| Coaching & Bilan | `Coaching` |
+| Management & Leadership | `Sens au travail` |
+
 ## Frontmatter FR
 
 ```yaml
@@ -76,9 +88,8 @@ summary:
   - "Bullet 4 (≤200 chars)"
 publishedAt: ${PUBLISH_DATETIME}
 author: Pierre-Louis
-category: Reconversion
-image: /images/SLUG-fr.png
-readingTime: N
+category: Transition professionnelle
+image: /assets/img/blog/SLUG-fr.png
 featured: false
 status: draft
 faq:
@@ -89,7 +100,7 @@ faq:
 
 ## Frontmatter EN
 
-Même structure, `lang: en`, title/description/seoKeywords en anglais, `image: /images/SLUG-en.png`.
+Même structure, `lang: en`, title/description/seoKeywords en anglais, `image: /assets/img/blog/SLUG-en.png`.
 
 ## Nommage des fichiers
 

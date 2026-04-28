@@ -27,12 +27,12 @@
 
 4. Vérifie les fichiers générés :
    ```bash
-   ls -lh public/images/${SLUG%-fr}*.png
+   ls -lh public/assets/img/blog/${SLUG%-fr}*.png
    ```
 
 5. Commit :
    ```bash
-   git add public/images/${SLUG%-fr}*.png
+   git add public/assets/img/blog/${SLUG%-fr}*.png
    git commit -m "blog: régénération couverture '${SLUG}'"
    git push origin master
    ```

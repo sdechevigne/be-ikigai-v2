@@ -177,7 +177,7 @@ if [[ -n "${RESUME_SLUG}" ]]; then
     git show "${PHASE1_HASH}:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
     log "  Phase 1 déjà commitée — reprise depuis Phase 2"
   fi
-  if [[ -f "${REPO_ROOT}/public/images/${RESUME_SLUG}.png" ]]; then
+  if [[ -f "${REPO_ROOT}/public/assets/img/blog/${RESUME_SLUG}.png" ]]; then
     SKIP_IMAGE=true
     log "  Image déjà présente"
   fi
@@ -280,7 +280,7 @@ else
       mkdir -p "${CONTENT_DIR}"
       echo "${MARKDOWN_CONTENT}" > "${REPO_ROOT}/${ARTICLE_PATH}"
       FINAL_SLUG=$(basename "${ARTICLE_PATH}" .md)
-      sed -i "s|^image:.*|image: /images/${FINAL_SLUG}.png|" "${REPO_ROOT}/${ARTICLE_PATH}"
+      sed -i "s|^image:.*|image: /assets/img/blog/${FINAL_SLUG}.png|" "${REPO_ROOT}/${ARTICLE_PATH}"
       log "Article sauvegardé depuis stdout : ${ARTICLE_PATH}"
     else
       log_error "Phase 2 : ni fichier créé ni contenu markdown dans stdout"
@@ -394,7 +394,7 @@ fi
 # Commit final
 log "Commit final..."
 cd "${REPO_ROOT}"
-git add "${CONTENT_DIR}/" "public/images/${BASE_SLUG}"* 2>/dev/null || true
+git add "${CONTENT_DIR}/" "public/assets/img/blog/${BASE_SLUG}"* 2>/dev/null || true
 
 if ! git diff --cached --quiet; then
   git commit -m "blog: draft '${TOPIC_TITLE:-article}' [${TOPIC_CATEGORY:-coaching}]

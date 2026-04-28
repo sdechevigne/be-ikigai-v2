@@ -8,7 +8,7 @@ SLUG="${1:?Slug requis}"
 PROMPT="${2:?Prompt requis}"
 MODEL="${3:-gemini-3.1-flash-image-preview}"
 API_URL="https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent"
-OUT_DIR="public/images"
+OUT_DIR="public/assets/img/blog"
 BLOG_SIZE="1424x752"
 OG_SIZE="1200x630"
 

@@ -81,7 +81,20 @@ export const RSS_SOURCES = [
 
   // ── Blogs Ikigai & bien-être EN ──
   { url: 'https://ikigaitribe.com/feed/',                        type: 'blogs_autorite',     label: 'Ikigai Tribe',             lang: 'en', weight: 3.12 },
-  { url: 'https://www.mindbodygreen.com/feed',                   type: 'blogs_autorite',     label: 'MindBodyGreen',            lang: 'en', weight: 2.88 },
+  { url: 'https://www.mindbodygreen.com/rss.xml',               type: 'blogs_autorite',     label: 'MindBodyGreen',            lang: 'en', weight: 2.88 },
+  { url: 'https://www.ikigain.org/blog-feed.xml',               type: 'blogs_autorite',     label: 'Ikigain',                  lang: 'en', weight: 3.12 },
+  { url: 'https://ikigai.blog/feed/',                           type: 'blogs_autorite',     label: 'The Ikigai Project',       lang: 'en', weight: 2.88 },
+
+  // ── Ikigai spécialisés & carrière EN ──
+  { url: 'https://unionsquarepractice.com/feed/',               type: 'blogs_autorite',     label: 'Union Square Practice',    lang: 'en', weight: 3.12 },
+  { url: 'https://www.careershapeslab.com/blog-feed.xml',       type: 'blogs_autorite',     label: 'Career Shapes Lab',        lang: 'en', weight: 3.12 },
+  { url: 'https://hyperisland.com/en/blog/rss.xml',             type: 'blogs_autorite',     label: 'Hyper Island',             lang: 'en', weight: 3.36 },
+  { url: 'https://www.michelleporterfit.com/blog?format=rss',   type: 'blogs_autorite',     label: 'Michelle Porter Fit',      lang: 'en', weight: 2.64 },
+  { url: 'https://officedynamics.com/feed/',                    type: 'blogs_autorite',     label: 'Office Dynamics',          lang: 'en', weight: 2.88 },
+  { url: 'https://www.wholegraindigital.com/feed/',             type: 'blogs_autorite',     label: 'Wholegrain Digital',       lang: 'en', weight: 2.64 },
+  { url: 'https://janinerixlearningsolutions.com/feed/',        type: 'blogs_autorite',     label: 'Janine Rix Learning',      lang: 'en', weight: 2.40 },
+  { url: 'https://blog.learnlife.com/rss.xml',                  type: 'blogs_autorite',     label: 'Learnlife',                lang: 'en', weight: 2.64 },
+  { url: 'https://feeds.feedburner.com/drisiomaokolo/D7mKnCUdKya', type: 'blogs_autorite', label: 'Dr Isioma Okolo',          lang: 'en', weight: 2.64 },
 ];
 
 export const REDDIT_SOURCES = [

@@ -13,7 +13,7 @@ author: Pierre-Louis
 category: Sense of Purpose
 image: /assets/img/blog/management-2026-pourquoi-ton-boss-a-10-ans-de-retard-en.png
 featured: false
-status: draft
+status: published
 faq:
   - question: "What is the impact of AI on management in 2026?"
     answer: "AI automates reporting and resource allocation. This shifts the manager's role toward coaching, strategic vision, and complex conflict resolution, tasks that are purely human."

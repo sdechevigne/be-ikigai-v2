@@ -13,7 +13,7 @@ author: Pierre-Louis
 category: Sens & Ikigai
 image: /assets/img/blog/2026-04-28-pourquoi-ton-ikigai-est-surement-une-arnaque-fr.webp
 featured: false
-status: draft
+status: published
 faq:
   - question: "Quelle est la différence entre l'ikigai japonais et le diagramme de Venn occidental ?"
     answer: "L'ikigai est une philosophie japonaise sur la joie des choses simples au quotidien. Le diagramme est une invention de 2014 qui plaque ce concept sur une vision carriériste et monétisable."

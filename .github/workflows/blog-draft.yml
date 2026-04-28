@@ -13,6 +13,10 @@ on:
         description: 'LLM à utiliser (gemini ou claude)'
         required: false
         default: 'gemini'
+      free_text:
+        description: "Idée, titre ou extrait d'article (texte libre)"
+        required: false
+        default: ''
 
 jobs:
   draft:
@@ -44,6 +48,7 @@ jobs:
         run: RESUME_SLUG="${{ inputs.resume_slug }}" bash pipeline/draft.sh
         env:
           LLM: ${{ inputs.llm || 'gemini' }}
+          FREE_TEXT: ${{ inputs.free_text || '' }}
           GEMINI_CLI_TRUST_WORKSPACE: 'true'
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GH_TOKEN: ${{ secrets.GH_PAT }}

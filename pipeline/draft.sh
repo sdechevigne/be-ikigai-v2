@@ -291,6 +291,7 @@ $(cat "${CARD_BODY}" 2>/dev/null || echo '')"
     2> >(tee -a "${LOG_FILE}" >&2))
 
   ARTICLE_PATH=$(echo "${DRAFT_OUTPUT}" | grep -oP '::draft-path:\K[^:]+' | head -1)
+  ARTICLE_PATH_EN=$(echo "${DRAFT_OUTPUT}" | grep -oP '::draft-path-en:\K[^:]+' | head -1)
 
   # Fallback si Gemini écrit directement sur stdout
   if [[ -z "${ARTICLE_PATH}" ]] || [[ ! -f "${REPO_ROOT}/${ARTICLE_PATH}" ]]; then
@@ -361,10 +362,16 @@ PYEOF
     log "  Tirets longs remplacés"
   fi
 
-  # Patch image : forcer le bon chemin webp sur FR + EN
+  # Patch image : forcer le bon chemin webp sur FR + EN (même image)
   BASE_SLUG_PHASE2="${ARTICLE_SLUG%-fr}"
   CORRECT_IMAGE="/assets/img/blog/${BASE_SLUG_PHASE2}-fr.webp"
-  for md_file in "${REPO_ROOT}/${ARTICLE_PATH}" "${REPO_ROOT}/src/content/blog/${BASE_SLUG_PHASE2}-en.md"; do
+  # Résoudre le chemin EN : marker explicite ou fallback slug-fr → slug-en
+  if [[ -n "${ARTICLE_PATH_EN}" ]] && [[ -f "${REPO_ROOT}/${ARTICLE_PATH_EN}" ]]; then
+    EN_MD="${REPO_ROOT}/${ARTICLE_PATH_EN}"
+  else
+    EN_MD="${REPO_ROOT}/src/content/blog/${BASE_SLUG_PHASE2}-en.md"
+  fi
+  for md_file in "${REPO_ROOT}/${ARTICLE_PATH}" "${EN_MD}"; do
     if [[ -f "${md_file}" ]]; then
       sed -i "s|^image:.*|image: ${CORRECT_IMAGE}|" "${md_file}"
       log "  Image patchée dans $(basename ${md_file}) → ${CORRECT_IMAGE}"

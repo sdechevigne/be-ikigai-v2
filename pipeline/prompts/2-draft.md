@@ -105,11 +105,13 @@ Même structure, `lang: en`, title/description/seoKeywords en anglais, `image: /
 
 ## Nommage des fichiers
 
-- FR : `src/content/blog/YYYY-MM-DD-slug-fr.md`
-- EN : `src/content/blog/YYYY-MM-DD-slug-en.md`
+- FR : `src/content/blog/YYYY-MM-DD-slug-fr.md` — slug = titre FR en kebab-case ASCII sans accents, tronqué à 55 chars
+- EN : `src/content/blog/YYYY-MM-DD-slug-en.md` — slug = titre EN en kebab-case ASCII, tronqué à 55 chars (traduction du slug FR, pas le même slug)
 
-Où `slug` est le titre FR en kebab-case ASCII sans accents, tronqué à 55 chars.
+Exemple : titre FR "Pourquoi ton boss a 10 ans de retard" → slug FR `pourquoi-ton-boss-a-10-ans-de-retard` / slug EN `why-your-boss-is-10-years-behind`
 
 Sauvegarde les deux fichiers.
 
-Émets `::draft-path:src/content/blog/YYYY-MM-DD-slug-fr.md::` (le EN est inféré).
+Émets les deux markers :
+`::draft-path:src/content/blog/YYYY-MM-DD-slug-fr.md::`
+`::draft-path-en:src/content/blog/YYYY-MM-DD-slug-en.md::`

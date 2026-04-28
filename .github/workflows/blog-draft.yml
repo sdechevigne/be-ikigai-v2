@@ -1,8 +1,6 @@
 name: Blog — Draft automatique
 
 on:
-  schedule:
-    - cron: '0 8 */2 * *'   # jours pairs, 08h00 UTC
   workflow_dispatch:
     inputs:
       resume_slug:

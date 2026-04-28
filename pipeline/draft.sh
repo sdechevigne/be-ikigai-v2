@@ -224,13 +224,18 @@ if [[ "${SKIP_PHASE1}" == "true" ]]; then
 else
   log "Phase 1 : Recherche..."
   cd "${REPO_ROOT}"
+  PHASE1_PROMPT="$(cat "${PIPELINE_DIR}/prompts/1-research.md")
+
+## Sujet (contexte injecté)
+
+$(cat "${CARD_BODY}")"
   RESEARCH_OUTPUT=$(run_llm \
     --mcp-config "${MCP_CONFIG}" \
     --system-prompt-file "${SKILLS_PROMPT}" \
     --allowedTools "WebSearch,WebFetch,Read,Write" \
     --max-turns 30 \
     --dangerously-skip-permissions \
-    -p "$(cat "${PIPELINE_DIR}/prompts/1-research.md")" \
+    -p "${PHASE1_PROMPT}" \
     2> >(tee -a "${LOG_FILE}" >&2)) || true
 
   if ! echo "${RESEARCH_OUTPUT}" | grep -q "::research-done::"; then
@@ -258,13 +263,22 @@ if [[ "${SKIP_PHASE2}" == "true" ]]; then
 else
   log "Phase 2 : Rédaction (FR + EN)..."
   cd "${REPO_ROOT}"
+  PHASE2_PROMPT="$(cat "${PIPELINE_DIR}/prompts/2-draft.md")
+
+## Notes de recherche (injectées)
+
+$(cat "${RESEARCH_NOTES}" 2>/dev/null || echo '(aucune note — utilise le sujet du contexte)')
+
+## Contexte sujet
+
+$(cat "${CARD_BODY}" 2>/dev/null || echo '')"
   DRAFT_OUTPUT=$(run_llm \
     --mcp-config "${MCP_CONFIG}" \
     --system-prompt-file "${SKILLS_PROMPT}" \
     --allowedTools "Read,Write,WebSearch" \
     --max-turns 20 \
     --dangerously-skip-permissions \
-    -p "$(cat "${PIPELINE_DIR}/prompts/2-draft.md")" \
+    -p "${PHASE2_PROMPT}" \
     2> >(tee -a "${LOG_FILE}" >&2))
 
   ARTICLE_PATH=$(echo "${DRAFT_OUTPUT}" | grep -oP '::draft-path:\K[^:]+' | head -1)

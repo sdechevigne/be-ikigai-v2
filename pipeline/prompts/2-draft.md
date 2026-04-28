@@ -1,6 +1,6 @@
 # Phase 2 — Rédaction
 
-Lis `pipeline/research-notes.md` et `pipeline/card-body.md`.
+Les notes de recherche et le contexte sujet sont fournis ci-dessous dans les sections "Notes de recherche (injectées)" et "Contexte sujet".
 
 Lis 2 articles existants dans `src/content/blog/` pour calibrer le ton.
 

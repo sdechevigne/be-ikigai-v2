@@ -1,6 +1,6 @@
 # Phase 1 — Recherche
 
-Lis `pipeline/card-body.md` (sujet, cluster, type de contenu suggéré).
+Le sujet, cluster et type de contenu sont fournis ci-dessous dans la section "Sujet (contexte injecté)".
 
 Vérifie les articles existants dans `src/content/blog/` pour éviter les doublons.
 

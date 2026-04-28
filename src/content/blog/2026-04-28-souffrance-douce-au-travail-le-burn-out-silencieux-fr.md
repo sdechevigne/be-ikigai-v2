@@ -40,7 +40,7 @@ author: Pierre-Louis
 category: "Sens & Ikigai"
 image: /assets/img/blog/souffrance-douce-au-travail-le-burn-out-silencieux-fr.png
 featured: false
-status: draft
+status: published
 faq:
   - question: "C'est quoi la souffrance douce au travail ?"
     answer: "C'est un décalage permanent entre tes valeurs et tes missions. Pas une explosion comme le burn-out, mais une perte de sens qui s'installe."

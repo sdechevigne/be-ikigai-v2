@@ -132,16 +132,22 @@ export async function pickNextTopic() {
   if (candidates.length === 0) return null;
 
   candidates.sort((a, b) => {
+    const prioA = a.fieldValues?.nodes?.find(fv => fv.field?.name === 'Priority')?.number ?? null;
+    const prioB = b.fieldValues?.nodes?.find(fv => fv.field?.name === 'Priority')?.number ?? null;
     const dateA = a.fieldValues?.nodes?.find(fv => fv.field?.name === 'Publication Date')?.date || '';
     const dateB = b.fieldValues?.nodes?.find(fv => fv.field?.name === 'Publication Date')?.date || '';
     const scoreA = a.fieldValues?.nodes?.find(fv => fv.field?.name === 'Trend Score')?.number || 0;
     const scoreB = b.fieldValues?.nodes?.find(fv => fv.field?.name === 'Trend Score')?.number || 0;
 
-    // Cards avec date en premier, triées par date croissante
+    // 1. Priority renseignée en premier (croissant : 1 avant 2)
+    if (prioA !== null && prioB !== null) return prioA - prioB;
+    if (prioA !== null) return -1;
+    if (prioB !== null) return 1;
+    // 2. Publication Date (croissant)
     if (dateA && dateB) return dateA < dateB ? -1 : dateA > dateB ? 1 : 0;
     if (dateA) return -1;
     if (dateB) return 1;
-    // Sans date : tri par score décroissant
+    // 3. Trend Score (décroissant)
     return scoreB - scoreA;
   });
 

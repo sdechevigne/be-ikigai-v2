@@ -187,5 +187,6 @@ export const PROJECT_CONFIG = {
     cluster: { id: process.env.PROJECT_FIELD_CLUSTER_ID || '' },
     contentType: { id: process.env.PROJECT_FIELD_CONTENT_TYPE_ID || '' },
     articlePath: { id: process.env.PROJECT_FIELD_ARTICLE_PATH_ID || '' },
+    publicationDate: { id: process.env.PROJECT_FIELD_PUBLICATION_DATE_ID || '' },
   },
 };

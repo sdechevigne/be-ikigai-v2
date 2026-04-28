@@ -58,3 +58,52 @@ jobs:
 
       - name: Push
         run: git push origin master
+
+      - name: Mettre à jour Publication Date dans GitHub Projects
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          PROJECT_FIELD_PUBLICATION_DATE_ID: ${{ secrets.PROJECT_FIELD_PUBLICATION_DATE_ID }}
+          SLUG: ${{ inputs.slug }}
+        run: |
+          DATE_TODAY=$(date -u +%Y-%m-%d)
+          export DATE_TODAY
+          node --input-type=module << 'EOF'
+          import { spawnSync } from 'child_process';
+
+          const projectId = process.env.PROJECT_ID;
+          const fieldId = process.env.PROJECT_FIELD_PUBLICATION_DATE_ID;
+          const slug = process.env.SLUG || '';
+          const date = process.env.DATE_TODAY;
+
+          if (!projectId || !fieldId) { console.log('Secrets manquants — skip'); process.exit(0); }
+
+          function gh(query) {
+            const r = spawnSync('gh', ['api', 'graphql', '--input', '-'], {
+              input: JSON.stringify({ query }), encoding: 'utf8', timeout: 30000,
+            });
+            if (r.status !== 0) throw new Error(r.stderr || r.stdout);
+            return JSON.parse(r.stdout);
+          }
+
+          const items = gh(`{ node(id: "${projectId}") { ... on ProjectV2 { items(first: 100) { nodes {
+            id
+            fieldValues(first: 20) { nodes {
+              ... on ProjectV2ItemFieldTextValue { text field { ... on ProjectV2Field { name } } }
+            }}
+          }}}}}`);
+
+          const node = items?.data?.node?.items?.nodes?.find(n =>
+            n.fieldValues?.nodes?.some(fv => fv.field?.name === 'Article Path' && fv.text?.includes(slug))
+          );
+
+          if (!node) { console.log('Card non trouvée pour slug:', slug); process.exit(0); }
+
+          gh(`mutation { updateProjectV2ItemFieldValue(input: {
+            projectId: "${projectId}" itemId: "${node.id}"
+            fieldId: "${fieldId}"
+            value: { date: "${date}" }
+          }) { projectV2Item { id } } }`);
+
+          console.log('Publication Date mise à jour :', date, 'pour', slug);
+          EOF

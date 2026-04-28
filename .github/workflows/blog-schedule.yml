@@ -41,8 +41,10 @@ jobs:
         if: steps.find.outputs.slug != ''
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          PROJECT_FIELD_PUBLICATION_DATE_ID: ${{ secrets.PROJECT_FIELD_PUBLICATION_DATE_ID }}
+          SLUG: ${{ steps.find.outputs.slug }}
         run: |
-          SLUG="${{ steps.find.outputs.slug }}"
           echo "Publication de : ${SLUG}"
           gh workflow run blog-publish.yml \
             --repo "${{ github.repository }}" \

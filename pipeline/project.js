@@ -178,6 +178,21 @@ export async function setArticlePath(itemId, path) {
   }`);
 }
 
+export async function setPublicationDate(itemId, date) {
+  const { projectId, fields } = PROJECT_CONFIG;
+  if (!projectId || !itemId || !fields.publicationDate.id) return;
+
+  // date doit être au format YYYY-MM-DD
+  const dateOnly = date.slice(0, 10);
+  gh(`mutation {
+    updateProjectV2ItemFieldValue(input: {
+      projectId: "${projectId}" itemId: "${itemId}"
+      fieldId: "${fields.publicationDate.id}"
+      value: { date: "${dateOnly}" }
+    }) { projectV2Item { id } }
+  }`);
+}
+
 export async function createProjectCard(group) {
   const { projectId } = PROJECT_CONFIG;
   if (!projectId) return null;

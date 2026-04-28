@@ -138,16 +138,37 @@ export const REDDIT_SOURCES = [
 ];
 
 export const COACHING_KEYWORDS = [
+  // Base existante (parfaite)
   'emploi', 'travail', 'carrière', 'reconversion', 'ikigai', 'burn-out', 'burnout',
   'management', 'leadership', 'coaching', 'bilan de compétences', 'cpf',
   'sens au travail', 'télétravail', 'démission', 'recrutement', 'salaire',
+
+  // ➕ Ajouts 2026 (tendances actuelles + US insights)
+  'quiet quitting', 'démission silencieuse', 'bore-out', 'brown-out',  // épuisement moderne
+  'purpose', 'raison d\'être', 'trouver sa voie', 'changer de métier',  // ikigai + quête de sens
+  'formation professionnelle', 'vae', 'dispositif cpf', 'coaching carrière',  // CPF / formation
+  'souffrance au travail', 'risques psychosociaux', 'rps', 'fatigue mentale',  // santé mentale
+  'travail hybride', 'rtth', 'forfait jours',  // organisation du travail
 ];
 
 export const TRENDS_KEYWORDS = [
-  ['ikigai', 'sens au travail', 'reconversion professionnelle', 'burn-out', 'malaise au travail'],
-  ['bilan de compétences', 'cpf reconversion', 'coaching de carrière', 'ikigai exercice', 'quête de sens'],
-  ['travail hybride', 'fatigue managériale', 'démission silencieuse', 'quiet quitting', 'souffrance au travail'],
-  ['changer de métier', 'carrière épanouissante', 'trouver sa voie', 'ikigai au travail', 'méthode ikigai'],
+  // Cluster 1 : Reconversion (score élevé)
+  ['reconversion professionnelle', 'changer de métier', 'démission reconversion', 'trouver sa voie'],
+
+  // Cluster 2 : Ikigai / Sens (cœur de cible)
+  ['ikigai', 'ikigai exercice', 'méthode ikigai', 'sens au travail', 'purpose au travail'],
+
+  // Cluster 3 : Burnout (signal fort + médical) — 5 mots max pour Google Trends
+  ['burn-out', 'quiet quitting', 'démission silencieuse', 'bore-out', 'souffrance au travail'],
+
+  // Cluster 4 : Coaching / CPF (opportunité commerciale)
+  ['bilan de compétences', 'cpf reconversion', 'coaching de carrière', 'vae', 'dispositif cpf'],
+
+  // Cluster 5 : Management (tendance 2026)
+  ['travail hybride', 'rtth', 'fatigue managériale', 'manager toxique', 'risques psychosociaux'],
+
+  // ➕ Bonus US / international (très recherché en FR aussi)
+  ['ikigai career', 'great resignation', 'layoff burnout', 'career pivot'],  // pour enrichir les articles
 ];
 
 export const PROJECT_CONFIG = {

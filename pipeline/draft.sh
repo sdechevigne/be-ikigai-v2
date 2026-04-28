@@ -18,11 +18,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 PIPELINE_DIR="${SCRIPT_DIR}"
 CONTENT_DIR="${REPO_ROOT}/src/content/blog"
-LOG_DIR="${REPO_ROOT}/pipeline/.logs"
+LOG_DIR="${REPO_ROOT}/pipeline/logs"
 MCP_CONFIG="${PIPELINE_DIR}/mcp.json"
 SKILLS_PROMPT="${PIPELINE_DIR}/skills-prompt.md"
-CARD_BODY="${PIPELINE_DIR}/.card-body.md"
-RESEARCH_NOTES="${PIPELINE_DIR}/.research-notes.md"
+CARD_BODY="${PIPELINE_DIR}/card-body.md"
+RESEARCH_NOTES="${PIPELINE_DIR}/research-notes.md"
 
 mkdir -p "${LOG_DIR}"
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
@@ -32,7 +32,7 @@ log() { echo "[$(date +%H:%M:%S)] $*" | tee -a "${LOG_FILE}"; }
 log_error() { echo "[$(date +%H:%M:%S)] ERREUR: $*" | tee -a "${LOG_FILE}" >&2; }
 
 cleanup() {
-  rm -f "${CARD_BODY}" "${RESEARCH_NOTES}" "${PIPELINE_DIR}/.topic-json.tmp"
+  rm -f "${CARD_BODY}" "${RESEARCH_NOTES}" "${PIPELINE_DIR}/topic-json.tmp"
 }
 
 on_error() {
@@ -169,12 +169,12 @@ if [[ -n "${RESUME_SLUG}" ]]; then
     log "  Phases 1, 2, 3 déjà commitées"
   elif git log --format=%s | grep -qF "wip(phase2): ${RESUME_SLUG}"; then
     SKIP_PHASE1=true; SKIP_PHASE2=true
-    git show "HEAD:pipeline/.research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
+    git show "HEAD:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
     log "  Phases 1, 2 déjà commitées — reprise depuis Phase 3"
   elif git log --format=%s | grep -qF "wip(phase1): ${RESUME_SLUG}"; then
     SKIP_PHASE1=true
     PHASE1_HASH=$(git log --format="%H %s" | grep -F "wip(phase1): ${RESUME_SLUG}" | awk '{print $1}' | head -1)
-    git show "${PHASE1_HASH}:pipeline/.research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
+    git show "${PHASE1_HASH}:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
     log "  Phase 1 déjà commitée — reprise depuis Phase 2"
   fi
   if [[ -f "${REPO_ROOT}/public/images/${RESUME_SLUG}.png" ]]; then
@@ -192,8 +192,8 @@ if [[ -n "${RESUME_SLUG}" ]]; then
   PUBLISH_DATETIME=$(frontmatter_field publishedAt "${REPO_ROOT}/${ARTICLE_PATH}")
   export PUBLISH_DATETIME
 elif [[ "${DRAFT_FROM_URL:-}" == "true" ]]; then
-  log "Mode URL : utilisation du .card-body.md fourni"
-  [[ ! -f "${CARD_BODY}" ]] && { log_error ".card-body.md introuvable"; exit 1; }
+  log "Mode URL : utilisation du card-body.md fourni"
+  [[ ! -f "${CARD_BODY}" ]] && { log_error "card-body.md introuvable"; exit 1; }
   set_publish_datetime
 else
   log "Sélection du prochain sujet..."
@@ -204,7 +204,7 @@ else
     log "Aucun sujet disponible."
     exit 0
   fi
-  TOPIC_JSON_FILE="${PIPELINE_DIR}/.topic-json.tmp"
+  TOPIC_JSON_FILE="${PIPELINE_DIR}/topic-json.tmp"
   printf '%s' "${TOPIC_JSON}" > "${TOPIC_JSON_FILE}"
   IFS=$'\t' read -r ITEM_ID TOPIC_TITLE TOPIC_CATEGORY TOPIC_CONTENT_TYPE < <(python3 -c '
 import json, sys
@@ -238,7 +238,7 @@ else
     exit 1
   fi
   if [[ ! -f "${RESEARCH_NOTES}" ]]; then
-    log_error "Phase 1 : .research-notes.md non créé"
+    log_error "Phase 1 : research-notes.md non créé"
     exit 1
   fi
 
@@ -248,7 +248,7 @@ else
   git commit -m "wip(phase1): ${PHASE1_REF}
 
 Pipeline: automatique — phase recherche terminée
-Log: pipeline/.logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
+Log: pipeline/logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
   git_push_safe "wip(phase1)"
 fi
 
@@ -345,7 +345,7 @@ PYEOF
   git commit -m "wip(phase2): ${ARTICLE_SLUG}
 
 Pipeline: automatique — phase rédaction terminée (FR+EN)
-Log: pipeline/.logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
+Log: pipeline/logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
   git_push_safe "wip(phase2)"
 fi
 
@@ -375,7 +375,7 @@ Article à humaniser : ${ARTICLE_PATH}" \
   git commit -m "wip(phase3): ${ARTICLE_SLUG}
 
 Pipeline: automatique — phase humanisation terminée
-Log: pipeline/.logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
+Log: pipeline/logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
   git_push_safe "wip(phase3)"
 fi
 
@@ -402,7 +402,7 @@ if ! git diff --cached --quiet; then
 Type: ${TOPIC_CONTENT_TYPE:-guide}
 LLM: ${LLM}
 Pipeline: automatique
-Log: pipeline/.logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
+Log: pipeline/logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
   git_push_safe "commit final"
 fi
 

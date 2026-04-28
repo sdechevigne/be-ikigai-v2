@@ -1,6 +1,6 @@
 # Phase 1 — Recherche
 
-Lis `.card-body.md` (sujet, cluster, type de contenu suggéré).
+Lis `pipeline/card-body.md` (sujet, cluster, type de contenu suggéré).
 
 Vérifie les articles existants dans `src/content/blog/` pour éviter les doublons.
 
@@ -18,7 +18,7 @@ Pour chaque source, extraire :
 
 Propose 2–3 angles d'article différents (public visé, approche, lien be-ikigai).
 
-Écris `pipeline/.research-notes.md` avec cette structure :
+Écris `pipeline/research-notes.md` avec cette structure :
 
 ```
 ## Sujet (2–3 phrases)

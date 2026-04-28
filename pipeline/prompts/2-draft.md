@@ -1,6 +1,6 @@
 # Phase 2 — Rédaction
 
-Lis `pipeline/.research-notes.md` et `pipeline/.card-body.md`.
+Lis `pipeline/research-notes.md` et `pipeline/card-body.md`.
 
 Lis 2 articles existants dans `src/content/blog/` pour calibrer le ton.
 

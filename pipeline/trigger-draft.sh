@@ -42,7 +42,7 @@ import json, sys
 items = json.load(sys.stdin)
 for i in items[:5]:
     print(f\"  [{i['score']}%] {i['title']} ({i['status']})\")
-"
+" || true
     echo ""
     read -r -p "Continuer quand même ? [y/N] " confirm
     if [[ "${confirm}" != "y" ]] && [[ "${confirm}" != "Y" ]]; then

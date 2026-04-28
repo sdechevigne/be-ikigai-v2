@@ -1,7 +1,7 @@
 // pipeline/collect.js
 import Parser from 'rss-parser';
 import googleTrends from 'google-trends-api';
-import { RSS_SOURCES, COACHING_KEYWORDS, TRENDS_KEYWORDS, LOOKBACK_DAYS, LOOKBACK_DAYS_EXTENDED } from './config.js';
+import { RSS_SOURCES, REDDIT_SOURCES, COACHING_KEYWORDS, TRENDS_KEYWORDS, LOOKBACK_DAYS, LOOKBACK_DAYS_EXTENDED } from './config.js';
 import { collectSearch } from './collect-search.js';
 import { collectEvergreen } from './evergreen.js';
 
@@ -70,6 +70,42 @@ export async function collectRSS() {
   return items;
 }
 
+export async function collectReddit() {
+  const items = [];
+  const seen = new Set();
+
+  for (const source of REDDIT_SOURCES) {
+    try {
+      const res = await fetch(source.url, {
+        headers: { 'User-Agent': 'be-ikigai-pipeline/1.0' },
+        signal: AbortSignal.timeout(10000),
+      });
+      if (!res.ok) throw new Error(`Status code ${res.status}`);
+      const data = await res.json();
+      const posts = data?.data?.children || [];
+
+      for (const { data: post } of posts) {
+        if (!post.url || seen.has(post.url)) continue;
+        if (!matchesCoachingKeywords(`${post.title} ${post.selftext || ''}`)) continue;
+        seen.add(post.url);
+        items.push({
+          title: post.title || '',
+          url: `https://reddit.com${post.permalink}`,
+          source: source.label,
+          sourceType: source.type,
+          date: new Date(post.created_utc * 1000).toISOString(),
+          abstract: `${post.title} ${(post.selftext || '').slice(0, 400)}`.slice(0, 500),
+        });
+      }
+    } catch (err) {
+      process.stderr.write(`Reddit error [${source.label}]: ${err.message}\n`);
+    }
+  }
+
+  process.stderr.write(`Reddit items collectés : ${items.length}\n`);
+  return items;
+}
+
 export async function collectGoogleTrends() {
   const trendScores = {};
   const risingQueries = [];
@@ -103,11 +139,12 @@ export async function collectGoogleTrends() {
 }
 
 export async function collectAll() {
-  const [rssItems, searchItems, { trendScores, risingQueries }] = await Promise.all([
+  const [rssItems, redditItems, searchItems, { trendScores, risingQueries }] = await Promise.all([
     collectRSS(),
+    collectReddit(),
     collectSearch(),
     collectGoogleTrends(),
   ]);
   const evergreenItems = collectEvergreen();
-  return { items: [...rssItems, ...searchItems, ...evergreenItems], trendScores, risingQueries };
+  return { items: [...rssItems, ...redditItems, ...searchItems, ...evergreenItems], trendScores, risingQueries };
 }

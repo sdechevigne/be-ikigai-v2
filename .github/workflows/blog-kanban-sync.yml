@@ -1,0 +1,194 @@
+name: Blog — Sync Kanban → Site
+
+on:
+  projects_v2_item:
+    types: [edited]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Filtrer sur le projet be-ikigai uniquement
+    if: github.event.projects_v2_item.project_node_id == 'PVT_kwHOAWSIU84BV9fz'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Configure git
+        run: |
+          git config user.email "pipeline@be-ikigai.fr"
+          git config user.name "Be-Ikigai Pipeline"
+
+      - name: Résoudre la card et son Article Path
+        id: card
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          ITEM_ID: ${{ github.event.projects_v2_item.node_id }}
+        run: |
+          node --input-type=module << 'EOF'
+          import { spawnSync } from 'child_process';
+          import { writeFileSync } from 'fs';
+
+          const itemId = process.env.ITEM_ID;
+
+          function gh(query) {
+            const r = spawnSync('gh', ['api', 'graphql', '--input', '-'], {
+              input: JSON.stringify({ query }), encoding: 'utf8', timeout: 30000,
+            });
+            if (r.status !== 0) throw new Error(r.stderr || r.stdout);
+            return JSON.parse(r.stdout);
+          }
+
+          const res = gh(`{
+            node(id: "${itemId}") {
+              ... on ProjectV2Item {
+                fieldValues(first: 20) {
+                  nodes {
+                    ... on ProjectV2ItemFieldSingleSelectValue {
+                      name field { ... on ProjectV2SingleSelectField { name } }
+                    }
+                    ... on ProjectV2ItemFieldTextValue {
+                      text field { ... on ProjectV2Field { name } }
+                    }
+                  }
+                }
+              }
+            }
+          }`);
+
+          const fvs = res?.data?.node?.fieldValues?.nodes || [];
+          const status = fvs.find(f => f.field?.name === 'Status')?.name || '';
+          const articlePath = fvs.find(f => f.field?.name === 'Article Path')?.text || '';
+
+          console.log(`STATUS=${status}`);
+          console.log(`ARTICLE_PATH=${articlePath}`);
+
+          // Écrire dans GITHUB_OUTPUT
+          const out = `status=${status}\narticle_path=${articlePath}\n`;
+          writeFileSync(process.env.GITHUB_OUTPUT, out, { flag: 'a' });
+          EOF
+
+      - name: DEBUG — afficher status et article_path
+        run: |
+          echo "Status  : ${{ steps.card.outputs.status }}"
+          echo "Path    : ${{ steps.card.outputs.article_path }}"
+
+      # ── Trash : supprimer l'article du site + supprimer la card ──────────────
+      - name: Trash — supprimer article(s)
+        if: steps.card.outputs.status == 'Trash'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          ITEM_ID: ${{ github.event.projects_v2_item.node_id }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          ARTICLE_PATH: ${{ steps.card.outputs.article_path }}
+        run: |
+          # Supprimer les fichiers FR et EN correspondants
+          delete_if_exists() {
+            local f="$1"
+            if [[ -f "$f" ]]; then
+              git rm "$f"
+              echo "Supprimé : $f"
+            else
+              echo "Introuvable (ignoré) : $f"
+            fi
+          }
+
+          # article_path contient "src/content/blog/SLUG-fr.md | src/content/blog/SLUG-en.md"
+          # ou juste le chemin FR seul
+          IFS='|' read -ra PATHS <<< "${ARTICLE_PATH}"
+          for p in "${PATHS[@]}"; do
+            p="$(echo "$p" | xargs)"  # trim whitespace
+            [[ -n "$p" ]] && delete_if_exists "$p"
+          done
+
+          # Si aucun chemin dans la card, tenter une suppression par glob sur le slug
+          if [[ -z "${ARTICLE_PATH}" ]]; then
+            echo "Aucun Article Path sur la card — rien à supprimer du repo"
+          fi
+
+          # Commit si des fichiers ont été supprimés
+          if ! git diff --cached --quiet; then
+            git commit -m "blog: trash — suppression article(s)"
+            git push origin master
+          fi
+
+          # Supprimer la card du projet
+          node --input-type=module << 'JSEOF'
+          import { spawnSync } from 'child_process';
+          function gh(query) {
+            const r = spawnSync('gh', ['api', 'graphql', '--input', '-'], {
+              input: JSON.stringify({ query }), encoding: 'utf8', timeout: 30000,
+            });
+            if (r.status !== 0) throw new Error(r.stderr || r.stdout);
+            return JSON.parse(r.stdout);
+          }
+          gh(`mutation {
+            deleteProjectV2Item(input: {
+              projectId: "${process.env.PROJECT_ID}"
+              itemId: "${process.env.ITEM_ID}"
+            }) { deletedItemId }
+          }`);
+          console.log('Card supprimée du projet');
+          JSEOF
+
+      # ── Published : passer status: published sur le site ─────────────────────
+      - name: Published — publier article(s)
+        if: steps.card.outputs.status == 'Published'
+        env:
+          ARTICLE_PATH: ${{ steps.card.outputs.article_path }}
+        run: |
+          publish_file() {
+            local f="$1"
+            if [[ -f "$f" ]]; then
+              sed -i 's/^status: *"*draft"*/status: published/' "$f"
+              git add "$f"
+              echo "Publié : $f"
+            else
+              echo "Introuvable (ignoré) : $f"
+            fi
+          }
+
+          IFS='|' read -ra PATHS <<< "${ARTICLE_PATH}"
+          for p in "${PATHS[@]}"; do
+            p="$(echo "$p" | xargs)"
+            [[ -n "$p" ]] && publish_file "$p"
+          done
+
+          if ! git diff --cached --quiet; then
+            git commit -m "blog: published depuis kanban"
+            git push origin master
+          else
+            echo "Déjà publié ou aucun fichier modifié"
+          fi
+
+      # ── Archivé : repasser en draft sur le site ───────────────────────────────
+      - name: Archivé — dépublier article(s)
+        if: steps.card.outputs.status == 'Archivé'
+        env:
+          ARTICLE_PATH: ${{ steps.card.outputs.article_path }}
+        run: |
+          draft_file() {
+            local f="$1"
+            if [[ -f "$f" ]]; then
+              sed -i 's/^status: *"*published"*/status: draft/' "$f"
+              git add "$f"
+              echo "Dépublié : $f"
+            else
+              echo "Introuvable (ignoré) : $f"
+            fi
+          }
+
+          IFS='|' read -ra PATHS <<< "${ARTICLE_PATH}"
+          for p in "${PATHS[@]}"; do
+            p="$(echo "$p" | xargs)"
+            [[ -n "$p" ]] && draft_file "$p"
+          done
+
+          if ! git diff --cached --quiet; then
+            git commit -m "blog: archivé depuis kanban → draft"
+            git push origin master
+          else
+            echo "Déjà en draft ou aucun fichier modifié"
+          fi

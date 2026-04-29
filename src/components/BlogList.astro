@@ -48,7 +48,17 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
     <main class="pt-14">
         <section class="blog-hero-section pt-28 lg:pt-32">
             <div class="wrap px-6" style="max-width: 1200px; margin: 0 auto;">
-                <div class="blog-hero" style="background-image: url('/assets/img/blog/ikigai-definition-fr.webp')">
+                <div class="blog-hero">
+                    <img
+                        src="/assets/img/blog/ikigai-definition-fr.webp"
+                        alt=""
+                        aria-hidden="true"
+                        fetchpriority="high"
+                        loading="eager"
+                        width="1160"
+                        height="480"
+                        class="blog-hero-bg-img"
+                    />
                     <div class="blog-hero-overlay"></div>
                     <div class="blog-hero-content">
                         <h1 class="blog-hero-h1">{lang === 'en' ? 'The Field Journal' : 'Le Carnet de Terrain'}</h1>
@@ -133,7 +143,7 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                             </div>
                         )})}
                     </div>
-                    <div id="load-more-wrap" class="text-center mt-10" style="display:none;">
+                    <div id="load-more-wrap" class="text-center mt-10 bl-hidden">
                         <button id="load-more-btn" class="bg-dore-serein text-bleu-crepuscule font-comfortaa font-bold px-8 py-3 rounded-xl hover:opacity-90 transition">
                             {lang === 'en' ? 'Show more articles' : 'Voir plus d\'articles'}
                         </button>
@@ -151,9 +161,13 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
         const loadMoreBtn = document.getElementById("load-more-btn");
         const loadMoreWrap = document.getElementById("load-more-wrap");
 
-        // Pagination state
         let visibleItems = [];
         let shownCount = 0;
+
+        // Use class toggles instead of style.display to avoid forced synchronous layouts
+        function hideAll() {
+            items.forEach(el => el.classList.add("bl-hidden"));
+        }
 
         function applyPagination(itemList) {
             visibleItems = itemList;
@@ -163,15 +177,15 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
 
         function showMore() {
             const next = visibleItems.slice(shownCount, shownCount + PAGE_SIZE);
-            next.forEach(({ el }) => { el.style.display = 'block'; });
+            next.forEach(({ el }) => el.classList.remove("bl-hidden"));
             shownCount += next.length;
             if (loadMoreWrap) {
-                loadMoreWrap.style.display = shownCount < visibleItems.length ? 'block' : 'none';
+                loadMoreWrap.classList.toggle("bl-hidden", shownCount >= visibleItems.length);
             }
         }
 
         loadMoreBtn?.addEventListener("click", showMore);
-        
+
         const indexData = Array.from(items).map(item => ({
             el: item,
             title: item.querySelector(".blog-card-title")?.textContent?.toLowerCase() || "",
@@ -180,8 +194,7 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
             dataCat: item.getAttribute("data-cat") || ""
         }));
 
-        // Hide all items initially, then paginate
-        indexData.forEach(({ el }) => { el.style.display = 'none'; });
+        hideAll();
         applyPagination(indexData);
 
         pills.forEach(pill => {
@@ -192,8 +205,7 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                 const filtered = targetCat === "Tous"
                     ? indexData
                     : indexData.filter(({ dataCat }) => dataCat === targetCat);
-                // Hide all first
-                indexData.forEach(({ el }) => { el.style.display = 'none'; });
+                hideAll();
                 applyPagination(filtered);
             });
         });
@@ -202,24 +214,21 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
         const searchBtn = document.querySelector(".blog-search-btn");
 
         function onSearch() {
-            if(!searchInput) return;
+            if (!searchInput) return;
             const query = searchInput.value.toLowerCase().trim();
             pills.forEach(p => p.classList.remove("active"));
-            const allPill = document.querySelector('[data-cat="Tous"]');
-            if(allPill) allPill.classList.add("active");
+            document.querySelector('[data-cat="Tous"]')?.classList.add("active");
             const filtered = !query
                 ? indexData
                 : indexData.filter(({ title, desc, cat }) =>
                     title.includes(query) || desc.includes(query) || cat.includes(query)
                   );
-            indexData.forEach(({ el }) => { el.style.display = 'none'; });
+            hideAll();
             applyPagination(filtered);
         }
 
         searchBtn?.addEventListener("click", onSearch);
-        searchInput?.addEventListener("keydown", e => {
-            if (e.key === "Enter") onSearch();
-        });
+        searchInput?.addEventListener("keydown", e => { if (e.key === "Enter") onSearch(); });
     </script>
     <Footer lang={lang} />
 </Layout>

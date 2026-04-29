@@ -21,6 +21,7 @@ summary:
 publishedAt: 2026-04-27
 author: Pierre-Louis
 category: Transition professionnelle
+image: /assets/img/blog/2026-04-27-le-braquage-du-cpf-pourquoi-1600euro-et-4-mois-de-paperasse-ne-sauveront-pas-votre-carriere-fr.webp
 status: published
 featured: false
 faq:

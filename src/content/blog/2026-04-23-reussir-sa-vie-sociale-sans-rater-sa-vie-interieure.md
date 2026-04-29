@@ -17,6 +17,7 @@ summary:
 publishedAt: 2026-04-23
 author: Pierre-Louis
 category: Coaching
+image: /assets/img/blog/2026-04-23-reussir-sa-vie-sociale-sans-rater-sa-vie-interieure-fr.webp
 status: published
 featured: false
 readingTime: 9

@@ -11,9 +11,10 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 REPO="sdechevigne/be-ikigai-v2"
 WORKFLOW="blog-draft.yml"
-BLOG_DIR="${SCRIPT_DIR}/../src/content/blog"
+BLOG_DIR="${REPO_ROOT}/src/content/blog"
 
 if ! command -v gh &>/dev/null; then
   echo "Erreur : gh CLI non installé (https://cli.github.com/)" >&2
@@ -52,7 +53,7 @@ for i in items[:5]:
     fi
 
     # Sauvegarder l'idée en attente plutôt que de la perdre
-    local pending_file="${SCRIPT_DIR}/ideas-pending.md"
+    local pending_file="${REPO_ROOT}/pipeline/ideas-pending.md"
     local ts
     ts=$(date +%Y-%m-%d\ %H:%M)
     {
@@ -120,10 +121,10 @@ trigger_and_show() {
 }
 
 # Charger les variables d'environnement locales si présentes
-if [[ -f "${SCRIPT_DIR}/../.env.local" ]]; then
+if [[ -f "${REPO_ROOT}/.env.local" ]]; then
   set -o allexport
   # shellcheck disable=SC1091
-  source "${SCRIPT_DIR}/../.env.local" 2>/dev/null || true
+  source "${REPO_ROOT}/.env.local" 2>/dev/null || true
   set +o allexport
 fi
 

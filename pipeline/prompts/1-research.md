@@ -20,7 +20,7 @@ Pour chaque source, extraire :
 
 Propose 2–3 angles d'article différents (public visé, approche, lien be-ikigai).
 
-Écris `pipeline/research-notes.md` avec cette structure :
+Écris `pipeline/work/research-notes.md` avec cette structure :
 
 ```
 ## Sujet (2–3 phrases)

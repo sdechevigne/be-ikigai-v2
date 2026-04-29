@@ -282,7 +282,7 @@ async function uploadAndCache() {
 
   console.log(`✅ Cache créé : ${cacheId}`);
   console.log(`   Expire le  : ${expireTime}`);
-  console.log(`   Sauvegardé : pipeline/gemini-cache.json`);
+  console.log(`   Sauvegardé : pipeline/work/gemini-cache.json`);
 
   return state;
 }

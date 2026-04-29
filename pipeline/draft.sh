@@ -472,7 +472,7 @@ else
   log "Génération image de couverture..."
   TOPIC_TITLE_SAFE="${TOPIC_TITLE:-coaching carrière ikigai}"
   COVER_PROMPT="Photographie lifestyle professionnelle. ${TOPIC_TITLE_SAFE}. Jeune professionnel 30 ans, bureau moderne ou espace naturel ouvert, lumière naturelle dorée. Ambiance sereine et inspirante, pas de texte en incrustation. Style photo éditoriale professionnelle. Format 16:9."
-  bash "${PIPELINE_DIR}/generate-cover.sh" "${BASE_SLUG}-fr" "${COVER_PROMPT}" 2>>"${LOG_FILE}" || \
+  bash "${SCRIPTS_DIR}/generate-cover.sh" "${BASE_SLUG}-fr" "${COVER_PROMPT}" 2>>"${LOG_FILE}" || \
     log "WARNING: génération image échouée — article créé sans image"
 fi
 

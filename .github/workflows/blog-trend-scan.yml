@@ -21,7 +21,7 @@ jobs:
         working-directory: pipeline
 
       - name: Run trend scan
-        run: node index.js
+        run: node scripts/index.js
         working-directory: pipeline
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}

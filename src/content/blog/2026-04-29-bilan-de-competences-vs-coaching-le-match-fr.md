@@ -13,7 +13,7 @@ author: Pierre-Louis
 category: Coaching
 image: /assets/img/blog/2026-04-29-bilan-de-competences-vs-coaching-le-match-fr.webp
 featured: false
-status: draft
+status: published
 faq:
   - question: "Quelle est la différence majeure entre un bilan de compétences et un coaching de carrière ?"
     answer: "Le bilan analyse ton passé pour lister tes compétences. Le coaching travaille sur ton futur pour faire sauter tes blocages et te mettre en mouvement."

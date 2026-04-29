@@ -13,7 +13,7 @@ author: Pierre-Louis
 category: Coaching
 image: /assets/img/blog/2026-04-29-bilan-de-competences-vs-coaching-le-match-fr.webp
 featured: false
-status: draft
+status: published
 faq:
   - question: "What's the main difference between a skills assessment and career coaching?"
     answer: "An assessment analyzes your past to list your skills. Coaching works on your future to remove your blocks and get you moving."

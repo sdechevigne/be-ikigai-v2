@@ -100,12 +100,3 @@ C'est un travail d'introspection difficile à faire seul, surtout quand on a la 
 Le vrai danger n'est pas de changer. Le vrai danger, c'est de rester. C'est de laisser la souffrance douce grignoter ton énergie, ton ambition et ta joie de vivre, année après année. Tu mérites mieux qu'une carrière en mode survie.
 
 Tu veux savoir où tu en es vraiment ? Découvre le **diagnostic de destinée Be-Ikigai** : 48h pour faire le point et reprendre les commandes de ta carrière. Satisfait ou remboursé. Ton temps est trop précieux pour le gaspiller dans l'indécision.
-
-## Références
-
-1. [State of the Global Workplace 2023 Report](https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx) — Rapport d'étude, Gallup, 2023
-2. [Baromètre de la santé mentale des salariés](https://alan.com/fr/blog/sante-mentale-travail-barometre-2023) — Baromètre, Alan x Harris Interactive, 2023
-3. [L'épreuve du travail : de la souffrance à la santé](https://www.puf.com/content/L%C3%A9preuve_du_travail) — Livre, Danièle Linhart, PUF, 2021
-4. [Enquête sur la reconversion professionnelle](https://www.hellowork.com/fr-fr/medias/reconversion-professionnelle-chiffres-2022.html) — Enquête, HelloWork, 2022
-5. [Sens au travail ou sens du travail ?](https://www2.deloitte.com/fr/fr/pages/talents-et-ressources-humaines/articles/etude-sens-au-travail.html) — Étude, Deloitte / Viadeo, 2017
-

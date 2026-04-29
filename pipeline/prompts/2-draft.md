@@ -50,7 +50,7 @@ Respecte toutes les règles de `pipeline/skills-prompt.md`.
 
 [4–5 sections H2 minimum]
 
-[2–3 suggestions d'images : ![Alt text SEO avec mot-clé](description-image.webp)]
+**Ne pas inclure de balises image dans le corps de l'article** — les images sont générées séparément par le pipeline.
 
 ## Conclusion
 
@@ -59,19 +59,21 @@ Respecte toutes les règles de `pipeline/skills-prompt.md`.
 ## FAQ
 
 [5 questions ciblées snippets]
+```
 
-## Suggestions schema.org
+**⚠️ Les sections suivantes sont des métadonnées de production — NE PAS les inclure dans le fichier `.md` de l'article. Les écrire en dehors du contenu publié, après les deux articles.**
+
+### Suggestions schema.org (hors article)
 
 [Types pertinents : Article, FAQPage, HowTo selon le type de contenu]
 
-## Résumé social
+### Résumé social (hors article)
 
 [4–6 bullets ≤ 200 chars chacun + hashtags pertinents]
 
-## Références
+### Références (hors article)
 
 1. [Titre](URL) — Type/Source, Date
-```
 
 ## Mapping cluster → catégorie
 

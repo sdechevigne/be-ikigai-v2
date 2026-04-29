@@ -54,7 +54,6 @@ Consider Sarah, 32, a consultant in Paris. After 7 years at a frantic pace, she 
 
 A skills assessment is great for taking stock of what you've learned. But it rarely answers the questions of desire, passion, or energy. It tells you what you *can* do, not what will make you feel alive.
 
-![A person looking at a very detailed road map of their starting point, without seeing the destination.](alt:A person examining a detailed map of their professional past, illustrating the skills assessment process.)
 
 ## Career Coaching: The Turbo-Boost to Unlock Your Future
 
@@ -83,7 +82,6 @@ To make it simple, here’s a direct comparison.
 
 If your only criterion is getting it for free and you need a slow, structured process, an assessment might be for you. For everyone else, targeted career coaching is a far better investment of your time and money.
 
-![Boxing gloves, one labeled "Assessment," the other "Coaching," hanging in a ring.](alt:Two boxing gloves labeled Skills Assessment and Career Coaching, symbolizing the match between the two approaches.)
 
 ## The Be-Ikigai Alternative: Best of Both Worlds in 48 Hours
 
@@ -103,25 +101,3 @@ A skills assessment can give you the illusion of progress, but it often just con
 Your time is your most precious resource. Don't waste it on a bureaucratic exercise when what you really need is an electric shock to the system.
 
 **Ready to find your direction in 48 hours without drowning in paperwork? [Discover the Destiny Diagnosis](URL) and get a clear roadmap, or your money back.**
-
-## schema.org Suggestions
-
-- Article
-- FAQPage
-- HowTo (for the section on choosing)
-
-## Social Media Summary
-
-- Job draining your soul but don't know where to start? The match: Skills Assessment vs. Career Coaching.
-- A skills assessment? An inventory of your past, often slow and bureaucratic. Useful for confirming what you already know.
-- Career coaching? A turbo-boost for your future. It smashes your blocks and pushes you to act. An investment to save you time.
-- The key to a career change is action, not over-thinking. Test small projects before you quit your job.
-- The real risk isn't making a change; it's standing still. Stop analyzing and start moving.
-- #CareerChange #SkillsAssessment #CareerCoaching #CareerPath #MeaningfulWork #Ikigai
-
-## References
-
-1. [Les cadres et la reconversion professionnelle (Executives and career change)](https://corporate.apec.fr/home/nos-etudes/toutes-nos-etudes/les-cadres-et-la-reconversion-professionnelle.html) — APEC Study, 2023
-2. [Working Identity: Unconventional Strategies for Reinventing Your Career](https://hbr.org/books/working-identity) — Herminia Ibarra, Harvard Business Review Press, 2003
-3. [Global Talent Trends Report](https://business.linkedin.com/talent-solutions/global-talent-trends) — LinkedIn Report, 2022
-4. [Le bilan de compétences (The skills assessment)](https://www.service-public.fr/particuliers/vosdroits/F3087) — Service-Public.fr Fact Sheet, 2024

@@ -54,7 +54,6 @@ Prenons Sarah, 32 ans, consultante à Paris. Après 7 ans à un rythme fou, elle
 
 Le bilan de compétences est un excellent outil pour faire l'inventaire de tes acquis. Mais il répond rarement à la question de l'envie, du désir, de ce qui te met en mouvement. Il te dit ce que tu *peux* faire, pas ce qui te fera vibrer.
 
-![Une personne regarde une carte routière très détaillée de son point de départ, sans voir la destination.](alt:Une personne examinant une carte détaillée de son passé professionnel, illustrant la démarche du bilan de compétences.)
 
 ## Le Coaching de Carrière : le turbo pour débloquer ton futur
 
@@ -83,7 +82,6 @@ Pour y voir clair, voici un face-à-face direct.
 
 Si ton seul critère est le financement et que tu as besoin d'un cadre lent pour réfléchir, le bilan via le CPF reste une option. Pour tous les autres, un coaching ciblé est un investissement bien plus rentable en temps et en clarté.
 
-![Des gants de boxe, l'un étiqueté "Bilan", l'autre "Coaching", suspendus sur un ring.](alt:Deux gants de boxe étiquetés Bilan de Compétences et Coaching de Carrière, symbolisant le match entre les deux approches.)
 
 ## L'alternative Be-Ikigai : le meilleur des deux mondes en 48h
 
@@ -103,25 +101,3 @@ Le bilan de compétences peut te donner l'illusion d'avancer, alors qu'il ne fai
 Ton temps est ta ressource la plus précieuse. Ne le gaspille pas dans une démarche bureaucratique si ton besoin est un électrochoc.
 
 **Prêt à trouver ta direction en 48h sans te noyer dans la paperasse ? [Découvre le Diagnostic de Destinée](URL) et obtiens une feuille de route claire, ou sois remboursé.**
-
-## Suggestions schema.org
-
-- Article
-- FAQPage
-- HowTo (pour la section sur le choix)
-
-## Résumé social
-
-- Ton job te vide mais tu ne sais pas par où commencer ? Le match : Bilan de Compétences vs. Coaching.
-- Le bilan de compétences ? Un inventaire de ton passé, souvent lent et payé par le CPF. Utile pour savoir ce que tu sais déjà faire.
-- Le coaching de carrière ? Un turbo pour ton futur. Il fait sauter tes blocages et te pousse à l'action. Un investissement pour gagner du temps.
-- La clé de la reconversion, c'est l'action, pas la sur-analyse. Teste des projets avant de tout plaquer.
-- Le vrai risque n'est pas de changer, c'est de rester immobile. Arrête d'analyser, commence à bouger.
-- #Reconversion #BilanDeCompetences #Coaching #Carriere #SensAuTravail #Ikigai
-
-## Références
-
-1. [Les cadres et la reconversion professionnelle](https://corporate.apec.fr/home/nos-etudes/toutes-nos-etudes/les-cadres-et-la-reconversion-professionnelle.html), Étude APEC, 2023
-2. [Working Identity: Unconventional Strategies for Reinventing Your Career](https://hbr.org/books/working-identity), Herminia Ibarra, Harvard Business Review Press, 2003
-3. [Global Talent Trends Report](https://business.linkedin.com/talent-solutions/global-talent-trends), Rapport LinkedIn, 2022
-4. [Le bilan de compétences](https://www.service-public.fr/particuliers/vosdroits/F3087), Fiche pratique Service-Public.fr, 2024

@@ -46,7 +46,6 @@ The result is paralysis. It's no surprise that employee engagement is at rock bo
 
 Worse, the diagram forces you into a transactional mindset. The second you enjoy something, it asks, "Okay, but how do you make money from it?" Your source of joy is now a business plan.
 
-![A person frustratingly tears up a drawing of the Ikigai Venn diagram, symbolizing the rejection of a false promise.](alt:A frustrated person tearing up an Ikigai Venn diagram, illustrating the rejection of this oversimplified concept.)
 
 ## Real Ikigai Has Nothing To Do With Your Job
 
@@ -78,7 +77,6 @@ You can also inject ikigai into your current job. Apply the five pillars. Find s
 
 The Venn diagram isn't evil. But it needs to be put in its place: it's a brainstorming gimmick, a way to throw ideas on paper. It should never be the judge of your self-worth.
 
-![A Venn diagram used as a simple sticky note on a large brainstorming board filled with ideas and sketches.](alt:The Ikigai Venn diagram relegated to a simple brainstorming tool on a large whiteboard.)
 
 ## Ditch the Diagram, Find Your Vitality
 
@@ -91,11 +89,3 @@ So the next time you feel lost, forget the four circles. Ask yourself one, much 
 The answer is usually right in front of you.
 
 Stop filling out diagrams that keep you stuck. [Let's figure out what really matters to you with the Destiny Diagnosis](https://be-ikigai.com). In 48 hours, you'll go from confusion to a clear action plan.
-
-## References
-
-1. [The Origin of the Ikigai Venn Diagram](https://medium.com/the-ascent/the-origin-of-the-ikigai-venn-diagram-3078fad9d83b) — Blog post, Marc Winn, 2014
-2. [State of the Global Workplace 2024 Report](https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx) — Study Report, Gallup, 2024
-3. [The Little Book of Ikigai](https://www.amazon.com/Little-Book-Ikigai-Essential-Japanese/dp/1787470686) — Book, Ken Mogi, 2017
-4. [What is Ikigai? The True Meaning vs. the Venn Diagram of Purpose](https://www.sloww.co/ikigai/) — Analysis article, Kyle Kowalski, 2023
-5. [Les intentions de mobilité des cadres (Executive Mobility Intentions)](https://corporate.apec.fr/home/nos-etudes/toutes-nos-etudes/les-intentions-de-mobilite-des-cadres-au-1er-trimestre-2024.html) — Study, Apec, 2024

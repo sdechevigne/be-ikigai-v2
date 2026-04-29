@@ -89,10 +89,3 @@ Le management de 2026 n'est pas une évolution, c'est une mutation. Soit ton man
 N'attends pas que ton entreprise se mette à jour. Ce décalage que tu ressens est une information précieuse : tu es prêt pour la suite, mais ton job actuel ne l'est pas. Il est temps de reprendre les rênes.
 
 **Prêt à voir si ton job actuel a un futur en 2026 ?** Le Diagnostic de Destinée n'est pas un bilan de compétences. C'est un scan en 48h pour savoir si ton environnement de travail est obsolète et comment construire un plan de bataille pour reprendre le contrôle.
-
-## Références
-
-1. [Rapport APEC : L'évolution des attentes des cadres 2025](https://corporate.apec.fr/), Étude prospective, Décembre 2024
-2. [Dares : Les métiers en 2030](https://dares.travail-emploi.gouv.fr/), Rapport gouvernemental, Mise à jour 2025
-3. [HBR France : Le manager à l'ère de l'IA générative](https://www.hbrfrance.fr/), Article de fond, Mars 2025
-4. [Les Echos Executives : La semaine de 4 jours, bilan et perspectives](https://www.lesechos.fr/pme-regions/executives), Analyse terrain, Janvier 2026

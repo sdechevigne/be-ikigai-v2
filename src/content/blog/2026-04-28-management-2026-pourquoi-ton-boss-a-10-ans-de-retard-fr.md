@@ -13,7 +13,7 @@ author: Pierre-Louis
 category: Sens au travail
 image: /assets/img/blog/2026-04-28-management-2026-pourquoi-ton-boss-a-10-ans-de-retard-fr.webp
 featured: false
-status: published
+status: draft
 faq:
   - question: "Quel est l'impact de l'IA sur le management en 2026 ?"
     answer: "L'IA automatise le reporting et l'allocation des ressources. Ça déplace le rôle du manager vers le coaching, la vision stratégique et la résolution de conflits complexes, des tâches purement humaines."

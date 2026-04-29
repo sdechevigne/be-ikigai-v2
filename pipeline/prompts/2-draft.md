@@ -26,15 +26,7 @@ Respecte toutes les règles de `pipeline/skills-prompt.md`.
 ## Structure obligatoire de chaque article
 
 ```
-[frontmatter complet]
-
-> **À retenir**
-> - [Bullet 1 — fait concret ou chiffre clé, ≤200 chars]
-> - [Bullet 2 — règle ou insight actionnable, ≤200 chars]
-> - [Bullet 3 — quoi faire concrètement, ≤200 chars]
-> - [Bullet 4 — conseil ou mise en garde, ≤200 chars]
-> - [Bullet 5 optionnel, ≤200 chars]
-> - [Bullet 6 optionnel, ≤200 chars]
+[frontmatter complet — voir modèles FR et EN ci-dessous]
 
 [Introduction 200–300 mots avec accroche terrain + mot-clé dans les 100 premiers mots]
 
@@ -56,24 +48,23 @@ Respecte toutes les règles de `pipeline/skills-prompt.md`.
 
 [200 mots + CTA fort]
 
-## FAQ
+## Références
 
-[5 questions ciblées snippets]
+1. [Titre](URL) — Type/Source, Date
 ```
 
-**⚠️ Les sections suivantes sont des métadonnées de production — NE PAS les inclure dans le fichier `.md` de l'article. Les écrire en dehors du contenu publié, après les deux articles.**
+**Règles importantes sur la structure :**
 
-### Suggestions schema.org (hors article)
+- **`summary`** (frontmatter, 4–6 bullets) = affiché automatiquement comme "En bref" en haut de l'article. Ne pas le dupliquer dans le corps avec un blockquote `> **À retenir**`.
+- **`faq`** (frontmatter, 5 Q&A) = rendu automatiquement comme section accordéon FAQ en bas de l'article + injecté dans le schema.org `FAQPage`. Ne pas créer de `## FAQ` dans le corps.
+- **`## Références`** = reste dans le corps Markdown, en toute dernière section.
+- **Pas de `## Suggestions schema.org`** dans le corps — le schema.org est généré automatiquement depuis `faq` (FAQPage) et le frontmatter (Article).
 
-[Types pertinents : Article, FAQPage, HowTo selon le type de contenu]
+**⚠️ Métadonnées de production — écrire APRÈS les deux articles, jamais dans les fichiers `.md` :**
 
 ### Résumé social (hors article)
 
 [4–6 bullets ≤ 200 chars chacun + hashtags pertinents]
-
-### Références (hors article)
-
-1. [Titre](URL) — Type/Source, Date
 
 ## Mapping cluster → catégorie
 

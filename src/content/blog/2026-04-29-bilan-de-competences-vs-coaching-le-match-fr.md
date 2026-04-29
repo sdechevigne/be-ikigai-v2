@@ -27,13 +27,6 @@ faq:
     answer: "Non. Il peut être un premier pas si tu es totalement perdu et que le financement est ton seul critère. Mais il répond rarement à la question du 'pourquoi'."
 ---
 
-> **À retenir**
-> - Le bilan de compétences photographie ton passé pro. Le coaching de carrière dessine la carte de ton futur.
-> - Le bilan est une formalité administrative de 24h sur 2 à 4 mois, souvent financée. Le coaching est un investissement direct pour un résultat rapide.
-> - Selon une étude de l'APEC (2023), 40% des cadres veulent changer de voie mais sont paralysés par la peur. Une démarche lente n'aide pas.
-> - L'experte Herminia Ibarra (HBR) le confirme : on trouve sa voie en agissant, pas en planifiant à l'infini. L'action prime sur l'analyse.
-> - Le bilan te laisse avec un document de synthèse. Le coaching te donne un plan d'action et l'énergie pour te lancer.
-
 Lundi, 10h. Tu es dans une réunion qui aurait pu être un e-mail. Tu hoches la tête, tu souris, mais ton esprit est à des kilomètres. Ce job, qui semblait une si bonne idée sur le papier, te laisse un goût de vide. La « souffrance douce » s'est installée. Comme près de 40% des cadres, l'idée d'une reconversion te traverse l'esprit. Et là, le premier réflexe, quasi pavlovien : « Et si je faisais un bilan de compétences avec mon CPF ? ».
 
 C'est logique. C'est structuré. C'est financé. Ça a tout l'air de la porte d'entrée officielle pour quiconque veut changer de vie pro.

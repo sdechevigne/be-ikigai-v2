@@ -12,6 +12,7 @@ summary:
   - The intersection of 4 pillars of life
   - Finding meaning to avoid burnout
   - Aligning passion, mission and profession
+readingTime: 1
 ---
 
 Ikigai, an ancient Japanese concept, originated on the island of Okinawa, famous for having the highest number of centenarians in the world. But Ikigai is not just about physical longevity: above all, it is the secret to a fulfilling and meaningful life.

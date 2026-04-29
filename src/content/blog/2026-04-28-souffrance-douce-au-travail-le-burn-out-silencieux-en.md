@@ -35,6 +35,7 @@ faq:
   - question: Am I just spoiled for complaining?
     answer: No. Searching for meaning is a valid need. Guilt is a symptom of the
       problem, not a sign that your feelings are wrong.
+readingTime: 6
 ---
 Monday morning, 9:03 AM. Your LinkedIn title is pristine, your salary lands at the end of the month, and yet, as you turn on your computer, you feel that familiar void. You check the boxes, attend the meetings, smile on Zoom. On the surface, everything is fine. You're a high achiever in the professional world. But inside, something feels hollow.
 

@@ -21,6 +21,7 @@ const blog = defineCollection({
         answer: z.string().optional(),
       })
     ).optional(),
+    readingTime: z.number().optional(),
   }),
 });
 

@@ -12,6 +12,7 @@ summary:
   - L'intersection de 4 piliers de vie
   - Retrouver du sens pour éviter l'épuisement mental
   - Aligner passion, mission et profession
+readingTime: 1
 ---
 
 L’Ikigai, un concept japonais millénaire, trouve son origine sur l’île d’Okinawa, célèbre pour abriter le plus grand nombre de centenaires au monde. Mais l’Ikigai n’est pas qu’une question de longévité physique : c’est avant tout le secret d’une vie épanouie et pleine de sens.

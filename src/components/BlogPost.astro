@@ -22,6 +22,8 @@ const formattedDate = post.data.publishedAt
     
 const category = post.data.category || (lang === 'en' ? 'General' : 'Général');
 const author = post.data.author || 'Pierre-Louis';
+
+const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.split(/\s+/).length ?? 0) / 200));
 ---
 
 <Layout 
@@ -112,7 +114,7 @@ const author = post.data.author || 'Pierre-Louis';
                             <div class="meta-sep"></div>
                             <span class="meta-item">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                5 min {lang === 'en' ? 'read' : 'de lecture'}
+                                {readingTime} min {lang === 'en' ? 'read' : 'de lecture'}
                             </span>
                             <div class="meta-sep"></div>
                             <span class="article-cat-badge" style="margin-bottom:0;">{category}</span>

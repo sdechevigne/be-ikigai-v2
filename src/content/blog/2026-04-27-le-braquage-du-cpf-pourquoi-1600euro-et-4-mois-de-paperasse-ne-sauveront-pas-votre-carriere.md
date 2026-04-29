@@ -63,6 +63,7 @@ faq:
 
       En 48 heures, vous repartez avec une trajectoire et un plan de bataille au
       lieu d’un rapport qui ressemble à un dossier administratif.
+readingTime: 6
 ---
 ## Avril 2026 : 1600€ de plafond et 150€ de reste à charge, le faux cadeau du CPF
 

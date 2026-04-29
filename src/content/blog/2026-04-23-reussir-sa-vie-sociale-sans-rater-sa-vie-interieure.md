@@ -19,6 +19,7 @@ author: Pierre-Louis
 category: Coaching
 status: published
 featured: false
+readingTime: 9
 ---
 ## **Introduction : quand tout va bien… sauf à l’intérieur**
 

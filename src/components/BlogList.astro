@@ -109,7 +109,7 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                                         <div class="blog-card-meta">
                                             <span>{post.data.author || 'Pierre-Louis'}</span>
                                             <span>{post.data.publishedAt && new Date(post.data.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-                                            <span>5 min</span>
+                                            <span>{post.data.readingTime ?? Math.max(1, Math.round((post.body?.split(/\s+/).length ?? 0) / 200))} min</span>
                                         </div>
                                     </div>
                                 </a>

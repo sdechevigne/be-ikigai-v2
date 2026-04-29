@@ -23,6 +23,8 @@ MCP_CONFIG="${PIPELINE_DIR}/mcp.json"
 SKILLS_PROMPT="${PIPELINE_DIR}/skills-prompt.md"
 CARD_BODY="${PIPELINE_DIR}/card-body.md"
 RESEARCH_NOTES="${PIPELINE_DIR}/research-notes.md"
+BOOK_ESSENCE="${PIPELINE_DIR}/book-essence.md"
+BOOK_EXAMPLES="${PIPELINE_DIR}/book-examples.md"
 
 mkdir -p "${LOG_DIR}"
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
@@ -279,6 +281,24 @@ if [[ "${SKIP_PHASE2}" == "true" ]]; then
 else
   log "Phase 2 : Rédaction (FR + EN)..."
   cd "${REPO_ROOT}"
+
+  # Bloc de référence livre — injecté si les fichiers de distillation existent
+  BOOK_CONTEXT_BLOCK=""
+  if [[ -f "${BOOK_ESSENCE}" ]]; then
+    BOOK_CONTEXT_BLOCK="## Référence livre Be-Ikigai (vision et thèses de Pierre-Louis)
+
+$(cat "${BOOK_ESSENCE}")
+"
+    if [[ -f "${BOOK_EXAMPLES}" ]]; then
+      BOOK_CONTEXT_BLOCK="${BOOK_CONTEXT_BLOCK}
+## Exemples concrets et témoignages du livre
+
+$(cat "${BOOK_EXAMPLES}")
+"
+    fi
+    log "Référence livre injectée dans le prompt Phase 2"
+  fi
+
   PHASE2_PROMPT="$(cat "${PIPELINE_DIR}/prompts/2-draft.md")
 
 ## Notes de recherche (injectées)
@@ -287,7 +307,9 @@ $(cat "${RESEARCH_NOTES}" 2>/dev/null || echo '(aucune note — utilise le sujet
 
 ## Contexte sujet
 
-$(cat "${CARD_BODY}" 2>/dev/null || echo '')"
+$(cat "${CARD_BODY}" 2>/dev/null || echo '')
+
+${BOOK_CONTEXT_BLOCK}"
   DRAFT_OUTPUT=$(run_llm \
     --mcp-config "${MCP_CONFIG}" \
     --system-prompt-file "${SKILLS_PROMPT}" \
@@ -436,11 +458,37 @@ else
     log "WARNING: génération image échouée — article créé sans image"
 fi
 
-# Passage en published (FR + EN)
-log "Passage en published..."
+# Calcul et injection readingTime
+log "Calcul readingTime..."
 FULL_PATH_FR="${REPO_ROOT}/${ARTICLE_PATH}"
 BASE_SLUG_FINAL="${ARTICLE_SLUG%-fr}"
 FULL_PATH_EN="${REPO_ROOT}/src/content/blog/${BASE_SLUG_FINAL}-en.md"
+python3 - "${FULL_PATH_FR}" "${FULL_PATH_EN}" <<'PYEOF'
+import sys, re, math
+def inject_reading_time(path):
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except FileNotFoundError:
+        return
+    if re.search(r'^readingTime:', content, re.MULTILINE):
+        return
+    # Count words in body (after second ---)
+    parts = content.split('---', 2)
+    body = parts[2] if len(parts) >= 3 else ''
+    word_count = len(body.split())
+    reading_time = max(1, math.ceil(word_count / 200))
+    # Insert before closing --- of frontmatter
+    new_content = content.replace('---\n' + parts[2], f'readingTime: {reading_time}\n---\n' + parts[2], 1)
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(new_content)
+    print(f"  readingTime: {reading_time} min ({word_count} mots) → {path}")
+for p in sys.argv[1:]:
+    inject_reading_time(p)
+PYEOF
+
+# Passage en published (FR + EN)
+log "Passage en published..."
 
 for md_file in "${FULL_PATH_FR}" "${FULL_PATH_EN}"; do
   if [[ -f "${md_file}" ]]; then

@@ -25,6 +25,7 @@ faq:
     answer: "If they focus more on your login hours than your results, if they are incapable of trusting you, and if they see AI as a threat rather than a tool to empower people."
   - question: "Is remote work still the norm in 2026?"
     answer: "The mature model is no longer 'fully remote' but an asynchronous-first hybrid mode. The office becomes a social hub for targeted collaboration and team-building moments."
+readingTime: 6
 ---
 
 Monday, 9:30 AM. You log into the weekly meeting. Your manager shares their screen. Instead of a tedious PowerPoint with the week's figures, they pull up a simple dashboard. AI has already compiled everything: progress, roadblocks, performance. Reporting is done.

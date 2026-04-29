@@ -35,6 +35,7 @@ faq:
   - question: Est-ce que je suis juste un enfant gâté de me plaindre ?
     answer: Non. Vouloir du sens est légitime. La culpabilité est un symptôme du
       problème, pas la preuve que ton ressenti est faux.
+readingTime: 7
 ---
 Lundi matin, 9h03. Ton titre sur LinkedIn est impeccable, ton salaire tombe à la fin du mois, et pourtant, en allumant ton ordinateur, tu ressens ce vide familier. Tu coches les cases, tu participes aux réunions, tu souris sur Zoom. En surface, tout va bien. Tu es un bon élève du monde professionnel. Mais à l'intérieur, quelque chose sonne creux.
 

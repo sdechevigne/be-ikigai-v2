@@ -25,6 +25,7 @@ faq:
     answer: "S'il se concentre davantage sur tes heures de connexion que sur tes résultats, s'il est incapable de faire confiance et s'il voit l'IA comme une menace plutôt qu'un outil au service de l'humain."
   - question: "Le télétravail est-il encore la norme en 2026 ?"
     answer: "Le modèle mature n'est plus le 'tout télétravail' mais un mode hybride asynchrone par défaut. Le bureau devient un hub social pour des moments de collaboration et de cohésion ciblés."
+readingTime: 7
 ---
 
 Lundi, 9h30. Tu te connectes à la réunion hebdo. Ton manager partage son écran. Au lieu d’un PowerPoint pénible listant les chiffres de la semaine, il affiche un dashboard simple. L'IA a déjà tout compilé : avancées, blocages, performances. Le reporting est fait.

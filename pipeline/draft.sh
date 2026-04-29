@@ -17,15 +17,18 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 PIPELINE_DIR="${SCRIPT_DIR}"
+SCRIPTS_DIR="${PIPELINE_DIR}/scripts"
+CONTEXT_DIR="${PIPELINE_DIR}/context"
+WORK_DIR="${PIPELINE_DIR}/work"
 CONTENT_DIR="${REPO_ROOT}/src/content/blog"
 LOG_DIR="${REPO_ROOT}/pipeline/logs"
 MCP_CONFIG="${PIPELINE_DIR}/mcp.json"
-SKILLS_PROMPT="${PIPELINE_DIR}/skills-prompt.md"
-CARD_BODY="${PIPELINE_DIR}/card-body.md"
-RESEARCH_NOTES="${PIPELINE_DIR}/research-notes.md"
-BOOK_ESSENCE="${PIPELINE_DIR}/book-essence.md"
-BOOK_EXAMPLES="${PIPELINE_DIR}/book-examples.md"
-CLIENT_EXAMPLES="${PIPELINE_DIR}/client-examples.md"
+SKILLS_PROMPT="${CONTEXT_DIR}/skills-prompt.md"
+CARD_BODY="${WORK_DIR}/card-body.md"
+RESEARCH_NOTES="${WORK_DIR}/research-notes.md"
+BOOK_ESSENCE="${CONTEXT_DIR}/book-essence.md"
+BOOK_EXAMPLES="${CONTEXT_DIR}/book-examples.md"
+CLIENT_EXAMPLES="${CONTEXT_DIR}/client-examples.md"
 
 mkdir -p "${LOG_DIR}"
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
@@ -35,7 +38,7 @@ log() { echo "[$(date +%H:%M:%S)] $*" | tee -a "${LOG_FILE}"; }
 log_error() { echo "[$(date +%H:%M:%S)] ERREUR: $*" | tee -a "${LOG_FILE}" >&2; }
 
 cleanup() {
-  rm -f "${CARD_BODY}" "${RESEARCH_NOTES}" "${PIPELINE_DIR}/topic-json.tmp"
+  rm -f "${CARD_BODY}" "${RESEARCH_NOTES}" "${WORK_DIR}/topic-json.tmp"
 }
 
 on_error() {
@@ -44,7 +47,7 @@ on_error() {
   log_error "Echec ligne ${line_number} (code ${exit_code})"
 
   if [[ -n "${ITEM_ID:-}" ]]; then
-    (cd "${PIPELINE_DIR}" && node -e "
+    (cd "${SCRIPTS_DIR}" && node -e "
       import('./project.js').then(m => m.updateCardStatus('${ITEM_ID}', 'detected')).catch(() => {});
     " 2>/dev/null || true)
   fi
@@ -169,7 +172,7 @@ if [[ -n "${RESUME_SLUG}" ]]; then
     [[ ! -f "${REPO_ROOT}/${ARTICLE_PATH}" ]] && { log_error "Article introuvable : ${ARTICLE_PATH}"; exit 1; }
   elif git log --format=%s | grep -qF "wip(phase2): ${RESUME_SLUG}"; then
     SKIP_PHASE1=true; SKIP_PHASE2=true
-    git show "HEAD:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
+    git show "HEAD:pipeline/work/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
     log "  Phases 1, 2 déjà commitées — reprise depuis Phase 3"
     [[ ! -f "${REPO_ROOT}/${ARTICLE_PATH}" ]] && { log_error "Article introuvable : ${ARTICLE_PATH}"; exit 1; }
   else
@@ -177,7 +180,7 @@ if [[ -n "${RESUME_SLUG}" ]]; then
     PHASE1_HASH=$(git log --format="%H %s" | grep -F "wip(phase1):" | awk '{print $1}' | head -1 || true)
     if [[ -n "${PHASE1_HASH}" ]]; then
       SKIP_PHASE1=true
-      git show "${PHASE1_HASH}:pipeline/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
+      git show "${PHASE1_HASH}:pipeline/work/research-notes.md" > "${RESEARCH_NOTES}" 2>/dev/null || true
       log "  Phase 1 déjà commitée (${PHASE1_HASH:0:8}) — reprise depuis Phase 2"
     else
       log "  Aucune phase commitée — reprise depuis Phase 1"
@@ -223,7 +226,7 @@ else
     log "Aucun sujet disponible."
     exit 0
   fi
-  TOPIC_JSON_FILE="${PIPELINE_DIR}/topic-json.tmp"
+  TOPIC_JSON_FILE="${WORK_DIR}/topic-json.tmp"
   printf '%s' "${TOPIC_JSON}" > "${TOPIC_JSON_FILE}"
   IFS=$'\t' read -r ITEM_ID TOPIC_TITLE TOPIC_CATEGORY TOPIC_CONTENT_TYPE < <(python3 -c '
 import json, sys
@@ -234,7 +237,7 @@ print(d["itemId"], d["title"], d["category"], d["contentType"], sep="\t")
   rm -f "${TOPIC_JSON_FILE}"
   log "Sujet : ${TOPIC_TITLE} (${TOPIC_CATEGORY})"
   set_publish_datetime
-  node -e "import('./project.js').then(m => m.updateCardStatus('${ITEM_ID}', 'researched')).catch(e => console.warn(e.message));" 2>>"${LOG_FILE}" || true
+  (cd "${SCRIPTS_DIR}" && node -e "import('./project.js').then(m => m.updateCardStatus('${ITEM_ID}', 'researched')).catch(e => console.warn(e.message));") 2>>"${LOG_FILE}" || true
 fi
 
 # Phase 1 : Recherche
@@ -524,7 +527,7 @@ Log: pipeline/logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
 fi
 
 # Mise à jour card GitHub Projects → Published
-cd "${PIPELINE_DIR}"
+cd "${SCRIPTS_DIR}"
 PUB_DATE_ONLY="${PUBLISH_DATETIME:0:10}"
 export ITEM_ID="${ITEM_ID:-}"
 export PUB_DATE_ONLY="${PUB_DATE_ONLY}"

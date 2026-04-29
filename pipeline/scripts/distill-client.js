@@ -5,13 +5,13 @@
  * Lit un rapport client (PDF/DOCX/TXT) et en extrait via Gemini API
  * les éléments utiles pour la rédaction d'articles : situations vécues,
  * formulations distinctives, blocages, archétypes, verbatims.
- * Le résultat est appendé dans pipeline/client-examples.md.
+ * Le résultat est appendé dans pipeline/context/client-examples.md.
  *
  * Usage :
- *   node pipeline/distill-client.js <fichier>
- *   node pipeline/distill-client.js pipeline/clients/rapport-marie.pdf
- *   node pipeline/distill-client.js --all          # traite tous les nouveaux fichiers dans pipeline/clients/
- *   node pipeline/distill-client.js --list         # liste les fichiers déjà traités
+ *   node pipeline/scripts/distill-client.js <fichier>
+ *   node pipeline/scripts/distill-client.js pipeline/clients/rapport-marie.pdf
+ *   node pipeline/scripts/distill-client.js --all          # traite tous les nouveaux fichiers dans pipeline/clients/
+ *   node pipeline/scripts/distill-client.js --list         # liste les fichiers déjà traités
  *
  * Variables d'environnement requises :
  *   GEMINI_API_KEY
@@ -23,9 +23,10 @@ import https from 'https';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const CLIENTS_DIR = path.join(__dirname, 'clients');
-const OUTPUT_FILE = path.join(__dirname, 'client-examples.md');
-const INDEX_FILE = path.join(__dirname, 'client-index.json');
+const PIPELINE_DIR = path.resolve(__dirname, '..');
+const CLIENTS_DIR = path.join(PIPELINE_DIR, 'clients');
+const OUTPUT_FILE = path.join(PIPELINE_DIR, 'context', 'client-examples.md');
+const INDEX_FILE = path.join(PIPELINE_DIR, 'work', 'client-index.json');
 
 const API_KEY = process.env.GEMINI_API_KEY;
 if (!API_KEY) {
@@ -34,7 +35,7 @@ if (!API_KEY) {
 }
 
 // gemini-2.5-flash : suffisant pour l'extraction, 4x moins cher que pro
-const MODEL = 'gemini-2.5-flash-preview-04-17';
+const MODEL = 'gemini-2.5-flash';
 
 const SUPPORTED_EXTENSIONS = ['.pdf', '.docx', '.doc', '.txt', '.md'];
 
@@ -152,7 +153,7 @@ function generateContent(fileUri, mimeType) {
       }],
       generation_config: {
         temperature: 0.3,
-        max_output_tokens: 2048,
+        max_output_tokens: 8192,
       },
     });
 

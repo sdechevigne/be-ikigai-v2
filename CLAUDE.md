@@ -100,8 +100,16 @@ Les statuts GitHub Projects (`Detected` → `Researched` → `Drafting` → `Pub
 
 **Réordonnancement des publications** : renseigner le champ `Publication Date` sur une card `Detected` dans GitHub Projects — `pickNextTopic()` la sélectionne en priorité (date croissante), avant les cards sans date triées par Trend Score.
 
-**Scripts de maintenance** : `pipeline/backfill-projects.js` (rétro-alimenter les articles existants), `pipeline/merge-bilingual-cards.js` (fusionner cards FR+EN en une card bilingue avec chemin `FR | EN`). Tous deux acceptent `--dry-run`.
+**Scripts de maintenance** : `pipeline/scripts/backfill-projects.js` (rétro-alimenter les articles existants), `pipeline/scripts/merge-bilingual-cards.js` (fusionner cards FR+EN en une card bilingue avec chemin `FR | EN`). Tous deux acceptent `--dry-run`.
 
 **Variables node dans draft.sh** : passer via `process.env` (export + `process.env.VAR`) plutôt qu'interpolation shell dans `node -e "..."` — évite l'injection et les problèmes de caractères spéciaux dans les chemins.
 
-**Règle absolue éditoriale** : ne jamais critiquer, moquer ou décrier l'ikigai dans aucun prompt, article ou source — même subtilement. Gravé dans `pipeline/skills-prompt.md` et `pipeline/prompts/1-research.md`.
+**Règle absolue éditoriale** : ne jamais critiquer, moquer ou décrier l'ikigai dans aucun prompt, article ou source — même subtilement. Gravé dans `pipeline/context/skills-prompt.md` et `pipeline/prompts/1-research.md`.
+
+### Pipeline blog — structure des dossiers
+
+Réorganisation 2026-04 : `pipeline/scripts/` (tous les .js/.sh/.py), `pipeline/context/` (fichiers de référence injectés dans les prompts : `book-essence.md`, `book-examples.md`, `client-examples.md`, `skills-prompt.md`), `pipeline/work/` (fichiers runtime : `research-notes.md`, `client-index.json`). Les scripts Node remontant d'un niveau depuis `scripts/` doivent utiliser `../..` (pas `..`) pour atteindre la racine du repo.
+
+**Distillation rapports clients** : déposer un PDF dans `pipeline/clients/` puis `node pipeline/scripts/distill-client.js --all` (requiert `GEMINI_API_KEY`). Utilise `gemini-2.5-flash` (pas les variantes `-preview` qui retournent 404). Les distillations manuelles via Claude sont de meilleure qualité (meilleure identification des archétypes Be-Ikigai).
+
+**Gemini Context Caching** : `pipeline/scripts/setup-book-cache.js` existe mais est sans effet sur le pipeline CLI — le `gemini` CLI n'accepte pas de `cachedContent`. Le livre est injecté via `pipeline/context/book-essence.md` + `pipeline/context/book-examples.md` (~1 500 tokens, distillation des 43 pages).

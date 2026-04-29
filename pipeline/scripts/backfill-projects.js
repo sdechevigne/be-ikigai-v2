@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const BLOG_DIR = join(__dirname, '../src/content/blog');
+const BLOG_DIR = join(__dirname, '../../src/content/blog');
 const isDryRun = process.argv.includes('--dry-run');
 
 // Mapping catégories PagesCMS → clusterKey pipeline
@@ -37,7 +37,7 @@ const CLUSTER_LABELS = {
 const { projectId, fields } = (() => {
   const env = {};
   try {
-    const envFile = readFileSync(join(__dirname, '../.env.local'), 'utf8');
+    const envFile = readFileSync(join(__dirname, '../../.env.local'), 'utf8');
     for (const line of envFile.split('\n')) {
       const m = line.match(/^([A-Z0-9_]+)=(.+)$/);
       if (m) env[m[1]] = m[2].trim();

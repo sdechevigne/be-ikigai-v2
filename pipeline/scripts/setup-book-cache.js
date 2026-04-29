@@ -24,8 +24,8 @@ import http from 'http';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = path.resolve(__dirname, '..');
-const CACHE_FILE = path.join(__dirname, 'gemini-cache.json');
+const REPO_ROOT = path.resolve(__dirname, '../..');
+const CACHE_FILE = path.join(__dirname, '../work/gemini-cache.json');
 
 // Fichiers sources — adapter si le nom ou l'emplacement change
 const BOOK_PATH = path.join(REPO_ROOT, 'livre-be-ikigai-sans-chap-10 (1).docx');
@@ -33,7 +33,7 @@ const REPORTS_DIR = null; // ex: path.join(REPO_ROOT, 'rapports-clients') — nu
 
 // Modèle : doit supporter le context caching
 // gemini-2.5-pro ou gemini-2.5-flash (plus économique)
-const MODEL = 'models/gemini-2.5-flash-preview-04-17';
+const MODEL = 'models/gemini-2.5-flash';
 
 // TTL du cache : 7 jours (604800s). Min = 60s, max = pas de limite documentée.
 const TTL = '604800s';

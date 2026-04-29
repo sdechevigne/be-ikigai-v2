@@ -14,7 +14,7 @@ const isDryRun = process.argv.includes('--dry-run');
 
 const env = {};
 try {
-  const envFile = readFileSync(join(__dirname, '../.env.local'), 'utf8');
+  const envFile = readFileSync(join(__dirname, '../../.env.local'), 'utf8');
   for (const line of envFile.split('\n')) {
     const m = line.match(/^([A-Z0-9_]+)=(.+)$/);
     if (m) env[m[1]] = m[2].trim();

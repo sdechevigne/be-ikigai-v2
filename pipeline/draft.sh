@@ -453,11 +453,15 @@ Article à humaniser : ${ARTICLE_PATH}" \
 
   cd "${REPO_ROOT}"
   git add "${CONTENT_DIR}/"
-  git commit -m "wip(phase3): ${ARTICLE_SLUG}
+  if ! git diff --cached --quiet; then
+    git commit -m "wip(phase3): ${ARTICLE_SLUG}
 
 Pipeline: automatique — phase humanisation terminée
 Log: pipeline/logs/draft-${TIMESTAMP}.log" 2>>"${LOG_FILE}"
-  git_push_safe "wip(phase3)"
+    git_push_safe "wip(phase3)"
+  else
+    log "Phase 3 : aucune modification détectée par Gemini (commit ignoré)"
+  fi
 fi
 
 # Génération image (base slug sans -fr)

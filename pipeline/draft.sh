@@ -221,7 +221,7 @@ else
   log "Sélection du prochain sujet..."
   cd "${PIPELINE_DIR}"
   npm install --silent 2>>"${LOG_FILE}"
-  TOPIC_JSON=$(node index.js --pick 2>>"${LOG_FILE}" || true)
+  TOPIC_JSON=$(node scripts/index.js --pick 2>>"${LOG_FILE}" || true)
   if [[ -z "${TOPIC_JSON}" ]]; then
     log "Aucun sujet disponible."
     exit 0

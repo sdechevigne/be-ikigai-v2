@@ -25,6 +25,7 @@ CARD_BODY="${PIPELINE_DIR}/card-body.md"
 RESEARCH_NOTES="${PIPELINE_DIR}/research-notes.md"
 BOOK_ESSENCE="${PIPELINE_DIR}/book-essence.md"
 BOOK_EXAMPLES="${PIPELINE_DIR}/book-examples.md"
+CLIENT_EXAMPLES="${PIPELINE_DIR}/client-examples.md"
 
 mkdir -p "${LOG_DIR}"
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
@@ -297,6 +298,16 @@ $(cat "${BOOK_EXAMPLES}")
 "
     fi
     log "Référence livre injectée dans le prompt Phase 2"
+  fi
+
+  # Injection des exemples clients distillés (si disponibles et non vides)
+  if [[ -f "${CLIENT_EXAMPLES}" ]] && grep -q "## Profil anonymisé" "${CLIENT_EXAMPLES}" 2>/dev/null; then
+    BOOK_CONTEXT_BLOCK="${BOOK_CONTEXT_BLOCK}
+## Témoignages clients réels (anonymisés — distillés de rapports de coaching)
+
+$(cat "${CLIENT_EXAMPLES}")
+"
+    log "Exemples clients injectés dans le prompt Phase 2"
   fi
 
   PHASE2_PROMPT="$(cat "${PIPELINE_DIR}/prompts/2-draft.md")

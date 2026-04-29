@@ -1,5 +1,11 @@
 # robots.txt for be-ikigai.com
 # https://be-ikigai.com
+#
+# IMPORTANT: Cloudflare prepends a "Cloudflare Managed Content" section to this
+# file that blocks ClaudeBot, GPTBot, etc. Our explicit Allow rules below
+# override those blocks (last matching rule wins in robots.txt).
+# To fully remove the conflict: Cloudflare dashboard → Bots → "Bot Fight Mode"
+# → disable "Block AI scrapers" (or the equivalent toggle in your plan).
 
 User-agent: *
 Allow: /

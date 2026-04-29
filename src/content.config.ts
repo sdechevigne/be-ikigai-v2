@@ -10,6 +10,7 @@ const blog = defineCollection({
     seoKeywords: z.string().optional(),
     summary: z.array(z.string()).optional(),
     publishedAt: z.coerce.date().optional(),
+    updatedAt: z.coerce.date().optional(),
     author: z.string().optional(),
     category: z.string().optional(),
     image: z.string().optional(),

@@ -3,15 +3,23 @@ import { getCollection } from 'astro:content';
 import BlogPost from '../../components/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => data.lang === 'fr');
-  
-  return posts.map(post => ({
-    params: { slug: post.id.split('/').pop()?.replace('.md', '') },
-    props: { post },
-  }));
+  const allPosts = await getCollection('blog');
+  const frPosts = allPosts.filter(p => p.data.lang === 'fr');
+
+  return frPosts.map(post => {
+    const slug = post.id.split('/').pop()?.replace('.md', '');
+    const related = allPosts
+      .filter(p => p.data.lang === 'fr' && p.data.status === 'published' && p.id !== post.id)
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 3);
+    return {
+      params: { slug },
+      props: { post, relatedPosts: related },
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, relatedPosts } = Astro.props;
 ---
 
-<BlogPost post={post} />
+<BlogPost post={post} relatedPosts={relatedPosts} />

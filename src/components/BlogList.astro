@@ -18,9 +18,9 @@ const t = useTranslations(lang);
 const categories = [...new Set(posts.map(post => post.data.category || (lang === 'fr' ? 'Général' : 'General')))];
 ---
 
-<Layout 
-    title={lang === 'en' 
-        ? "Blog — Ikigai Insights, Tips & Coaching Articles | be-ikigai" 
+<Layout
+    title={lang === 'en'
+        ? "Blog — Ikigai Insights, Tips & Coaching Articles | be-ikigai"
         : "Blog — Articles, Conseils & Réflexions sur l'Ikigai | be-ikigai"
     }
     description={lang === 'en'
@@ -32,6 +32,7 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
         ? "ikigai blog, personal development articles, find your purpose, coaching tips, Japanese philosophy blog"
         : "blog ikigai, articles développement personnel, trouver son ikigai, conseils coaching, philosophie japonaise blog"
     }
+    image="https://be-ikigai.com/assets/img/blog/ikigai-definition-fr-og.webp"
 >
     <Navbar lang={lang} transparent={false} />
     
@@ -85,6 +86,7 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                         {lang === 'en' ? 'Articles coming soon...' : 'Articles à venir...'}
                     </div>
                 ) : (
+                    <>
                     <div class="blog-grid" id="blog-grid">
                         {posts.map((post) => {
                             const cat = post.data.category || (lang === 'fr' ? 'Général' : 'General');
@@ -109,21 +111,51 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                                         <div class="blog-card-meta">
                                             <span>{post.data.author || 'Pierre-Louis'}</span>
                                             <span>{post.data.publishedAt && new Date(post.data.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-                                            <span>{post.data.readingTime ?? Math.max(1, Math.round((post.body?.split(/\s+/).length ?? 0) / 200))} min</span>
+                                            <span>{Math.max(1, Math.round((post.body?.split(/\s+/).length ?? 0) / 200))} min</span>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         )})}
                     </div>
+                    <div id="load-more-wrap" class="text-center mt-10" style="display:none;">
+                        <button id="load-more-btn" class="bg-dore-serein text-bleu-crepuscule font-comfortaa font-bold px-8 py-3 rounded-xl hover:opacity-90 transition">
+                            {lang === 'en' ? 'Show more articles' : 'Voir plus d\'articles'}
+                        </button>
+                    </div>
+                    </>
                 )}
             </div>
         </section>
     </main>
 
     <script type="module">
+        const PAGE_SIZE = 9;
         const pills = document.querySelectorAll(".filter-pill");
         const items = document.querySelectorAll(".blog-grid-item");
+        const loadMoreBtn = document.getElementById("load-more-btn");
+        const loadMoreWrap = document.getElementById("load-more-wrap");
+
+        // Pagination state
+        let visibleItems = [];
+        let shownCount = 0;
+
+        function applyPagination(itemList) {
+            visibleItems = itemList;
+            shownCount = 0;
+            showMore();
+        }
+
+        function showMore() {
+            const next = visibleItems.slice(shownCount, shownCount + PAGE_SIZE);
+            next.forEach(({ el }) => { el.style.display = 'block'; });
+            shownCount += next.length;
+            if (loadMoreWrap) {
+                loadMoreWrap.style.display = shownCount < visibleItems.length ? 'block' : 'none';
+            }
+        }
+
+        loadMoreBtn?.addEventListener("click", showMore);
         
         const indexData = Array.from(items).map(item => ({
             el: item,
@@ -133,41 +165,42 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
             dataCat: item.getAttribute("data-cat") || ""
         }));
 
+        // Hide all items initially, then paginate
+        indexData.forEach(({ el }) => { el.style.display = 'none'; });
+        applyPagination(indexData);
+
         pills.forEach(pill => {
             pill.addEventListener("click", () => {
                 const targetCat = pill.getAttribute("data-cat") || "Tous";
-                
                 pills.forEach(p => p.classList.remove("active"));
                 pill.classList.add("active");
-                
-                indexData.forEach(({ el, dataCat }) => {
-                    if(targetCat === "Tous" || dataCat === targetCat) {
-                        el.style.display = 'block';
-                    } else {
-                        el.style.display = 'none';
-                    }
-                });
+                const filtered = targetCat === "Tous"
+                    ? indexData
+                    : indexData.filter(({ dataCat }) => dataCat === targetCat);
+                // Hide all first
+                indexData.forEach(({ el }) => { el.style.display = 'none'; });
+                applyPagination(filtered);
             });
         });
 
         const searchInput = document.getElementById("blog-search-input");
         const searchBtn = document.querySelector(".blog-search-btn");
-        
+
         function onSearch() {
             if(!searchInput) return;
             const query = searchInput.value.toLowerCase().trim();
-            
-            // Reset pills if searching
             pills.forEach(p => p.classList.remove("active"));
             const allPill = document.querySelector('[data-cat="Tous"]');
             if(allPill) allPill.classList.add("active");
-            
-            indexData.forEach(({ el, title, desc, cat }) => {
-                const match = !query || title.includes(query) || desc.includes(query) || cat.includes(query);
-                el.style.display = match ? 'block' : 'none';
-            });
+            const filtered = !query
+                ? indexData
+                : indexData.filter(({ title, desc, cat }) =>
+                    title.includes(query) || desc.includes(query) || cat.includes(query)
+                  );
+            indexData.forEach(({ el }) => { el.style.display = 'none'; });
+            applyPagination(filtered);
         }
-        
+
         searchBtn?.addEventListener("click", onSearch);
         searchInput?.addEventListener("keydown", e => {
             if (e.key === "Enter") onSearch();

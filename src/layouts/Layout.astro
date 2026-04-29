@@ -10,16 +10,20 @@ interface Props {
     image?: string;
     type?: string;
     canonicalPath?: string;
+    frUrl?: string;
+    enUrl?: string;
 }
 
-const { 
-    title, 
-    description, 
-    lang = "fr", 
+const {
+    title,
+    description,
+    lang = "fr",
     keywords,
     image = "https://be-ikigai.com/assets/img/logo_fullhd.png",
     type = "website",
-    canonicalPath
+    canonicalPath,
+    frUrl: frUrlProp,
+    enUrl: enUrlProp,
 } = Astro.props;
 
 const baseUrl = "https://be-ikigai.com";
@@ -28,10 +32,10 @@ const baseUrl = "https://be-ikigai.com";
 const currentPath = canonicalPath || Astro.url.pathname;
 const canonicalUrl = `${baseUrl}${currentPath}`;
 
-// Build alternate URLs for hreflang
+// Build alternate URLs for hreflang — caller can override (blog articles with -fr/-en slugs)
 const pathWithoutLang = currentPath.replace(/^\/en\/?/, '/');
-const frUrl = `${baseUrl}${pathWithoutLang}`;
-const enUrl = `${baseUrl}/en${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
+const frUrl = frUrlProp ?? `${baseUrl}${pathWithoutLang}`;
+const enUrl = enUrlProp ?? `${baseUrl}/en${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
 
 // Default keywords per language
 const defaultKeywordsFr = "ikigai, raison d'être, coaching personnel, philosophie japonaise, Okinawa, passion mission vocation, coaching ikigai, développement personnel, trouver sa voie, sens de la vie, coaching Paris, Pierre-Louis coach";

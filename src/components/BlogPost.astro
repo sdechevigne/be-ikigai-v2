@@ -9,30 +9,50 @@ import '../styles/blog-retro.css';
 
 interface Props {
   post: CollectionEntry<'blog'>;
+  relatedPosts?: CollectionEntry<'blog'>[];
 }
 
-const { post } = Astro.props;
+const { post, relatedPosts = [] } = Astro.props;
 const { Content } = await render(post);
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const formattedDate = post.data.publishedAt 
+const formattedDate = post.data.publishedAt
     ? new Date(post.data.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })
     : null;
-    
+
 const category = post.data.category || (lang === 'en' ? 'General' : 'Général');
 const author = post.data.author || 'Pierre-Louis';
 
-const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.split(/\s+/).length ?? 0) / 200));
+// readingTime : never use hardcoded 1 — always compute from body
+const readingTime = Math.max(1, Math.round((post.body?.split(/\s+/).length ?? 0) / 200));
+
+// og:image : prefer -og variant (1200×630), fall back to display image, then logo
+const displayImage = post.data.image ?? null;
+const ogImage = displayImage
+    ? `https://be-ikigai.com${displayImage.replace(/(\.[^.]+)$/, '-og$1')}`
+    : 'https://be-ikigai.com/assets/img/logo_fullhd.png';
+
+// hreflang : map sibling slug by swapping -fr/-en suffix
+const currentSlug = Astro.url.pathname.split('/').filter(Boolean).pop() ?? '';
+const siblingSlug = lang === 'fr'
+    ? currentSlug.replace(/-fr$/, '-en')
+    : currentSlug.replace(/-en$/, '-fr');
+const canonicalPath = Astro.url.pathname;
+const frCanonical = lang === 'fr' ? canonicalPath : `/blog/${siblingSlug}/`;
+const enCanonical = lang === 'en' ? canonicalPath : `/en/blog/${siblingSlug}/`;
 ---
 
-<Layout 
-    title={`${post.data.title} | be-ikigai`} 
-    description={post.data.description || ''} 
-    keywords={post.data.seoKeywords || ''} 
+<Layout
+    title={`${post.data.title} | be-ikigai`}
+    description={post.data.description || ''}
+    keywords={post.data.seoKeywords || ''}
     lang={lang}
     type="article"
-    image={post.data.image ? `https://be-ikigai.com${post.data.image}` : undefined}
+    image={ogImage}
+    canonicalPath={canonicalPath}
+    frUrl={`https://be-ikigai.com${frCanonical}`}
+    enUrl={`https://be-ikigai.com${enCanonical}`}
 >
     <!-- BreadcrumbList for blog posts -->
     <script slot="head" type="application/ld+json" set:html={JSON.stringify({
@@ -55,28 +75,32 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
                 "@type": "ListItem",
                 "position": 3,
                 "name": category,
-                "item": lang === 'en' ? `https://be-ikigai.com/en/blog/` : `https://be-ikigai.com/blog/`
+                "item": lang === 'en' ? "https://be-ikigai.com/en/blog/" : "https://be-ikigai.com/blog/"
             },
             {
                 "@type": "ListItem",
                 "position": 4,
                 "name": post.data.title,
-                "item": `https://be-ikigai.com${Astro.url.pathname}`
+                "item": `https://be-ikigai.com${canonicalPath}`
             }
         ]
     }, null, 2)} />
-    <!-- Article Schema for blog posts -->
+    <!-- BlogPosting schema -->
     <script slot="head" type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": "BlogPosting",
         "headline": post.data.title,
         "description": post.data.description,
-        "image": post.data.image ? `https://be-ikigai.com${post.data.image}` : "https://be-ikigai.com/assets/img/logo_fullhd.png",
+        "image": ogImage,
         "datePublished": post.data.publishedAt ? new Date(post.data.publishedAt).toISOString() : undefined,
+        "dateModified": post.data.updatedAt
+            ? new Date(post.data.updatedAt).toISOString()
+            : (post.data.publishedAt ? new Date(post.data.publishedAt).toISOString() : undefined),
         "author": {
             "@type": "Person",
-            "name": author,
-            "url": "https://be-ikigai.com"
+            "name": "Pierre-Louis",
+            "url": "https://be-ikigai.com",
+            "image": "https://be-ikigai.com/assets/img/pl.webp"
         },
         "publisher": {
             "@type": "Organization",
@@ -88,10 +112,11 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
         },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://be-ikigai.com${Astro.url.pathname}`
+            "@id": `https://be-ikigai.com${canonicalPath}`
         },
         "inLanguage": lang === 'en' ? "en-US" : "fr-FR",
-        "articleSection": category
+        "articleSection": category,
+        "wordCount": post.body?.split(/\s+/).length ?? undefined
     }, null, 2)} />
     {post.data.faq && post.data.faq.length > 0 && (
         <script slot="head" type="application/ld+json" set:html={JSON.stringify({
@@ -108,11 +133,11 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
         }, null, 2)} />
     )}
     <Navbar lang={lang} transparent={false} />
-    
+
     <main class="pt-14">
         <section class="blog-hero-section pt-28 lg:pt-32">
             <div class="wrap px-6" style="max-width: 1200px; margin: 0 auto;">
-                <div class="blog-hero" style={`background-image: url('${post.data.image ?? '/assets/img/hero.webp'}')`}>
+                <div class="blog-hero" style={`background-image: url('${displayImage ?? '/assets/img/hero.webp'}')`}>
                     <div class="blog-hero-overlay"></div>
                     <div class="blog-hero-content">
                         <nav aria-label="Fil d'Ariane" style="width:100%;">
@@ -132,7 +157,7 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
                         <div class="article-meta" style="justify-content:center;">
                             <div class="article-author">
                                 <div class="author-avatar">
-                                    <img src={`https://ui-avatars.com/api/?name=${author}&background=ffd700&color=2c3e50`} alt={author} width="40" height="40" />
+                                    <img src="/assets/img/pl.webp" alt={author} width="40" height="40" style="border-radius:50%;object-fit:cover;" />
                                 </div>
                                 <span class="author-name">{author}</span>
                             </div>
@@ -168,7 +193,7 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
                                 </ul>
                             </div>
                         )}
-                        
+
                         <article class="article-content" id="article-content">
                             <Content />
                         </article>
@@ -189,6 +214,33 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
                                 </div>
                             </section>
                         )}
+
+                        <!-- Articles liés -->
+                        {relatedPosts.length > 0 && (
+                            <section class="related-posts" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e5e7eb;">
+                                <h2 style="font-family: var(--font-comfortaa, 'Comfortaa', sans-serif); font-size: 1.25rem; font-weight: 700; color: #2c3e50; margin-bottom: 1.25rem;">
+                                    {lang === 'en' ? 'You might also like' : 'À lire aussi'}
+                                </h2>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+                                    {relatedPosts.map(p => {
+                                        const relSlug = p.id.split('/').pop()?.replace('.md', '');
+                                        const relUrl = lang === 'fr' ? `/blog/${relSlug}/` : `/en/blog/${relSlug}/`;
+                                        const relCat = p.data.category || (lang === 'en' ? 'General' : 'Général');
+                                        return (
+                                            <a href={relUrl} class="related-card" style="display:block;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;text-decoration:none;transition:box-shadow 0.2s;background:#fff;">
+                                                {p.data.image && (
+                                                    <img src={p.data.image} alt={p.data.title} width="400" height="200" loading="lazy" style="width:100%;height:130px;object-fit:cover;display:block;" />
+                                                )}
+                                                <div style="padding: 0.75rem 1rem 1rem;">
+                                                    <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#9333ea;">{relCat}</span>
+                                                    <p style="font-size:0.9rem;font-weight:600;color:#2c3e50;margin:0.25rem 0 0;line-height:1.4;">{p.data.title}</p>
+                                                </div>
+                                            </a>
+                                        );
+                                    })}
+                                </div>
+                            </section>
+                        )}
                     </div>
 
                     <!-- SIDEBAR -->
@@ -200,7 +252,7 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
                                     <!-- Generated client-side -->
                                 </nav>
                             </div>
-                            
+
                             <div class="sidebar-cta w-full">
                                 <h4 class="sidebar-cta-title">{lang === 'en' ? 'Find your Ikigai' : 'Trouvez votre Ikigai'}</h4>
                                 <p class="sidebar-cta-text">{lang === 'en' ? 'Ready to give meaning to your professional life?' : 'Prêt à redonner du sens à votre vie professionnelle ?'}</p>
@@ -211,9 +263,9 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
                 </div>
             </div>
         </div>
-        
+
     </main>
-    
+
     <script type="module">
         document.addEventListener("DOMContentLoaded", () => {
             const content = document.getElementById("article-content");
@@ -231,17 +283,17 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
             const toc = document.getElementById("toc");
             const tocContainer = document.getElementById("toc-container");
             if (!toc || !content) return;
-            
+
             const headings = content.querySelectorAll("h2");
             if (headings.length === 0) return;
-            
+
             if (tocContainer) tocContainer.style.display = 'block';
-            
+
             headings.forEach((h, i) => { if(!h.id) h.id = `heading-${i}`; });
-            
+
             const frag = document.createDocumentFragment();
             const links = [];
-            
+
             headings.forEach(h => {
                 const a = document.createElement("a");
                 a.href = `#${h.id}`;
@@ -249,9 +301,9 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
                 links.push(a);
                 frag.appendChild(a);
             });
-            
+
             toc.appendChild(frag);
-            
+
             const obs = new IntersectionObserver(entries => {
                 entries.forEach(e => {
                     if(e.isIntersecting) {
@@ -261,7 +313,7 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
                     }
                 });
             }, { rootMargin: "-20% 0px -70% 0px" });
-            
+
             headings.forEach(h => obs.observe(h));
         });
     </script>

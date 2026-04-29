@@ -6,7 +6,19 @@ publishedAt: "2025-04-14"
 status: "published"
 lang: "en"
 image: "/assets/img/ikigai.png"
+author: "Pierre-Louis"
 category: "Ikigai"
+faq:
+  - question: "What is ikigai?"
+    answer: "Ikigai is a Japanese concept meaning 'reason for being' — the intersection of what you love, what the world needs, what you are good at, and what you can be paid for."
+  - question: "Where does ikigai come from?"
+    answer: "Ikigai originates from Okinawa, Japan, an island famous for its exceptional longevity. Locals attribute their vitality to having an ikigai — a reason to get up every morning."
+  - question: "How do you find your ikigai?"
+    answer: "Explore the 4 pillars: your passions, your skills, the world's needs, and what you can be paid for. Their intersection is your ikigai. A structured coaching like the Destiny Diagnosis can help you find it in 48 hours."
+  - question: "Is ikigai only about work?"
+    answer: "No. Authentic Japanese ikigai is a holistic philosophy, not a career equation. It encompasses relationships, passions, daily rituals — everything that gives you a reason to live."
+  - question: "Is ikigai the same as finding meaning at work?"
+    answer: "Not quite. Meaning at work is one component of ikigai, not its equivalent. Ikigai is broader: it touches your deep identity, your contribution, and your overall fulfilment."
 summary:
   - Origins from Okinawa island
   - The intersection of 4 pillars of life

@@ -21,6 +21,17 @@ image: /assets/img/blog/2026-04-23-reussir-sa-vie-sociale-sans-rater-sa-vie-inte
 status: published
 featured: false
 readingTime: 9
+faq:
+  - question: "Peut-on réussir sa vie sociale et se sentir vide intérieurement ?"
+    answer: "Oui, c'est même très courant. On peut avoir un réseau actif, une image positive, et ressentir un vide profond. C'est souvent le signe qu'on joue un rôle plutôt que de vivre aligné avec qui on est vraiment."
+  - question: "Qu'est-ce que le 'câblage interne' et pourquoi certains jobs étouffent ?"
+    answer: "Chaque personne a une architecture intérieure unique — des valeurs, des besoins, des modes de fonctionnement. Quand votre job contredit ce câblage, il crée un épuisement invisible même si tout semble aller bien sur le papier."
+  - question: "Comment retrouver du sens sans tout plaquer ?"
+    answer: "En commençant par identifier ce qui crée le vide, pas ce qui le remplit en surface. Un travail de fond sur votre ikigai et votre architecture intérieure permet de transformer votre job actuel ou de préparer une transition sans prise de risque insensée."
+  - question: "Combien de temps faut-il pour trouver sa direction ?"
+    answer: "Le déclic peut arriver en 48 heures avec la bonne méthode. Ce n'est pas une question de durée, mais de profondeur du travail. Beaucoup passent des mois en introspection sans avancer faute d'un cadre structuré."
+  - question: "Pourquoi attendre d'être 'prêt' est contre-productif ?"
+    answer: "Parce que la clarté vient de l'action, pas de l'analyse. Attendre d'être prêt, c'est souvent attendre une permission que personne ne vous donnera. Le premier pas, même petit, génère plus d'insights que des mois de réflexion."
 ---
 ## **Introduction : quand tout va bien… sauf à l’intérieur**
 

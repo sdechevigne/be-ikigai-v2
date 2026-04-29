@@ -5,6 +5,7 @@ lang: fr
 description: "Réforme CPF 2026, plafond à 1600€, reste à charge 150€ et bilans
   de compétences sur 4 mois : pourquoi ça ne résoudra pas votre malaise au
   travail."
+seoKeywords: CPF 2026, bilan de compétences, réforme CPF, reste à charge, reconversion professionnelle
 summary:
   - Le bilan de compétences CPF est plafonné à 1600€ et impose un reste à charge
     de 150€ depuis 2026.

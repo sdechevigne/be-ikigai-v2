@@ -216,9 +216,20 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
     
     <script type="module">
         document.addEventListener("DOMContentLoaded", () => {
+            const content = document.getElementById("article-content");
+            if (content) {
+                content.querySelectorAll("table").forEach(table => {
+                    if (!table.parentElement?.classList.contains("table-wrapper")) {
+                        const wrapper = document.createElement("div");
+                        wrapper.className = "table-wrapper";
+                        table.parentNode?.insertBefore(wrapper, table);
+                        wrapper.appendChild(table);
+                    }
+                });
+            }
+
             const toc = document.getElementById("toc");
             const tocContainer = document.getElementById("toc-container");
-            const content = document.getElementById("article-content");
             if (!toc || !content) return;
             
             const headings = content.querySelectorAll("h2");

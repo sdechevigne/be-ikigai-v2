@@ -6,7 +6,19 @@ publishedAt: "2025-04-14"
 status: "published"
 lang: "fr"
 image: "/assets/img/ikigai.png"
+author: "Pierre-Louis"
 category: "Ikigai"
+faq:
+  - question: "Qu'est-ce que l'ikigai ?"
+    answer: "L'ikigai est un concept japonais qui désigne ce qui donne du sens à votre vie : l'intersection entre ce que vous aimez, ce dont le monde a besoin, ce pour quoi vous êtes doué, et ce pour quoi vous pouvez être payé."
+  - question: "D'où vient le concept d'ikigai ?"
+    answer: "L'ikigai trouve son origine sur l'île d'Okinawa au Japon, célèbre pour sa longévité exceptionnelle. Les habitants attribuent leur vitalité au fait d'avoir un ikigai — une raison de se lever chaque matin."
+  - question: "Comment trouver son ikigai ?"
+    answer: "Explorez les 4 piliers : vos passions, vos compétences, les besoins du monde et ce pour quoi vous pouvez être rémunéré. Leur intersection est votre ikigai. Un coaching structuré comme le Diagnostic de Destinée permet de le trouver en 48 heures."
+  - question: "L'ikigai s'applique-t-il uniquement au travail ?"
+    answer: "Non. L'ikigai japonais authentique est un art de vivre global, pas une équation de carrière. Il englobe les relations, les passions, les rituels quotidiens — tout ce qui vous donne une raison de vivre."
+  - question: "Ikigai et sens au travail, c'est la même chose ?"
+    answer: "Pas exactement. Le sens au travail est une composante de l'ikigai, pas son équivalent. L'ikigai est plus large : il touche à votre identité profonde, votre contribution et votre épanouissement global."
 summary:
   - Origine de l'île d'Okinawa
   - L'intersection de 4 piliers de vie

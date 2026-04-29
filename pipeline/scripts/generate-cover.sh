@@ -1,25 +1,21 @@
 #!/usr/bin/env bash
 # generate-cover.sh -- Génération d'image de couverture via Gemini API
-# Usage : bash pipeline/generate-cover.sh <slug> "<prompt>" [model]
+# Usage : bash pipeline/scripts/generate-cover.sh <slug> "<prompt>" [model]
+# Doit être exécuté depuis la racine du repo.
 
 set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+PIPELINE_DIR="${SCRIPT_DIR}/.."
 
 SLUG="${1:?Slug requis}"
 PROMPT="${2:?Prompt requis}"
 MODEL="${3:-gemini-3.1-flash-image-preview}"
 API_URL="https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent"
-OUT_DIR="public/assets/img/blog"
-BLOG_SIZE="1424x752"
-OG_SIZE="1200x630"
+OUT_DIR="${REPO_ROOT}/public/assets/img/blog"
 
 mkdir -p "${OUT_DIR}"
-
-# Détecte ImageMagick v7 (magick) ou v6 (convert)
-if command -v magick &>/dev/null; then
-  CONVERT_CMD="magick"
-else
-  CONVERT_CMD="convert"
-fi
 
 attempt=0
 while [[ $attempt -lt 3 ]]; do
@@ -33,13 +29,19 @@ while [[ $attempt -lt 3 ]]; do
       \"generationConfig\": {\"responseModalities\": [\"IMAGE\", \"TEXT\"]}
     }")
 
-  B64=$(echo "${RESPONSE}" | python3 -c "
-import json, sys
-data = json.load(sys.stdin)
-for part in data.get('candidates', [{}])[0].get('content', {}).get('parts', []):
-    if 'inlineData' in part:
-        print(part['inlineData']['data'])
-        break
+  # Extraire le base64 et redimensionner via sharp (resize-cover.mjs)
+  B64=$(echo "${RESPONSE}" | node -e "
+process.stdin.resume();
+let buf='';
+process.stdin.on('data',d=>buf+=d);
+process.stdin.on('end',()=>{
+  try {
+    const data=JSON.parse(buf);
+    const parts=(data.candidates||[{}])[0]?.content?.parts||[];
+    const img=parts.find(p=>p.inlineData);
+    process.stdout.write(img?img.inlineData.data:'');
+  } catch(e){}
+});
 " 2>/dev/null || echo "")
 
   if [[ -z "${B64}" ]]; then
@@ -48,29 +50,18 @@ for part in data.get('candidates', [{}])[0].get('content', {}).get('parts', []):
     continue
   fi
 
-  TMP_FILE="/tmp/cover-${SLUG}.png"
-  echo "${B64}" | base64 -d > "${TMP_FILE}"
+  RESULT=$(echo "${B64}" | node "${SCRIPT_DIR}/resize-cover.mjs" "${SLUG}" "${OUT_DIR}" 2>/dev/null || echo "ERROR")
 
-  FILE_SIZE=$(stat -c%s "${TMP_FILE}" 2>/dev/null || stat -f%z "${TMP_FILE}" 2>/dev/null || echo 0)
-  if [[ $FILE_SIZE -lt 10240 ]]; then
-    echo "  Image trop petite (${FILE_SIZE} octets) — retry"
+  if [[ "${RESULT}" == "OK" ]]; then
+    echo "Images générées : ${OUT_DIR}/${SLUG}.webp + ${OUT_DIR}/${SLUG}-og.webp"
+    exit 0
+  elif [[ "${RESULT}" == "TOO_SMALL" ]]; then
+    echo "  Image trop petite — retry"
     sleep 5
-    continue
+  else
+    echo "  Pas d'image dans la réponse (tentative ${attempt}) : ${RESULT}"
+    sleep 5
   fi
-
-  ${CONVERT_CMD} "${TMP_FILE}" -resize "${BLOG_SIZE}^" -gravity Center -extent "${BLOG_SIZE}" \
-    -quality 82 "${OUT_DIR}/${SLUG}.webp" 2>/dev/null || \
-  ${CONVERT_CMD} "${TMP_FILE}" -resize "${BLOG_SIZE}^" -gravity Center -extent "${BLOG_SIZE}" \
-    "${OUT_DIR}/${SLUG}.png"
-
-  ${CONVERT_CMD} "${TMP_FILE}" -resize "${OG_SIZE}^" -gravity Center -extent "${OG_SIZE}" \
-    -quality 82 "${OUT_DIR}/${SLUG}-og.webp" 2>/dev/null || \
-  ${CONVERT_CMD} "${TMP_FILE}" -resize "${OG_SIZE}^" -gravity Center -extent "${OG_SIZE}" \
-    "${OUT_DIR}/${SLUG}-og.png"
-
-  rm -f "${TMP_FILE}"
-  echo "Images générées : ${OUT_DIR}/${SLUG}.webp + ${OUT_DIR}/${SLUG}-og.webp"
-  exit 0
 done
 
 echo "ERREUR : génération image échouée après 3 tentatives" >&2

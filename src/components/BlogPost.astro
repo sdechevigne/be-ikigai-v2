@@ -34,6 +34,37 @@ const readingTime = post.data.readingTime ?? Math.max(1, Math.round((post.body?.
     type="article"
     image={post.data.image ? `https://be-ikigai.com${post.data.image}` : undefined}
 >
+    <!-- BreadcrumbList for blog posts -->
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": lang === 'en' ? "Home" : "Accueil",
+                "item": lang === 'en' ? "https://be-ikigai.com/en/" : "https://be-ikigai.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": lang === 'en' ? "https://be-ikigai.com/en/blog/" : "https://be-ikigai.com/blog/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": category,
+                "item": lang === 'en' ? `https://be-ikigai.com/en/blog/` : `https://be-ikigai.com/blog/`
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "name": post.data.title,
+                "item": `https://be-ikigai.com${Astro.url.pathname}`
+            }
+        ]
+    }, null, 2)} />
     <!-- Article Schema for blog posts -->
     <script slot="head" type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",

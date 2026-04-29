@@ -56,6 +56,14 @@ jobs:
             echo "Pas de version EN trouvée (${FILE}) — ignoré"
           fi
 
+      - name: Mettre à jour llms.txt et llms-full.txt
+        run: |
+          node pipeline/scripts/update-seo-files.js
+          if ! git diff --quiet public/llms.txt public/llms-full.txt; then
+            git add public/llms.txt public/llms-full.txt
+            git commit -m "seo: régénérer llms.txt après publication"
+          fi
+
       - name: Push
         run: git push origin master
 

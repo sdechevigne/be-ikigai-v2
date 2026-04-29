@@ -11,7 +11,7 @@ summary:
 publishedAt: 2026-04-28T10:00:00
 author: Pierre-Louis
 category: Purpose & Ikigai
-image: /assets/img/blog/2026-04-28-why-your-ikigai-is-probably-a-scam-en.webp
+image: /assets/img/blog/2026-04-28-pourquoi-ton-ikigai-est-surement-une-arnaque-fr.webp
 featured: false
 status: draft
 faq:

@@ -148,6 +148,11 @@ jobs:
           }
           EOF
 
+      - name: Mettre à jour llms.txt et llms-full.txt
+        run: |
+          node pipeline/scripts/update-seo-files.js
+          git add public/llms.txt public/llms-full.txt
+
       - name: Commit et push si changements
         run: |
           if ! git diff --cached --quiet; then

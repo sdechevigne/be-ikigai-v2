@@ -1,0 +1,58 @@
+name: Blog — Générer image de couverture
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Slug de l''article (ex: 2026-04-29-bilan-de-competences-vs-coaching-le-match-fr)'
+        required: false
+        default: ''
+      force:
+        description: 'Regénérer même si l''image existe déjà'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Configure git
+        run: |
+          git config user.email "pipeline@be-ikigai.fr"
+          git config user.name "Be-Ikigai Pipeline"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pipeline deps
+        run: npm install
+        working-directory: pipeline
+
+      - name: Générer image(s)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          FORCE: ${{ inputs.force && '1' || '' }}
+        run: |
+          if [[ -n "${{ inputs.slug }}" ]]; then
+            bash pipeline/scripts/regenerate-covers.sh "${{ inputs.slug }}"
+          else
+            bash pipeline/scripts/regenerate-covers.sh
+          fi
+
+      - name: Commit et push
+        run: |
+          git add public/assets/img/blog/
+          if ! git diff --cached --quiet; then
+            git commit -m "blog: génération image(s) de couverture"
+            git push origin master
+          else
+            echo "Aucune nouvelle image générée."
+          fi

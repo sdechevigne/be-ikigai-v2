@@ -201,19 +201,25 @@ const navClass = transparent
 </nav>
 
 <script>
+  let scrollTicking = false;
   window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    const isTransparent = navbar?.dataset.transparent === 'true';
-    if (!isTransparent) return;
-
-    if (window.scrollY > 50) {
-      navbar?.classList.add('bg-bleu-crepuscule', 'shadow-md');
-      navbar?.classList.remove('transparent-mode');
-    } else {
-      navbar?.classList.remove('bg-bleu-crepuscule', 'shadow-md');
-      navbar?.classList.add('transparent-mode');
-    }
-  });
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      const navbar = document.getElementById('navbar');
+      const isTransparent = navbar?.dataset.transparent === 'true';
+      if (isTransparent) {
+        if (window.scrollY > 50) {
+          navbar?.classList.add('bg-bleu-crepuscule', 'shadow-md');
+          navbar?.classList.remove('transparent-mode');
+        } else {
+          navbar?.classList.remove('bg-bleu-crepuscule', 'shadow-md');
+          navbar?.classList.add('transparent-mode');
+        }
+      }
+      scrollTicking = false;
+    });
+  }, { passive: true });
 
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');

@@ -55,6 +55,9 @@ const enCanonical = lang === 'en' ? canonicalPath : `/en/blog/${siblingSlug}/`;
     enUrl={`https://be-ikigai.com${enCanonical}`}
 >
     <!-- BreadcrumbList for blog posts -->
+    {displayImage && (
+        <link slot="head" rel="preload" as="image" href={displayImage} fetchpriority="high" />
+    )}
     <script slot="head" type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -137,7 +140,16 @@ const enCanonical = lang === 'en' ? canonicalPath : `/en/blog/${siblingSlug}/`;
     <main class="pt-14">
         <section class="blog-hero-section pt-28 lg:pt-32">
             <div class="wrap px-6" style="max-width: 1200px; margin: 0 auto;">
-                <div class="blog-hero" style={`background-image: url('${displayImage ?? '/assets/img/hero.webp'}')`}>
+                <div class="blog-hero">
+                    <img
+                        src={displayImage ?? '/assets/img/hero.webp'}
+                        alt=""
+                        class="blog-hero-bg-img"
+                        fetchpriority="high"
+                        decoding="async"
+                        width="1200"
+                        height="480"
+                    />
                     <div class="blog-hero-overlay"></div>
                     <div class="blog-hero-content">
                         <nav aria-label="Fil d'Ariane" style="width:100%;">

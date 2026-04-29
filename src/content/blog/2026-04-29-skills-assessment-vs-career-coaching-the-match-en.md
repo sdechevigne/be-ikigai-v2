@@ -34,6 +34,8 @@ faq:
 > - Expert Herminia Ibarra (HBR) confirms it: you find your way by doing, not by endless planning. Action trumps analysis.
 > - An assessment gives you a document. A good career coaching session gives you an action plan and the energy to start it.
 
+If you already feel that quiet void at work, you might be experiencing what's called [quiet suffering or brown-out](/en/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-en/) — and finding the right tool to address it matters.
+
 Monday, 10 AM. You're in a meeting that should have been an email. You nod, you smile, but your mind is a million miles away. This job, which looked great on paper, leaves you feeling empty. That sense of "quiet quitting" has settled in. Like many professionals, the thought of a career change haunts you. And then, the first reflex, almost automatic: "Maybe I should do a skills assessment."
 
 It seems logical. It's structured. In some countries, it can even be state-funded. It feels like the official first step for anyone wanting to change their professional life.

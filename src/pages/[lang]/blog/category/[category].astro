@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import BlogList from '../../../../components/BlogList.astro';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const enPublished = allPosts.filter(p => p.data.lang === 'en' && p.data.status === 'published');
+
+  const categories = [...new Set(enPublished.map(p => p.data.category).filter(Boolean))];
+
+  return categories.map(cat => ({
+    params: {
+      lang: 'en',
+      category: (cat as string).toLowerCase().replace(/\s+/g, '-'),
+    },
+    props: { categoryName: cat as string },
+  }));
+}
+
+const { categoryName } = Astro.props;
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter(p => p.data.lang === 'en' && p.data.status === 'published' && p.data.category === categoryName)
+  .sort((a, b) => (b.data.publishedAt?.valueOf() ?? 0) - (a.data.publishedAt?.valueOf() ?? 0));
+---
+
+<BlogList posts={posts} categoryFilter={categoryName} />

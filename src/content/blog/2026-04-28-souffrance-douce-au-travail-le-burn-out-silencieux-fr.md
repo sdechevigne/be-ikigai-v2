@@ -35,13 +35,12 @@ faq:
   - question: Est-ce que je suis juste un enfant gâté de me plaindre ?
     answer: Non. Vouloir du sens est légitime. La culpabilité est un symptôme du
       problème, pas la preuve que ton ressenti est faux.
-readingTime: 7
 ---
 Lundi matin, 9h03. Ton titre sur LinkedIn est impeccable, ton salaire tombe à la fin du mois, et pourtant, en allumant ton ordinateur, tu ressens ce vide familier. Tu coches les cases, tu participes aux réunions, tu souris sur Zoom. En surface, tout va bien. Tu es un bon élève du monde professionnel. Mais à l'intérieur, quelque chose sonne creux.
 
 Ce n'est pas la surcharge de travail qui te pèse, ni un manager toxique. C'est plus subtil, presque honteux. Un sentiment de décalage, d'inutilité polie. Tu exécutes tes tâches de manière mécanique, dans une sorte d'anesthésie professionnelle, tout en culpabilisant de ne pas être plus reconnaissant. « J'ai tout pour être heureux, non ? »
 
-Ce mal-être porte un nom : la souffrance douce, ou « brown-out ». Ce n'est pas le fracas du burn-out, mais le silence d'une batterie interne qui se vide lentement, faute de sens. Et tu es loin d'être le seul.
+Ce mal-être porte un nom : la souffrance douce, ou « brown-out ». C'est le symptôme d'un [ikigai](/blog/ikigai-definition-fr/) qui n'est plus aligné avec ton quotidien professionnel. Ce n'est pas le fracas du burn-out, mais le silence d'une batterie interne qui se vide lentement, faute de sens. Et tu es loin d'être le seul.
 
 ## Qu'est-ce que la souffrance douce au travail ?
 
@@ -95,7 +94,7 @@ La peur de perdre ton statut, de décevoir tes proches, de ne pas retrouver le m
 
 Rester dans le flou est la pire des stratégies. La première étape n'est pas de tout quitter sur un coup de tête, mais de poser un diagnostic clair, lucide et honnête sur ta situation. Comprendre *pourquoi* tu en es arrivé là est la seule façon de construire une sortie durable. Quelles sont tes valeurs profondes ? Tes véritables moteurs ? Qu'est-ce qui, dans ton job actuel, heurte frontalement qui tu es ?
 
-C'est un travail d'introspection difficile à faire seul, surtout quand on a la tête dans le guidon. On a besoin d'un miroir, d'une méthode, d'un électrochoc pour voir clair. C'est l'objectif d'un diagnostic de carrière ciblé : arrêter de subir et cartographier ton architecture intérieure pour savoir quelle est la prochaine bonne décision pour toi.
+C'est un travail d'introspection difficile à faire seul, surtout quand on a la tête dans le guidon. On a besoin d'un miroir, d'une méthode, d'un électrochoc pour voir clair. C'est l'objectif d'un diagnostic de carrière ciblé : arrêter de subir et cartographier ton architecture intérieure pour savoir quelle est la prochaine bonne décision pour toi. Si tu te demandes si un [bilan de compétences ou un coaching](/blog/2026-04-29-bilan-de-competences-vs-coaching-le-match-fr/) est la bonne prochaine étape, on a justement comparé les deux approches.
 
 Le vrai danger n'est pas de changer. Le vrai danger, c'est de rester. C'est de laisser la souffrance douce grignoter ton énergie, ton ambition et ta joie de vivre, année après année. Tu mérites mieux qu'une carrière en mode survie.
 

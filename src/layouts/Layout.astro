@@ -67,6 +67,9 @@ const siteName = "be-ikigai";
 	<link rel="alternate" hreflang="en" href={enUrl} />
 	<link rel="alternate" hreflang="x-default" href={frUrl} />
 
+	<!-- RSS feeds -->
+	<link rel="alternate" type="application/rss+xml" title={lang === 'en' ? "be-ikigai — The Field Journal" : "be-ikigai — Le Carnet de Terrain"} href={lang === 'en' ? "/en/rss.xml" : "/rss.xml"} />
+
 	<!-- Favicon -->
 	<link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />

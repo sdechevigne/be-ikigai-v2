@@ -13,7 +13,7 @@ author: Pierre-Louis
 category: Sens au travail
 image: /assets/img/blog/2026-04-28-management-2026-pourquoi-ton-boss-a-10-ans-de-retard-fr.webp
 featured: false
-status: draft
+status: published
 faq:
   - question: "Quel est l'impact de l'IA sur le management en 2026 ?"
     answer: "L'IA automatise le reporting et l'allocation des ressources. Ça déplace le rôle du manager vers le coaching, la vision stratégique et la résolution de conflits complexes, des tâches purement humaines."
@@ -25,7 +25,6 @@ faq:
     answer: "S'il se concentre davantage sur tes heures de connexion que sur tes résultats, s'il est incapable de faire confiance et s'il voit l'IA comme une menace plutôt qu'un outil au service de l'humain."
   - question: "Le télétravail est-il encore la norme en 2026 ?"
     answer: "Le modèle mature n'est plus le 'tout télétravail' mais un mode hybride asynchrone par défaut. Le bureau devient un hub social pour des moments de collaboration et de cohésion ciblés."
-readingTime: 7
 ---
 
 Lundi, 9h30. Tu te connectes à la réunion hebdo. Ton manager partage son écran. Au lieu d’un PowerPoint pénible listant les chiffres de la semaine, il affiche un dashboard simple. L'IA a déjà tout compilé : avancées, blocages, performances. Le reporting est fait.
@@ -66,7 +65,7 @@ Dans ce nouveau monde, le bureau change de fonction. Il n'est plus l'endroit de 
 
 ## Le manager-coach : la compétence que ton chef n'a probablement pas
 
-Si l'IA gère le rationnel (données, reporting), le manager doit gérer l'émotionnel. La compétence numéro un devient l'intelligence émotionnelle. C'est la capacité à détecter les signaux faibles, à comprendre les non-dits, à sentir ce « brown-out » ou cette « souffrance douce » qui ronge les jeunes professionnels qui ont tout pour être heureux sur le papier, mais qui ressentent un vide immense.
+Si l'IA gère le rationnel (données, reporting), le manager doit gérer l'émotionnel. La compétence numéro un devient l'intelligence émotionnelle. C'est la capacité à détecter les signaux faibles, à comprendre les non-dits, à sentir ce « brown-out » ou cette [souffrance douce](/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-fr/) qui ronge les jeunes professionnels qui ont tout pour être heureux sur le papier, mais qui ressentent un vide immense.
 
 Le manager devient un coach de carrière. Son rôle n'est plus seulement d'assurer la performance de l'équipe, mais de s'assurer que chaque membre est sur une trajectoire qui a du sens pour lui. Comme le dit **Jean-Emmanuel Ray, Professeur à Sciences Po**, le lien de subordination juridique se transforme en un « pacte de collaboration ».
 

@@ -20,7 +20,6 @@ category: Coaching
 image: /assets/img/blog/2026-04-23-reussir-sa-vie-sociale-sans-rater-sa-vie-interieure-fr.webp
 status: published
 featured: false
-readingTime: 9
 faq:
   - question: "Peut-on réussir sa vie sociale et se sentir vide intérieurement ?"
     answer: "Oui, c'est même très courant. On peut avoir un réseau actif, une image positive, et ressentir un vide profond. C'est souvent le signe qu'on joue un rôle plutôt que de vivre aligné avec qui on est vraiment."
@@ -110,7 +109,7 @@ Les études récentes montrent d’ailleurs que, même si les jeunes actifs se d
 La méthode dont je te parle ne cherche pas à te recaser quelque part.  
 Elle cherche à clarifier ce pour quoi tu es câblé, pour que chaque choix que tu feras ensuite soit aligné, que ce soit dans ton job actuel, un projet parallèle ou une reconversion.
 
-Pour approfondir ce point, tu peux aussi lire un article plus technique sur la réorientation professionnelle des jeunes actifs sur un site d’autorité, par exemple ceux qui analysent la souffrance au travail, le burn-out et le bore-out.
+Pour approfondir ce point, tu peux lire notre article sur [la souffrance douce au travail](/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-fr/) — le brown-out qui touche en silence les bons élèves du monde professionnel — ou découvrir [ce qu’est vraiment l’ikigai](/blog/ikigai-definition-fr/) comme boussole de vie.
 
 
 

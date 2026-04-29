@@ -8,9 +8,10 @@ import '../styles/blog-retro.css';
 
 interface Props {
   posts: CollectionEntry<'blog'>[];
+  categoryFilter?: string;
 }
 
-const { posts } = Astro.props;
+const { posts, categoryFilter } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -19,13 +20,21 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
 ---
 
 <Layout
-    title={lang === 'en'
-        ? "Blog — Ikigai Insights, Tips & Coaching Articles | be-ikigai"
-        : "Blog — Articles, Conseils & Réflexions sur l'Ikigai | be-ikigai"
+    title={categoryFilter
+        ? (lang === 'en'
+            ? `${categoryFilter} — Articles | be-ikigai`
+            : `${categoryFilter} — Articles | be-ikigai`)
+        : (lang === 'en'
+            ? "Blog — Ikigai Insights, Tips & Coaching Articles | be-ikigai"
+            : "Blog — Articles, Conseils & Réflexions sur l'Ikigai | be-ikigai")
     }
-    description={lang === 'en'
-        ? "Explore our articles on Ikigai, personal development, and finding your reason for being. Practical tips and inspiring reflections by Pierre-Louis."
-        : "Explorez nos articles sur l'Ikigai, le développement personnel et la quête de sens. Conseils pratiques et réflexions inspirantes par Pierre-Louis."
+    description={categoryFilter
+        ? (lang === 'en'
+            ? `All be-ikigai articles in the "${categoryFilter}" category. Practical insights from Pierre-Louis.`
+            : `Tous les articles be-ikigai dans la catégorie "${categoryFilter}". Réflexions pratiques par Pierre-Louis.`)
+        : (lang === 'en'
+            ? "Explore our articles on Ikigai, personal development, and finding your reason for being. Practical tips and inspiring reflections by Pierre-Louis."
+            : "Explorez nos articles sur l'Ikigai, le développement personnel et la quête de sens. Conseils pratiques et réflexions inspirantes par Pierre-Louis.")
     }
     lang={lang}
     keywords={lang === 'en'
@@ -77,7 +86,9 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
             <div class="wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
                 <div class="blog-list-header text-center mb-12">
                     <h2 class="blog-list-title text-3xl font-comfortaa font-bold text-gray-800">
-                        {lang === 'en' ? 'Latest publications' : 'Dernières publications'}
+                        {categoryFilter
+                            ? categoryFilter
+                            : (lang === 'en' ? 'Latest publications' : 'Dernières publications')}
                     </h2>
                 </div>
                 
@@ -90,6 +101,10 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                     <div class="blog-grid" id="blog-grid">
                         {posts.map((post) => {
                             const cat = post.data.category || (lang === 'fr' ? 'Général' : 'General');
+                            const catSlug = lang === 'fr'
+                                ? cat.toLowerCase().replace(/\s+/g, '-').replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u')
+                                : cat.toLowerCase().replace(/\s+/g, '-');
+                            const catUrl = lang === 'fr' ? `/blog/categorie/${catSlug}` : `/en/blog/category/${catSlug}`;
                             return (
                             <div class="blog-grid-item" data-cat={cat}>
                                 <a href={lang === 'fr' ? `/blog/${post.id}` : `/${lang}/blog/${post.id}`} class="blog-card">
@@ -105,7 +120,7 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                                         )}
                                     </div>
                                     <div class="blog-card-body pb-6">
-                                        <span class="blog-card-cat text-bleu-crepuscule font-bold">{cat}</span>
+                                        <a href={catUrl} class="blog-card-cat text-bleu-crepuscule font-bold hover:underline" onclick="event.stopPropagation()">{cat}</a>
                                         <h3 class="blog-card-title">{post.data.title}</h3>
                                         <p class="blog-card-desc">{post.data.description}</p>
                                         <div class="blog-card-meta">

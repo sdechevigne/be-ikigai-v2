@@ -65,7 +65,6 @@ faq:
 
       En 48 heures, vous repartez avec une trajectoire et un plan de bataille au
       lieu d’un rapport qui ressemble à un dossier administratif.
-readingTime: 6
 ---
 ## Avril 2026 : 1600€ de plafond et 150€ de reste à charge, le faux cadeau du CPF
 
@@ -107,7 +106,7 @@ Certains sont nés pour structurer. D'autres sont faits pour briser les codes. S
 
 ### Quand on nage à contre-courant de son architecture de naissance
 
-La sensation de perte de sens vient de là. Vous nagez à contre-courant de votre propre architecture de naissance. Vous pouvez accumuler les certificats ou les réorientations "intelligentes". Si vous ne calez pas votre trajectoire sur votre fonctionnement réel, la lassitude reviendra systématiquement.
+La [sensation de perte de sens](/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-fr/) vient de là. Vous nagez à contre-courant de votre propre architecture de naissance. Vous pouvez accumuler les certificats ou les réorientations "intelligentes". Si vous ne calez pas votre trajectoire sur votre fonctionnement réel, la lassitude reviendra systématiquement. C'est exactement ce que détaille [notre comparatif bilan vs coaching](/blog/2026-04-29-bilan-de-competences-vs-coaching-le-match-fr/).
 
 Un coach de carrière classique ne détectera pas ce bug avec des rendez-vous espacés sur quatre mois. Vous sortirez peut-être avec un rapport propre et une jolie synthèse. Votre corps, lui, sait très bien si vous retournez dans un environnement qui l'étouffe.
 

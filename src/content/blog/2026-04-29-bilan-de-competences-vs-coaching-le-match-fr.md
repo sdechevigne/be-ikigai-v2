@@ -27,7 +27,7 @@ faq:
     answer: "Non. Il peut être un premier pas si tu es totalement perdu et que le financement est ton seul critère. Mais il répond rarement à la question du 'pourquoi'."
 ---
 
-Lundi, 10h. Tu es dans une réunion qui aurait pu être un e-mail. Tu hoches la tête, tu souris, mais ton esprit est à des kilomètres. Ce job, qui semblait une si bonne idée sur le papier, te laisse un goût de vide. La « souffrance douce » s'est installée. Comme près de 40% des cadres, l'idée d'une reconversion te traverse l'esprit. Et là, le premier réflexe, quasi pavlovien : « Et si je faisais un bilan de compétences avec mon CPF ? ».
+Lundi, 10h. Tu es dans une réunion qui aurait pu être un e-mail. Tu hoches la tête, tu souris, mais ton esprit est à des kilomètres. Ce job, qui semblait une si bonne idée sur le papier, te laisse un goût de vide. La [souffrance douce](/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-fr/) s'est installée. Comme près de 40% des cadres, l'idée d'une reconversion te traverse l'esprit. Et là, le premier réflexe, quasi pavlovien : « Et si je faisais un bilan de compétences avec mon CPF ? ».
 
 C'est logique. C'est structuré. C'est financé. Ça a tout l'air de la porte d'entrée officielle pour quiconque veut changer de vie pro.
 
@@ -81,7 +81,7 @@ Si ton seul critère est le financement et que tu as besoin d'un cadre lent pour
 Chez Be-Ikigai, on a vu passer des dizaines de professionnels comme toi, perdus après un bilan de compétences. Ils avaient un inventaire, mais pas de direction. On a donc créé une approche radicalement différente : le Diagnostic de Destinée.
 
 L'idée est simple : on combine l'intensité du coaching et la structure d'un bilan, mais dans un format turbo de 48 heures.
-On ne passe pas trois mois à regarder dans le rétroviseur. On va droit au but : ton fonctionnement, tes désirs profonds, tes peurs. On utilise l'ikigai non pas comme un diagramme à remplir, mais comme une boussole de précision.
+On ne passe pas trois mois à regarder dans le rétroviseur. On va droit au but : ton fonctionnement, tes désirs profonds, tes peurs. On utilise [l'ikigai](/blog/ikigai-definition-fr/) non pas comme un diagramme à remplir, mais comme une boussole de précision.
 
 Le résultat n'est pas un rapport de 50 pages qui finira au fond d'un tiroir. C'est une feuille de route. Une clarté sur ta direction, un plan d'action pour les 6 prochains mois, et l'énergie pour faire le premier pas. Le tout, avec une garantie simple : satisfait ou remboursé.
 

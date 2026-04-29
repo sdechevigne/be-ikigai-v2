@@ -10,7 +10,7 @@ summary:
   - "Beware the 'fake modern' trap: adopting tools like Slack without changing the underlying culture of micromanagement and presenteeism."
 publishedAt: 2026-04-28T10:00:00
 author: Pierre-Louis
-category: Sense of Purpose
+category: Sens au travail
 image: /assets/img/blog/2026-04-28-management-2026-pourquoi-ton-boss-a-10-ans-de-retard-fr.webp
 featured: false
 status: published
@@ -25,7 +25,6 @@ faq:
     answer: "If they focus more on your login hours than your results, if they are incapable of trusting you, and if they see AI as a threat rather than a tool to empower people."
   - question: "Is remote work still the norm in 2026?"
     answer: "The mature model is no longer 'fully remote' but an asynchronous-first hybrid mode. The office becomes a social hub for targeted collaboration and team-building moments."
-readingTime: 6
 ---
 
 Monday, 9:30 AM. You log into the weekly meeting. Your manager shares their screen. Instead of a tedious PowerPoint with the week's figures, they pull up a simple dashboard. AI has already compiled everything: progress, roadblocks, performance. Reporting is done.
@@ -66,7 +65,7 @@ In this new world, the office's function changes. It's no longer the default pla
 
 ## The Manager-Coach: The Skill Your Boss Probably Doesn't Have
 
-If AI handles the rational (data, reporting), the manager must handle the emotional. The number one skill becomes emotional intelligence. The ability to detect weak signals, to understand what's not being said, to sense the "brown-out" or "quiet suffering" that gnaws at young professionals who have every reason to be happy on paper but feel an immense void.
+If AI handles the rational (data, reporting), the manager must handle the emotional. The number one skill becomes emotional intelligence. The ability to detect weak signals, to understand what's not being said, to sense the "brown-out" or [quiet suffering](/en/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-en/) that gnaws at young professionals who have every reason to be happy on paper but feel an immense void.
 
 The manager becomes a career coach. Their role is no longer just to ensure the team's performance, but to ensure each team member is on a path that is meaningful to them. As **Jean-Emmanuel Ray, a professor at Sciences Po**, points out, the legal relationship of subordination is transforming into a "collaboration pact."
 

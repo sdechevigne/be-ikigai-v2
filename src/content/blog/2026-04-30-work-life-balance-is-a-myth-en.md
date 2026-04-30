@@ -59,7 +59,7 @@ Integration requires you to set your own rules, based on your priorities, not a 
 
 ## Ikigai: The Prerequisite for Successful Integration
 
-Let's be clear: integration works under one, non-negotiable condition. Your work must be deeply meaningful to you. You do not voluntarily integrate suffering into your personal life. If your job is a "bullshit job" that drains your energy, the only possible integration will be toxic. The idea of letting a meaningless job bleed into your personal sphere is the perfect recipe for accelerated burnout.
+Integration works under only one, non-negotiable condition: your work must be deeply meaningful to you. You do not voluntarily integrate suffering into your personal life. If your job is a "bullshit job" that drains your energy, the only possible integration will be toxic. The idea of letting a meaningless job bleed into your personal sphere is the perfect recipe for accelerated burnout.
 
 This is where Ikigai comes in. It's not a self-help gimmick; it's the compass that allows you to find a direction toward work that nourishes you. Work that lies at the intersection of what you love, what you're good at, what the world needs, and what you can be paid for. When your professional activity becomes a significant part of your identity, a source of pride and energy, integrating it with the rest of your life is no longer a problem. It becomes a natural choice. Work ceases to be a chore you have to wall off and becomes one of the core pillars of your fulfillment.
 
@@ -71,9 +71,12 @@ Invest your energy not in escaping your job, but in building one that is meaning
 
 ## References
 
-1. [Baromètre de la santé psychologique des salariés français](https://empreintehumaine.com/) — Empreinte Humaine Study, 2023
-2. [Baromètre APEC 2024 : Santé mentale des cadres](https://corporate.apec.fr/) — Report, 2024
-3. [Le Stress au travail](https://www.odilejacob.fr/catalogue/psychologie/psychologie-sociale/stress-au-travail_9782738133292.php) — Book, Patrick Légeron, 2015
-4. [State of the Global Workplace Report](https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx) — Gallup Report, 2022
-5. [Leading the Life You Want: Skills for Integrating Work and Life](https://hbr.org/2014/09/lead-the-life-you-want) — Article/Book, Stewart Friedman, 2014
-6. [Burn-out : le détecter et le prévenir](https://www.editions-jouvence.com/livre/burn-out-le-detecter-et-le-prevenir) — Book, Catherine Vasey, 2007
+1. [Baromètre de la santé psychologique des salariés français](https://empreintehumaine.com/), Empreinte Humaine Study, 2023
+2. [Baromètre APEC 2024 : Santé mentale des cadres](https://corporate.apec.fr/), Report, 2024
+3. [Le Stress au travail](https://www.odilejacob.fr/catalogue/psychologie/psychologie-sociale/stress-au-travail_9782738133292.php), Book, Patrick Légeron, 2015
+4. [State of the Global Workplace Report](https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx), Gallup Report, 2022
+5. [Leading the Life You Want: Skills for Integrating Work and Life](https://hbr.org/2014/09/lead-the-life-you-want), Article/Book, Stewart Friedman, 2014
+6. [Burn-out : le détecter et le prévenir](https://www.editions-jouvence.com/livre/burn-out-le-detecter-et-le-prevenir), Book, Catherine Vasey, 2007
+rine Vasey, 2007
+
+ the first step is often to get a precise diagnosis 

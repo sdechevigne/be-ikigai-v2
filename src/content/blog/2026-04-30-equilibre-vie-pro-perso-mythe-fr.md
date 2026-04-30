@@ -59,7 +59,7 @@ L'intégration demande de définir tes propres règles, basées sur tes priorit�
 
 ## L'Ikigai : la condition pour une intégration réussie
 
-Soyons clairs : l'intégration ne fonctionne que sous une seule condition, non négociable. Ton travail doit avoir un sens profond pour toi. On n'intègre pas volontairement une souffrance dans sa vie privée. Si ton job est un "bullshit job" qui te vide de ton énergie, la seule intégration possible sera toxique. L'idée de laisser un travail dénué de sens envahir ta sphère personnelle est la recette parfaite pour un burn-out accéléré.
+L'intégration ne fonctionne qu'à une seule condition, non négociable : ton travail doit avoir un sens profond pour toi. On n'intègre pas volontairement une souffrance dans sa vie privée. Si ton job est un "bullshit job" qui te vide de ton énergie, la seule intégration possible sera toxique. L'idée de laisser un travail dénué de sens envahir ta sphère personnelle est la recette parfaite pour un burn-out accéléré.
 
 C'est ici que l'Ikigai entre en jeu. Il n'est pas un gadget de développement personnel, mais la boussole qui te permet d'identifier la direction d'un travail qui te nourrit. Un travail qui est à l'intersection de ce que tu aimes, de ce pour quoi tu es doué, de ce dont le monde a besoin et de ce pour quoi tu peux être payé. Quand ton activité professionnelle devient une part signifiante de ton identité, une source de fierté et d'énergie, l'intégrer au reste de ta vie n'est plus un problème. Ça devient une évidence. Le travail cesse d'être une corvée à compartimenter pour devenir un des piliers de ton épanouissement.
 
@@ -67,7 +67,7 @@ C'est ici que l'Ikigai entre en jeu. Il n'est pas un gadget de développement pe
 
 Arrête de courir après le mythe de l'équilibre. Cette course te demande de construire des murs de plus en plus hauts autour d'un travail qui, peut-être, ne mérite pas d'être sauvé. Tu passes plus de temps à organiser ta vie qu'à la vivre. La véritable solution n'est pas de mieux séparer, mais de ne plus avoir besoin de le faire.
 
-Investis ton énergie non pas à fuir ton travail, mais à en construire un qui ait suffisamment de sens pour s'intégrer harmonieusement au reste de ta vie. Une vie où tu peux être la même personne, authentique et engagée, au bureau, à la maison ou avec tes amis. Si tu es fatigué de cette guerre entre ton job et toi, il est temps de changer de stratégie. Le **Diagnostic de Destinée** n'est pas un outil de plus pour gérer ton temps, c'est un électrochoc pour redonner du sens à tes journées. Découvre en 48h les piliers sur lesquels construire une vie enfin intégrée.
+Investis ton énergie non pas à fuir ton travail, mais à en construire un qui ait suffisamment de sens pour s'intégrer harmonieusement au reste de ta vie. Une vie où tu peux être la même personne, engagée et toi-même, au bureau, à la maison ou avec tes amis. Si tu es fatigué de cette guerre entre ton job et toi, il est temps de changer de stratégie. Le **Diagnostic de Destinée** n'est pas un outil de plus pour gérer ton temps, c'est un électrochoc pour redonner du sens à tes journées. Découvre en 48h les piliers sur lesquels construire une vie enfin intégrée.
 
 ## Références
 
@@ -77,3 +77,4 @@ Investis ton énergie non pas à fuir ton travail, mais à en construire un qui 
 4. [State of the Global Workplace Report](https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx), Rapport Gallup, 2022
 5. [Leading the Life You Want: Skills for Integrating Work and Life](https://hbr.org/2014/09/lead-the-life-you-want), Article/Livre, Stewart Friedman, 2014
 6. [Burn-out : le détecter et le prévenir](https://www.editions-jouvence.com/livre/burn-out-le-detecter-et-le-prevenir), Livre, Catherine Vasey, 2007
+07

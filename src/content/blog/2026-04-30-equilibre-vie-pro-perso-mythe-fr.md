@@ -14,7 +14,7 @@ author: Pierre-Louis
 category: Coaching
 image: /assets/img/blog/2026-04-30-equilibre-vie-pro-perso-mythe-fr.webp
 featured: false
-status: draft
+status: published
 faq:
   - question: "Quelle est la différence entre équilibre et intégration vie pro/perso ?"
     answer: "L'équilibre vise à séparer deux mondes opposés (travail vs vie). L'intégration cherche à créer une synergie entre toutes les facettes de la vie (travail, famille, santé) pour qu'elles s'enrichissent mutuellement."

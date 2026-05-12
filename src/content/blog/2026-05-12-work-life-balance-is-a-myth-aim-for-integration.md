@@ -11,6 +11,7 @@ publishedAt: 2026-05-12
 lang: en
 author: "Pierre-Louis"
 category: "Meaning at Work"
+image: /assets/img/blog/2026-05-12-work-life-balance-is-a-myth-aim-for-integration.webp
 status: published
 featured: false
 faq:

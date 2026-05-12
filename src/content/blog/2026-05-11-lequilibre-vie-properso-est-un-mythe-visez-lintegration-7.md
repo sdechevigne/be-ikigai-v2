@@ -7,7 +7,7 @@ summary:
   - "L'intégration, inspirée de l'ikigai, propose de relier ses sphères de vie via ses valeurs plutôt que de les compartimenter."
   - "Des ajustements simples, comme nommer ses blocages ou cultiver des micro-joies, suffisent pour amorcer cette transition."
   - "Plutôt que de tout plaquer, utilisez votre emploi actuel comme tremplin financier et stratégique pour vos projets personnels."
-publishedAt: 2026-05-11
+publishedAt: 2026-05-12
 author: "Pierre-Louis"
 category: "Sens au travail"
 coverImage: /assets/img/blog/2026-05-11-lequilibre-vie-properso-est-un-mythe-visez-lintegration-7.webp

@@ -78,6 +78,10 @@ export const ui = {
     'footer.quote_part2': '.',
     'footer.rights': 'Tous droits réservés',
     'footer.switch_btn': '🇬🇧 Switch to English',
+    'alt.pain': 'Une personne à la croisée de plusieurs chemins dans une forêt dense et brumeuse',
+    'alt.lumiere': 'Un magnifique sentier baigné de soleil qui serpente dans une forêt calme et luxuriante.',
+    'alt.ikigai_diagram': 'Diagramme Ikigai : Intersection de passion, mission, vocation et profession pour une vie épanouie',
+    'alt.pierre_louis': 'Photo de Pierre-Louis',
     'footer.switch_lang': 'English version',
     'footer.switch_href': '/en'
   },
@@ -151,6 +155,10 @@ export const ui = {
     'footer.quote_part2': '.',
     'footer.rights': 'All rights reserved',
     'footer.switch_btn': '🇫🇷 Switch to French',
+    'alt.pain': 'A person at a crossroads in a dense, misty forest',
+    'alt.lumiere': 'A beautiful sun-drenched path winding through a calm, lush forest.',
+    'alt.ikigai_diagram': 'Ikigai diagram: intersection of passion, mission, vocation and profession for a fulfilling life',
+    'alt.pierre_louis': 'Photo of Pierre-Louis',
     'footer.switch_lang': 'Version Française',
     'footer.switch_href': '/'
   },

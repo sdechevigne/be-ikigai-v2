@@ -15,7 +15,7 @@ summary:
     diagnosis of what's truly wrong.
 publishedAt: 2026-04-25
 author: Pierre-Louis
-category: Sens au travail
+category: Meaning at Work
 image: /assets/img/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-fr.webp
 status: published
 featured: false

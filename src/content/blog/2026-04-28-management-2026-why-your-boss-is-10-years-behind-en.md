@@ -10,7 +10,7 @@ summary:
   - "Beware the 'fake modern' trap: adopting tools like Slack without changing the underlying culture of micromanagement and presenteeism."
 publishedAt: 2026-04-28T10:00:00
 author: Pierre-Louis
-category: Sens au travail
+category: Meaning at Work
 image: /assets/img/blog/2026-04-28-management-2026-pourquoi-ton-boss-a-10-ans-de-retard-fr.webp
 featured: false
 status: published

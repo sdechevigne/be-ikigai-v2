@@ -115,23 +115,17 @@ const recentPosts = allPosts.sort((a, b) => {
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">
                 <div class="fade-in mb-24">
-                    <h2 class="text-3xl md:text-5xl font-comfortaa text-white mb-24 italic"> <small class="text-xl md:text-2xl">Ce dialogue intérieur, de plus en plus présent, qui vous
-                            dit:</small> <svg class="text-4xl text-white-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                    <h2 class="text-3xl md:text-5xl font-comfortaa text-white mb-24 italic"> <small class="text-xl md:text-2xl">{t('pain.dialogue')}</small> <svg class="text-4xl text-white-600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M6.5 10c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.318.142-.686.238-1.028.466c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.945c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.317.143-.686.238-1.028.467c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.944c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 17.5 10z"></path>
-                        </svg> Allez, courage... Si je ne change pas {t('contact.p2_part2')}, je vais <span class="text-dore-serein">couler</span>.
+                        </svg> {t('pain.courage')}
                     </h2>
                     <div class="mx-auto max-w-screen-xl px-4 md:px-8">
                         <div class="grid gap-8 md:grid-cols-2 lg:gap-12">
                             <div class="lg:flex lg:flex-col ">
                                 <div class="text-lg md:text-xl text-white/90 space-y-6">
-                                    <p>Ce sentiment de cocher toutes les cases d'une "vie réussie", mais de <span class="text-dore-serein">ressentir un vide profond</span> qui s'agrandit
-                                        doucement.</p>
-                                    <p>Cette impression de <span class="text-dore-serein">courir dans une roue de
-                                            hamster</span>, de vivre en pilotage semi-automatique sans vraiment savoir
-                                        ce qui se passe.</p>
-                                    <p>Le dimanche soir où l'idée du lundi nous pèse, ce sentiment diffus de <span class="text-dore-serein">ne pas être pleinement vivant</span>, cette
-                                        sensation qui commence à prendre de la place entre qui l'on est et qui on doit
-                                        être pour être bien.</p>
+                                    <p>{t('pain.box1')}</p>
+                                    <p>{t('pain.box2')}</p>
+                                    <p>{t('pain.box3')}</p>
                                 </div>
                             </div>
 
@@ -151,33 +145,26 @@ const recentPosts = allPosts.sort((a, b) => {
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-dore-serein mb-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25"></path>
                             </svg>
-                            <p class="text-lg md:text-xl text-blanc-coton">Une personne qui se sent de plus en plus
-                                seule face à ce monde
-                                qui change.</p>
+                            <p class="text-lg md:text-xl text-blanc-coton">{t('pain.who1')}</p>
                         </div>
                         <div class="flex flex-col items-center space-x-2 px-4 py-4">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-dore-serein mb-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"></path>
                             </svg>
-                            <p class="text-lg md:text-xl text-blanc-coton">Un parent souhaitant mieux comprendre son
-                                enfant et créer une relation durable</p>
+                            <p class="text-lg md:text-xl text-blanc-coton">{t('pain.who2')}</p>
                         </div>
                         <div class="flex flex-col items-center space-x-2 px-4 py-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-dore-serein mb-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"></path>
                             </svg>
-                            <p class="text-lg md:text-xl text-blanc-coton">Un enfant qui souhaite se connaitre
-                                rapidement et trouver sa voie.</p>
+                            <p class="text-lg md:text-xl text-blanc-coton">{t('pain.who3')}</p>
                         </div>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-comfortaa text-white mb-12">...ou simplement en quête de sens
-                        dans le brouillard du quotidien...</h3>
+                    <h3 class="text-xl md:text-2xl font-comfortaa text-white mb-12">{t('pain.end')}</h3>
                 </div>
                 <div class="fade-in ">
                     <p class="text-xl md:text-2xl text-blanc-coton">
-                        Si ces mots résonnent en vous, ce n'est pas un hasard. C'est un appel intérieur qui vous signale
-                        qu'il est temps de changer. <span class="text-dore-serein ">Cultivons ensemble l'envie d'avoir
-                            envie</span>.
+                        {t('solution.call')} <span class="text-dore-serein">{t('solution.subtitle')}</span>.
                     </p>
                 </div>
             </div>
@@ -190,16 +177,14 @@ const recentPosts = allPosts.sort((a, b) => {
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16 fade-in">
                     <h2 class="text-3xl md:text-5xl font-comfortaa text-bleu-crepuscule mb-8 md:mb-16">
-                        La solution n'est pas à l'extérieur. Elle est en vous depuis toujours : <span class="font-comfortaa text-[#9333ea]">c'est votre Ikigai.</span>
+                        {t('solution.p1')}
                     </h2>
 
                     <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start text-left md:text-left">
                         <div class="text-lg md:text-xl text-gray-600 space-y-6">
-                            <p class="mb-4">Toutes les réponses que vous cherchez, cette énergie, cette évidence... elles ne sont pas à l'extérieur. Elles sont en vous, c'est un trésor précieux, trouvons le ensemble en discutant. Cette philosophie japonaise est bien plus qu'un concept, <span class="text-[#9333ea]">c'est votre nouvelle "raison d'être"</span>.</p>
+                            <p class="mb-4">{t('solution.p2_part1')}<span class="text-[#9333ea]">{t('solution.p2_part2')}</span>.</p>
 
-                            <p class="mb-4">Trouver son Ikigai, c'est partir à la découverte de qui vous êtes vraiment
-                                pour <span class="text-bleu-crepuscule">{t('solution.p3_part2')}</span> entre votre passion,
-                                vos talents, et ce que vous apportez au monde.
+                            <p class="mb-4">{t('solution.p3_part1')}<span class="text-bleu-crepuscule">{t('solution.p3_part2')}</span>{t('solution.p3_part3')}
                             </p>
                         </div>
 
@@ -209,15 +194,9 @@ const recentPosts = allPosts.sort((a, b) => {
                     </div>
 
                     <div class="text-lg md:text-xl text-gray-600 space-y-6 mt-8 text-left md:text-left">
-                        <p class="mb-4">Mon accompagnement n'est pas une simple discussion, elle ne suivra pas un
-                            processus
-                            formel et rigide. Ce que je vous propose est bien plus authentique : <span class="text-[#9333ea]">une relation de confiance, un espace d'échange profond et
-                                honnête.</span></p>
+                        <p class="mb-4">{t('solution.p4_part1')}<span class="text-[#9333ea]">{t('solution.p4_part2')}</span></p>
 
-                        <p class="mb-4">Dans cet espace, je serai celui qui tient la lanterne pour éclairer votre chemin
-                            intérieur avec bienveillance. Celui qui vous écoute vraiment, pour vous aider à entendre ce
-                            que
-                            votre cœur essaie de vous dire. C'est dans la qualité de cet échange que <span class="text-bleu-crepuscule">{t('solution.p5_part2')}</span>.</p>
+                        <p class="mb-4">{t('solution.p5_part1')}<span class="text-bleu-crepuscule">{t('solution.p5_part2')}</span>.</p>
                     </div>
                 </div>
 
@@ -232,31 +211,25 @@ const recentPosts = allPosts.sort((a, b) => {
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
                             </svg>
 
-                            <p class="text-gray-700 text-md">Vous vous levez le matin avec une énergie nouvelle et
-                                l'évidence d'aimer votre vie.</p>
+                            <p class="text-gray-700 text-md">{t('after.li1')}</p>
                         </div>
                         <div class="flex items-start space-x-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
                             </svg>
-                            <p class="text-gray-700 text-md"> Vos choix deviennent clairs, fluides et alignés avec qui
-                                vous êtes.</p>
+                            <p class="text-gray-700 text-md">{t('after.li2')}</p>
                         </div>
                         <div class="flex items-start space-x-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
                             </svg>
-                            <p class="text-gray-700 text-md">Votre vie pro et perso ne sont plus en conflit et se
-                                nourrissent l'une avec l'autre.
-                            </p>
+                            <p class="text-gray-700 text-md">{t('after.li3')}</p>
                         </div>
                         <div class="flex items-start space-x-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-[#9333ea] font-bold">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path>
                             </svg>
-                            <p class="text-gray-700 text-md">Vous ressentez un sentiment de paix,
-                                d'accomplissement et de légitimité, {t('contact.p2_part2')} chaque jour a un sens.
-                            </p>
+                            <p class="text-gray-700 text-md">{t('after.li4')}</p>
                         </div>
                     </div>
                 </div>
@@ -279,11 +252,7 @@ const recentPosts = allPosts.sort((a, b) => {
                         <div class="text-lg md:text-xl text-white/90 space-y-6 grid md:grid-cols-[1fr_auto] sm:grid-cols-[minmax(auto,1fr)_auto] items-center justify-items-center">
 
                             <p>
-                                {t('ikigai.desc_part1')}<a class="text-dore-serein" target="_blank" href="https://www.nationalgeographic.fr/voyage/bien-veillir-zones-bleues-okinawa-lile-ou-lon-vit-centenaire">l'île
-                                    japonaise d'Okinawa</a>, révèle le secret d'une vie
-                                longue et pleine de sens. Sur cette île, où de nombreux centenaires s'épanouissent,
-                                trouver sa raison d'être, cultiver ses passions et créer de la valeur au quotidien est
-                                ce qui nourrit le corps et l'esprit.
+                                {t('ikigai.desc_part1')}<a class="text-dore-serein" target="_blank" href="https://www.nationalgeographic.fr/voyage/bien-veillir-zones-bleues-okinawa-lile-ou-lon-vit-centenaire">{t('ikigai.desc_part2')}</a>{t('ikigai.desc_part3')}
                             </p>
 
                             <div>
@@ -307,34 +276,28 @@ const recentPosts = allPosts.sort((a, b) => {
                     </div>
                     <div class="fade-in text-white/90 space-y-6">
                         <p class="text-lg">
-                            Ce schéma représente le concept japonais de l'Ikigai, ou "raison d'être". Il symbolise
-                            l'harmonie parfaite entre quatre éléments fondamentaux de votre vie :
+                            {t('ikigai.schema_desc')}
                         </p>
                         <ul class="space-y-4 text-lg">
                             <li class="flex items-start">
                                 <span class="text-dore-serein mr-2">•</span>
-                                <span><strong>{t('ikigai.passion')}</strong> L'union de ce que vous aimez et de ce pour quoi
-                                    vous êtes doué.</span>
+                                <span><strong>{t('ikigai.passion')}</strong> {t('ikigai.passion_desc')}</span>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-dore-serein mr-2">•</span>
-                                <span><strong>{t('ikigai.mission')}</strong> L'alliance entre ce que vous aimez et ce dont le
-                                    monde a besoin.</span>
+                                <span><strong>{t('ikigai.mission')}</strong> {t('ikigai.mission_desc')}</span>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-dore-serein mr-2">•</span>
-                                <span><strong>{t('ikigai.vocation')}</strong> Le point de rencontre entre ce dont le monde a
-                                    besoin et ce pour quoi vous pouvez être payé.</span>
+                                <span><strong>{t('ikigai.vocation')}</strong> {t('ikigai.vocation_desc')}</span>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-dore-serein mr-2">•</span>
-                                <span><strong>{t('ikigai.profession')}</strong> La convergence entre ce pour quoi vous êtes
-                                    doué et ce qui peut vous rémunérer.</span>
+                                <span><strong>{t('ikigai.profession')}</strong> {t('ikigai.profession_desc')}</span>
                             </li>
                         </ul>
                         <p class="text-lg text-dore-serein font-semibold">
-                            Au centre de tout, votre Ikigai est cette douce évidence qui donne le sens profond de votre
-                            existence.
+                            {t('ikigai.center')}
                         </p>
                     </div>
                 </div>
@@ -358,31 +321,10 @@ const recentPosts = allPosts.sort((a, b) => {
                             {t('who.title')}<span class="font-comfortaa text-[#9333ea]">Pierre-Louis</span>
                         </h2>
                         <div class="text-lg text-gray-700 space-y-6">
-                            <p>
-                                Mon parcours professionnel m'a offert une chance inouïe : celle de collaborer et
-                                d'échanger avec des personnes du monde entier, d'Amérique Latine aux États-Unis,
-                                d'Afrique au Moyen-Orient, d'Asie à l'Europe. Cette immersion constante m'a appris une
-                                chose essentielle : au-delà de nos différences culturelles, notre quête de sens est
-                                universelle.
-                            </p>
-                            <p>
-                                Au sein de mes propres équipes, j'ai vu des potentiels incroyables, souvent endormis et
-                                mal orientés. J'ai alors commencé, d'abord intuitivement, à guider certains de mes
-                                collaborateurs. Non pas en leur disant quoi faire, mais <span class="text-[#9333ea]">en
-                                    les aidant à comprendre qui ils étaient et ce qui les animait vraiment</span>.
-
-                            </p>
-                            <p>
-                                Voir une personne s'épanouir, trouver sa juste place et libérer son potentiel est
-                                rapidement devenu la plus grande satisfaction de ma carrière. J'ai alors compris que ce
-                                qui n'était qu'une partie de mon travail était en réalité ma véritable vocation. Le
-                                plaisir et le sens trouvés dans <span class="text-[#9333ea]">ces accompagnements sont
-                                    devenus ma raison de me lever le matin</span>.
-                            </p>
-                            <p>
-                                Aujourd'hui, j'ai fait de cette passion ma mission : mon Ikigai à moi, c'est de vous
-                                aider à trouver le vôtre
-                            </p>
+                            <p>{t('who.p1')}</p>
+                            <p>{t('who.p2_part1')}<span class="text-[#9333ea]">{t('who.p2_part2')}</span>.</p>
+                            <p>{t('who.p3_part1')}<span class="text-[#9333ea]">{t('who.p3_part2')}</span>.</p>
+                            <p>{t('who.p4')}</p>
                         </div>
                     </div>
                 </div>
@@ -402,15 +344,14 @@ const recentPosts = allPosts.sort((a, b) => {
                         <div class="flex-1">
                             <blockquote class="mt-4 flex-1">
                                 <h3 class="text-4xl text-gray-700 font-comfortaa">
-                                    Un mois après notre séance, les questions de Pierre-Louis continuent de résonner et
-                                    m’aident à faire les bons choix dans mon parcours professionnel.
+                                    {t('testimonial.hugues')}
                                 </h3>
                             </blockquote>
                         </div>
 
                         <div class="mt-8 flex tracking-wide justify-center">
                             <p class="font-bold text-[#9333ea] font-bold">Hugues</p>
-                            <p class="ml-3 text-gray-700">septembre 2025</p>
+                            <p class="ml-3 text-gray-700">{t('testimonial.hugues_date')}</p>
                         </div>
                     </div>
 
@@ -426,7 +367,7 @@ const recentPosts = allPosts.sort((a, b) => {
         <div class="container mx-auto px-6 max-w-[1200px]">
             <div class="text-center fade-in mb-16">
                 <h2 class="text-3xl md:text-5xl font-comfortaa text-[#2c3e50] mb-8 font-bold">
-                    {lang === 'en' ? 'Latest from our blog' : 'Les derniers articles du blog'}
+                    {t('blog.latest')}
                 </h2>
             </div>
             
@@ -471,7 +412,7 @@ const recentPosts = allPosts.sort((a, b) => {
             
             <div class="text-center mt-12 fade-in">
                 <a href={lang === 'fr' ? '/blog' : `/${lang}/blog`} class="inline-flex items-center justify-center px-10 py-4 text-gray-900 font-bold bg-[#ffd700] hover:bg-yellow-400 rounded-full transition-colors font-comfortaa">
-                    {lang === 'fr' ? 'Découvrir tous nos articles' : 'Browse all articles'}
+                    {t('blog.browse_all')}
                 </a>
             </div>
         </div>
@@ -492,10 +433,8 @@ const recentPosts = allPosts.sort((a, b) => {
                             <p class="text-lg inline-block">
                                 <svg class="text-2xl text-white-600 inline-block align-text-bottom mr-1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                                     <path fill="currentColor" d="M6.5 10c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.318.142-.686.238-1.028.466c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.945c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.317.143-.686.238-1.028.467c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.944c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 17.5 10z"></path>
-                                </svg> Je vous invite à une séance découverte de 30 minutes,
-                                <span class="text-dore-serein font-semibold">{t('contact.p1_part2')}</span>.
-                                Discutons simplement de votre situation et voyons ensemble comment le chemin vers
-                                votre Ikigai peut commencer.
+                                </svg> {t('contact.invite_part1')}
+                                <span class="text-dore-serein font-semibold">{t('contact.p1_part2')}</span>{t('contact.invite_part2')}
                             </p>
 
                         </div>

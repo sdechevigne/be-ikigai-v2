@@ -11,3 +11,19 @@ export function useTranslations(lang: keyof typeof ui) {
     return ui[lang][key] || ui[defaultLang][key];
   }
 }
+
+export function slugifyCategory(cat: string, lang: 'fr' | 'en'): string {
+  const base = cat.toLowerCase().replace(/\s+/g, '-');
+  if (lang !== 'fr') return base;
+  return base
+    .replace(/[éèê]/g, 'e')
+    .replace(/[àâ]/g, 'a')
+    .replace(/[ùû]/g, 'u')
+    .replace(/[îï]/g, 'i')
+    .replace(/[ôö]/g, 'o');
+}
+
+export function getCategoryUrl(cat: string, lang: 'fr' | 'en'): string {
+  const slug = slugifyCategory(cat, lang);
+  return lang === 'fr' ? `/blog/categorie/${slug}` : `/en/blog/category/${slug}`;
+}

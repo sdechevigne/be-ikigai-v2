@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, getCategoryUrl } from '../i18n/utils';
 import Layout from '../layouts/Layout.astro';
 import Navbar from './Navbar.astro';
 import Footer from './Footer.astro';
@@ -111,13 +111,10 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                     <div class="blog-grid" id="blog-grid">
                         {posts.map((post) => {
                             const cat = post.data.category || (lang === 'fr' ? 'Général' : 'General');
-                            const catSlug = lang === 'fr'
-                                ? cat.toLowerCase().replace(/\s+/g, '-').replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u')
-                                : cat.toLowerCase().replace(/\s+/g, '-');
-                            const catUrl = lang === 'fr' ? `/blog/categorie/${catSlug}` : `/en/blog/category/${catSlug}`;
+                            const catUrl = getCategoryUrl(cat, lang);
                             return (
                             <div class="blog-grid-item" data-cat={cat}>
-                                <article class="blog-card" data-href={lang === 'fr' ? `/blog/${post.id}` : `/${lang}/blog/${post.id}`}>
+                                <article class="blog-card">
                                     <a href={lang === 'fr' ? `/blog/${post.id}` : `/${lang}/blog/${post.id}`} class="blog-card-img-link" tabindex="-1" aria-hidden="true">
                                         <div class="blog-card-img bg-gray-100 flex items-center justify-center relative">
                                             {post.data.image ? (

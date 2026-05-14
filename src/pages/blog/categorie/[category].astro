@@ -1,28 +1,31 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
+import { slugifyCategory } from '../../../i18n/utils';
 import BlogList from '../../../components/BlogList.astro';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
   const frPublished = allPosts.filter(p => p.data.lang === 'fr' && p.data.status === 'published');
 
-  const categories = [...new Set(frPublished.map(p => p.data.category).filter(Boolean))];
+  const categoryMap = new Map<string, CollectionEntry<'blog'>[]>();
+  for (const post of frPublished) {
+    const cat = post.data.category;
+    if (!cat) continue;
+    if (!categoryMap.has(cat)) categoryMap.set(cat, []);
+    categoryMap.get(cat)!.push(post);
+  }
 
-  return categories.map(cat => {
-    const slug = (cat as string).toLowerCase().replace(/\s+/g, '-').replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u').replace(/[îï]/g, 'i').replace(/[ôö]/g, 'o');
-    return {
-      params: { category: slug },
-      props: { categoryName: cat as string },
-    };
-  });
+  return [...categoryMap.entries()].map(([cat, catPosts]) => ({
+    params: { category: slugifyCategory(cat, 'fr') },
+    props: {
+      categoryName: cat,
+      posts: catPosts.sort((a, b) => (b.data.publishedAt?.valueOf() ?? 0) - (a.data.publishedAt?.valueOf() ?? 0)),
+    },
+  }));
 }
 
-const { categoryName } = Astro.props;
-
-const allPosts = await getCollection('blog');
-const posts = allPosts
-  .filter(p => p.data.lang === 'fr' && p.data.status === 'published' && p.data.category === categoryName)
-  .sort((a, b) => (b.data.publishedAt?.valueOf() ?? 0) - (a.data.publishedAt?.valueOf() ?? 0));
+const { categoryName, posts } = Astro.props;
 ---
 
 <BlogList posts={posts} categoryFilter={categoryName} />

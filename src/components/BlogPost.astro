@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, getCategoryUrl } from '../i18n/utils';
 import Layout from '../layouts/Layout.astro';
 import Navbar from './Navbar.astro';
 import Footer from './Footer.astro';
@@ -22,10 +22,7 @@ const formattedDate = post.data.publishedAt
     : null;
 
 const category = post.data.category || (lang === 'en' ? 'General' : 'Général');
-const catSlug = lang === 'fr'
-    ? category.toLowerCase().replace(/\s+/g, '-').replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u').replace(/[îï]/g, 'i').replace(/[ôö]/g, 'o')
-    : category.toLowerCase().replace(/\s+/g, '-');
-const catUrl = lang === 'fr' ? `/blog/categorie/${catSlug}` : `/en/blog/category/${catSlug}`;
+const catUrl = getCategoryUrl(category, lang);
 const author = post.data.author || 'Pierre-Louis';
 
 // readingTime : never use hardcoded 1 — always compute from body

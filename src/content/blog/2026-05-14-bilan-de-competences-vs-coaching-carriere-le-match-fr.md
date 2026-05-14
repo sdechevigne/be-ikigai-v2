@@ -13,7 +13,7 @@ author: Pierre-Louis
 category: Coaching
 image: /assets/img/blog/2026-05-14-bilan-de-competences-vs-coaching-carriere-le-match-fr.webp
 featured: false
-status: draft
+status: published
 faq:
   - question: "Le coaching de carrière est-il éligible au CPF ?"
     answer: "Rarement. Le coaching pur, axé sur le déblocage et la stratégie, ne rentre pas dans les cases administratives du CPF. Seuls les organismes certifiés Qualiopi proposant des formations peuvent l'intégrer, souvent au détriment de la flexibilité."

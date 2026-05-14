@@ -11,6 +11,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Node `>=22.12.0` is required (see `package.json#engines`).
 
+Bulk string replacements in content files (`.ts`, `.astro`) with apostrophes or special chars: write a temp Python script, run with `python fix_something.py`, delete after. Bash heredocs break on Windows when content contains apostrophes.
+
 `download_assets.ps1` at the root re-downloads assets from prod via `Invoke-WebRequest` — it silently saves HTML error pages when a file is missing upstream. Verify downloaded files with `file <path>` after running; don't commit without checking.
 
 ## Architecture
@@ -76,6 +78,8 @@ Tailwind with a small branded palette (`tailwind.config.mjs`): `bleu-crepuscule`
 `contexte/` — dossier de référence avec `book-essence.md`, `client-examples.md` et `skills-prompt.md`. À lire avant de rédiger tout contenu marketing (landing pages, blog) pour aligner le ton, les archétypes clients et les 8 scénarios de blocage.
 
 `accentColor` — chaque service dans `services.ts` a sa propre couleur d'accentuation (ex: `#059669` pour Bilan Ikigai). Utiliser `service.accentColor` pour les icônes et badges, pas le violet `#9333ea` (réservé aux CTAs booking globaux).
+
+`pipeline/prompts/3-humanize.md` — règles de qualité éditoriale à appliquer sur tout contenu de `services.ts` : zéro tiret long (—), mots interdits (posture, ancrage vague, bienveillant, fondamental, notamment…), guillemets français. Relancer après toute modification de copie.
 
 ### French copy convention
 

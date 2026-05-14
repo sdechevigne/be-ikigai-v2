@@ -8,10 +8,13 @@ export async function getStaticPaths() {
 
   const categories = [...new Set(frPublished.map(p => p.data.category).filter(Boolean))];
 
-  return categories.map(cat => ({
-    params: { category: (cat as string).toLowerCase().replace(/\s+/g, '-').replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u') },
-    props: { categoryName: cat as string },
-  }));
+  return categories.map(cat => {
+    const slug = (cat as string).toLowerCase().replace(/\s+/g, '-').replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u').replace(/[îï]/g, 'i').replace(/[ôö]/g, 'o');
+    return {
+      params: { category: slug },
+      props: { categoryName: cat as string },
+    };
+  });
 }
 
 const { categoryName } = Astro.props;

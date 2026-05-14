@@ -117,29 +117,33 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                             const catUrl = lang === 'fr' ? `/blog/categorie/${catSlug}` : `/en/blog/category/${catSlug}`;
                             return (
                             <div class="blog-grid-item" data-cat={cat}>
-                                <a href={lang === 'fr' ? `/blog/${post.id}` : `/${lang}/blog/${post.id}`} class="blog-card">
-                                    <div class="blog-card-img bg-gray-100 flex items-center justify-center relative">
-                                        {post.data.image ? (
-                                            <img src={post.data.image} alt={post.data.title} loading="lazy" width="400" height="224" />
-                                        ) : (
-                                            <div class="w-full h-full bg-gradient-to-br from-beige-chaleureux to-white flex items-center justify-center text-dore-serein">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H14" />
-                                                </svg>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div class="blog-card-body pb-6">
-                                        <a href={catUrl} class="blog-card-cat text-bleu-crepuscule font-bold hover:underline" onclick="event.stopPropagation()">{cat}</a>
-                                        <h3 class="blog-card-title">{post.data.title}</h3>
-                                        <p class="blog-card-desc">{post.data.description}</p>
-                                        <div class="blog-card-meta">
-                                            <span>{post.data.author || 'Pierre-Louis'}</span>
-                                            <span>{post.data.publishedAt && new Date(post.data.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-                                            <span>{Math.max(1, Math.round((post.body?.split(/\s+/).length ?? 0) / 200))} min</span>
+                                <article class="blog-card" data-href={lang === 'fr' ? `/blog/${post.id}` : `/${lang}/blog/${post.id}`}>
+                                    <a href={lang === 'fr' ? `/blog/${post.id}` : `/${lang}/blog/${post.id}`} class="blog-card-img-link" tabindex="-1" aria-hidden="true">
+                                        <div class="blog-card-img bg-gray-100 flex items-center justify-center relative">
+                                            {post.data.image ? (
+                                                <img src={post.data.image} alt={post.data.title} loading="lazy" width="400" height="224" />
+                                            ) : (
+                                                <div class="w-full h-full bg-gradient-to-br from-beige-chaleureux to-white flex items-center justify-center text-dore-serein">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H14" />
+                                                    </svg>
+                                                </div>
+                                            )}
                                         </div>
+                                    </a>
+                                    <div class="blog-card-body pb-6">
+                                        <a href={catUrl} class="blog-card-cat text-bleu-crepuscule font-bold hover:underline">{cat}</a>
+                                        <a href={lang === 'fr' ? `/blog/${post.id}` : `/${lang}/blog/${post.id}`} class="blog-card-content-link">
+                                            <h3 class="blog-card-title">{post.data.title}</h3>
+                                            <p class="blog-card-desc">{post.data.description}</p>
+                                            <div class="blog-card-meta">
+                                                <span>{post.data.author || 'Pierre-Louis'}</span>
+                                                <span>{post.data.publishedAt && new Date(post.data.publishedAt).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                                                <span>{Math.max(1, Math.round((post.body?.split(/\s+/).length ?? 0) / 200))} min</span>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
+                                </article>
                             </div>
                         )})}
                     </div>

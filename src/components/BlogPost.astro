@@ -22,6 +22,10 @@ const formattedDate = post.data.publishedAt
     : null;
 
 const category = post.data.category || (lang === 'en' ? 'General' : 'Général');
+const catSlug = lang === 'fr'
+    ? category.toLowerCase().replace(/\s+/g, '-').replace(/[éèê]/g, 'e').replace(/[àâ]/g, 'a').replace(/[ùû]/g, 'u').replace(/[îï]/g, 'i').replace(/[ôö]/g, 'o')
+    : category.toLowerCase().replace(/\s+/g, '-');
+const catUrl = lang === 'fr' ? `/blog/categorie/${catSlug}` : `/en/blog/category/${catSlug}`;
 const author = post.data.author || 'Pierre-Louis';
 
 // readingTime : never use hardcoded 1 — always compute from body
@@ -161,7 +165,7 @@ const enCanonical = lang === 'en' ? canonicalPath : `/en/blog/${siblingSlug}/`;
                                 </li>
                                 <li>
                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    <span style="color:#fff;">{category}</span>
+                                    <a href={catUrl} style="color:#fff;text-decoration:underline;text-underline-offset:3px;">{category}</a>
                                 </li>
                             </ol>
                         </nav>
@@ -185,7 +189,7 @@ const enCanonical = lang === 'en' ? canonicalPath : `/en/blog/${siblingSlug}/`;
                                 {readingTime} min {lang === 'en' ? 'read' : 'de lecture'}
                             </span>
                             <div class="meta-sep"></div>
-                            <span class="article-cat-badge" style="margin-bottom:0;">{category}</span>
+                            <a href={catUrl} class="article-cat-badge" style="margin-bottom:0;text-decoration:none;">{category}</a>
                         </div>
                     </div>
                 </div>

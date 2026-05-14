@@ -36,6 +36,53 @@ const recentPosts = allPosts.sort((a, b) => {
         : "coaching ikigai, trouver sa raison d'être, philosophie japonaise, coaching Paris, développement personnel, Pierre-Louis coach, Okinawa, coaching de vie, sens de la vie, reconversion professionnelle"
     }
 >
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": lang === 'fr' ? [
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce que l'Ikigai ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "L'Ikigai (生き甲斐) est un concept japonais né sur l'île d'Okinawa qui signifie littéralement 'raison d'être'. Il se trouve à l'intersection de ce que vous aimez, ce dont le monde a besoin, ce pour quoi vous êtes doué, et ce pour quoi vous pouvez être payé." }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment trouver son Ikigai ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Trouver son Ikigai passe par une exploration structurée de 4 dimensions : vos passions, vos talents, les besoins du monde et ce qui peut vous rémunérer. Un accompagnement de coaching Ikigai permet d'accélérer ce processus, avec une direction claire en 48h grâce au Diagnostic de Destinée." }
+            },
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce que le coaching Ikigai avec Pierre-Louis ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Pierre-Louis est un Coach Ikigai Certifié basé à Paris (75007). Il propose un Diagnostic de Destinée à 580€ (résultat en 48h), un Parcours Coaching en 3 phases, et une séance découverte gratuite de 30 minutes sans engagement. Garantie 100% satisfait ou remboursé." }
+            },
+            {
+                "@type": "Question",
+                "name": "À qui s'adresse le coaching Ikigai ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Le coaching Ikigai s'adresse aux personnes en quête de sens, aux professionnels en reconversion, aux personnes en burn-out ou souffrance douce au travail, et à toute personne souhaitant aligner sa vie avec ses vraies valeurs. La séance découverte est gratuite et sans engagement." }
+            }
+        ] : [
+            {
+                "@type": "Question",
+                "name": "What is Ikigai?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Ikigai (生き甲斐) is a Japanese concept originating from Okinawa island that literally means 'reason for being'. It sits at the intersection of what you love, what the world needs, what you are good at, and what you can be paid for." }
+            },
+            {
+                "@type": "Question",
+                "name": "How do you find your Ikigai?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Finding your Ikigai involves a structured exploration of 4 dimensions: your passions, your talents, the world's needs, and what can sustain you financially. Ikigai coaching helps accelerate this process, with a clear direction in 48h through the Destiny Diagnosis." }
+            },
+            {
+                "@type": "Question",
+                "name": "What is Ikigai coaching with Pierre-Louis?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Pierre-Louis is a Certified Ikigai Coach based in Paris (75007). He offers a Destiny Diagnosis at €580 (results in 48h), a 3-phase Coaching Journey, and a free 30-minute discovery session with no commitment. 100% satisfied or refunded guarantee." }
+            },
+            {
+                "@type": "Question",
+                "name": "Who is Ikigai coaching for?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Ikigai coaching is for people seeking meaning, professionals considering a career change, those experiencing burnout or quiet suffering at work, and anyone wanting to align their life with their true values. The discovery session is free and no-commitment." }
+            }
+        ]
+    }, null, 2)} />
 
     <Navbar lang={lang} />
 

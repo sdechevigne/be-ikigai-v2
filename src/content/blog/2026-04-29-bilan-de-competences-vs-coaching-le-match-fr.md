@@ -1,4 +1,4 @@
----
+﻿---
 title: "Bilan de Compétences vs Coaching : Le Match Pour Ton Futur Job"
 lang: fr
 description: "Coincé dans ta carrière ? Tu hésites entre un bilan de compétences et un coaching ? Découvre l'approche faite pour toi et arrête de perdre du temps."
@@ -94,3 +94,7 @@ Le bilan de compétences peut te donner l'illusion d'avancer, alors qu'il ne fai
 Ton temps est ta ressource la plus précieuse. Ne le gaspille pas dans une démarche bureaucratique si ton besoin est un électrochoc.
 
 **Prêt à trouver ta direction en 48h sans te noyer dans la paperasse ? [Découvre le Diagnostic de Destinée](URL) et obtiens une feuille de route claire, ou sois remboursé.**
+
+---
+
+*Vous voulez savoir où vous en êtes vraiment ? Réservez une [séance découverte gratuite de 30 min](/tarifs/) — satisfait ou remboursé.*

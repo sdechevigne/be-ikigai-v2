@@ -1,4 +1,4 @@
----
+﻿---
 title: "Souffrance douce au travail : le burn-out silencieux des bons élèves"
 lang: fr
 description: Tu as un bon job, un bon salaire, mais un vide intérieur ? Tu n'es
@@ -99,3 +99,7 @@ C'est un travail d'introspection difficile à faire seul, surtout quand on a la 
 Le vrai danger n'est pas de changer. Le vrai danger, c'est de rester. C'est de laisser la souffrance douce grignoter ton énergie, ton ambition et ta joie de vivre, année après année. Tu mérites mieux qu'une carrière en mode survie.
 
 Tu veux savoir où tu en es vraiment ? Découvre le **diagnostic de destinée Be-Ikigai** : 48h pour faire le point et reprendre les commandes de ta carrière. Satisfait ou remboursé. Ton temps est trop précieux pour le gaspiller dans l'indécision.
+
+---
+
+*Vous voulez savoir où vous en êtes vraiment ? Réservez une [séance découverte gratuite de 30 min](/tarifs/) — satisfait ou remboursé.*

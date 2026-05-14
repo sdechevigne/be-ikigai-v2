@@ -1,8 +1,8 @@
 # be-ikigai.com
 
-> be-ikigai est un service de coaching personnel basé sur la philosophie japonaise de l'Ikigai, fondé par Pierre-Louis à Paris. Le site est disponible en français et en anglais.
+> be-ikigai est un service de coaching personnel basé sur la philosophie japonaise de l'Ikigai, fondé par Pierre-Louis, Coach Ikigai Certifié, à Paris (75007, France). Site bilingue français/anglais.
 
-> be-ikigai is a personal coaching service based on the Japanese philosophy of Ikigai, founded by Pierre-Louis in Paris. The website is available in French and English.
+> be-ikigai is a personal coaching service based on the Japanese philosophy of Ikigai, founded by Pierre-Louis, a Certified Ikigai Coach, in Paris (75007, France). Bilingual French/English website.
 
 ## À propos / About
 
@@ -10,68 +10,115 @@ be-ikigai aide les personnes à trouver leur raison d'être grâce à un accompa
 
 be-ikigai helps people find their reason for being through authentic and caring coaching based on Ikigai, a thousand-year-old philosophy born on the island of Okinawa in Japan.
 
-### Services proposés / Services Offered
+## L'Ikigai en une phrase / Ikigai in One Sentence
 
-- **Séance Découverte Ikigai / Ikigai Discovery Session**: 30 minutes gratuites pour explorer votre Ikigai. / 30 free minutes to explore your Ikigai.
-- **Programme Ikigai Complet / Full Ikigai Program**: Coaching personnalisé complet pour trouver sa raison d'être. / Complete personalized coaching to find your reason for being. (300€)
+L'Ikigai (生き甲斐) est l'intersection entre ce que vous aimez, ce dont le monde a besoin, ce pour quoi vous êtes doué, et ce pour quoi vous pouvez être payé — votre raison de vivre.
 
-### Le concept Ikigai / The Ikigai Concept
+Ikigai (生き甲斐) is the intersection of what you love, what the world needs, what you are good at, and what you can be paid for — your reason for being.
 
-L'Ikigai se trouve à l'intersection de quatre dimensions fondamentales :
-1. Ce que vous aimez (votre passion)
-2. Ce dont le monde a besoin (votre mission)
-3. Ce pour quoi vous pouvez être payé (votre profession)
-4. Ce pour quoi vous êtes doué (votre vocation)
+## Le fondateur / The Founder
 
-Ikigai is found at the intersection of four fundamental dimensions:
-1. What you love (your passion)
-2. What the world needs (your mission)
-3. What you can be paid for (your profession)
-4. What you are good at (your vocation)
+Pierre-Louis est un Coach Ikigai Certifié basé à Paris (75007). Parcours professionnel international (Amérique Latine, États-Unis, Afrique, Moyen-Orient, Asie, Europe). Il a guidé des dizaines de professionnels vers une direction de vie alignée, souvent en 48 heures là où un bilan de compétences traditionnel prend 4 mois.
 
-### Le fondateur / The Founder
+Pierre-Louis is a Certified Ikigai Coach based in Paris (75007). International professional background spanning Latin America, USA, Africa, Middle East, Asia and Europe. He has guided dozens of professionals to a purposeful life direction, often in 48 hours where a traditional skills assessment takes 4 months.
 
-Pierre-Louis est un Coach Ikigai Certifié basé à Paris (75007). Fort d'un parcours professionnel international (Amérique Latine, États-Unis, Afrique, Moyen-Orient, Asie, Europe), il a fait de sa passion pour l'accompagnement sa mission.
+LinkedIn: https://www.linkedin.com/in/pierre-louis-be-ikigai
 
-Pierre-Louis is a Certified Ikigai Coach based in Paris (75007). With an international professional background (Latin America, USA, Africa, Middle East, Asia, Europe), he turned his passion for coaching into his mission.
+## Ce qui différencie be-ikigai / What Sets be-ikigai Apart
+
+- Résultats en 48h (vs 4 mois pour un bilan de compétences CPF) / Results in 48h (vs 4 months for CPF skills assessment)
+- Garantie 100% satisfait ou remboursé / 100% satisfied or refunded guarantee
+- Approche authentique, non rigide, basée sur la confiance / Authentic, non-rigid approach based on trust
+- Coaching disponible en présentiel (Paris 75007) et en visioconférence / Available in-person (Paris 75007) and by video call
+- Accompagnement individuel ET familial / Individual AND family coaching
+
+## Services / Services
+
+### Séance Découverte Ikigai / Ikigai Discovery Session
+- Prix : Gratuit / Free (0€) — sans engagement / no commitment
+- Durée : 30 minutes
+- Pour qui : toute personne en quête de sens, en reconversion, en burn-out, ou souhaitant clarifier sa direction de vie
+
+### Diagnostic de Destinée (Phase 1) / Destiny Diagnosis (Phase 1)
+- Prix : 580€
+- Résultat : plan d'action délivré en 48 heures / action plan delivered in 48 hours
+- Inclut : diagnostic sans complaisance des forces réelles, axes actionnables immédiats
+
+### Le Sprint (Phase 2) / The Sprint (Phase 2)
+- Prix : sur devis / on request
+- Durée : 1 à 3 mois maximum, 2-3 séances/semaine
+- Pour qui : après le Diagnostic, pour passer à l'exécution
+
+### La Sentinelle (Phase 3) / The Sentinel (Phase 3)
+- Prix : sur devis / on request
+- Format : suivi de trajectoire à long terme / long-term trajectory monitoring
+
+### Bilan Famille & Le Pont des Générations / Family Bond
+- Prix : sur devis / on request
+- Pour : père/fils, binôme familial souhaitant créer du lien profond / father/son or family duo
+
+## Résultats clients / Client Results
+
+- Tristan : "Pierre-Louis arrive à très vite cerner vos habitudes, vos désirs, votre manière de fonctionner pour vous proposer d'excellentes pistes de réflexions pour de futurs postes ou secteurs d'activités." (⭐⭐⭐⭐⭐)
+- Hugues : "Un mois après notre séance, les questions de Pierre-Louis continuent de résonner et m'aident à faire les bons choix dans mon parcours professionnel." (⭐⭐⭐⭐⭐)
+- Jérémie : "Bien plus qu'un échange, Pierre-Louis m'a offert un voyage introspectif. Cette discussion honnête et sincère m'a mis en confiance et m'a permis de donner des réponses enfouies en moi." (⭐⭐⭐⭐⭐)
+- Note moyenne : 5.0/5 (3 avis vérifiés) / Average rating: 5.0/5 (3 verified reviews)
+
+## Questions fréquentes / FAQ
+
+**Qu'est-ce que l'Ikigai ?**
+L'Ikigai est un concept japonais d'Okinawa qui désigne votre raison d'être. Il se situe à l'intersection de ce que vous aimez, ce dont le monde a besoin, ce pour quoi vous êtes doué, et ce pour quoi vous pouvez être payé.
+
+**Ikigai et coaching de carrière, quelle différence ?**
+Le coaching de carrière traditionnel se concentre sur les compétences et le marché. L'Ikigai va plus loin : il explore l'identité profonde, les valeurs, les passions et la mission de vie pour créer une direction authentiquement alignée.
+
+**Le coaching Ikigai est-il fait pour moi ?**
+Oui si vous ressentez un vide malgré un "bon job", êtes en reconversion, souffrez de burn-out ou brown-out, ou cherchez simplement à donner plus de sens à votre vie.
+
+**Combien de temps faut-il pour trouver son Ikigai ?**
+Le Diagnostic de Destinée donne une direction claire en 48 heures. Un bilan de compétences CPF classique prend 2 à 4 mois pour un résultat souvent moins actionnable.
+
+**What is the difference between Ikigai coaching and life coaching?**
+Life coaching focuses on goals and habits. Ikigai coaching goes deeper — it uncovers your core identity, values, and life purpose to create a direction that feels inevitable rather than constructed.
 
 ## Pages du site / Site Pages
 
 - [Accueil / Home (FR)](https://be-ikigai.com/)
 - [Home (EN)](https://be-ikigai.com/en/)
+- [Tarifs / Pricing (FR)](https://be-ikigai.com/tarifs/)
+- [Pricing (EN)](https://be-ikigai.com/en/pricing/)
 - [Blog (FR)](https://be-ikigai.com/blog/)
 - [Blog (EN)](https://be-ikigai.com/en/blog/)
-- [Tarifs / Pricing (FR)](https://be-ikigai.com/tarifs)
-- [Pricing (EN)](https://be-ikigai.com/en/pricing)
 
 ## Articles de blog (FR) / Blog Articles (FR)
 
-- [Réussir sa vie sociale sans rater sa vie intérieure](https://be-ikigai.com/blog/2026-04-23-reussir-sa-vie-sociale-sans-rater-sa-vie-interieure/). Comment réussir sa vie sociale sans rater sa vie intérieure, éviter — Catégorie : Coaching
-- [Le braquage du cpf : pourquoi 1600€ et 4 mois de paperasse ne sauveront](https://be-ikigai.com/blog/2026-04-27-le-braquage-du-cpf-pourquoi-1600euro-et-4-mois-de-paperasse-ne-sauveront-pas-votre-carriere/). Réforme CPF 2026, plafond à 1600€, reste à charge 150€ et bilans — Catégorie : Transition professionnelle
-- [Souffrance douce au travail : le burn-out silencieux des bons élèves](https://be-ikigai.com/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-fr/). Tu as un bon job, un bon salaire, mais un vide intérieur ? Tu n'es — Catégorie : Sens au travail
-- [Bilan de Compétences vs Coaching : Le Match Pour Ton Futur Job](https://be-ikigai.com/blog/2026-04-29-bilan-de-competences-vs-coaching-le-match-fr/). Coincé dans ta carrière ? Tu hésites entre un bilan de compétences et un coaching ? Découvre l'approche faite pour toi et arrête de perdre du temps. — Catégorie : Coaching
-- [L'Équilibre Vie Pro/Perso est un Mythe : Visez l'Intégration](https://be-ikigai.com/blog/2026-04-30-equilibre-vie-pro-perso-mythe-fr/). Arrêtez de chercher un équilibre vie pro/perso introuvable. Découvrez pourquoi l'intégration est la seule réponse durable à l'épuisement professionnel. — Catégorie : Coaching
-- [L'Équilibre Vie Pro/Perso est un Mythe : Visez l'Intégration](https://be-ikigai.com/blog/2026-05-11-lequilibre-vie-properso-est-un-mythe-visez-lintegration-7/). L'équilibre vie pro/perso parfait est un mythe épuisant. Découvrez comment la philosophie ikigai propose une approche plus saine basée sur l'intégration. — Catégorie : Sens au travail
-- [Coaching et reconversion professionnelle : pourquoi ça marche mieux qu'une formation](https://be-ikigai.com/blog/2026-05-13-coaching-et-reconversion-professionnelle-pourquoi-ca-marche-mieux-quune-formation/). Découvrez pourquoi la reconversion professionnelle via le coaching est plus efficace qu'une simple formation pour trouver du sens et lever vos blocages. — Catégorie : Transition professionnelle
-- [Bilan de Compétences vs Coaching : Le Match Pour Ta Reconversion](https://be-ikigai.com/blog/2026-05-14-bilan-de-competences-vs-coaching-carriere-le-match-fr/). Bilan de compétences ou coaching de carrière ? Décortiquons le cadre, le financement et l'impact réel pour t'aider à choisir la bonne voie pour ta reconversion. — Catégorie : Coaching
-- [Qu'est-ce que l'Ikigai ?](https://be-ikigai.com/blog/ikigai-definition-fr/). Découvrez la philosophie millénaire japonaise pour trouver un sens profond à votre vie et allier passion, mission et profession. — Catégorie : Ikigai
+- [Qu'est-ce que l'Ikigai ?](https://be-ikigai.com/blog/ikigai-definition-fr/) — Définition, origine Okinawa, les 4 piliers, comment le trouver
+- [Souffrance douce au travail : le burn-out silencieux des bons élèves](https://be-ikigai.com/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-fr/) — Brown-out, perte de sens, diagnostic de carrière
+- [Coaching et reconversion professionnelle : pourquoi ça marche mieux qu'une formation](https://be-ikigai.com/blog/2026-05-13-coaching-et-reconversion-professionnelle-pourquoi-ca-marche-mieux-quune-formation/) — Reconversion, coaching vs formation, blocages intérieurs
+- [Bilan de Compétences vs Coaching : Le Match Pour Ta Reconversion](https://be-ikigai.com/blog/2026-05-14-bilan-de-competences-vs-coaching-carriere-le-match-fr/) — CPF, bilan, coaching, lequel choisir
+- [L'Équilibre Vie Pro/Perso est un Mythe : Visez l'Intégration](https://be-ikigai.com/blog/2026-05-11-lequilibre-vie-properso-est-un-mythe-visez-lintegration-7/) — Burn-out, intégration, philosophie ikigai
+- [Le braquage du CPF : pourquoi 1600€ ne sauveront pas votre carrière](https://be-ikigai.com/blog/2026-04-27-le-braquage-du-cpf-pourquoi-1600euro-et-4-mois-de-paperasse-ne-sauveront-pas-votre-carriere/) — Réforme CPF 2026, critique du bilan de compétences
+- [Réussir sa vie sociale sans rater sa vie intérieure](https://be-ikigai.com/blog/2026-04-23-reussir-sa-vie-sociale-sans-rater-sa-vie-interieure/) — Sens, authenticité, coaching de vie
+- [Management 2026 : pourquoi ton boss a 10 ans de retard](https://be-ikigai.com/blog/2026-04-28-management-2026-pourquoi-ton-boss-a-10-ans-de-retard-fr/) — Management moderne, sens au travail, IA
 
-## Blog Articles (EN) / Articles de blog (EN)
+## Blog Articles (EN)
 
-- [Management in 2026: Why Your Boss is 10 Years Behind](https://be-ikigai.com/en/blog/2026-04-28-management-2026-why-your-boss-is-10-years-behind-en/). The management style of 2026 is already here, but your boss is stuck in 2010. Between AI, the 4-day week, and the search for meaning, the gap has never been wider. — Catégorie : Sens au travail
-- [Quiet Suffering at Work: The Silent Burnout of High Achievers](https://be-ikigai.com/en/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-en/). Have a good job and a good salary, but feel an inner void? You're — Catégorie : Sens au travail
-- [Skills Assessment vs. Career Coaching: The Match for Your Future](https://be-ikigai.com/en/blog/2026-04-29-skills-assessment-vs-career-coaching-the-match-en/). Feeling stuck in your career? Debating a skills assessment versus career coaching? Find out which approach is right for you and stop wasting time. — Catégorie : Coaching
-- [Work-Life Balance is a Myth: Aim for Integration](https://be-ikigai.com/en/blog/2026-05-12-work-life-balance-is-a-myth-aim-for-integration/). The perfect work-life balance is an exhausting myth. Discover how the ikigai philosophy offers a healthier approach based on integration. — Catégorie : Meaning at Work
-- [What exactly is Ikigai?](https://be-ikigai.com/en/blog/ikigai-definition-en/). Discover the ancient Japanese philosophy for finding deep meaning in your life by aligning passion, mission, and profession. — Catégorie : Ikigai
+- [What exactly is Ikigai?](https://be-ikigai.com/en/blog/ikigai-definition-en/) — Definition, Okinawa origin, 4 pillars, how to find yours
+- [Quiet Suffering at Work: The Silent Burnout of High Achievers](https://be-ikigai.com/en/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-en/) — Brownout, loss of meaning, career diagnosis
+- [Work-Life Balance is a Myth: Aim for Integration](https://be-ikigai.com/en/blog/2026-05-12-work-life-balance-is-a-myth-aim-for-integration/) — Burnout, integration, ikigai philosophy
+- [Skills Assessment vs. Career Coaching: The Match](https://be-ikigai.com/en/blog/2026-04-29-skills-assessment-vs-career-coaching-the-match-en/) — Which approach fits your career change
+- [Management in 2026: Why Your Boss is 10 Years Behind](https://be-ikigai.com/en/blog/2026-04-28-management-2026-why-your-boss-is-10-years-behind-en/) — Future of work, meaning, AI in management
 
 ## Contact
 
 - Email: pierrelouis@be-ikigai.com
 - Adresse: Rue du Bac, 75007 Paris, France
-- Horaires: Lundi-Vendredi 09:00-18:00
+- Horaires: Lundi-Vendredi 09:00-18:00 / Monday-Friday 09:00-18:00
 
 ## Réseaux sociaux / Social Media
 
+- Google Business Profile: https://share.google/SXI6mBASAzVDykcjC
+- LinkedIn: https://www.linkedin.com/in/pierre-louis-be-ikigai
 - X (Twitter): https://x.com/be_ikigai_com
 - TikTok: https://www.tiktok.com/@be_ikigai
 - YouTube: https://www.youtube.com/@beikigai
@@ -79,6 +126,7 @@ Pierre-Louis is a Certified Ikigai Coach based in Paris (75007). With an interna
 
 ## Informations supplémentaires / Additional Information
 
-- Zones desservies: France, Belgique, Suisse, Luxembourg, Pays-Bas
+- Zones desservies: France, Belgique, Suisse, Luxembourg, Pays-Bas / France, Belgium, Switzerland, Luxembourg, Netherlands
 - Langues: Français, English
-- Note moyenne: 5.0/5 (3 avis)
+- Note moyenne: 5.0/5 (3 avis vérifiés) / Average rating: 5.0/5 (3 verified reviews)
+- Garantie: 100% satisfait ou remboursé / 100% satisfied or refunded

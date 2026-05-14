@@ -1,4 +1,4 @@
----
+﻿---
 title: "Le braquage du cpf : pourquoi 1600€ et 4 mois de paperasse ne sauveront
   pas votre carrière"
 lang: fr
@@ -147,3 +147,7 @@ Pour 580€, l'analyse est bouclée en 48 heures. Si le déclic n'a pas lieu, je
 Que vous soyez cadre à Nantes ou en télétravail dans un village isolé, la logique reste identique. Vous avez le choix entre laisser la machine dicter votre rythme ou reprendre la main.
 
 Alors, on commence quand ?
+
+---
+
+*Vous voulez savoir où vous en êtes vraiment ? Réservez une [séance découverte gratuite de 30 min](/tarifs/) — satisfait ou remboursé.*

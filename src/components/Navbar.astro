@@ -14,6 +14,7 @@ const homeUrl = lang === 'fr' ? '/' : `/${lang}/`;
 const blogUrl = lang === 'fr' ? '/blog/' : `/${lang}/blog/`;
 const pricingUrl = lang === 'fr' ? '/tarifs/' : `/${lang}/pricing/`;
 const servicesUrl = lang === 'fr' ? '/services/' : `/${lang}/services/`;
+const musicUrl = lang === 'fr' ? '/musique' : `/en/music`;
 const switchLangUrl = lang === 'fr' ? '/en/' : '/';
 
 const navClass = transparent 
@@ -121,8 +122,8 @@ const navClass = transparent
       <a href={blogUrl} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         Blog
       </a>
-      <a href="https://music.be-ikigai.com" class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide" target="_blank" rel="noopener noreferrer">
-        Music
+      <a href={musicUrl} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
+        {lang === 'fr' ? 'Musique' : 'Music'}
       </a>
       <a href={`${homeUrl}#contact`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         Contact
@@ -190,8 +191,8 @@ const navClass = transparent
       <a href={blogUrl} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
         Blog
       </a>
-      <a href="https://music.be-ikigai.com" class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10" target="_blank" rel="noopener noreferrer">
-        Music
+      <a href={musicUrl} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
+        {lang === 'fr' ? 'Musique' : 'Music'}
       </a>
       <a href={`${homeUrl}#contact`} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
         Contact

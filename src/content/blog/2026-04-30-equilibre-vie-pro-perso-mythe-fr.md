@@ -1,4 +1,4 @@
----
+﻿---
 title: "L'Équilibre Vie Pro/Perso est un Mythe : Visez l'Intégration"
 lang: fr
 description: "Arrêtez de chercher un équilibre vie pro/perso introuvable. Découvrez pourquoi l'intégration est la seule réponse durable à l'épuisement professionnel."
@@ -78,3 +78,7 @@ Investis ton énergie non pas à fuir ton travail, mais à en construire un qui 
 5. [Leading the Life You Want: Skills for Integrating Work and Life](https://hbr.org/2014/09/lead-the-life-you-want), Article/Livre, Stewart Friedman, 2014
 6. [Burn-out : le détecter et le prévenir](https://www.editions-jouvence.com/livre/burn-out-le-detecter-et-le-prevenir), Livre, Catherine Vasey, 2007
 07
+
+---
+
+*Vous voulez savoir où vous en êtes vraiment ? Réservez une [séance découverte gratuite de 30 min](/tarifs/) — satisfait ou remboursé.*

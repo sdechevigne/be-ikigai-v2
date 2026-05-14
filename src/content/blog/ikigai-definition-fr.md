@@ -1,4 +1,4 @@
----
+﻿---
 title: "Qu'est-ce que l'Ikigai ?"
 description: "Découvrez la philosophie millénaire japonaise pour trouver un sens profond à votre vie et allier passion, mission et profession."
 seoKeywords: "ikigai, philosophie de vie, sens au travail, développement personnel, coaching"
@@ -44,3 +44,7 @@ Lorsque ces quatre cercles se rejoignent, vous trouvez votre Ikigai. Plus de com
 Dans un monde où tout va très vite, beaucoup se sentent déconnectés, perdus dans un "pilote automatique" confortable mais vide de sens. Ce phénomène porte un nom : la [souffrance douce au travail](/blog/2026-04-28-souffrance-douce-au-travail-le-burn-out-silencieux-fr/), ou brown-out. Retrouver notre Ikigai n'est plus un simple développement personnel, c'est devenu une nécessité absolue pour éviter l'épuisement mental.
 
 N'attendez pas de toucher le fond pour chercher la lumière. Si vous hésitez entre un bilan de compétences et un coaching pour trouver votre voie, [notre comparatif](/blog/2026-04-29-bilan-de-competences-vs-coaching-le-match-fr/) vous aidera à choisir. Commencez dès aujourd'hui à explorer ce qui vous anime vraiment.
+
+---
+
+*Vous voulez savoir où vous en êtes vraiment ? Réservez une [séance découverte gratuite de 30 min](/tarifs/) — satisfait ou remboursé.*

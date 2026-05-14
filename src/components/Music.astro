@@ -13,20 +13,22 @@ const t = {
     pageTitle: 'Musique | be-ikigai',
     pageDesc: 'Playlists et compilations musicales by be-ikigai — Celtic, Ambient, Deep House, Dubstep. Laissez-vous porter.',
     heroKicker: 'Musique',
-    heroTitle: 'Des sons pour vous reconnecter',
-    heroSubtitle: 'Compilations et playlists composées pour accompagner votre chemin — travail profond, méditation, énergie.',
+    heroTitle: 'Ici, la musique devient le chemin vers ton ikigai',
+    heroSubtitle: 'Compilations et playlists composées pour accompagner ton chemin — travail profond, méditation, énergie.',
     playOn: 'Écouter sur',
     watchAll: 'Voir toute la chaîne',
     filterAll: 'Tous',
     filterAmbient: 'Ambient & Détente',
     filterEnergy: 'Énergie',
     filterCeltic: 'Celtic & Fantasy',
+    filterOriginal: 'Originaux',
+    filterCoaching: 'Coaching',
   },
   en: {
     pageTitle: 'Music | be-ikigai',
     pageDesc: 'Music playlists and compilations by be-ikigai — Celtic, Ambient, Deep House, Dubstep. Let yourself be carried away.',
     heroKicker: 'Music',
-    heroTitle: 'Sounds to reconnect with yourself',
+    heroTitle: 'Here, music becomes the path to your ikigai',
     heroSubtitle: 'Compilations and playlists crafted to accompany your journey — deep work, meditation, energy.',
     playOn: 'Listen on',
     watchAll: 'View full channel',
@@ -34,14 +36,17 @@ const t = {
     filterAmbient: 'Ambient & Relaxation',
     filterEnergy: 'Energy',
     filterCeltic: 'Celtic & Fantasy',
+    filterOriginal: 'Originals',
+    filterCoaching: 'Coaching',
   },
 }[lang];
 
 const tracks = [
+  // ── Compilations longues ──
   {
-    title: isFR ? 'Musique Médiévale & Celtique' : 'Medieval & Celtic Music',
+    title: 'Relaxing Medieval & Celtic Music',
     videoId: 'VuFxFN8xH7s',
-    duration: '47 min',
+    duration: '47:18',
     category: 'celtic',
     tag: isFR ? 'Celtic & Fantasy' : 'Celtic & Fantasy',
     description: isFR
@@ -49,19 +54,19 @@ const tracks = [
       : 'Travel to imaginary lands with bagpipes, harps, and celtic flutes.',
   },
   {
-    title: isFR ? 'Dubstep Inspirant & Motivant' : 'Inspiring Motivational Dubstep',
+    title: 'Inspiring Motivational Dubstep',
     videoId: '4KY9WATrMQ4',
-    duration: '41 min',
+    duration: '41:12',
     category: 'energy',
     tag: isFR ? 'Énergie' : 'Energy',
     description: isFR
-      ? 'Des basses puissantes et des drops explosifs pour booster votre concentration et votre énergie.'
+      ? 'Des basses puissantes et des drops explosifs pour booster ta concentration et ton énergie.'
       : 'Powerful bass and explosive drops to boost your focus and energy.',
   },
   {
-    title: isFR ? 'Tropical Chillout — Electro & Grooves' : 'Tropical Chillout — Electro & Grooves',
+    title: 'Ambient Music · Tropical Chillout · Electro & Grooves',
     videoId: 'B4UO151AKiA',
-    duration: '25 min',
+    duration: '25:45',
     category: 'ambient',
     tag: isFR ? 'Ambient & Détente' : 'Ambient & Relaxation',
     description: isFR
@@ -69,9 +74,9 @@ const tracks = [
       : 'Sun-drenched grooves and electronic vibes for moments of lightness and flow.',
   },
   {
-    title: isFR ? 'Grandes Voix Audiophiles — Hi-Res' : 'Audiophile Great Voices — Hi-Res',
+    title: 'Audiophile Great Voices Collection — Hi-Res',
     videoId: 'R2NFasSgO2U',
-    duration: '38 min',
+    duration: '38:01',
     category: 'ambient',
     tag: isFR ? 'Ambient & Détente' : 'Ambient & Relaxation',
     description: isFR
@@ -79,9 +84,9 @@ const tracks = [
       : 'A selection of exceptional voices in high-resolution quality, for a different listening experience.',
   },
   {
-    title: isFR ? 'Deep House — Mix Punchy 2025' : 'Deep House — Punchy Mix 2025',
+    title: 'Deep House · Punchy Songs · Mix 2025',
     videoId: '41IhrT_u8uY',
-    duration: '51 min',
+    duration: '51:28',
     category: 'energy',
     tag: isFR ? 'Énergie' : 'Energy',
     description: isFR
@@ -89,14 +94,126 @@ const tracks = [
       : 'A punchy Deep House mix to work in flow or start your day with power.',
   },
   {
-    title: isFR ? 'Musique Celtique Relaxante — Fantasy & Folk' : 'Relaxing Celtic Music — Fantasy & Folk',
+    title: 'Relaxing Celtic Music · Fantasy, Celtic, Folk',
     videoId: 'SPfgK9e8VKk',
-    duration: '34 min',
+    duration: '34:46',
     category: 'celtic',
     tag: isFR ? 'Celtic & Fantasy' : 'Celtic & Fantasy',
     description: isFR
       ? 'Folk doux et mélodies celtiques apaisantes pour la détente, la lecture ou la méditation.'
       : 'Gentle folk and soothing celtic melodies for relaxation, reading, or meditation.',
+  },
+  // ── Originaux & titres ──
+  {
+    title: "I Lost Her, But I'll Choose to Love Again",
+    videoId: 'j8hl7NL_Ibw',
+    duration: '3:40',
+    category: 'original',
+    tag: isFR ? 'Original' : 'Original',
+    description: isFR
+      ? 'Un titre original be-ikigai — entre douceur et résilience.'
+      : 'An original be-ikigai track — between tenderness and resilience.',
+  },
+  {
+    title: "I Won't Give In",
+    videoId: 'OejloB3hEVc',
+    duration: '3:32',
+    category: 'original',
+    tag: isFR ? 'Original' : 'Original',
+    description: isFR
+      ? 'La force tranquille de celui qui refuse de lâcher — un anthem de détermination.'
+      : 'The quiet strength of someone who refuses to give up — an anthem of determination.',
+  },
+  {
+    title: '18 octobre 2025',
+    videoId: 'dAarJeh48rw',
+    duration: '3:01',
+    category: 'original',
+    tag: isFR ? 'Original' : 'Original',
+    description: isFR
+      ? 'Une création du 18 octobre 2025 — captée dans l\'instant.'
+      : 'A creation from October 18, 2025 — caught in the moment.',
+  },
+  // ── Coaching & inspiration ──
+  {
+    title: isFR
+      ? "Ce n'est plus la peine, c'est de la colère — Nouvel Album"
+      : "Beyond Pain, There's Anger — New Album",
+    videoId: 'IJRWlBmLNY0',
+    duration: '1:21',
+    category: 'coaching',
+    tag: isFR ? 'Coaching' : 'Coaching',
+    description: isFR
+      ? 'Quand la douleur se transforme en énergie. Extrait du nouvel album be-ikigai.'
+      : 'When pain transforms into energy. Excerpt from the new be-ikigai album.',
+  },
+  {
+    title: '30 octobre 2025',
+    videoId: 'U49_Ict7QHw',
+    duration: '1:21',
+    category: 'coaching',
+    tag: isFR ? 'Coaching' : 'Coaching',
+    description: isFR
+      ? 'Un message du 30 octobre — une pensée, une intention.'
+      : 'A message from October 30 — a thought, an intention.',
+  },
+  {
+    title: isFR
+      ? 'Je crée ma carte de vie : Trouver son Ikigaï et se révéler'
+      : 'Creating My Life Map: Finding Your Ikigai',
+    videoId: 'ib-kJcKC8W8',
+    duration: '1:01',
+    category: 'coaching',
+    tag: isFR ? 'Coaching' : 'Coaching',
+    description: isFR
+      ? 'La carte de vie comme outil de clarté — identifier ses forces, sa voie, son ikigaï.'
+      : 'The life map as a clarity tool — identify your strengths, your path, your ikigai.',
+  },
+  {
+    title: isFR
+      ? 'Vous avez tout pour être heureux… mais vous vous sentez vide ? La cage dorée'
+      : 'The Golden Cage: Why Success Feels Empty',
+    videoId: 'Q4L81hgnSo0',
+    duration: '1:30',
+    category: 'coaching',
+    tag: isFR ? 'Coaching' : 'Coaching',
+    description: isFR
+      ? 'Avoir tout sans se sentir vivant — le paradoxe de la cage dorée expliqué.'
+      : 'Having everything without feeling alive — the golden cage paradox explained.',
+  },
+  {
+    title: isFR
+      ? 'Allez, courage… Si je ne change pas maintenant, je vais couler.'
+      : "Come on, courage… If I don't change now, I'll sink.",
+    videoId: '7QFk41IWWXk',
+    duration: '0:36',
+    category: 'coaching',
+    tag: isFR ? 'Coaching' : 'Coaching',
+    description: isFR
+      ? 'Le déclic. La prise de conscience. Le moment où tout peut basculer.'
+      : 'The click. The realization. The moment when everything can shift.',
+  },
+  {
+    title: isFR ? 'Redécouvrez votre véritable soi' : 'Rediscover Your True Self',
+    videoId: 'ziZa_Notsmk',
+    duration: null,
+    category: 'coaching',
+    tag: isFR ? 'Coaching' : 'Coaching',
+    description: isFR
+      ? 'Se reconnecter à soi-même — au-delà des masques et des attentes.'
+      : 'Reconnecting with yourself — beyond masks and expectations.',
+  },
+  {
+    title: isFR
+      ? 'The Golden Cage: Why Success Feels Empty (And What To Do About It)'
+      : 'The Golden Cage: Why Success Feels Empty (And What To Do About It)',
+    videoId: 'SiNh9RaUxgI',
+    duration: null,
+    category: 'coaching',
+    tag: isFR ? 'Coaching' : 'Coaching',
+    description: isFR
+      ? 'La version anglaise — pour ceux qui cherchent leur chemin au-delà du succès.'
+      : 'Success without meaning — and how ikigai can change that.',
   },
 ];
 
@@ -108,7 +225,7 @@ const platformLinks = [
   },
   {
     name: 'Spotify',
-    href: 'https://open.spotify.com/artist/beikigai',
+    href: 'https://open.spotify.com/artist/02cB5srMHjSZIGvaX2SOwm',
     icon: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`,
   },
   {
@@ -118,8 +235,13 @@ const platformLinks = [
   },
   {
     name: 'Apple Music',
-    href: 'https://music.apple.com/search?term=beikigai',
+    href: 'https://music.apple.com/artist/be-ikigai/1843626775',
     icon: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726 10.496 10.496 0 0 0-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026C4.786.07 4.043.15 3.34.428 2.004.958 1.04 1.88.475 3.208a4.98 4.98 0 0 0-.35 1.358c-.059.384-.1.769-.124 1.155-.008.098-.01.198-.01.297v13.944c0 .09.002.18.008.27.017.356.05.712.115 1.064.17.93.543 1.763 1.157 2.47a4.93 4.93 0 0 0 2.745 1.618c.484.11.977.163 1.472.178.13.005.26.007.39.007h13.028c.13 0 .259-.002.389-.007.518-.016 1.033-.076 1.534-.209a4.912 4.912 0 0 0 3.087-2.554c.287-.612.437-1.265.497-1.936.024-.268.036-.537.036-.807V6.142c0-.006-.001-.013-.001-.018zm-5.474 5.616a.747.747 0 0 1-.334.626l-7.26 4.605c-.155.098-.33.147-.502.147-.167 0-.337-.047-.488-.142a1.01 1.01 0 0 1-.487-.872V5.896c0-.36.196-.693.51-.866a.994.994 0 0 1 1.005.04l7.26 4.605a.749.749 0 0 1 .296.065z"/></svg>`,
+  },
+  {
+    name: 'Amazon Music',
+    href: 'https://music.amazon.com/artists/B0FTMNPT41/be-ikigai',
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.074-1.052-.872-1.238-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.66 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.11-.891 5.942-1.095v-.41c0-.753.06-1.642-.383-2.294-.385-.579-1.124-.82-1.775-.82-1.205 0-2.277.618-2.54 1.897-.054.285-.261.567-.549.582l-3.061-.333c-.259-.056-.548-.266-.472-.66.704-3.716 4.06-4.838 7.066-4.838 1.537 0 3.547.41 4.758 1.574 1.538 1.436 1.392 3.352 1.392 5.438v4.923c0 1.481.616 2.13 1.192 2.929.204.287.247.63-.01.839-.647.541-1.794 1.537-2.423 2.099l-.008-.007zm3.559 1.988c-2.748 1.472-5.735 2.181-8.453 2.181-4.027 0-7.927-1.393-11.081-3.706-.277-.202-.481.154-.251.416 2.925 3.326 6.786 5.326 11.076 5.326 3.061 0 6.614-1.214 9.066-3.494.406-.377.058-.945-.357-.723zm.67 2.216c-.091.227.104.32.31.147 1.339-1.12 1.685-3.466 1.411-3.804-.272-.336-2.612-.626-4.04.377-.22.154-.182.367.062.337.805-.096 2.595-.312 2.913.098.319.41-.355 2.094-.656 2.845z"/></svg>`,
   },
 ];
 ---
@@ -134,26 +256,24 @@ const platformLinks = [
   <Navbar lang={lang} />
 
   <!-- Hero -->
-  <section class="relative min-h-[45vh] flex items-center justify-center overflow-hidden bg-[#1a2535]">
-    <!-- Animated background blobs -->
+  <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-[#1a2535]">
     <div class="absolute inset-0 overflow-hidden">
       <div class="music-blob music-blob-1"></div>
       <div class="music-blob music-blob-2"></div>
       <div class="music-blob music-blob-3"></div>
     </div>
-    <!-- Noise overlay -->
     <div class="absolute inset-0 opacity-[0.03]" style="background-image: url(data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E);"></div>
 
-    <div class="relative z-10 text-center px-6 py-24">
-      <p class="text-[#ffd700] font-comfortaa text-sm tracking-[0.25em] uppercase mb-4 opacity-90">{t.heroKicker}</p>
-      <h1 class="font-comfortaa text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+    <div class="relative z-10 text-center px-6 py-28 max-w-4xl mx-auto">
+      <p class="text-[#ffd700] font-comfortaa text-sm tracking-[0.25em] uppercase mb-5 opacity-90">{t.heroKicker}</p>
+      <h1 class="font-comfortaa text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
         {t.heroTitle}
       </h1>
-      <p class="text-white/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+      <p class="text-white/65 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
         {t.heroSubtitle}
       </p>
 
-      <!-- Platform links -->
+      <!-- Platform badges -->
       <div class="flex flex-wrap items-center justify-center gap-3 mt-10">
         {platformLinks.map(p => (
           <a
@@ -170,9 +290,9 @@ const platformLinks = [
     </div>
   </section>
 
-  <!-- Tracks grid -->
+  <!-- Tracks section -->
   <section class="bg-[#1a2535] py-20 px-6">
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-7xl mx-auto">
 
       <!-- Filter tabs -->
       <div class="flex flex-wrap gap-2 justify-center mb-12" id="music-filters">
@@ -180,16 +300,17 @@ const platformLinks = [
         <button data-filter="ambient" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200">{t.filterAmbient}</button>
         <button data-filter="energy" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200">{t.filterEnergy}</button>
         <button data-filter="celtic" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200">{t.filterCeltic}</button>
+        <button data-filter="original" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200">{t.filterOriginal}</button>
+        <button data-filter="coaching" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200">{t.filterCoaching}</button>
       </div>
 
-      <!-- Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="tracks-grid">
-        {tracks.map((track, i) => (
+      <!-- Cards grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="tracks-grid">
+        {tracks.map((track) => (
           <article
             class="track-card group relative rounded-2xl overflow-hidden bg-[#243044] border border-white/5 hover:border-[#ffd700]/30 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#ffd700]/5"
             data-category={track.category}
             data-video-id={track.videoId}
-            data-index={i}
           >
             <!-- Thumbnail -->
             <div class="relative aspect-video overflow-hidden">
@@ -199,9 +320,8 @@ const platformLinks = [
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
-              <!-- Dark gradient -->
               <div class="absolute inset-0 bg-gradient-to-t from-[#243044] via-transparent to-transparent opacity-60"></div>
-              <!-- Play button overlay -->
+              <!-- Play overlay -->
               <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 <div class="w-14 h-14 rounded-full bg-[#ffd700] flex items-center justify-center shadow-lg shadow-[#ffd700]/40 transition-transform duration-200 group-hover:scale-110">
                   <svg class="w-6 h-6 text-[#1a2535] ml-1" viewBox="0 0 24 24" fill="currentColor">
@@ -210,9 +330,11 @@ const platformLinks = [
                 </div>
               </div>
               <!-- Duration badge -->
-              <div class="absolute bottom-3 right-3 px-2 py-1 rounded-md bg-black/70 text-white text-xs font-mono backdrop-blur-sm">
-                {track.duration}
-              </div>
+              {track.duration && (
+                <div class="absolute bottom-3 right-3 px-2 py-1 rounded-md bg-black/70 text-white text-xs font-mono backdrop-blur-sm">
+                  {track.duration}
+                </div>
+              )}
               <!-- Category tag -->
               <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#ffd700]/10 border border-[#ffd700]/30 text-[#ffd700] text-xs font-medium backdrop-blur-sm">
                 {track.tag}
@@ -220,19 +342,18 @@ const platformLinks = [
             </div>
 
             <!-- Content -->
-            <div class="p-5">
-              <h2 class="font-comfortaa text-white font-bold text-base mb-2 leading-snug group-hover:text-[#ffd700] transition-colors duration-200">
+            <div class="p-4">
+              <h2 class="font-comfortaa text-white font-bold text-sm mb-2 leading-snug group-hover:text-[#ffd700] transition-colors duration-200 line-clamp-2">
                 {track.title}
               </h2>
-              <p class="text-white/50 text-sm leading-relaxed line-clamp-2">
+              <p class="text-white/45 text-xs leading-relaxed line-clamp-2">
                 {track.description}
               </p>
-              <!-- Watch on YouTube link -->
               <a
                 href={`https://www.youtube.com/watch?v=${track.videoId}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="mt-4 inline-flex items-center gap-1.5 text-white/40 hover:text-[#ffd700] text-xs transition-colors duration-200"
+                class="mt-3 inline-flex items-center gap-1.5 text-white/35 hover:text-[#ffd700] text-xs transition-colors duration-200"
                 onclick="event.stopPropagation()"
               >
                 <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -262,12 +383,10 @@ const platformLinks = [
   <div id="video-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center p-4 md:p-10">
     <div class="absolute inset-0 bg-black/90 backdrop-blur-md" id="lightbox-backdrop"></div>
     <div class="relative z-10 w-full max-w-4xl">
-      <!-- Close button -->
       <button id="lightbox-close" class="absolute -top-12 right-0 text-white/60 hover:text-white transition-colors duration-200 flex items-center gap-2 text-sm">
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        Fermer
+        {isFR ? 'Fermer' : 'Close'}
       </button>
-      <!-- iframe container -->
       <div class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl">
         <iframe
           id="lightbox-iframe"
@@ -343,7 +462,6 @@ const platformLinks = [
 </style>
 
 <script>
-  // Filter logic
   const filterBtns = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.track-card');
 
@@ -363,7 +481,6 @@ const platformLinks = [
     });
   });
 
-  // Lightbox logic
   const lightbox = document.getElementById('video-lightbox')!;
   const iframe = document.getElementById('lightbox-iframe') as HTMLIFrameElement;
   const closeBtn = document.getElementById('lightbox-close')!;
@@ -390,7 +507,6 @@ const platformLinks = [
 
   closeBtn.addEventListener('click', closeLightbox);
   backdrop.addEventListener('click', closeLightbox);
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
   });

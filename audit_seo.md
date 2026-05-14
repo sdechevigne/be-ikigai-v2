@@ -219,16 +219,9 @@
 
 ---
 
-### 18. Aucune fiche Google Business Profile détectée ❌ CONFIRMÉ (hors code)
+### 18. Fiche Google Business Profile ✅ CONFIRMÉ (existe) (hors code)
 
-**Problème :** Le schema LocalBusiness est présent dans `src/layouts/Layout.astro` (adresse : Rue du Bac, Paris 75007), mais aucune fiche GBP active n'a été détectée dans les SERPs.
-
-**Impact :** Absence du Local Pack Google pour les recherches "coach ikigai paris".
-
-**Action (humaine) :**
-- Créer ou revendiquer la fiche Google Business Profile pour "be-ikigai — Coaching Ikigai Paris".
-- Catégorie principale : "Coach de vie".
-- Ajouter photos, description, lien site web, horaires.
+**Statut :** Fiche existante. URL `https://share.google/SXI6mBASAzVDykcjC` ajoutée dans le `sameAs` du schema LocalBusiness (`src/layouts/Layout.astro`) et dans les fichiers `llms.txt` / `llms-full.txt`.
 
 ---
 
@@ -446,7 +439,7 @@
 | 15 | Page /services/parcours-coaching/ vide | ❌ CONFIRMÉ |
 | 16 | Zéro backlink dofollow | ❌ CONFIRMÉ |
 | 17 | Absent des annuaires coachs | ❌ CONFIRMÉ |
-| 18 | Pas de fiche Google Business Profile | ❌ CONFIRMÉ |
+| 18 | Fiche Google Business Profile | ✅ EXISTE — URL Maps à ajouter au schema |
 | 19 | Pas de page "méthode ikigai" | ❌ CONFIRMÉ |
 | 20 | Pas de page "ikigai test gratuit" | ❌ CONFIRMÉ |
 | 21 | Pas de page "reconversion comment faire" | ❌ CONFIRMÉ |

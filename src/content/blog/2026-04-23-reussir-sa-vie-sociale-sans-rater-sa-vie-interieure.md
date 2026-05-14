@@ -1,4 +1,4 @@
----
+﻿---
 title: Réussir sa vie sociale sans rater sa vie intérieure
 lang: fr
 description: Comment réussir sa vie sociale sans rater sa vie intérieure, éviter
@@ -171,3 +171,6 @@ Ton job peut devenir ton premier investisseur.
 Ton temps libre peut devenir ton terrain d’expérimentation.  
 Et ta prochaine décision peut être le début du moment où tu cesses de réussir seulement ta vie sociale pour enfin réussir aussi ta vie intérieure.
 
+---
+
+*Vous voulez savoir où vous en êtes vraiment ? Réservez une [séance découverte gratuite de 30 min](/tarifs/) — satisfait ou remboursé.*

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Management 2026 : pourquoi ton boss a 10 ans de retard"
 lang: fr
 description: "Le management de 2026 est déjà là, mais ton boss est coincé en 2010. Entre IA, semaine de 4 jours et quête de sens, le décalage n'a jamais été aussi grand."
@@ -88,3 +88,7 @@ Le management de 2026 n'est pas une évolution, c'est une mutation. Soit ton man
 N'attends pas que ton entreprise se mette à jour. Ce décalage que tu ressens est une information précieuse : tu es prêt pour la suite, mais ton job actuel ne l'est pas. Il est temps de reprendre les rênes.
 
 **Prêt à voir si ton job actuel a un futur en 2026 ?** Le Diagnostic de Destinée n'est pas un bilan de compétences. C'est un scan en 48h pour savoir si ton environnement de travail est obsolète et comment construire un plan de bataille pour reprendre le contrôle.
+
+---
+
+*Vous voulez savoir où vous en êtes vraiment ? Réservez une [séance découverte gratuite de 30 min](/tarifs/) — satisfait ou remboursé.*

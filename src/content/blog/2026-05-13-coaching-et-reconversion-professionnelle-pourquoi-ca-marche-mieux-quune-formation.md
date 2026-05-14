@@ -1,4 +1,4 @@
----
+﻿---
 title: "Coaching et reconversion professionnelle : pourquoi ça marche mieux qu'une formation"
 description: "Découvrez pourquoi la reconversion professionnelle via le coaching est plus efficace qu'une simple formation pour trouver du sens et lever vos blocages."
 seoKeywords: reconversion professionnelle coaching, formation, bilan de compétences, ikigai, transition professionnelle
@@ -132,3 +132,7 @@ Tu as déjà assez attendu. [Fais le diagnostic maintenant](https://be-ikigai.co
 1. [France Stratégie, « Les reconversions professionnelles en France : obstacles et leviers », 2023](https://www.strategie.gouv.fr) — Rapport public, octobre 2023
 2. [Mieko Kamiya, « Ikigai ni Tsuite », 1966](https://fr.wikipedia.org/wiki/Mieko_Kamiya) — Ouvrage fondateur sur la distinction ikigai / ikigai-kan
 3. [France Travail, Observatoire des transitions professionnelles, 2023](https://www.francetravail.fr) — Données officielles sur l'abandon des projets de formation
+
+---
+
+*Vous voulez savoir où vous en êtes vraiment ? Réservez une [séance découverte gratuite de 30 min](/tarifs/) — satisfait ou remboursé.*

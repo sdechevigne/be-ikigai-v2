@@ -1,4 +1,4 @@
----
+﻿---
 title: "L'Équilibre Vie Pro/Perso est un Mythe : Visez l'Intégration"
 description: "L'équilibre vie pro/perso parfait est un mythe épuisant. Découvrez comment la philosophie ikigai propose une approche plus saine basée sur l'intégration."
 seoKeywords: Équilibre Vie Pro/Perso, intégration, philosophie ikigai, sens au travail, charge mentale
@@ -95,3 +95,7 @@ Si tu veux arrêter de courir après une balance qui n'existe pas et construire 
 1. [Mieko Kamiya, Ikigai ni Tsuite](https://fr.wikipedia.org/wiki/Mieko_Kamiya) — Éditions Miraisha, 1966
 2. [Héctor García et Francesc Miralles, Ikigai : Les secrets des Japonais pour une vie longue et heureuse](https://www.editionslaffont.fr) — Éditions Laffont, 2017
 3. [Baromètre de la qualité de vie au travail](https://www.anact.fr) — ANACT, 2023
+
+---
+
+*Vous voulez savoir où vous en êtes vraiment ? Réservez une [séance découverte gratuite de 30 min](/tarifs/) — satisfait ou remboursé.*

@@ -25,8 +25,8 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
             ? `${categoryFilter} — Articles | be-ikigai`
             : `${categoryFilter} — Articles | be-ikigai`)
         : (lang === 'en'
-            ? "Blog — Ikigai Insights, Tips & Coaching Articles | be-ikigai"
-            : "Blog — Articles, Conseils & Réflexions sur l'Ikigai | be-ikigai")
+            ? "Ikigai Blog — Personal Growth & Life Purpose | be-ikigai"
+            : "Blog Ikigai : développement personnel & sens de la vie | be-ikigai")
     }
     description={categoryFilter
         ? (lang === 'en'
@@ -61,7 +61,7 @@ const categories = [...new Set(posts.map(post => post.data.category || (lang ===
                     />
                     <div class="blog-hero-overlay"></div>
                     <div class="blog-hero-content">
-                        <h1 class="blog-hero-h1">{lang === 'en' ? 'The Field Journal' : 'Le Carnet de Terrain'}</h1>
+                        <h1 class="blog-hero-h1">{lang === 'en' ? 'Ikigai Blog — Personal Growth & Life Purpose' : 'Blog Ikigai & développement personnel'}</h1>
                         <p class="blog-hero-sub">
                             {lang === 'en' ? 'Insights, advice and reflections to help you find your Ikigai.' : 'Réflexions, conseils et partages pour vous aider à trouver votre Ikigai.'}
                         </p>

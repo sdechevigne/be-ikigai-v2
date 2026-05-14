@@ -1,0 +1,10 @@
+---
+import Music from '../../components/Music.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+  ];
+}
+---
+<Music />

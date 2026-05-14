@@ -334,6 +334,59 @@ const t = {
   <BookingModal lang={lang} />
 
   <Footer lang={lang} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": isFR ? [
+      {
+        "@type": "Question",
+        "name": "Quel est le tarif d'une séance de coaching Ikigai ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Le Diagnostic Ikigai (phase 1) est à 580€. Les phases 2 et 3 (Le Sprint et La Sentinelle) sont sur devis selon votre projet. Une séance découverte de 30 minutes est offerte et sans engagement." }
+      },
+      {
+        "@type": "Question",
+        "name": "La séance découverte est-elle vraiment gratuite ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oui, la séance découverte de 30 minutes est 100% gratuite et sans aucun engagement. C'est l'occasion de discuter de votre situation et de voir comment l'Ikigai peut vous aider." }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de séances sont nécessaires ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Le Diagnostic Ikigai se fait en une séance intensive. Le parcours complet (Sprint) dure 1 à 3 mois maximum avec 2 à 3 séances par semaine. Au-delà, La Sentinelle assure un suivi de trajectoire à la demande." }
+      },
+      {
+        "@type": "Question",
+        "name": "Le coaching est-il remboursable ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oui. Pierre-Louis propose une garantie 100% satisfait ou remboursé. Si vous n'êtes pas convaincu par la transformation, vous êtes intégralement remboursé." }
+      },
+      {
+        "@type": "Question",
+        "name": "Le coaching Ikigai est-il fait pour moi ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Le coaching Ikigai s'adresse à toute personne en quête de sens, de reconversion professionnelle, ou souhaitant aligner sa vie avec ses vraies valeurs. Que vous soyez en burn-out, en transition de carrière ou simplement en quête de vous-même, le parcours est personnalisé." }
+      }
+    ] : [
+      {
+        "@type": "Question",
+        "name": "How much does an Ikigai coaching session cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The Ikigai Diagnosis (Phase 1) is €580. Phases 2 and 3 (The Sprint and The Sentinel) are priced on request. A free 30-minute discovery session is available with no commitment." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the discovery session really free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, the 30-minute discovery session is 100% free and no-commitment. It's an opportunity to discuss your situation and see how Ikigai coaching can help you." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many sessions are needed?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The Ikigai Diagnosis is done in one intensive session. The full journey (Sprint) lasts 1 to 3 months with 2 to 3 sessions per week. The Sentinel then provides ongoing trajectory support as needed." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a money-back guarantee?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Pierre-Louis offers a 100% satisfied or refunded guarantee. If you are not convinced by the transformation, you receive a full refund." }
+      }
+    ]
+  }, null, 2)} />
 </Layout>
 
 <style>

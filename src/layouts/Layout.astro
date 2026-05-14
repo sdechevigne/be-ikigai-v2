@@ -12,6 +12,8 @@ interface Props {
     canonicalPath?: string;
     frUrl?: string;
     enUrl?: string;
+    isBlogPost?: boolean;
+    breadcrumb?: Array<{ name: string; item: string }>;
 }
 
 const {
@@ -24,6 +26,8 @@ const {
     canonicalPath,
     frUrl: frUrlProp,
     enUrl: enUrlProp,
+    isBlogPost = false,
+    breadcrumb,
 } = Astro.props;
 
 const baseUrl = "https://be-ikigai.com";
@@ -106,8 +110,8 @@ const siteName = "be-ikigai";
 	<meta name="geo.position" content="48.855464;2.324940">
 	<meta name="ICBM" content="48.855464, 2.324940">
 
-	<!-- Schema.org JSON-LD: LocalBusiness -->
-	<script type="application/ld+json" set:html={JSON.stringify({
+	<!-- Schema.org JSON-LD: LocalBusiness (homepage, tarifs, services only) -->
+	{!isBlogPost && <script type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "LocalBusiness",
 		"name": lang === 'en' ? "be-ikigai - Ikigai Coaching by Pierre-Louis" : "be-ikigai - Coaching Ikigai par Pierre-Louis",
@@ -229,7 +233,7 @@ const siteName = "be-ikigai";
 			"reviewCount": "3",
 			"bestRating": "5"
 		}
-	}, null, 2)} />
+	}, null, 2)} />}
 
 	<!-- Schema.org JSON-LD: WebSite with SearchAction -->
 	<script type="application/ld+json" set:html={JSON.stringify({
@@ -250,19 +254,17 @@ const siteName = "be-ikigai";
 		}
 	}, null, 2)} />
 
-	<!-- Schema.org JSON-LD: BreadcrumbList -->
-	<script type="application/ld+json" set:html={JSON.stringify({
+	<!-- Schema.org JSON-LD: BreadcrumbList (deep pages only) -->
+	{breadcrumb && breadcrumb.length > 1 && <script type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",
-		"itemListElement": [
-			{
-				"@type": "ListItem",
-				"position": 1,
-				"name": lang === 'en' ? "Home" : "Accueil",
-				"item": lang === 'en' ? `${baseUrl}/en/` : baseUrl
-			}
-		]
-	}, null, 2)} />
+		"itemListElement": breadcrumb.map((item, i) => ({
+			"@type": "ListItem",
+			"position": i + 1,
+			"name": item.name,
+			"item": item.item
+		}))
+	}, null, 2)} />}
 
 	<slot name="head" />
 </head>

@@ -1,0 +1,397 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import BookingModal from './BookingModal.astro';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const isFR = lang === 'fr';
+
+const t = {
+  fr: {
+    pageTitle: 'Musique | be-ikigai',
+    pageDesc: 'Playlists et compilations musicales by be-ikigai — Celtic, Ambient, Deep House, Dubstep. Laissez-vous porter.',
+    heroKicker: 'Musique',
+    heroTitle: 'Des sons pour vous reconnecter',
+    heroSubtitle: 'Compilations et playlists composées pour accompagner votre chemin — travail profond, méditation, énergie.',
+    playOn: 'Écouter sur',
+    watchAll: 'Voir toute la chaîne',
+    filterAll: 'Tous',
+    filterAmbient: 'Ambient & Détente',
+    filterEnergy: 'Énergie',
+    filterCeltic: 'Celtic & Fantasy',
+  },
+  en: {
+    pageTitle: 'Music | be-ikigai',
+    pageDesc: 'Music playlists and compilations by be-ikigai — Celtic, Ambient, Deep House, Dubstep. Let yourself be carried away.',
+    heroKicker: 'Music',
+    heroTitle: 'Sounds to reconnect with yourself',
+    heroSubtitle: 'Compilations and playlists crafted to accompany your journey — deep work, meditation, energy.',
+    playOn: 'Listen on',
+    watchAll: 'View full channel',
+    filterAll: 'All',
+    filterAmbient: 'Ambient & Relaxation',
+    filterEnergy: 'Energy',
+    filterCeltic: 'Celtic & Fantasy',
+  },
+}[lang];
+
+const tracks = [
+  {
+    title: isFR ? 'Musique Médiévale & Celtique' : 'Medieval & Celtic Music',
+    videoId: 'VuFxFN8xH7s',
+    duration: '47 min',
+    category: 'celtic',
+    tag: isFR ? 'Celtic & Fantasy' : 'Celtic & Fantasy',
+    description: isFR
+      ? 'Voyagez dans des contrées imaginaires au son des cornemuses, harpes et flûtes celtiques.'
+      : 'Travel to imaginary lands with bagpipes, harps, and celtic flutes.',
+  },
+  {
+    title: isFR ? 'Dubstep Inspirant & Motivant' : 'Inspiring Motivational Dubstep',
+    videoId: '4KY9WATrMQ4',
+    duration: '41 min',
+    category: 'energy',
+    tag: isFR ? 'Énergie' : 'Energy',
+    description: isFR
+      ? 'Des basses puissantes et des drops explosifs pour booster votre concentration et votre énergie.'
+      : 'Powerful bass and explosive drops to boost your focus and energy.',
+  },
+  {
+    title: isFR ? 'Tropical Chillout — Electro & Grooves' : 'Tropical Chillout — Electro & Grooves',
+    videoId: 'B4UO151AKiA',
+    duration: '25 min',
+    category: 'ambient',
+    tag: isFR ? 'Ambient & Détente' : 'Ambient & Relaxation',
+    description: isFR
+      ? 'Grooves ensoleillés et vibrations électroniques pour un moment de légèreté et de fluidité.'
+      : 'Sun-drenched grooves and electronic vibes for moments of lightness and flow.',
+  },
+  {
+    title: isFR ? 'Grandes Voix Audiophiles — Hi-Res' : 'Audiophile Great Voices — Hi-Res',
+    videoId: 'R2NFasSgO2U',
+    duration: '38 min',
+    category: 'ambient',
+    tag: isFR ? 'Ambient & Détente' : 'Ambient & Relaxation',
+    description: isFR
+      ? 'Une sélection de voix exceptionnelles en qualité haute résolution, pour écouter autrement.'
+      : 'A selection of exceptional voices in high-resolution quality, for a different listening experience.',
+  },
+  {
+    title: isFR ? 'Deep House — Mix Punchy 2025' : 'Deep House — Punchy Mix 2025',
+    videoId: '41IhrT_u8uY',
+    duration: '51 min',
+    category: 'energy',
+    tag: isFR ? 'Énergie' : 'Energy',
+    description: isFR
+      ? 'Un mix de Deep House percutant pour travailler en flow ou commencer la journée avec puissance.'
+      : 'A punchy Deep House mix to work in flow or start your day with power.',
+  },
+  {
+    title: isFR ? 'Musique Celtique Relaxante — Fantasy & Folk' : 'Relaxing Celtic Music — Fantasy & Folk',
+    videoId: 'SPfgK9e8VKk',
+    duration: '34 min',
+    category: 'celtic',
+    tag: isFR ? 'Celtic & Fantasy' : 'Celtic & Fantasy',
+    description: isFR
+      ? 'Folk doux et mélodies celtiques apaisantes pour la détente, la lecture ou la méditation.'
+      : 'Gentle folk and soothing celtic melodies for relaxation, reading, or meditation.',
+  },
+];
+
+const platformLinks = [
+  {
+    name: 'YouTube',
+    href: 'https://www.youtube.com/@beikigai',
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
+  },
+  {
+    name: 'Spotify',
+    href: 'https://open.spotify.com/artist/beikigai',
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`,
+  },
+  {
+    name: 'Deezer',
+    href: 'https://www.deezer.com/search/beikigai',
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M18.944 16.888H24v2.222h-5.056zm0-4.61H24v2.222h-5.056zm0-4.61H24v2.222h-5.056zM0 20.833h5.055v-2.222H0zm6.361 0h5.056v-2.222H6.361zm6.361 0H18v-2.222h-5.278zm-6.36-4.61h5.055v-2.222H6.361zm6.361 0H18v-2.222h-5.278zm-6.36-4.61h5.055V9.39H6.361zm6.361 0H18V9.39h-5.278z"/></svg>`,
+  },
+  {
+    name: 'Apple Music',
+    href: 'https://music.apple.com/search?term=beikigai',
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726 10.496 10.496 0 0 0-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026C4.786.07 4.043.15 3.34.428 2.004.958 1.04 1.88.475 3.208a4.98 4.98 0 0 0-.35 1.358c-.059.384-.1.769-.124 1.155-.008.098-.01.198-.01.297v13.944c0 .09.002.18.008.27.017.356.05.712.115 1.064.17.93.543 1.763 1.157 2.47a4.93 4.93 0 0 0 2.745 1.618c.484.11.977.163 1.472.178.13.005.26.007.39.007h13.028c.13 0 .259-.002.389-.007.518-.016 1.033-.076 1.534-.209a4.912 4.912 0 0 0 3.087-2.554c.287-.612.437-1.265.497-1.936.024-.268.036-.537.036-.807V6.142c0-.006-.001-.013-.001-.018zm-5.474 5.616a.747.747 0 0 1-.334.626l-7.26 4.605c-.155.098-.33.147-.502.147-.167 0-.337-.047-.488-.142a1.01 1.01 0 0 1-.487-.872V5.896c0-.36.196-.693.51-.866a.994.994 0 0 1 1.005.04l7.26 4.605a.749.749 0 0 1 .296.065z"/></svg>`,
+  },
+];
+---
+
+<Layout
+  title={t.pageTitle}
+  description={t.pageDesc}
+  lang={lang}
+  frUrl="/musique"
+  enUrl="/en/music"
+>
+  <Navbar lang={lang} />
+
+  <!-- Hero -->
+  <section class="relative min-h-[45vh] flex items-center justify-center overflow-hidden bg-[#1a2535]">
+    <!-- Animated background blobs -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="music-blob music-blob-1"></div>
+      <div class="music-blob music-blob-2"></div>
+      <div class="music-blob music-blob-3"></div>
+    </div>
+    <!-- Noise overlay -->
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: url(data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E);"></div>
+
+    <div class="relative z-10 text-center px-6 py-24">
+      <p class="text-[#ffd700] font-comfortaa text-sm tracking-[0.25em] uppercase mb-4 opacity-90">{t.heroKicker}</p>
+      <h1 class="font-comfortaa text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+        {t.heroTitle}
+      </h1>
+      <p class="text-white/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+        {t.heroSubtitle}
+      </p>
+
+      <!-- Platform links -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mt-10">
+        {platformLinks.map(p => (
+          <a
+            href={p.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-white/80 hover:border-[#ffd700] hover:text-[#ffd700] transition-all duration-200 text-sm backdrop-blur-sm bg-white/5"
+          >
+            <span set:html={p.icon} />
+            {p.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tracks grid -->
+  <section class="bg-[#1a2535] py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Filter tabs -->
+      <div class="flex flex-wrap gap-2 justify-center mb-12" id="music-filters">
+        <button data-filter="all" class="filter-btn active px-5 py-2 rounded-full text-sm font-medium transition-all duration-200">{t.filterAll}</button>
+        <button data-filter="ambient" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200">{t.filterAmbient}</button>
+        <button data-filter="energy" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200">{t.filterEnergy}</button>
+        <button data-filter="celtic" class="filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200">{t.filterCeltic}</button>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="tracks-grid">
+        {tracks.map((track, i) => (
+          <article
+            class="track-card group relative rounded-2xl overflow-hidden bg-[#243044] border border-white/5 hover:border-[#ffd700]/30 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#ffd700]/5"
+            data-category={track.category}
+            data-video-id={track.videoId}
+            data-index={i}
+          >
+            <!-- Thumbnail -->
+            <div class="relative aspect-video overflow-hidden">
+              <img
+                src={`https://i.ytimg.com/vi/${track.videoId}/hqdefault.jpg`}
+                alt={track.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+              <!-- Dark gradient -->
+              <div class="absolute inset-0 bg-gradient-to-t from-[#243044] via-transparent to-transparent opacity-60"></div>
+              <!-- Play button overlay -->
+              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <div class="w-14 h-14 rounded-full bg-[#ffd700] flex items-center justify-center shadow-lg shadow-[#ffd700]/40 transition-transform duration-200 group-hover:scale-110">
+                  <svg class="w-6 h-6 text-[#1a2535] ml-1" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+              <!-- Duration badge -->
+              <div class="absolute bottom-3 right-3 px-2 py-1 rounded-md bg-black/70 text-white text-xs font-mono backdrop-blur-sm">
+                {track.duration}
+              </div>
+              <!-- Category tag -->
+              <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#ffd700]/10 border border-[#ffd700]/30 text-[#ffd700] text-xs font-medium backdrop-blur-sm">
+                {track.tag}
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-5">
+              <h2 class="font-comfortaa text-white font-bold text-base mb-2 leading-snug group-hover:text-[#ffd700] transition-colors duration-200">
+                {track.title}
+              </h2>
+              <p class="text-white/50 text-sm leading-relaxed line-clamp-2">
+                {track.description}
+              </p>
+              <!-- Watch on YouTube link -->
+              <a
+                href={`https://www.youtube.com/watch?v=${track.videoId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-4 inline-flex items-center gap-1.5 text-white/40 hover:text-[#ffd700] text-xs transition-colors duration-200"
+                onclick="event.stopPropagation()"
+              >
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                YouTube
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Channel CTA -->
+      <div class="text-center mt-16">
+        <a
+          href="https://www.youtube.com/@beikigai"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#ffd700] text-[#1a2535] font-comfortaa font-bold text-base hover:bg-[#ffd700]/90 transition-all duration-200 shadow-lg shadow-[#ffd700]/20 hover:shadow-[#ffd700]/40 hover:-translate-y-0.5"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          {t.watchAll}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video lightbox -->
+  <div id="video-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center p-4 md:p-10">
+    <div class="absolute inset-0 bg-black/90 backdrop-blur-md" id="lightbox-backdrop"></div>
+    <div class="relative z-10 w-full max-w-4xl">
+      <!-- Close button -->
+      <button id="lightbox-close" class="absolute -top-12 right-0 text-white/60 hover:text-white transition-colors duration-200 flex items-center gap-2 text-sm">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        Fermer
+      </button>
+      <!-- iframe container -->
+      <div class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl">
+        <iframe
+          id="lightbox-iframe"
+          class="absolute inset-0 w-full h-full"
+          src=""
+          title="YouTube video"
+          frameborder="0"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <Footer lang={lang} />
+  <BookingModal />
+</Layout>
+
+<style>
+  .music-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: blobFloat 8s ease-in-out infinite;
+  }
+  .music-blob-1 {
+    width: 600px; height: 600px;
+    background: #9333ea;
+    top: -200px; left: -100px;
+    animation-delay: 0s;
+  }
+  .music-blob-2 {
+    width: 400px; height: 400px;
+    background: #ffd700;
+    top: -100px; right: -50px;
+    animation-delay: 3s;
+  }
+  .music-blob-3 {
+    width: 300px; height: 300px;
+    background: #2c3e50;
+    bottom: -50px; left: 40%;
+    animation-delay: 5s;
+  }
+  @keyframes blobFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, -20px) scale(1.05); }
+    66% { transform: translate(-15px, 10px) scale(0.95); }
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.5);
+  }
+  .filter-btn:hover {
+    border-color: rgba(255,215,0,0.4);
+    color: rgba(255,215,0,0.8);
+  }
+  .filter-btn.active {
+    background: rgba(255,215,0,0.12);
+    border-color: rgba(255,215,0,0.5);
+    color: #ffd700;
+  }
+
+  .track-card.hidden-by-filter {
+    display: none;
+  }
+
+  #video-lightbox.open {
+    display: flex;
+  }
+</style>
+
+<script>
+  // Filter logic
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.track-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = (btn as HTMLElement).dataset.filter;
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      cards.forEach(card => {
+        const cat = (card as HTMLElement).dataset.category;
+        if (filter === 'all' || cat === filter) {
+          card.classList.remove('hidden-by-filter');
+        } else {
+          card.classList.add('hidden-by-filter');
+        }
+      });
+    });
+  });
+
+  // Lightbox logic
+  const lightbox = document.getElementById('video-lightbox')!;
+  const iframe = document.getElementById('lightbox-iframe') as HTMLIFrameElement;
+  const closeBtn = document.getElementById('lightbox-close')!;
+  const backdrop = document.getElementById('lightbox-backdrop')!;
+
+  function openLightbox(videoId: string) {
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const videoId = (card as HTMLElement).dataset.videoId;
+      if (videoId) openLightbox(videoId);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  backdrop.addEventListener('click', closeLightbox);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>

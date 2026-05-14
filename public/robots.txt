@@ -47,6 +47,3 @@ Allow: /llms-full.txt
 User-agent: Bytespider
 Allow: /
 
-# Crawl-delay for bots (politeness)
-User-agent: *
-Crawl-delay: 1

@@ -81,7 +81,14 @@ const isResources = slug === 'ressources-outils';
           <p class="text-xl md:text-2xl text-white/90 max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] mb-10">
             {copy.heroSubtitle}
           </p>
-          {!isResources && (
+          {isResources ? (
+            <a
+              href={pricingUrl}
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-dore-serein text-bleu-crepuscule font-comfortaa font-semibold rounded-full hover:bg-white transition-colors text-lg"
+            >
+              {copy.ctaLabel}
+            </a>
+          ) : (
             <div class="flex flex-col sm:flex-row gap-4">
               {isMusic ? (
                 <a
@@ -106,14 +113,6 @@ const isResources = slug === 'ressources-outils';
                 {copy.ctaSecondary}
               </p>
             </div>
-          )}
-          {isResources && (
-            <a
-              href={pricingUrl}
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-dore-serein text-bleu-crepuscule font-comfortaa font-semibold rounded-full hover:bg-white transition-colors text-lg"
-            >
-              {copy.ctaLabel}
-            </a>
           )}
         </div>
       </div>
@@ -158,8 +157,7 @@ const isResources = slug === 'ressources-outils';
   <!-- Bénéfices -->
   <section class="py-14 lg:py-20 bg-white">
     <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="fade-in">
+      <div class="max-w-4xl mx-auto fade-in">
           <h2 class="text-2xl md:text-3xl font-comfortaa font-bold text-bleu-crepuscule mb-10 text-center">
             {isFR ? 'Ce que tu en retires' : 'What you get out of it'}
           </h2>
@@ -178,7 +176,6 @@ const isResources = slug === 'ressources-outils';
               </div>
             ))}
           </div>
-        </div>
       </div>
     </div>
   </section>
@@ -259,92 +256,80 @@ const isResources = slug === 'ressources-outils';
   </section>
 
   <!-- Prix & CTA principal -->
-  {!isResources && !isMusic && (
-    <section class="py-14 lg:py-20 pain-bg">
-      <div class="container mx-auto px-6">
-        <div class="max-w-2xl mx-auto text-center fade-in">
-          <p class="text-dore-serein font-comfortaa uppercase tracking-[0.25em] text-sm mb-4">
-            {isFR ? 'Prêt à commencer ?' : 'Ready to start?'}
-          </p>
-          <p class="text-5xl font-comfortaa font-bold text-white mb-3">{copy.price}</p>
-          <p class="text-white/60 text-sm mb-8">{copy.priceNote}</p>
-          <button
-            type="button"
-            data-open-booking
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer mb-4"
-          >
-            {copy.ctaLabel}
-          </button>
-          <p class="text-white/40 text-sm">{copy.ctaSecondary}</p>
-
-          <!-- Garantie -->
-          <div class="mt-10 flex items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-6 py-4">
-            <svg class="w-6 h-6 text-dore-serein flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-            </svg>
-            <p class="text-white/70 text-sm">
-              {isFR ? '100% satisfait ou remboursé : la garantie de Pierre-Louis' : "100% satisfied or refunded: Pierre-Louis's guarantee"}
+  <section class="py-14 lg:py-20 pain-bg">
+    <div class="container mx-auto px-6">
+      <div class="max-w-2xl mx-auto text-center fade-in">
+        {isMusic ? (
+          <>
+            <p class="text-dore-serein font-comfortaa uppercase tracking-[0.25em] text-sm mb-4">
+              {isFR ? 'Écouter maintenant' : 'Listen now'}
             </p>
-          </div>
-        </div>
+            <p class="text-white/70 mb-8 text-lg">{copy.priceNote}</p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <a href="https://open.spotify.com/artist/02cB5srMHjSZIGvaX2SOwm" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0c2.762 0 5 2.239 5 5v14c0 2.761-2.238 5-5 5h-14c-2.761 0-5-2.239-5-5v-14c0-2.761 2.239-5 5-5h14zm-7 4c-4.418 0-8 3.582-8 8 0 4.419 3.582 8 8 8s8-3.581 8-8c0-4.418-3.582-8-8-8zm3.669 11.539c-.144.236-.451.31-.686.166-1.878-1.148-4.243-1.408-7.028-.772-.268.062-.535-.106-.597-.375-.061-.268.106-.535.375-.596 3.048-.697 5.662-.397 7.771.891.235.144.309.451.165.686zm.979-2.178c-.181.293-.565.385-.858.205-2.15-1.322-5.428-1.704-7.972-.932-.33.099-.678-.087-.778-.416-.1-.33.086-.677.416-.778 2.905-.881 6.517-.454 8.987 1.063.293.181.385.565.205.858zm.084-2.269c-2.578-1.531-6.832-1.672-9.294-.925-.395.12-.813-.103-.933-.498-.12-.396.103-.814.499-.934 2.826-.858 7.523-.692 10.492 1.07.356.211.472.671.262 1.026-.211.355-.671.472-1.026.261z"/></svg>
+                Spotify
+              </a>
+              <a href="https://music.apple.com/artist/be-ikigai/1843626775" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 13.804c-.393 1.14-1.569 3.159-2.782 3.18-.804.016-1.062-.476-1.98-.476s-1.207.461-1.967.492c-1.286.048-3.271-2.915-3.271-5.498 0-2.374 1.654-3.55 3.099-3.572.774-.014 1.507.522 1.98.522.475 0 1.364-.645 2.298-.55.391.016 1.488.158 2.195 1.189-1.873 1.221-1.581 3.774.428 4.713zm-2.611-8.804c-1.413.058-2.566 1.54-2.404 2.765 1.304.102 2.558-1.362 2.404-2.765z"/></svg>
+                Apple Music
+              </a>
+              <a href="https://www.youtube.com/@beikigai" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
+                <svg class="w-5 h-5" viewBox="0 0 71 71" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M56.5615 18.2428C58.8115 18.8504 60.58 20.6234 61.1778 22.8708C62.2654 26.9495 62.2654 35.4647 62.2654 35.4647C62.2654 35.4647 62.2654 43.98 61.1778 48.0586C60.5717 50.3144 58.8032 52.0873 56.5615 52.6866C52.4932 53.7771 36.1703 53.7771 36.1703 53.7771C36.1703 53.7771 19.8557 53.7771 15.7791 52.6866C13.5291 52.079 11.7606 50.306 11.1628 48.0586C10.0752 43.98 10.0752 35.4647 10.0752 35.4647C10.0752 35.4647 10.0752 26.9495 11.1628 22.8708C11.7689 20.615 13.5374 18.8421 15.7791 18.2428C19.8557 17.1523 36.1703 17.1523 36.1703 17.1523C36.1703 17.1523 52.4932 17.1523 56.5615 18.2428ZM44.5142 35.4647L30.9561 43.314V27.6154L44.5142 35.4647Z" fill="currentColor"/></svg>
+                YouTube
+              </a>
+              <a href="https://music.amazon.com/artists/B0FTMNPT41/be-ikigai" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.074-1.052-.872-1.238-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.66 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.11-.891 5.942-1.095v-.41c0-.753.06-1.642-.383-2.294-.385-.579-1.124-.82-1.775-.82-1.205 0-2.277.618-2.54 1.897-.054.285-.261.567-.549.582l-3.061-.333c-.259-.056-.548-.266-.472-.66.704-3.716 4.06-4.838 7.066-4.838 1.537 0 3.547.41 4.758 1.574 1.538 1.436 1.392 3.352 1.392 5.438v4.923c0 1.481.616 2.13 1.192 2.929.204.287.247.63-.01.839-.647.541-1.794 1.537-2.423 2.099l-.008-.007zm3.559 1.988c-2.748 1.472-5.735 2.181-8.453 2.181-4.027 0-7.927-1.393-11.081-3.706-.277-.202-.481.154-.251.416 2.925 3.326 6.786 5.326 11.076 5.326 3.061 0 6.614-1.214 9.066-3.494.406-.377.058-.945-.357-.723zm.67 2.216c-.091.227.104.32.31.147 1.339-1.12 1.685-3.466 1.411-3.804-.272-.336-2.612-.626-4.04.377-.22.154-.182.367.062.337.805-.096 2.595-.312 2.913.098.319.41-.355 2.094-.656 2.845z"/></svg>
+                Amazon Music
+              </a>
+            </div>
+          </>
+        ) : isResources ? (
+          <>
+            <p class="text-dore-serein font-comfortaa uppercase tracking-[0.25em] text-sm mb-4">
+              {isFR ? 'Commencer maintenant' : 'Start now'}
+            </p>
+            <p class="text-white/70 mb-8 text-lg">{copy.priceNote}</p>
+            <a
+              href={pricingUrl}
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-dore-serein text-bleu-crepuscule font-comfortaa font-semibold rounded-full hover:bg-white transition-colors text-lg mb-4"
+            >
+              {copy.ctaLabel}
+            </a>
+            <p class="text-white/40 text-sm">{copy.ctaSecondary}</p>
+          </>
+        ) : (
+          <>
+            <p class="text-dore-serein font-comfortaa uppercase tracking-[0.25em] text-sm mb-4">
+              {isFR ? 'Prêt à commencer ?' : 'Ready to start?'}
+            </p>
+            <p class="text-5xl font-comfortaa font-bold text-white mb-3">{copy.price}</p>
+            <p class="text-white/60 text-sm mb-8">{copy.priceNote}</p>
+            <button
+              type="button"
+              data-open-booking
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer mb-4"
+            >
+              {copy.ctaLabel}
+            </button>
+            <p class="text-white/40 text-sm">{copy.ctaSecondary}</p>
+            <div class="mt-10 flex items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-6 py-4">
+              <svg class="w-6 h-6 text-dore-serein flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+              <p class="text-white/70 text-sm">
+                {isFR ? '100% satisfait ou remboursé : la garantie de Pierre-Louis' : "100% satisfied or refunded: Pierre-Louis's guarantee"}
+              </p>
+            </div>
+          </>
+        )}
       </div>
-    </section>
-  )}
-
-  {isMusic && (
-    <section class="py-14 lg:py-20 pain-bg">
-      <div class="container mx-auto px-6">
-        <div class="max-w-2xl mx-auto text-center fade-in">
-          <p class="text-dore-serein font-comfortaa uppercase tracking-[0.25em] text-sm mb-4">
-            {isFR ? 'Écouter maintenant' : 'Listen now'}
-          </p>
-          <p class="text-white/70 mb-8 text-lg">{copy.priceNote}</p>
-          <div class="flex flex-wrap justify-center gap-4">
-            <a href="https://open.spotify.com/artist/02cB5srMHjSZIGvaX2SOwm" target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0c2.762 0 5 2.239 5 5v14c0 2.761-2.238 5-5 5h-14c-2.761 0-5-2.239-5-5v-14c0-2.761 2.239-5 5-5h14zm-7 4c-4.418 0-8 3.582-8 8 0 4.419 3.582 8 8 8s8-3.581 8-8c0-4.418-3.582-8-8-8zm3.669 11.539c-.144.236-.451.31-.686.166-1.878-1.148-4.243-1.408-7.028-.772-.268.062-.535-.106-.597-.375-.061-.268.106-.535.375-.596 3.048-.697 5.662-.397 7.771.891.235.144.309.451.165.686zm.979-2.178c-.181.293-.565.385-.858.205-2.15-1.322-5.428-1.704-7.972-.932-.33.099-.678-.087-.778-.416-.1-.33.086-.677.416-.778 2.905-.881 6.517-.454 8.987 1.063.293.181.385.565.205.858zm.084-2.269c-2.578-1.531-6.832-1.672-9.294-.925-.395.12-.813-.103-.933-.498-.12-.396.103-.814.499-.934 2.826-.858 7.523-.692 10.492 1.07.356.211.472.671.262 1.026-.211.355-.671.472-1.026.261z"/></svg>
-              Spotify
-            </a>
-            <a href="https://music.apple.com/artist/be-ikigai/1843626775" target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 13.804c-.393 1.14-1.569 3.159-2.782 3.18-.804.016-1.062-.476-1.98-.476s-1.207.461-1.967.492c-1.286.048-3.271-2.915-3.271-5.498 0-2.374 1.654-3.55 3.099-3.572.774-.014 1.507.522 1.98.522.475 0 1.364-.645 2.298-.55.391.016 1.488.158 2.195 1.189-1.873 1.221-1.581 3.774.428 4.713zm-2.611-8.804c-1.413.058-2.566 1.54-2.404 2.765 1.304.102 2.558-1.362 2.404-2.765z"/></svg>
-              Apple Music
-            </a>
-            <a href="https://www.youtube.com/@beikigai" target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
-              <svg class="w-5 h-5" viewBox="0 0 71 71" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M56.5615 18.2428C58.8115 18.8504 60.58 20.6234 61.1778 22.8708C62.2654 26.9495 62.2654 35.4647 62.2654 35.4647C62.2654 35.4647 62.2654 43.98 61.1778 48.0586C60.5717 50.3144 58.8032 52.0873 56.5615 52.6866C52.4932 53.7771 36.1703 53.7771 36.1703 53.7771C36.1703 53.7771 19.8557 53.7771 15.7791 52.6866C13.5291 52.079 11.7606 50.306 11.1628 48.0586C10.0752 43.98 10.0752 35.4647 10.0752 35.4647C10.0752 35.4647 10.0752 26.9495 11.1628 22.8708C11.7689 20.615 13.5374 18.8421 15.7791 18.2428C19.8557 17.1523 36.1703 17.1523 36.1703 17.1523C36.1703 17.1523 52.4932 17.1523 56.5615 18.2428ZM44.5142 35.4647L30.9561 43.314V27.6154L44.5142 35.4647Z" fill="currentColor"/></svg>
-              YouTube
-            </a>
-            <a href="https://music.amazon.com/artists/B0FTMNPT41/be-ikigai" target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.074-1.052-.872-1.238-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.66 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.11-.891 5.942-1.095v-.41c0-.753.06-1.642-.383-2.294-.385-.579-1.124-.82-1.775-.82-1.205 0-2.277.618-2.54 1.897-.054.285-.261.567-.549.582l-3.061-.333c-.259-.056-.548-.266-.472-.66.704-3.716 4.06-4.838 7.066-4.838 1.537 0 3.547.41 4.758 1.574 1.538 1.436 1.392 3.352 1.392 5.438v4.923c0 1.481.616 2.13 1.192 2.929.204.287.247.63-.01.839-.647.541-1.794 1.537-2.423 2.099l-.008-.007zm3.559 1.988c-2.748 1.472-5.735 2.181-8.453 2.181-4.027 0-7.927-1.393-11.081-3.706-.277-.202-.481.154-.251.416 2.925 3.326 6.786 5.326 11.076 5.326 3.061 0 6.614-1.214 9.066-3.494.406-.377.058-.945-.357-.723zm.67 2.216c-.091.227.104.32.31.147 1.339-1.12 1.685-3.466 1.411-3.804-.272-.336-2.612-.626-4.04.377-.22.154-.182.367.062.337.805-.096 2.595-.312 2.913.098.319.41-.355 2.094-.656 2.845z"/></svg>
-              Amazon Music
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  )}
-
-  {isResources && (
-    <section class="py-14 lg:py-20 pain-bg">
-      <div class="container mx-auto px-6">
-        <div class="max-w-2xl mx-auto text-center fade-in">
-          <p class="text-dore-serein font-comfortaa uppercase tracking-[0.25em] text-sm mb-4">
-            {isFR ? 'Commencer maintenant' : 'Start now'}
-          </p>
-          <p class="text-white/70 mb-8 text-lg">{copy.priceNote}</p>
-          <a
-            href={pricingUrl}
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-dore-serein text-bleu-crepuscule font-comfortaa font-semibold rounded-full hover:bg-white transition-colors text-lg mb-4"
-          >
-            {copy.ctaLabel}
-          </a>
-          <p class="text-white/40 text-sm">{copy.ctaSecondary}</p>
-        </div>
-      </div>
-    </section>
-  )}
+    </div>
+  </section>
 
   <!-- FAQ -->
   <section class="py-14 lg:py-20 bg-white">

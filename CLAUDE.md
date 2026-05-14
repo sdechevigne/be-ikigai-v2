@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run dev` — local dev server at `localhost:4321`
 - `npm run build` — static build to `./dist/`
 - `npm run preview` — preview production build
-- `npm run astro check` — type-check (Astro + TS); prompts to install `@astrojs/check` on first run
+- `npm run astro check` — type-check (Astro + TS); prompts to install `@astrojs/check` on first run. Retourne des faux positifs Deno sur `supabase/functions/` — filtrer avec `| grep "^src/"` pour les erreurs Astro uniquement.
 
 Node `>=22.12.0` is required (see `package.json#engines`).
 
@@ -68,6 +68,14 @@ Backend pipeline (Supabase project `aeobrpxjmecbvdeqjbvc`):
 ### Styling
 
 Tailwind with a small branded palette (`tailwind.config.mjs`): `bleu-crepuscule` (#2c3e50), `dore-serein` (#ffd700), `beige-chaleureux` (#f5e5d5), plus `comfortaa` font family for headings. Purple `#9333ea` is used literally in class names (not in the palette) as the primary accent on Pricing/CTAs — keep it consistent when adding new components. Reusable background utilities (`.pain-bg`, `.solution-bg`, `.contour-bg`) live in `src/styles/global.css`.
+
+### Services
+
+`src/data/services.ts` — source unique pour les 6 services (`bilan-ikigai`, `parcours-coaching`, `bilan-famille`, `musique-bien-etre`, `ateliers-groupe`, `ressources-outils`). Chaque service contient tout le contenu bilingue (copie landing page, FAQ, bénéfices, prix). `ServicesFeature.astro` rend la landing page individuelle ; `ServicesIndex.astro` rend la grille. Footer.astro gère déjà le switch `/services/[slug]` ↔ `/en/services/[slug]` via regex — pas besoin de mettre à jour la map explicite pour les services.
+
+`contexte/` — dossier de référence avec `book-essence.md`, `client-examples.md` et `skills-prompt.md`. À lire avant de rédiger tout contenu marketing (landing pages, blog) pour aligner le ton, les archétypes clients et les 8 scénarios de blocage.
+
+`accentColor` — chaque service dans `services.ts` a sa propre couleur d'accentuation (ex: `#059669` pour Bilan Ikigai). Utiliser `service.accentColor` pour les icônes et badges, pas le violet `#9333ea` (réservé aux CTAs booking globaux).
 
 ### French copy convention
 

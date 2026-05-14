@@ -11,50 +11,148 @@ const isFR = lang === 'fr';
 
 const pageTitle = isFR ? 'Nos services | be-ikigai' : 'Our services | be-ikigai';
 const pageDesc = isFR
-  ? 'Découvrez tous les services be-ikigai : bilan Ikigai, coaching, ateliers et plus.'
-  : 'Discover all be-ikigai services: Ikigai assessment, coaching, workshops and more.';
+  ? 'Bilan Ikigai, parcours coaching, ateliers groupe, bilan famille : tous les accompagnements be-ikigai pour trouver ta voie.'
+  : 'Ikigai Assessment, coaching journey, group workshops, family bond: all be-ikigai accompaniments to find your path.';
 
 const servicesBaseUrl = isFR ? '/services/' : `/${lang}/services/`;
+const pricingUrl = isFR ? '/tarifs' : '/en/pricing';
 ---
 
 <Layout title={pageTitle} description={pageDesc} lang={lang}>
   <Navbar lang={lang} transparent={false} />
-  <main class="pt-24 min-h-screen bg-beige-chaleureux">
-    <div class="container mx-auto px-6 py-16 max-w-4xl">
-      <h1 class="text-4xl font-comfortaa font-bold text-bleu-crepuscule mb-4">
-        {isFR ? 'Nos services' : 'Our services'}
-      </h1>
-      <p class="text-gray-600 mb-12 text-lg">
-        {isFR
-          ? "Tous les accompagnements be-ikigai pour trouver ta voie et t'épanouir."
-          : 'All be-ikigai accompaniments to find your path and flourish.'}
-      </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {services.map((service) => {
-          const copy = lang === 'fr' ? service.fr : service.en;
-          return (
-            <a
-              href={`${servicesBaseUrl}${service.slug}/`}
-              class="flex items-start gap-4 p-5 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow"
-            >
-              <span
-                class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
-                style={`background-color: ${service.iconBg}`}
-              >
-                <svg class="w-6 h-6 text-bleu-crepuscule" viewBox="0 0 24 24" fill="currentColor">
-                  <path d={service.iconSvgPath} />
-                </svg>
-              </span>
-              <div>
-                <p class="font-semibold text-bleu-crepuscule">{copy.title}</p>
-                <p class="text-sm text-gray-500 mt-0.5">{copy.subtitle}</p>
-              </div>
-            </a>
-          );
-        })}
+  <main>
+    <!-- Hero -->
+    <section class="pain-bg pt-32 pb-16 lg:pt-40 lg:pb-20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto fade-in">
+          <p class="text-dore-serein font-comfortaa uppercase tracking-[0.3em] text-sm mb-4">
+            {isFR ? 'L\'offre be-ikigai' : 'The be-ikigai offer'}
+          </p>
+          <h1 class="text-3xl md:text-5xl font-comfortaa text-white mb-6 leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+            {isFR ? 'Tous les accompagnements' : 'All accompaniments'}
+          </h1>
+          <p class="text-xl text-white/90 max-w-2xl">
+            {isFR
+              ? "Du bilan individuel aux ateliers collectifs : chaque service répond à un moment précis de ton parcours."
+              : "From individual assessment to group workshops: each service meets a specific moment of your journey."}
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Grille des services -->
+    <section class="py-14 lg:py-20 solution-bg">
+      <div class="container mx-auto px-6">
+        <div class="max-w-5xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {services.map((service) => {
+              const copy = isFR ? service.fr : service.en;
+              return (
+                <a
+                  href={`${servicesBaseUrl}${service.slug}/`}
+                  class="group flex flex-col bg-white rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:border-gray-200"
+                >
+                  <div class="p-7 flex-1">
+                    <div class="flex items-start gap-4 mb-5">
+                      <span
+                        class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={`background-color: ${service.iconBg}`}
+                      >
+                        <svg class="w-6 h-6" style={`color: ${service.accentColor}`} viewBox="0 0 24 24" fill="currentColor">
+                          <path d={service.iconSvgPath} />
+                        </svg>
+                      </span>
+                      <div>
+                        <p class="text-xs font-bold uppercase tracking-widest mb-1" style={`color: ${service.accentColor}`}>
+                          {copy.kicker}
+                        </p>
+                        <p class="font-comfortaa font-bold text-bleu-crepuscule text-lg leading-tight">{copy.title}</p>
+                      </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5">{copy.subtitle}</p>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-full text-xs text-gray-500">
+                        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+                        </svg>
+                        {copy.format.split('·')[0].trim()}
+                      </span>
+                      <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold" style={`background-color: ${service.iconBg}; color: ${service.accentColor}`}>
+                        {copy.price}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="px-7 py-4 border-t border-gray-50 flex items-center justify-between">
+                    <span class="text-sm font-comfortaa font-semibold" style={`color: ${service.accentColor}`}>
+                      {isFR ? 'Découvrir' : 'Discover'}
+                    </span>
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" style={`color: ${service.accentColor}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA global -->
+    <section class="py-14 lg:py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto text-center fade-in">
+          <div class="relative bg-gradient-to-r from-[#9333ea]/10 via-white to-dore-serein/10 border border-[#9333ea]/20 rounded-3xl p-8 md:p-12 overflow-hidden">
+            <div class="relative z-10">
+              <img
+                loading="lazy"
+                class="w-20 h-20 rounded-full object-cover border-4 border-[#9333ea] shadow-lg mx-auto mb-6"
+                src="/assets/img/pierre-louis-be-ikigai.png"
+                alt="Pierre-Louis, coach Ikigai"
+                width="80"
+                height="80"
+              />
+              <h2 class="text-2xl md:text-3xl font-comfortaa font-bold text-bleu-crepuscule mb-4">
+                {isFR ? 'Pas sûr par où commencer ?' : 'Not sure where to start?'}
+              </h2>
+              <p class="text-gray-600 mb-8 max-w-xl mx-auto">
+                {isFR
+                  ? "La séance découverte de 30 minutes est gratuite et sans engagement. On fait le point ensemble et je te dis honnêtement quel service correspond à ta situation."
+                  : "The 30-minute discovery session is free and no-commitment. We'll take stock together and I'll tell you honestly which service fits your situation."}
+              </p>
+              <button
+                type="button"
+                data-open-booking
+                class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer mb-3"
+              >
+                {isFR ? 'Réserver ma séance découverte' : 'Book my discovery session'}
+              </button>
+              <p class="text-gray-400 text-sm">
+                {isFR ? '30 minutes · Gratuit · Sans engagement' : '30 minutes · Free · No commitment'}
+              </p>
+              <p class="mt-4 text-sm text-gray-500">
+                {isFR ? 'Ou consulter les' : 'Or view the'}
+                {' '}
+                <a href={pricingUrl} class="text-[#9333ea] underline underline-offset-2 hover:text-[#7e22ce]">
+                  {isFR ? 'tarifs détaillés' : 'detailed pricing'}
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   <Footer lang={lang} />
   <BookingModal lang={lang} />
 </Layout>
+
+<script is:inline>
+  (function () {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+  })();
+</script>

@@ -12,35 +12,417 @@ const { slug } = Astro.params as { slug: string };
 const service = services.find((s) => s.slug === slug);
 if (!service) return Astro.redirect('/404');
 
-const copy = lang === 'fr' ? service.fr : service.en;
-const pageTitle = `${copy.title} | be-ikigai`;
-const pageDesc = copy.subtitle;
+const isFR = lang === 'fr';
+const copy = isFR ? service.fr : service.en;
+const pricingUrl = isFR ? '/tarifs' : '/en/pricing';
+const servicesUrl = isFR ? '/services/' : '/en/services/';
+
+const schemaService = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: copy.title,
+  description: copy.seoDesc,
+  provider: {
+    '@type': 'Person',
+    name: 'Pierre-Louis',
+    url: 'https://be-ikigai.com',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: copy.price.replace(/[^0-9]/g, '') || undefined,
+    priceCurrency: 'EUR',
+    description: copy.priceNote,
+  },
+};
+
+const schemaFaq = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: copy.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const isMusic = slug === 'musique-bien-etre';
+const isResources = slug === 'ressources-outils';
 ---
 
-<Layout title={pageTitle} description={pageDesc} lang={lang}>
-  <meta slot="head" name="robots" content="noindex, follow" />
+<Layout title={copy.seoTitle} description={copy.seoDesc} lang={lang}>
   <Navbar lang={lang} transparent={false} />
-  <main class="pt-24 min-h-screen bg-beige-chaleureux">
-    <div class="container mx-auto px-6 py-16 max-w-3xl">
-      <div class="flex items-center gap-4 mb-8">
-        <span
-          class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-          style={`background-color: ${service.iconBg}`}
-        >
-          <svg class="w-7 h-7 text-bleu-crepuscule" viewBox="0 0 24 24" fill="currentColor">
-            <path d={service.iconSvgPath} />
-          </svg>
-        </span>
-        <div>
-          <h1 class="text-3xl font-comfortaa font-bold text-bleu-crepuscule">{copy.title}</h1>
-          <p class="text-gray-500 mt-1">{copy.subtitle}</p>
+
+  <!-- Hero -->
+  <section class="pain-bg pt-32 pb-16 lg:pt-40 lg:pb-24">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="fade-in">
+          <a href={servicesUrl} class="inline-flex items-center gap-2 text-white/50 hover:text-white/80 text-sm mb-6 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            {isFR ? 'Tous les services' : 'All services'}
+          </a>
+          <div class="flex items-center gap-4 mb-6">
+            <span
+              class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+              style={`background-color: ${service.iconBg}`}
+            >
+              <svg class="w-7 h-7" style={`color: ${service.accentColor}`} viewBox="0 0 24 24" fill="currentColor">
+                <path d={service.iconSvgPath} />
+              </svg>
+            </span>
+            <p class="text-dore-serein font-comfortaa uppercase tracking-[0.25em] text-sm">{copy.kicker}</p>
+          </div>
+          <h1
+            class="text-3xl md:text-5xl lg:text-6xl font-comfortaa text-white mb-6 leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+            set:html={copy.heroTitle}
+          />
+          <p class="text-xl md:text-2xl text-white/90 max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] mb-10">
+            {copy.heroSubtitle}
+          </p>
+          {!isResources && (
+            <div class="flex flex-col sm:flex-row gap-4">
+              {isMusic ? (
+                <a
+                  href="https://open.spotify.com/artist/02cB5srMHjSZIGvaX2SOwm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg"
+                >
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0c2.762 0 5 2.239 5 5v14c0 2.761-2.238 5-5 5h-14c-2.761 0-5-2.239-5-5v-14c0-2.761 2.239-5 5-5h14zm-7 4c-4.418 0-8 3.582-8 8 0 4.419 3.582 8 8 8s8-3.581 8-8c0-4.418-3.582-8-8-8zm3.669 11.539c-.144.236-.451.31-.686.166-1.878-1.148-4.243-1.408-7.028-.772-.268.062-.535-.106-.597-.375-.061-.268.106-.535.375-.596 3.048-.697 5.662-.397 7.771.891.235.144.309.451.165.686zm.979-2.178c-.181.293-.565.385-.858.205-2.15-1.322-5.428-1.704-7.972-.932-.33.099-.678-.087-.778-.416-.1-.33.086-.677.416-.778 2.905-.881 6.517-.454 8.987 1.063.293.181.385.565.205.858zm.084-2.269c-2.578-1.531-6.832-1.672-9.294-.925-.395.12-.813-.103-.933-.498-.12-.396.103-.814.499-.934 2.826-.858 7.523-.692 10.492 1.07.356.211.472.671.262 1.026-.211.355-.671.472-1.026.261z"/></svg>
+                  {copy.ctaLabel}
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  data-open-booking
+                  class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer"
+                >
+                  {copy.ctaLabel}
+                </button>
+              )}
+              <p class="flex items-center justify-center text-white/60 text-sm">
+                {copy.ctaSecondary}
+              </p>
+            </div>
+          )}
+          {isResources && (
+            <a
+              href={pricingUrl}
+              class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-dore-serein text-bleu-crepuscule font-comfortaa font-semibold rounded-full hover:bg-white transition-colors text-lg"
+            >
+              {copy.ctaLabel}
+            </a>
+          )}
         </div>
       </div>
-      <div class="bg-white rounded-2xl p-8 shadow-sm text-gray-400 italic text-center">
-        {lang === 'fr' ? 'Contenu à venir…' : 'Content coming soon…'}
+    </div>
+  </section>
+
+  <!-- Pain / Problème -->
+  <section class="py-14 lg:py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto fade-in">
+        <h2 class="text-2xl md:text-3xl font-comfortaa font-bold text-bleu-crepuscule mb-6">
+          {copy.painHeading}
+        </h2>
+        <p class="text-gray-700 text-lg leading-relaxed">
+          {copy.painBody}
+        </p>
       </div>
     </div>
-  </main>
+  </section>
+
+  <!-- Ce que ça fait concrètement -->
+  <section class="py-14 lg:py-20 solution-bg">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto fade-in">
+        <h2 class="text-2xl md:text-3xl font-comfortaa font-bold text-bleu-crepuscule mb-6">
+          {copy.whatHeading}
+        </h2>
+        <p class="text-gray-700 text-lg leading-relaxed mb-8">
+          {copy.whatBody}
+        </p>
+        <!-- Format pill -->
+        <div class="inline-flex flex-wrap items-center gap-2 px-5 py-3 bg-white rounded-2xl border border-gray-200 shadow-sm text-sm text-gray-600">
+          <svg class="w-4 h-4 text-bleu-crepuscule flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+          </svg>
+          {copy.format}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bénéfices -->
+  <section class="py-14 lg:py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="fade-in">
+          <h2 class="text-2xl md:text-3xl font-comfortaa font-bold text-bleu-crepuscule mb-10 text-center">
+            {isFR ? 'Ce que tu en retires' : 'What you get out of it'}
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {copy.benefits.map((benefit) => (
+              <div class="flex items-start gap-4 p-5 bg-gray-50 rounded-2xl border border-gray-100">
+                <span
+                  class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-0.5"
+                  style={`background-color: ${service.iconBg}`}
+                >
+                  <svg class="w-4 h-4" style={`color: ${service.accentColor}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <p class="text-gray-700 text-sm leading-relaxed">{benefit}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pour qui / Pas pour qui -->
+  <section class="py-14 lg:py-20 solution-bg">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in">
+          <!-- Pour qui -->
+          <div class="bg-white rounded-3xl p-8 shadow-sm">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="w-8 h-8 rounded-full flex items-center justify-center" style={`background-color: ${service.iconBg}`}>
+                <svg class="w-4 h-4" style={`color: ${service.accentColor}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <h2 class="text-lg font-comfortaa font-bold text-bleu-crepuscule">
+                {isFR ? "C'est fait pour toi si…" : "It's made for you if…"}
+              </h2>
+            </div>
+            <ul class="space-y-3">
+              {copy.forWho.map((item) => (
+                <li class="flex items-start gap-3 text-sm text-gray-700">
+                  <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style={`color: ${service.accentColor}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <!-- Pas pour qui -->
+          <div class="bg-white rounded-3xl p-8 shadow-sm">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100">
+                <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </span>
+              <h2 class="text-lg font-comfortaa font-bold text-bleu-crepuscule">
+                {isFR ? "Ce n'est pas pour toi si…" : "It's not for you if…"}
+              </h2>
+            </div>
+            <ul class="space-y-3">
+              {copy.notForWho.map((item) => (
+                <li class="flex items-start gap-3 text-sm text-gray-500">
+                  <svg class="w-4 h-4 text-gray-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignage client -->
+  <section class="py-14 lg:py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto fade-in">
+        <div class="relative bg-gradient-to-br from-bleu-crepuscule to-[#1A2A44] rounded-3xl p-8 md:p-12 text-white overflow-hidden">
+          <svg class="absolute top-6 left-8 w-10 h-10 text-dore-serein/30" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35l.539-.222.474-.197-.485-1.938-.597.144c-.191.048-.424.104-.689.171-.271.05-.56.187-.882.312-.318.142-.686.238-1.028.466-.344.218-.741.4-1.091.692-.339.301-.748.562-1.05.945-.33.358-.656.734-.909 1.162-.293.408-.492.856-.702 1.299-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539l.025.168.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35l.539-.222.474-.197-.485-1.938-.597.144c-.191.048-.424.104-.689.171-.271.05-.56.187-.882.312-.317.143-.686.238-1.028.467-.344.218-.741.4-1.091.692-.339.301-.748.562-1.05.944-.33.358-.656.734-.909 1.162-.293.408-.492.856-.702 1.299-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539l.025.168.026-.006A4.5 4.5 0 1 0 17.5 10z"/>
+          </svg>
+          <blockquote class="relative z-10 text-xl md:text-2xl font-comfortaa italic text-white/90 leading-relaxed mb-6 pt-4">
+            « {copy.clientStoryQuote} »
+          </blockquote>
+          <p class="relative z-10 text-sm text-white/50 border-t border-white/10 pt-4">
+            {copy.clientStoryContext}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prix & CTA principal -->
+  {!isResources && !isMusic && (
+    <section class="py-14 lg:py-20 pain-bg">
+      <div class="container mx-auto px-6">
+        <div class="max-w-2xl mx-auto text-center fade-in">
+          <p class="text-dore-serein font-comfortaa uppercase tracking-[0.25em] text-sm mb-4">
+            {isFR ? 'Prêt à commencer ?' : 'Ready to start?'}
+          </p>
+          <p class="text-5xl font-comfortaa font-bold text-white mb-3">{copy.price}</p>
+          <p class="text-white/60 text-sm mb-8">{copy.priceNote}</p>
+          <button
+            type="button"
+            data-open-booking
+            class="inline-flex items-center justify-center gap-2 px-10 py-5 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer mb-4"
+          >
+            {copy.ctaLabel}
+          </button>
+          <p class="text-white/40 text-sm">{copy.ctaSecondary}</p>
+
+          <!-- Garantie -->
+          <div class="mt-10 flex items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-6 py-4">
+            <svg class="w-6 h-6 text-dore-serein flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+            </svg>
+            <p class="text-white/70 text-sm">
+              {isFR ? '100% satisfait ou remboursé — la garantie de Pierre-Louis' : '100% satisfied or refunded — Pierre-Louis\'s guarantee'}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isMusic && (
+    <section class="py-14 lg:py-20 pain-bg">
+      <div class="container mx-auto px-6">
+        <div class="max-w-2xl mx-auto text-center fade-in">
+          <p class="text-dore-serein font-comfortaa uppercase tracking-[0.25em] text-sm mb-4">
+            {isFR ? 'Écouter maintenant' : 'Listen now'}
+          </p>
+          <p class="text-white/70 mb-8 text-lg">{copy.priceNote}</p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="https://open.spotify.com/artist/02cB5srMHjSZIGvaX2SOwm" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0c2.762 0 5 2.239 5 5v14c0 2.761-2.238 5-5 5h-14c-2.761 0-5-2.239-5-5v-14c0-2.761 2.239-5 5-5h14zm-7 4c-4.418 0-8 3.582-8 8 0 4.419 3.582 8 8 8s8-3.581 8-8c0-4.418-3.582-8-8-8zm3.669 11.539c-.144.236-.451.31-.686.166-1.878-1.148-4.243-1.408-7.028-.772-.268.062-.535-.106-.597-.375-.061-.268.106-.535.375-.596 3.048-.697 5.662-.397 7.771.891.235.144.309.451.165.686zm.979-2.178c-.181.293-.565.385-.858.205-2.15-1.322-5.428-1.704-7.972-.932-.33.099-.678-.087-.778-.416-.1-.33.086-.677.416-.778 2.905-.881 6.517-.454 8.987 1.063.293.181.385.565.205.858zm.084-2.269c-2.578-1.531-6.832-1.672-9.294-.925-.395.12-.813-.103-.933-.498-.12-.396.103-.814.499-.934 2.826-.858 7.523-.692 10.492 1.07.356.211.472.671.262 1.026-.211.355-.671.472-1.026.261z"/></svg>
+              Spotify
+            </a>
+            <a href="https://music.apple.com/artist/be-ikigai/1843626775" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 13.804c-.393 1.14-1.569 3.159-2.782 3.18-.804.016-1.062-.476-1.98-.476s-1.207.461-1.967.492c-1.286.048-3.271-2.915-3.271-5.498 0-2.374 1.654-3.55 3.099-3.572.774-.014 1.507.522 1.98.522.475 0 1.364-.645 2.298-.55.391.016 1.488.158 2.195 1.189-1.873 1.221-1.581 3.774.428 4.713zm-2.611-8.804c-1.413.058-2.566 1.54-2.404 2.765 1.304.102 2.558-1.362 2.404-2.765z"/></svg>
+              Apple Music
+            </a>
+            <a href="https://www.youtube.com/@beikigai" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
+              <svg class="w-5 h-5" viewBox="0 0 71 71" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M56.5615 18.2428C58.8115 18.8504 60.58 20.6234 61.1778 22.8708C62.2654 26.9495 62.2654 35.4647 62.2654 35.4647C62.2654 35.4647 62.2654 43.98 61.1778 48.0586C60.5717 50.3144 58.8032 52.0873 56.5615 52.6866C52.4932 53.7771 36.1703 53.7771 36.1703 53.7771C36.1703 53.7771 19.8557 53.7771 15.7791 52.6866C13.5291 52.079 11.7606 50.306 11.1628 48.0586C10.0752 43.98 10.0752 35.4647 10.0752 35.4647C10.0752 35.4647 10.0752 26.9495 11.1628 22.8708C11.7689 20.615 13.5374 18.8421 15.7791 18.2428C19.8557 17.1523 36.1703 17.1523 36.1703 17.1523C36.1703 17.1523 52.4932 17.1523 56.5615 18.2428ZM44.5142 35.4647L30.9561 43.314V27.6154L44.5142 35.4647Z" fill="currentColor"/></svg>
+              YouTube
+            </a>
+            <a href="https://music.amazon.com/artists/B0FTMNPT41/be-ikigai" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full transition-colors text-sm font-comfortaa">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.074-1.052-.872-1.238-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.66 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.11-.891 5.942-1.095v-.41c0-.753.06-1.642-.383-2.294-.385-.579-1.124-.82-1.775-.82-1.205 0-2.277.618-2.54 1.897-.054.285-.261.567-.549.582l-3.061-.333c-.259-.056-.548-.266-.472-.66.704-3.716 4.06-4.838 7.066-4.838 1.537 0 3.547.41 4.758 1.574 1.538 1.436 1.392 3.352 1.392 5.438v4.923c0 1.481.616 2.13 1.192 2.929.204.287.247.63-.01.839-.647.541-1.794 1.537-2.423 2.099l-.008-.007zm3.559 1.988c-2.748 1.472-5.735 2.181-8.453 2.181-4.027 0-7.927-1.393-11.081-3.706-.277-.202-.481.154-.251.416 2.925 3.326 6.786 5.326 11.076 5.326 3.061 0 6.614-1.214 9.066-3.494.406-.377.058-.945-.357-.723zm.67 2.216c-.091.227.104.32.31.147 1.339-1.12 1.685-3.466 1.411-3.804-.272-.336-2.612-.626-4.04.377-.22.154-.182.367.062.337.805-.096 2.595-.312 2.913.098.319.41-.355 2.094-.656 2.845z"/></svg>
+              Amazon Music
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {isResources && (
+    <section class="py-14 lg:py-20 pain-bg">
+      <div class="container mx-auto px-6">
+        <div class="max-w-2xl mx-auto text-center fade-in">
+          <p class="text-dore-serein font-comfortaa uppercase tracking-[0.25em] text-sm mb-4">
+            {isFR ? 'Commencer maintenant' : 'Start now'}
+          </p>
+          <p class="text-white/70 mb-8 text-lg">{copy.priceNote}</p>
+          <a
+            href={pricingUrl}
+            class="inline-flex items-center justify-center gap-2 px-10 py-5 bg-dore-serein text-bleu-crepuscule font-comfortaa font-semibold rounded-full hover:bg-white transition-colors text-lg mb-4"
+          >
+            {copy.ctaLabel}
+          </a>
+          <p class="text-white/40 text-sm">{copy.ctaSecondary}</p>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  <section class="py-14 lg:py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto fade-in">
+        <h2 class="text-2xl md:text-3xl font-comfortaa font-bold text-bleu-crepuscule mb-10 text-center">
+          {isFR ? 'Questions fréquentes' : 'Frequently asked questions'}
+        </h2>
+        <div class="space-y-4">
+          {copy.faq.map((item) => (
+            <details class="group bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden">
+              <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer font-comfortaa font-semibold text-bleu-crepuscule hover:text-[#9333ea] transition-colors list-none">
+                {item.q}
+                <svg class="w-5 h-5 flex-shrink-0 text-gray-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+                {item.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA secondaire + lien vers autres services -->
+  <section class="py-14 lg:py-20 solution-bg">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto text-center fade-in">
+        {!isMusic && !isResources && (
+          <>
+            <h2 class="text-2xl md:text-3xl font-comfortaa font-bold text-bleu-crepuscule mb-4">
+              {isFR ? 'Une question avant de décider ?' : 'A question before deciding?'}
+            </h2>
+            <p class="text-gray-600 mb-8">
+              {isFR
+                ? 'La séance découverte de 30 minutes est gratuite et sans engagement. C\'est le meilleur endroit pour commencer.'
+                : 'The 30-minute discovery session is free and no-commitment. It\'s the best place to start.'}
+            </p>
+            <button
+              type="button"
+              data-open-booking
+              class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer mb-4"
+            >
+              {copy.ctaLabel}
+            </button>
+            <p class="text-gray-400 text-sm mb-12">{copy.ctaSecondary}</p>
+          </>
+        )}
+        <a href={servicesUrl} class="inline-flex items-center gap-2 text-bleu-crepuscule/60 hover:text-bleu-crepuscule text-sm transition-colors">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          {isFR ? 'Voir tous les services' : 'See all services'}
+        </a>
+      </div>
+    </div>
+  </section>
+
   <Footer lang={lang} />
   <BookingModal lang={lang} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(schemaService, null, 2)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schemaFaq, null, 2)} />
 </Layout>
+
+<style>
+  details summary::-webkit-details-marker { display: none; }
+</style>
+
+<script is:inline>
+  (function () {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+  })();
+</script>

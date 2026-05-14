@@ -88,7 +88,7 @@ const isResources = slug === 'ressources-outils';
                   href="https://open.spotify.com/artist/02cB5srMHjSZIGvaX2SOwm"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg"
                 >
                   <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0c2.762 0 5 2.239 5 5v14c0 2.761-2.238 5-5 5h-14c-2.761 0-5-2.239-5-5v-14c0-2.761 2.239-5 5-5h14zm-7 4c-4.418 0-8 3.582-8 8 0 4.419 3.582 8 8 8s8-3.581 8-8c0-4.418-3.582-8-8-8zm3.669 11.539c-.144.236-.451.31-.686.166-1.878-1.148-4.243-1.408-7.028-.772-.268.062-.535-.106-.597-.375-.061-.268.106-.535.375-.596 3.048-.697 5.662-.397 7.771.891.235.144.309.451.165.686zm.979-2.178c-.181.293-.565.385-.858.205-2.15-1.322-5.428-1.704-7.972-.932-.33.099-.678-.087-.778-.416-.1-.33.086-.677.416-.778 2.905-.881 6.517-.454 8.987 1.063.293.181.385.565.205.858zm.084-2.269c-2.578-1.531-6.832-1.672-9.294-.925-.395.12-.813-.103-.933-.498-.12-.396.103-.814.499-.934 2.826-.858 7.523-.692 10.492 1.07.356.211.472.671.262 1.026-.211.355-.671.472-1.026.261z"/></svg>
                   {copy.ctaLabel}
@@ -97,7 +97,7 @@ const isResources = slug === 'ressources-outils';
                 <button
                   type="button"
                   data-open-booking
-                  class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer"
                 >
                   {copy.ctaLabel}
                 </button>
@@ -110,7 +110,7 @@ const isResources = slug === 'ressources-outils';
           {isResources && (
             <a
               href={pricingUrl}
-              class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-dore-serein text-bleu-crepuscule font-comfortaa font-semibold rounded-full hover:bg-white transition-colors text-lg"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-dore-serein text-bleu-crepuscule font-comfortaa font-semibold rounded-full hover:bg-white transition-colors text-lg"
             >
               {copy.ctaLabel}
             </a>
@@ -145,7 +145,7 @@ const isResources = slug === 'ressources-outils';
           {copy.whatBody}
         </p>
         <!-- Format pill -->
-        <div class="inline-flex flex-wrap items-center gap-2 px-5 py-3 bg-white rounded-2xl border border-gray-200 shadow-sm text-sm text-gray-600">
+        <div class="flex flex-wrap items-start gap-2 px-5 py-3 bg-white rounded-2xl border border-gray-200 shadow-sm text-sm text-gray-600">
           <svg class="w-4 h-4 text-bleu-crepuscule flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
           </svg>
@@ -189,7 +189,7 @@ const isResources = slug === 'ressources-outils';
       <div class="max-w-4xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in">
           <!-- Pour qui -->
-          <div class="bg-white rounded-3xl p-8 shadow-sm">
+          <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm">
             <div class="flex items-center gap-3 mb-6">
               <span class="w-8 h-8 rounded-full flex items-center justify-center" style={`background-color: ${service.iconBg}`}>
                 <svg class="w-4 h-4" style={`color: ${service.accentColor}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -212,7 +212,7 @@ const isResources = slug === 'ressources-outils';
             </ul>
           </div>
           <!-- Pas pour qui -->
-          <div class="bg-white rounded-3xl p-8 shadow-sm">
+          <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm">
             <div class="flex items-center gap-3 mb-6">
               <span class="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100">
                 <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -243,7 +243,7 @@ const isResources = slug === 'ressources-outils';
   <section class="py-14 lg:py-20 bg-white">
     <div class="container mx-auto px-6">
       <div class="max-w-3xl mx-auto fade-in">
-        <div class="relative bg-gradient-to-br from-bleu-crepuscule to-[#1A2A44] rounded-3xl p-8 md:p-12 text-white overflow-hidden">
+        <div class="relative bg-gradient-to-br from-bleu-crepuscule to-[#1A2A44] rounded-3xl p-6 md:p-12 text-white overflow-hidden">
           <svg class="absolute top-6 left-8 w-10 h-10 text-dore-serein/30" fill="currentColor" viewBox="0 0 24 24">
             <path d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35l.539-.222.474-.197-.485-1.938-.597.144c-.191.048-.424.104-.689.171-.271.05-.56.187-.882.312-.318.142-.686.238-1.028.466-.344.218-.741.4-1.091.692-.339.301-.748.562-1.05.945-.33.358-.656.734-.909 1.162-.293.408-.492.856-.702 1.299-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539l.025.168.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35l.539-.222.474-.197-.485-1.938-.597.144c-.191.048-.424.104-.689.171-.271.05-.56.187-.882.312-.317.143-.686.238-1.028.467-.344.218-.741.4-1.091.692-.339.301-.748.562-1.05.944-.33.358-.656.734-.909 1.162-.293.408-.492.856-.702 1.299-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539l.025.168.026-.006A4.5 4.5 0 1 0 17.5 10z"/>
           </svg>
@@ -271,7 +271,7 @@ const isResources = slug === 'ressources-outils';
           <button
             type="button"
             data-open-booking
-            class="inline-flex items-center justify-center gap-2 px-10 py-5 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer mb-4"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer mb-4"
           >
             {copy.ctaLabel}
           </button>
@@ -283,7 +283,7 @@ const isResources = slug === 'ressources-outils';
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
             </svg>
             <p class="text-white/70 text-sm">
-              {isFR ? '100% satisfait ou remboursé — la garantie de Pierre-Louis' : '100% satisfied or refunded — Pierre-Louis\'s guarantee'}
+              {isFR ? '100% satisfait ou remboursé : la garantie de Pierre-Louis' : "100% satisfied or refunded: Pierre-Louis's guarantee"}
             </p>
           </div>
         </div>
@@ -336,7 +336,7 @@ const isResources = slug === 'ressources-outils';
           <p class="text-white/70 mb-8 text-lg">{copy.priceNote}</p>
           <a
             href={pricingUrl}
-            class="inline-flex items-center justify-center gap-2 px-10 py-5 bg-dore-serein text-bleu-crepuscule font-comfortaa font-semibold rounded-full hover:bg-white transition-colors text-lg mb-4"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-dore-serein text-bleu-crepuscule font-comfortaa font-semibold rounded-full hover:bg-white transition-colors text-lg mb-4"
           >
             {copy.ctaLabel}
           </a>
@@ -389,7 +389,7 @@ const isResources = slug === 'ressources-outils';
             <button
               type="button"
               data-open-booking
-              class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer mb-4"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9333ea] text-white font-comfortaa font-semibold rounded-full hover:bg-[#7e22ce] transition-colors text-lg cursor-pointer mb-4"
             >
               {copy.ctaLabel}
             </button>

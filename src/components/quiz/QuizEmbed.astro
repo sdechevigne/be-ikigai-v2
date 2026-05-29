@@ -1,0 +1,613 @@
+---
+import { getLangFromUrl } from "../../i18n/utils";
+import { quizContent } from "../../data/quiz";
+
+export interface Props {
+  lang?: string;
+  /** true = intégré dans une page (accueil) ; false = page dédiée /quiz. */
+  embedded?: boolean;
+}
+
+const propLang = Astro.props.lang;
+const lang =
+  (propLang ?? (getLangFromUrl(Astro.url) === "en" ? "en" : "fr")) === "en"
+    ? "en"
+    : "fr";
+const embedded = Astro.props.embedded ?? false;
+const ui = quizContent[lang].ui;
+const noJsMessage =
+  lang === "fr"
+    ? "Ce quiz nécessite JavaScript. Active-le pour découvrir ton brouillard."
+    : "This quiz requires JavaScript. Enable it to discover your fog.";
+---
+
+<div
+  id="quiz-root"
+  data-lang={lang}
+  data-embedded={embedded ? "true" : "false"}
+  class="quiz-root w-full max-w-[700px] mx-auto px-6 py-8 sm:py-12 text-bleu-crepuscule"
+>
+  <!-- Barre de progression (sticky sous la navbar, masquée hors quiz) -->
+  <div id="quiz-progress" class="quiz-progress" hidden>
+    <div id="quiz-progress-fill" class="quiz-progress-fill" style="width:0%"></div>
+  </div>
+  <div id="quiz-screen">
+    <noscript>
+      <p class="text-center">{noJsMessage}</p>
+    </noscript>
+  </div>
+</div>
+
+<style is:global>
+  /* Styles globaux : les cartes du quiz sont créées en JS au runtime,
+     donc le scoping Astro ne s'appliquerait pas. Préfixe .quiz-* dédié. */
+
+  /* ── Barre de progression (sticky sous la navbar fixe) ─────────────── */
+  .quiz-progress {
+    position: sticky;
+    top: 76px;
+    height: 4px;
+    background: rgba(44, 62, 80, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+    z-index: 40;
+  }
+  .quiz-progress-fill {
+    height: 100%;
+    background: #2c3e50;
+    transition: width 0.3s ease;
+  }
+
+  /* Décalage de scroll pour ne jamais passer sous la navbar fixe. */
+  #quiz-root {
+    scroll-margin-top: 90px;
+  }
+
+  /* ── Apparition d'écran ────────────────────────────────────────────── */
+  .quiz-fade {
+    animation: quizFade 0.35s ease;
+  }
+  @keyframes quizFade {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Cartes de réponse (style Tally / Notion) ──────────────────────── */
+  .quiz-answer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    user-select: none;
+    min-height: 52px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow:
+      rgba(0, 0, 0, 0.12) 0px 1px 1px 0px,
+      rgba(44, 62, 80, 0.16) 0px 0px 0px 1px,
+      rgba(44, 62, 80, 0.08) 0px 2px 5px 0px;
+    transition:
+      box-shadow 0.12s ease,
+      transform 0.12s ease;
+  }
+  .quiz-answer:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      rgba(0, 0, 0, 0.12) 0px 1px 1px 0px,
+      rgba(44, 62, 80, 0.4) 0px 0px 0px 1px,
+      rgba(44, 62, 80, 0.1) 0px 3px 7px 0px;
+  }
+  .quiz-answer[data-selected="true"] {
+    box-shadow:
+      #2c3e50 0px 0px 0px 2px,
+      rgba(44, 62, 80, 0.16) 0px 0px 0px 1px;
+  }
+
+  /* Badge-lettre A/B/C/D */
+  .quiz-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background: rgb(119, 118, 114);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    transition: background-color 0.12s ease;
+  }
+  .quiz-answer[data-selected="true"] .quiz-badge,
+  .quiz-answer[data-advancing="true"] .quiz-badge {
+    background: #2c3e50;
+  }
+
+  /* Spinner (feedback au clic) */
+  .quiz-spinner {
+    width: 11px;
+    height: 11px;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: quizSpin 0.6s linear infinite;
+  }
+  @keyframes quizSpin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .quiz-fade,
+    .quiz-answer,
+    .quiz-progress-fill,
+    .quiz-spinner {
+      animation: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  import { quizContent, CODE_TO_SLUG } from "../../data/quiz";
+  import type { Lang, ProfilCode } from "../../data/quiz";
+  import { scoreQuiz } from "./scoring";
+  import { fourCirclesSvg } from "./fourCircles";
+
+  const EDGE_FUNCTION_URL =
+    "https://aeobrpxjmecbvdeqjbvc.supabase.co/functions/v1/quiz-submit";
+  const STORAGE_KEY = "bk_quiz_v1";
+
+  const root = document.getElementById("quiz-root");
+  const screen = document.getElementById("quiz-screen");
+  const progressBar = document.getElementById("quiz-progress");
+  const progressFill = document.getElementById("quiz-progress-fill");
+  if (root && screen) {
+    const lang: Lang = root.dataset.lang === "en" ? "en" : "fr";
+    const embedded = root.dataset.embedded === "true";
+    const content = quizContent[lang];
+    const { questions, profils, ui } = content;
+
+    // Ordre d'affichage randomisé par question, mapping mémorisé.
+    type Choice = ProfilCode | null;
+    const answers: Choice[] = new Array(questions.length).fill(null);
+    // Ordre d'affichage stable pendant la session (régénéré au démarrage).
+    let displayOrders: number[][] = questions.map((q) =>
+      shuffle(q.answers.map((_, i) => i)),
+    );
+
+    // Reprise de session.
+    restoreSession();
+
+    let view: "landing" | "quiz" | "result" = answers.some((a) => a !== null)
+      ? "quiz"
+      : "landing";
+    let current = firstUnansweredIndex();
+
+    track("quiz_view");
+    render();
+
+    function firstUnansweredIndex(): number {
+      const idx = answers.findIndex((a) => a === null);
+      return idx === -1 ? questions.length - 1 : idx;
+    }
+
+    function shuffle<T>(arr: T[]): T[] {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j]!, a[i]!];
+      }
+      return a;
+    }
+
+    function persist() {
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ answers, displayOrders }),
+        );
+      } catch {
+        /* localStorage indisponible : on continue sans reprise */
+      }
+    }
+
+    function restoreSession() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const saved = JSON.parse(raw) as {
+          answers?: Choice[];
+          displayOrders?: number[][];
+        };
+        if (
+          Array.isArray(saved.answers) &&
+          saved.answers.length === questions.length
+        ) {
+          for (let i = 0; i < questions.length; i++) answers[i] = saved.answers[i] ?? null;
+        }
+        if (
+          Array.isArray(saved.displayOrders) &&
+          saved.displayOrders.length === questions.length
+        ) {
+          displayOrders = saved.displayOrders;
+        }
+      } catch {
+        /* données corrompues : on ignore */
+      }
+    }
+
+    function clearSession() {
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch {
+        /* ignore */
+      }
+    }
+
+    function track(event: string, props?: Record<string, unknown>) {
+      const w = window as unknown as {
+        plausible?: (e: string, o?: { props?: Record<string, unknown> }) => void;
+        gtag?: (...args: unknown[]) => void;
+      };
+      try {
+        w.plausible?.(event, props ? { props } : undefined);
+        w.gtag?.("event", event, props ?? {});
+      } catch {
+        /* tracking best-effort */
+      }
+    }
+
+    function el(html: string): HTMLElement {
+      const tpl = document.createElement("template");
+      tpl.innerHTML = html.trim();
+      return tpl.content.firstElementChild as HTMLElement;
+    }
+
+    function scrollToTop() {
+      const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      const behavior: ScrollBehavior = reduce ? "auto" : "smooth";
+      if (embedded) {
+        // Recadrer sur le bloc quiz (pas le haut de la page d'accueil).
+        root!.scrollIntoView({ behavior, block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior });
+      }
+    }
+
+    function updateProgress() {
+      const showBar = view === "quiz";
+      if (progressBar) progressBar.hidden = !showBar;
+      if (progressFill && showBar) {
+        const pct = Math.round((current / questions.length) * 100);
+        progressFill.style.width = `${pct}%`;
+      }
+    }
+
+    function render() {
+      if (!screen) return;
+      screen.innerHTML = "";
+      if (view === "landing") screen.appendChild(renderLanding());
+      else if (view === "quiz") screen.appendChild(renderQuestion());
+      else screen.appendChild(renderResult());
+      updateProgress();
+    }
+
+    function renderLanding(): HTMLElement {
+      const node = el(`
+        <div class="quiz-fade text-center">
+          <h2 class="font-comfortaa text-3xl sm:text-4xl font-bold mb-5">${esc(ui.landingTitle)}</h2>
+          <p class="text-lg text-bleu-crepuscule/80 mb-4 max-w-xl mx-auto">${esc(ui.landingSubtitle)}</p>
+          <p class="text-sm text-bleu-crepuscule/60 mb-8">${esc(ui.landingDuration)}</p>
+          <button id="quiz-start" class="font-comfortaa font-bold rounded-xl px-10 py-4 text-lg bg-bleu-crepuscule text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            ${esc(ui.start)}
+          </button>
+        </div>
+      `);
+      node.querySelector("#quiz-start")?.addEventListener("click", () => {
+        view = "quiz";
+        current = firstUnansweredIndex();
+        track("quiz_start");
+        render();
+        scrollToTop();
+      });
+      return node;
+    }
+
+    let navigating = false;
+
+    function renderQuestion(): HTMLElement {
+      const q = questions[current]!;
+      const total = questions.length;
+      const order = displayOrders[current]!;
+
+      const node = el(`
+        <div class="quiz-fade">
+          <div class="mb-5 min-h-[28px]">
+            ${
+              current > 0
+                ? `<button id="quiz-back" class="inline-flex items-center gap-1.5 h-7 px-2.5 rounded-md text-sm font-semibold text-bleu-crepuscule/60 hover:text-bleu-crepuscule hover:bg-bleu-crepuscule/5 transition">
+                     <span aria-hidden="true">←</span> ${esc(ui.back)}
+                   </button>`
+                : ""
+            }
+          </div>
+          <p class="text-xs font-medium uppercase tracking-wide text-bleu-crepuscule/40 mb-2">${esc(ui.progress(current + 1, total))}</p>
+          <h2 class="font-comfortaa text-xl sm:text-2xl font-bold mb-7 leading-snug">${esc(q.stem)}</h2>
+          <div id="quiz-answers" class="flex flex-col gap-2.5"></div>
+        </div>
+      `);
+
+      const list = node.querySelector("#quiz-answers")!;
+      order.forEach((i, displayPos) => {
+        const ans = q.answers[i]!;
+        const letter = String.fromCharCode(65 + displayPos);
+        const selected = answers[current] === ans.code;
+        const btn = el(`
+          <button type="button" class="quiz-answer" data-selected="${selected}">
+            <span class="quiz-badge" data-letter="${letter}">${letter}</span>
+            <span class="text-[15px] text-bleu-crepuscule leading-snug">${esc(ans.label)}</span>
+          </button>
+        `);
+        btn.addEventListener("click", () => selectAnswer(ans.code, btn));
+        list.appendChild(btn);
+      });
+
+      node.querySelector("#quiz-back")?.addEventListener("click", () => {
+        if (navigating || current === 0) return;
+        current -= 1;
+        render();
+        scrollToTop();
+      });
+
+      return node;
+    }
+
+    function selectAnswer(code: ProfilCode, btn: HTMLElement) {
+      if (navigating) return;
+      navigating = true;
+      answers[current] = code;
+      persist();
+      track("question_answered", { n: current + 1 });
+
+      // Feedback immédiat « style Tally » : carte sélectionnée + badge → spinner.
+      const cards = btn.parentElement?.querySelectorAll<HTMLElement>(".quiz-answer");
+      cards?.forEach((c) => c.setAttribute("data-selected", c === btn ? "true" : "false"));
+      btn.setAttribute("data-advancing", "true");
+      const badge = btn.querySelector<HTMLElement>(".quiz-badge");
+      if (badge) badge.innerHTML = '<span class="quiz-spinner"></span>';
+
+      const advance = () => {
+        navigating = false;
+        if (current < questions.length - 1) {
+          current += 1;
+          view = "quiz";
+        } else {
+          view = "result";
+          track("quiz_complete");
+        }
+        render();
+        scrollToTop();
+      };
+
+      const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) advance();
+      else setTimeout(advance, 300);
+    }
+
+    function renderResult(): HTMLElement {
+      const choices = answers.filter((a): a is ProfilCode => a !== null);
+      const result = scoreQuiz(choices);
+      const profil = profils[result.dominant];
+      const slug = CODE_TO_SLUG[result.dominant];
+      track("result_view", { profil: result.profilKey });
+
+      const origin =
+        typeof window !== "undefined" ? window.location.origin : "https://be-ikigai.com";
+      const resultPath =
+        lang === "fr" ? `/quiz/resultat/${slug}` : `/en/quiz/result/${slug}`;
+      const shareUrl = `${origin}${resultPath}?utm_source=share&utm_medium=quiz`;
+
+      let intro = ui.resultIntro;
+      if (result.mixed) intro = ui.mixedIntro;
+      else if (result.secondary)
+        intro = ui.transitionIntro(
+          profil.nom,
+          profils[result.secondary].nom,
+        );
+
+      const fortsHtml = profil.forts.length
+        ? `<div class="mb-1 text-sm font-bold" style="color:${profil.accentColor}">${esc(ui.strongCircles)}</div>
+           <ul class="text-sm text-bleu-crepuscule/80 mb-4 list-disc list-inside">${profil.forts
+             .map((c) => `<li>${esc(content.cercles[c])}</li>`)
+             .join("")}</ul>`
+        : "";
+      const faiblesHtml = profil.faibles.length
+        ? `<div class="mb-1 text-sm font-bold text-bleu-crepuscule/50">${esc(ui.weakCircles)}</div>
+           <ul class="text-sm text-bleu-crepuscule/60 list-disc list-inside">${profil.faibles
+             .map((c) => `<li>${esc(content.cercles[c])}</li>`)
+             .join("")}</ul>`
+        : "";
+
+      const node = el(`
+        <div class="quiz-fade text-center">
+          <p class="text-sm uppercase tracking-wide text-bleu-crepuscule/50 mb-3">${esc(intro)}</p>
+          <div class="text-5xl mb-2">${profil.emoji}</div>
+          <h2 class="font-comfortaa text-3xl sm:text-4xl font-bold mb-3" style="color:${profil.accentColor}">${esc(profil.nom)}</h2>
+          <p class="text-lg italic text-bleu-crepuscule/80 mb-6">« ${esc(profil.tagline)} »</p>
+          <p class="text-base text-bleu-crepuscule/90 mb-8 max-w-xl mx-auto">${esc(profil.miniPortrait)}</p>
+
+          <div class="flex justify-center mb-6">${fourCirclesSvg(result.dominant, lang)}</div>
+          <p class="text-base text-bleu-crepuscule/90 mb-6 max-w-xl mx-auto">${esc(profil.reveal)}</p>
+          <div class="text-left max-w-md mx-auto mb-10 bg-beige-chaleureux/40 rounded-2xl p-5">
+            ${fortsHtml}${faiblesHtml}
+          </div>
+
+          <div class="mb-10">
+            <h3 class="font-comfortaa text-lg font-bold mb-1">${esc(ui.shareTitle)}</h3>
+            <p class="text-sm text-bleu-crepuscule/60 mb-4">${esc(ui.moai)}</p>
+            <div id="quiz-share" class="flex flex-wrap gap-3 justify-center"></div>
+          </div>
+
+          <div class="bg-white border-2 border-bleu-crepuscule/10 rounded-2xl p-6 text-left shadow-sm max-w-md mx-auto">
+            <h3 class="font-comfortaa text-xl font-bold mb-2 text-center">${esc(ui.secretTitle)}</h3>
+            <p class="text-sm text-bleu-crepuscule/80 mb-5 text-center">${esc(ui.secretBody)}</p>
+            <form id="quiz-email-form" class="space-y-4">
+              <div>
+                <label for="quiz-prenom" class="block text-sm font-bold mb-1">${esc(ui.prenomLabel)}</label>
+                <input id="quiz-prenom" name="prenom" type="text" autocomplete="given-name" placeholder="${esc(ui.prenomPlaceholder)}" class="w-full px-4 py-3 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-bleu-crepuscule bg-white text-gray-900" />
+              </div>
+              <div>
+                <label for="quiz-email" class="block text-sm font-bold mb-1">${esc(ui.emailLabel)}</label>
+                <input id="quiz-email" name="email" type="email" required autocomplete="email" placeholder="${esc(ui.emailPlaceholder)}" class="w-full px-4 py-3 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-bleu-crepuscule bg-white text-gray-900" />
+              </div>
+              <label class="flex items-start gap-2 text-xs text-bleu-crepuscule/70">
+                <input id="quiz-consent" name="consent" type="checkbox" required class="mt-0.5" />
+                <span>${esc(ui.consent)} <a href="${esc(ui.privacyHref)}" class="underline" target="_blank" rel="noopener">${esc(ui.privacyLink)}</a>.</span>
+              </label>
+              <div id="quiz-form-error" class="hidden rounded-lg bg-red-100 p-3 text-red-700 text-sm">${esc(ui.error)}</div>
+              <div id="quiz-form-success" class="hidden rounded-lg bg-green-100 p-3 text-green-700 text-sm">${esc(ui.success)}</div>
+              <button id="quiz-submit" type="submit" class="w-full font-comfortaa font-bold rounded-xl px-6 py-3 text-base bg-bleu-crepuscule text-white shadow hover:shadow-lg transition disabled:opacity-60">${esc(ui.submit)}</button>
+            </form>
+          </div>
+
+          <button id="quiz-restart" class="mt-8 text-sm text-bleu-crepuscule/50 underline hover:text-bleu-crepuscule">${esc(ui.restart)}</button>
+        </div>
+      `);
+
+      buildShareButtons(node.querySelector("#quiz-share")!, profil.shareCopy, shareUrl);
+      wireEmailForm(node, result);
+
+      node.querySelector("#quiz-restart")?.addEventListener("click", () => {
+        clearSession();
+        for (let i = 0; i < answers.length; i++) answers[i] = null;
+        displayOrders = questions.map((q) => shuffle(q.answers.map((_, i) => i)));
+        view = "landing";
+        current = 0;
+        render();
+        scrollToTop();
+      });
+
+      return node;
+    }
+
+    function buildShareButtons(container: Element, copy: string, url: string) {
+      const text = `${copy} ${url}`;
+      const btnClass =
+        "inline-flex items-center px-4 py-2 rounded-lg border border-bleu-crepuscule/20 text-sm font-medium bg-white hover:border-bleu-crepuscule/50 transition";
+
+      const wa = el(
+        `<a class="${btnClass}" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(text)}">${esc(ui.shareWhatsApp)}</a>`,
+      );
+      wa.addEventListener("click", () => track("share_click", { channel: "whatsapp" }));
+      container.appendChild(wa);
+
+      const li = el(
+        `<a class="${btnClass}" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}">${esc(ui.shareLinkedIn)}</a>`,
+      );
+      li.addEventListener("click", () => track("share_click", { channel: "linkedin" }));
+      container.appendChild(li);
+
+      const copyBtn = el(`<button class="${btnClass}">${esc(ui.shareCopyLink)}</button>`);
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(text);
+          copyBtn.textContent = ui.shareCopied;
+          track("share_click", { channel: "copy" });
+          setTimeout(() => (copyBtn.textContent = ui.shareCopyLink), 2000);
+        } catch {
+          /* clipboard refusé */
+        }
+      });
+      container.appendChild(copyBtn);
+
+      const nav = navigator as Navigator & { share?: (d: ShareData) => Promise<void> };
+      if (typeof nav.share === "function") {
+        const nb = el(`<button class="${btnClass}">${esc(ui.shareNative)}</button>`);
+        nb.addEventListener("click", () => {
+          track("share_click", { channel: "native" });
+          nav.share!({ text: copy, url }).catch(() => {});
+        });
+        container.appendChild(nb);
+      }
+    }
+
+    function wireEmailForm(node: HTMLElement, result: ReturnType<typeof scoreQuiz>) {
+      const form = node.querySelector("#quiz-email-form") as HTMLFormElement;
+      const btn = node.querySelector("#quiz-submit") as HTMLButtonElement;
+      const errBox = node.querySelector("#quiz-form-error") as HTMLElement;
+      const okBox = node.querySelector("#quiz-form-success") as HTMLElement;
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errBox.classList.add("hidden");
+        okBox.classList.add("hidden");
+        const email = (node.querySelector("#quiz-email") as HTMLInputElement).value.trim();
+        const prenom = (node.querySelector("#quiz-prenom") as HTMLInputElement).value.trim();
+        const consent = (node.querySelector("#quiz-consent") as HTMLInputElement).checked;
+        if (!email || !consent) {
+          errBox.classList.remove("hidden");
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = ui.sending;
+        track("email_submit", { profil: result.profilKey });
+
+        const reponses = answers.map((code, i) => ({ q: questions[i]!.n, code }));
+        const params = new URLSearchParams(window.location.search);
+
+        try {
+          const resp = await fetch(EDGE_FUNCTION_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email,
+              prenom: prenom || null,
+              profil: result.profilKey,
+              scores: result.scores,
+              reponses,
+              ton_doux: result.tonDoux,
+              consent: true,
+              lang,
+              source: params.get("utm_source") ?? "quiz",
+            }),
+          });
+          if (!resp.ok) {
+            const data = await resp.json().catch(() => ({}));
+            throw new Error((data as { error?: string }).error ?? "submit failed");
+          }
+          okBox.classList.remove("hidden");
+          form.reset();
+          clearSession();
+        } catch (err) {
+          console.error("quiz submit error:", err);
+          errBox.classList.remove("hidden");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = ui.submit;
+        }
+      });
+    }
+
+    function esc(s: string): string {
+      const d = document.createElement("div");
+      d.textContent = s;
+      return d.innerHTML;
+    }
+  }
+</script>

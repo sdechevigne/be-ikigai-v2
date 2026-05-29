@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "./Navbar.astro";
+import Footer from "./Footer.astro";
+import QuizEmbed from "./quiz/QuizEmbed.astro";
+import { getLangFromUrl } from "../i18n/utils";
+import { quizContent } from "../data/quiz";
+
+const lang = getLangFromUrl(Astro.url) === "en" ? "en" : "fr";
+const ui = quizContent[lang].ui;
+---
+
+<Layout title={ui.metaTitle} description={ui.metaDescription} lang={lang}>
+  <Navbar lang={lang} transparent={false} />
+  <!-- pt pour dégager la navbar fixe (sinon elle recouvre le haut du quiz) -->
+  <main class="min-h-[70vh] bg-white pt-24 sm:pt-28 pb-12">
+    <QuizEmbed lang={lang} embedded={false} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

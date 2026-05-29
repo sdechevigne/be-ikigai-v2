@@ -15,6 +15,7 @@ const blogUrl = lang === 'fr' ? '/blog/' : `/${lang}/blog/`;
 const pricingUrl = lang === 'fr' ? '/tarifs/' : `/${lang}/pricing/`;
 const servicesUrl = lang === 'fr' ? '/services/' : `/${lang}/services/`;
 const musicUrl = lang === 'fr' ? '/musique' : `/en/music`;
+const quizUrl = lang === 'fr' ? '/quiz' : `/${lang}/quiz`;
 const switchLangUrl = lang === 'fr' ? '/en/' : '/';
 
 const navClass = transparent 
@@ -51,6 +52,9 @@ const navClass = transparent
     <div class="hidden lg:flex items-center gap-6 lg:gap-10">
       <a href={`${homeUrl}#accueil`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         {lang === 'fr' ? 'Accueil' : 'Home'}
+      </a>
+      <a href={quizUrl} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
+        Quiz
       </a>
       <a href={`${homeUrl}#qui-suis-je`} class="nav-text font-comfortaa font-semibold hover:text-dore-serein transition-colors drop-shadow-md tracking-wide">
         {lang === 'fr' ? 'À propos' : 'About'}
@@ -143,6 +147,9 @@ const navClass = transparent
     <div class="flex flex-col items-center gap-8 text-center pt-16 w-full px-6">
       <a href={`${homeUrl}#accueil`} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
         {lang === 'fr' ? 'Accueil' : 'Home'}
+      </a>
+      <a href={quizUrl} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
+        Quiz
       </a>
       <a href={`${homeUrl}#qui-suis-je`} class="mobile-link text-white text-2xl font-comfortaa font-semibold hover:text-dore-serein py-4 min-w-[48px] min-h-[48px] transition-colors w-full border-b border-white/10">
         {lang === 'fr' ? 'À propos' : 'About'}

@@ -1,0 +1,10 @@
+---
+import Quiz from '../../components/Quiz.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+  ];
+}
+---
+<Quiz />

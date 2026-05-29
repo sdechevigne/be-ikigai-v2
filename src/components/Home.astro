@@ -6,6 +6,7 @@ import ContactForm from '../components/ContactForm.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import GoogleReviews from '../components/GoogleReviews.astro';
+import QuizEmbed from '../components/quiz/QuizEmbed.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -234,6 +235,18 @@ const recentPosts = allPosts.sort((a, b) => {
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Section Quiz : « Dans quel brouillard es-tu ? » (porte d'entrée gratuite) -->
+    <section class="py-14 lg:py-24 bg-gradient-to-b from-gris-doux/10 via-white to-white" id="quiz">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-6">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-bleu-crepuscule/5 text-bleu-crepuscule/70 text-sm font-semibold tracking-wide">
+                    {lang === 'fr' ? 'Quiz gratuit · 2 minutes' : 'Free quiz · 2 minutes'}
+                </span>
+            </div>
+            <QuizEmbed lang={lang} embedded={true} />
         </div>
     </section>
 

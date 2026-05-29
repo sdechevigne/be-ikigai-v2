@@ -1,0 +1,11 @@
+---
+import QuizResult from '../../../components/QuizResult.astro';
+import { PROFIL_SLUGS } from '../../../data/quiz';
+
+export function getStaticPaths() {
+  return PROFIL_SLUGS.map((slug) => ({ params: { profil: slug } }));
+}
+
+const { profil } = Astro.params;
+---
+<QuizResult slug={profil as any} />

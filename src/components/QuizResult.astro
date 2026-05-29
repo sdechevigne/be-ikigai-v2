@@ -4,7 +4,7 @@ import Navbar from "./Navbar.astro";
 import Footer from "./Footer.astro";
 import { getLangFromUrl } from "../i18n/utils";
 import { quizContent, SLUG_TO_CODE } from "../data/quiz";
-import type { ProfilSlug } from "../data/quiz";
+import type { ProfilSlug, ProfilCode } from "../data/quiz";
 import { fourCirclesSvg } from "./quiz/fourCircles";
 
 export interface Props {
@@ -17,6 +17,16 @@ const content = quizContent[lang];
 const code = SLUG_TO_CODE[slug];
 const profil = content.profils[code];
 const ui = content.ui;
+
+// Diagramme Ikigai dédié par profil (images FR avec labels intégrés).
+// Le 2e fichier conserve la coquille "ideealiste" présente dans le dossier.
+const CODE_TO_DIAGRAM: Record<ProfilCode, string> = {
+  A: "/assets/img/quizz/ikigai_cage_doree.png",
+  B: "/assets/img/quizz/ikigai_ideealiste_epuise.png",
+  C: "/assets/img/quizz/ikigai_page_blanche.png",
+  D: "/assets/img/quizz/ikigai_fragmente.png",
+};
+const diagramSrc = CODE_TO_DIAGRAM[code];
 
 const quizPath = lang === "fr" ? "/quiz" : "/en/quiz";
 
@@ -61,7 +71,18 @@ const faiblesLabel = ui.weakCircles;
         {profil.miniPortrait}
       </p>
 
-      <div class="flex justify-center mb-6" set:html={fourCirclesSvg(code, lang)} />
+      {lang === "fr" ? (
+        <img
+          src={diagramSrc}
+          alt={`Diagramme Ikigai du profil ${profil.nom}`}
+          width="1024"
+          height="768"
+          loading="eager"
+          class="w-full max-w-md mx-auto h-auto mb-6"
+        />
+      ) : (
+        <div class="flex justify-center mb-6" set:html={fourCirclesSvg(code, lang)} />
+      )}
       <p class="text-base text-bleu-crepuscule/90 mb-8 max-w-xl mx-auto">{profil.reveal}</p>
 
       <div class="text-left max-w-md mx-auto mb-10 bg-beige-chaleureux/40 rounded-2xl p-5">
